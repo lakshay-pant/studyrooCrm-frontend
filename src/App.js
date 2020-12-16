@@ -1,8 +1,11 @@
-import {Login} from "./pages/Entry.page";
+import {EntryPage} from "./pages/Entry.page";
 import './App.css';
 
+
 function App() {
-  return <div className="App"><Login/></div>
+  
+  
+  return <div className="App"><EntryPage/></div>
 }
 
 export default App;
