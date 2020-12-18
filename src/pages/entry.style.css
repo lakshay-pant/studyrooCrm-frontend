@@ -143,6 +143,111 @@ input[type="checkbox"] {
   transform: rotate(45deg);
 }
 
+/*forget pass css*/
+.pass-form {
+  padding: 60px 105px;
+}
+.pas-text {
+  text-align: center;
+}
+.pas-text h2 {
+  color: #f37e32;
+  font-size: 30px;
+}
+.pass-form input.form-control:focus {
+  outline: none;
+  border-color: #ced4da;
+  box-shadow: none;
+}
+.pas-text p {
+  font-size: 20px;
+  color: #5c5d5d;
+  padding: 30px 0px;
+}
+.forget-email {
+  position: relative;
+}
+.forget-email input {
+  padding-left: 40px;
+}
+.forget-email span {
+  position: absolute;
+  left: 9px;
+  top: ;
+  top: 0;
+  bottom: 0;
+  margin: 0 auto;
+  /* height: 40px; */
+  display: flex;
+  align-items: center;
+}
+.forget-email span i {
+  font-size: 22px;
+  color: #5c5d5d;
+}
+
+/* custum radio start */
+
+.slctn_rdo [type="radio"]:checked,
+.slctn_rdo [type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+.slctn_rdo [type="radio"]:checked + label,
+.slctn_rdo [type="radio"]:not(:checked) + label {
+  position: relative;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+.rdo_inr_con {
+  align-items: center;
+  background: #f9f9fb 0% 0% no-repeat padding-box;
+  padding: 20px;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+}
+.rdo_inr_con {
+  border: 1px solid transparent;
+}
+
+.slctn_rdo [type="radio"]:checked + label .rdo_inr_con {
+  border: 1px solid orange;
+}
+.form-group.slctn_rdo label {
+  width: 100%;
+}
+.rdo_inr_img {
+  margin-right: 10px;
+}
+.rdo_inr_txt span {
+  font-size: 14px;
+  color: #5c5d5d;
+}
+.rdo_inr_txt a {
+  font-size: 14px;
+  color: #5c5d5d;
+}
+
+/* custum radio end */
+
+/*update pass*/
+.pass-form {
+  padding: 60px 105px;
+}
+.passworupdate-box {
+  height: auto;
+  width: 510px;
+  padding: 60px 90px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 40px #e1e1e1;
+}
+.passworupdate-box .pas-text p {
+  padding: 6px 0px;
+}
+
 /*media query start here*/
 @media (max-width: 767px) {
   .login-box {
@@ -154,5 +259,14 @@ input[type="checkbox"] {
   }
   body {
     display: initial;
+  }
+
+  /*pas-css*/
+  .pass-form {
+    padding: 20px;
+  }
+  .passworupdate-box {
+    width: 100%;
+    padding: 20px;
   }
 }

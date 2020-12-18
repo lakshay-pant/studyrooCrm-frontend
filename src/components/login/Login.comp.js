@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from "prop-types"
 
-export const Login = ({handleOnChange,email,pass}) => {
+
+export const Login = ({handleOnChange,email,pass,handleOnSubmit,formSwitcher}) => {
     return (
         <div>
             <section className="mainlogin">
@@ -10,14 +11,14 @@ export const Login = ({handleOnChange,email,pass}) => {
             <div id="login-row" className="row justify-content-center align-items-center">
                 <div id="login-column">
                     <div className="login-box">
-                        <form className="login-form form" action="" method="post">
+                        <form className="login-form form" action="" method="post" onSubmit={handleOnSubmit}>
                             <div className="logoimg text-center">
                               <img src={process.env.PUBLIC_URL + '/images/logo.png'} className="img-fluid" alt="studyroo-logo"></img>
                               <h2>Hello! Welcome to the studyroo <br/>Education System</h2>
                             </div>
                             <div className="form-group">
                                 <label className="text-lb">User Name</label><br/>
-                                <input type="text" name="username" placeholder="User Name" id="username" className="form-control" onChange={handleOnChange} value={email} required/>
+                                <input type="text" name="email" placeholder="User Name" id="username" className="form-control" onChange={handleOnChange} value={email} required/>
                             </div>
                             <div className="form-group">
                                 <label  className="text-lb">Password</label><br/>
@@ -29,7 +30,7 @@ export const Login = ({handleOnChange,email,pass}) => {
                               <label >Remember Me </label>
                               </div>
                                
-                               <a className="forgettext" href="!#">Forgot Password?</a>
+                               <a className="forgettext" href="!#" onClick={() => formSwitcher("rest")}>Forgot Password?</a>
                             </div>
                          
                              <div className="footersingbtn">
