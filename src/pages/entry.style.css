@@ -247,6 +247,14 @@ input[type="checkbox"] {
 .passworupdate-box .pas-text p {
   padding: 6px 0px;
 }
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -29px;
+  position: relative;
+  z-index: 2;
+  margin-right: 10px;
+}
 
 /*media query start here*/
 @media (max-width: 767px) {

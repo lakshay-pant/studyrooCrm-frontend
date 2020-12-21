@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from "prop-types"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import usePasswordToggle from "../../hooks/usePasswordToggle"
 
 
 export const Login = ({handleOnChange,email,pass,handleOnSubmit,formSwitcher}) => {
+
+    const [PasswordInputType,ToggleIcon]=usePasswordToggle()
     return (
         <div>
             <section className="mainlogin">
@@ -22,7 +26,8 @@ export const Login = ({handleOnChange,email,pass,handleOnSubmit,formSwitcher}) =
                             </div>
                             <div className="form-group">
                                 <label  className="text-lb">Password</label><br/>
-                                <input type="text" name="password" placeholder="Enter your Password" id="password" className="form-control" onChange={handleOnChange} value={pass} required />
+                                <input id="loginpassword password" type={PasswordInputType} name="password" placeholder="Enter your Password"  className="form-control" onChange={handleOnChange} value={pass} required />
+                            <span className="toggle-password field-icon">{ToggleIcon}</span>
                             </div>
                             <div className="form-group resiterlink">
                               <div className="chck">
