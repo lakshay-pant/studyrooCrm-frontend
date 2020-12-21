@@ -8,7 +8,7 @@ export const Login = ({handleOnChange,email,pass,handleOnSubmit,formSwitcher}) =
 
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
     return (
-        <div>
+        <div className="body">
             <section className="mainlogin">
    <div id="login">
         <div className="container">
@@ -32,7 +32,7 @@ export const Login = ({handleOnChange,email,pass,handleOnSubmit,formSwitcher}) =
                             <div className="form-group resiterlink">
                               <div className="chck">
                                 <input type="checkbox" id="box-2"/>
-                              <label >Remember Me </label>
+                              <label for="box-2">Remember Me </label>
                               </div>
                                
                                <a className="forgettext" href="!#" onClick={() => formSwitcher("rest")}>Forgot Password?</a>
