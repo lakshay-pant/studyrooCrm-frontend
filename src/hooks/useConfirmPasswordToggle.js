@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const usePasswordToggle = () => {
+const useConfirmPasswordToggle = () => {
     const [visible,setVisibility]=useState(false)
     const Icon=<FontAwesomeIcon icon={visible?"eye-slash":"eye"}
     onClick={()=>setVisibility(visiblity=>!visible)}/>
@@ -12,4 +12,4 @@ const usePasswordToggle = () => {
 
 
 
-export default usePasswordToggle
+export default useConfirmPasswordToggle

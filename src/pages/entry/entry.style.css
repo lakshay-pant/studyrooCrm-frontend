@@ -61,7 +61,7 @@
   border-radius: 5px;
   opacity: 1;
 }
-.login-form input.form-control:focus {
+. .login-form input.form-control:focus {
   outline: none;
   outline: none;
   border-color: none;
@@ -82,6 +82,14 @@
   border-radius: 5px;
   cursor: pointer;
   padding: 2px 0px;
+}
+.login-form p {
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 30px;
+}
+.login-form p a {
+  color: #f48035;
 }
 .footersingbtn .getin-btn:hover {
   background: transparent;
@@ -265,7 +273,7 @@ input[type="checkbox"] {
   .login-form {
     padding: 20px;
   }
-  .body {
+  body {
     display: initial;
   }
 

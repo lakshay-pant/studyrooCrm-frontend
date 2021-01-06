@@ -1,4 +1,4 @@
-import {EntryPage} from "./pages/Entry.page";
+import {EntryPage} from "./pages/entry/Entry.page";
 import './App.css';
 import "./components/Fontawesomeicons"
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from "prop-types"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import usePasswordToggle from "../../hooks/usePasswordToggle"
 
 
@@ -35,7 +34,7 @@ export const Login = ({handleOnChange,email,pass,handleOnSubmit,formSwitcher}) =
                               <label for="box-2">Remember Me </label>
                               </div>
                                
-                               <a className="forgettext" href="!#" onClick={() => formSwitcher("rest")}>Forgot Password?</a>
+                               <a className="forgettext" onClick={() => formSwitcher("rest")}>Forgot Password?</a>
                             </div>
                          
                              <div className="footersingbtn">
