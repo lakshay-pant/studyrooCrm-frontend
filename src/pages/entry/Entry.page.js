@@ -53,16 +53,7 @@ export const EntryPage = () => {
       console.log(firstName,password,lastName,confirmPassword)
     }
   
-    const handleOnSubmit = (e) => {
-      e.preventDefault();
-  
-      if (!email || !password) {
-        return alert("Fill up all the form!");
-      }
-  
-      //TODO call api to submit the form
-      console.log(email, password);
-    };
+    
     const handleOnResetSubmit = (e) => {
       e.preventDefault();
   
@@ -98,17 +89,15 @@ export const EntryPage = () => {
 
       {frmLoad === "login" && (
         <Login
-          handleOnChange={handleOnChange}
-          handleOnSubmit={handleOnSubmit}
+          
           formSwitcher={formSwitcher}
-          email={email}
-          pass={password}
+
         />
       )}
 
       {frmLoad === "rest" && (
         <ResetPassword
-          handleOnChange={handleOnChange}
+         // handleOnChange={handleOnChange}
           handleOnResetSubmit={handleOnResetSubmit}
           formSwitcher={formSwitcher}
           email={email}
