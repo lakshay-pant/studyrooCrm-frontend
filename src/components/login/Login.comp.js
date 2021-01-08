@@ -6,11 +6,14 @@ import {useDispatch, useSelector} from "react-redux"
 import {
     Spinner,Alert
   } from "react-bootstrap";
-
+import {userLogin} from "../../api/userApi"
+import {useHistory} from "react-router-dom"
 
 export const Login = ({formSwitcher}) => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
 const dispatch=useDispatch()
+
+const history=useHistory()
 
 const {isLoading,isAuth,error}=useSelector(state=>state.login)
     const [email, setEmail] = useState("");
@@ -39,15 +42,28 @@ const {isLoading,isAuth,error}=useSelector(state=>state.login)
         }
       };
 
-      const handleOnSubmit = (e) => {
+      const handleOnSubmit = async(e) => {
         e.preventDefault();
     
         if (!email || !password) {
           return alert("Fill up all the form!");
         }
     dispatch(loginPending())
-        //TODO call api to submit the form
-        console.log(email, password);
+
+        try{
+
+const isAuth=await userLogin({email,password})
+console.log(isAuth)
+if(isAuth.status=="error"){
+  return dispatch(loginFail(isAuth.message))
+}
+dispatch(loginSuccess())
+history.push("/dashboard")
+
+        }catch(error){
+ dispatch(loginFail(error.message))
+
+        }
       };
 
 

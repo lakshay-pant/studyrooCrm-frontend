@@ -5,7 +5,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState={
     isLoading:false,
     isAuth:false,
-    error:"dummy error"
+    error:""
 
 }
 
