@@ -15,7 +15,7 @@ const dispatch=useDispatch()
 
 const history=useHistory()
 
-const {isLoading,isAuth,error}=useSelector(state=>state.login)
+const {isLoading,isAuth,error}=useSelector(state=>state.signUp)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 

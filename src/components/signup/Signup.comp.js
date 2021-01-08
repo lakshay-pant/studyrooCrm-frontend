@@ -1,11 +1,81 @@
-import React from 'react'
+import React,{useState} from 'react'
 import PropTypes from "prop-types"
 import usePasswordToggle from "../../hooks/usePasswordToggle"
 import useConfirmPasswordToggle from "../../hooks/useConfirmPasswordToggle"
+import {signUpPending,signUpSuccess,signUpFail} from "./signupSlice"
+import {useDispatch, useSelector} from "react-redux"
+import {
+    Spinner,Alert
+  } from "react-bootstrap";
+import {userSignUp} from "../../api/userApi"
 
-export const Signup = ({handleOnChange,email,pass,firstName,lastName,handleOnSignUpSubmit,formSwitcher,confirmPass}) => {
+export const Signup = ({formSwitcher}) => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
     const [ConfirmPasswordInputType,ConfirmToggleIcon]=useConfirmPasswordToggle()
+    const dispatch=useDispatch()
+    const {isLoading,isStore,error}=useSelector(state=>state.signUp)
+
+    const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    
+  
+    const handleOnChange = (e) => {
+      const { name, value } = e.target;
+  
+      switch (name) {
+        case "firstName":
+          setFirstName(value);
+          break;
+
+          case "lastName":
+          setLastName(value);
+          break;
+
+        case "email":
+          setEmail(value);
+          break;
+  
+        case "password":
+          setPassword(value);
+          break;
+
+          case "confirmPassword":
+          setConfirmPassword(value);
+          break;
+  
+         
+
+        default:
+          break;
+      }
+    };
+
+    const handleOnSignUpSubmit=async(e)=>{
+      e.preventDefault()
+      if (!firstName || !password||!lastName||!confirmPassword) {
+        return alert("Fill up all the form!");
+        
+      }
+      dispatch(signUpPending())
+
+      try{
+
+const isAuth=await userSignUp({firstName,lastName,email,password})
+console.log(isAuth)
+if(isAuth.status=="error"){
+return dispatch(signUpFail(isAuth.message))
+}
+dispatch(signUpSuccess())
+
+      }catch(error){
+dispatch(signUpFail(error.message))
+
+      }
+      console.log(firstName,password,lastName,confirmPassword)
+    }
     return (
       <div className="body">
         <div className="mainlogin">
@@ -14,6 +84,7 @@ export const Signup = ({handleOnChange,email,pass,firstName,lastName,handleOnSig
             <div id="login-row" className="row justify-content-center align-items-center">
                 <div id="login-column">
                     <div className="login-box">
+                    {error && <Alert variant="danger">{error}</Alert>}
                         <form className="login-form form"  action="" method="post" onSubmit={handleOnSignUpSubmit} autoComplete="off">
                             <div className="logoimg text-center">
                               <img  alt="studyroo logo" src={process.env.PUBLIC_URL + '/images/logo.png'} className="img-fluid"></img>            
@@ -35,12 +106,13 @@ export const Signup = ({handleOnChange,email,pass,firstName,lastName,handleOnSig
 
                             <div className="form-group">
                                 <label for="password" className="text-lb">Password</label><br/>
-                                <input id="newpassword" type={PasswordInputType} name="password" placeholder="Enter your  Password" id="password" className="form-control" onChange={handleOnChange} value={pass} required/>
+                                <input id="newpassword" type={PasswordInputType} name="password" placeholder="Enter your  Password" id="password" className="form-control" onChange={handleOnChange} value={password} required/>
                                 <span className="toggle-password field-icon">{ToggleIcon}</span>
                             </div>
+                            {isLoading && <Spinner variant="primary" animation="border" />}
                               <div className="form-group">
                                 <label for="password" className="text-lb">Confirm Password</label><br/>
-                                <input id="loginpassword-cnrm"  type ={ConfirmPasswordInputType} name="confirmPassword" placeholder="Enter your Confirm Password" id="password" className="form-control" onChange={handleOnChange} value={confirmPass} required/>
+                                <input id="loginpassword-cnrm"  type ={ConfirmPasswordInputType} name="confirmPassword" placeholder="Enter your Confirm Password" id="password" className="form-control" onChange={handleOnChange} value={confirmPassword} required/>
                                 <span className="toggle-password field-icon">{ConfirmToggleIcon}</span>
                             </div>
                             <div className="form-group resiterlink">
@@ -68,11 +140,6 @@ export const Signup = ({handleOnChange,email,pass,firstName,lastName,handleOnSig
 }
 
 Signup.propTypes={
-    handleOnChange:PropTypes.func.isRequired,
-    email:PropTypes.string.isRequired,
-    pass:PropTypes.string.isRequired,
-    firstName:PropTypes.string.isRequired,
-    lastName:PropTypes.string.isRequired,
-    confirmPass:PropTypes.string.isRequired
+  formSwitcher: PropTypes.func.isRequired,
 
 }

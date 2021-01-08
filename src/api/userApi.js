@@ -1,6 +1,6 @@
 import axios from "axios"
-import { loginFail } from "../components/login/loginSlice"
 const loginUrl="http://localhost:3001/v1/user/login"
+const signUpUrl="http://localhost:3001/v1/user"
 
 export const userLogin = (frmData) => {
     return new Promise(async (resolve, reject) => {
@@ -16,6 +16,20 @@ export const userLogin = (frmData) => {
             JSON.stringify({ refreshJWT: res.data.refreshJWT })
           );
         }
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+ 
+export const userSignUp = (frmData) => {
+    return new Promise(async(resolve, reject) => {
+      try {
+        const res = await axios.post(signUpUrl, frmData);
+  
+        resolve(res.data);
+  
+        
       } catch (error) {
         reject(error);
       }
