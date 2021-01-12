@@ -20,6 +20,8 @@ export const Signup = ({formSwitcher}) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [isError, setIsError] = useState("");
+    const [isChecked, setIsChecked] = useState(false);
     
   
     const handleOnChange = (e) => {
@@ -42,9 +44,7 @@ export const Signup = ({formSwitcher}) => {
           setPassword(value);
           break;
 
-          case "confirmPassword":
-          setConfirmPassword(value);
-          break;
+        
   
          
 
@@ -53,12 +53,18 @@ export const Signup = ({formSwitcher}) => {
       }
     };
 
+    
+
     const handleOnSignUpSubmit=async(e)=>{
       e.preventDefault()
       if (!firstName || !password||!lastName||!confirmPassword) {
         return alert("Fill up all the form!");
         
       }
+      if(!isChecked){
+        return alert("Accept the Terms of use & Privacy Policy");
+      }
+      
       dispatch(signUpPending())
 
       try{
@@ -76,6 +82,14 @@ dispatch(signUpFail(error.message))
       }
       console.log(firstName,password,lastName,confirmPassword)
     }
+
+    const checkValidation=(e)=>{
+      setConfirmPassword(e.target.value)
+      if(password!=confirmPassword){
+setIsError("Confirm Password should match with Password")}else{
+  setIsError()
+}}
+
     return (
       <div className="body">
         <div className="mainlogin">
@@ -84,8 +98,10 @@ dispatch(signUpFail(error.message))
             <div id="login-row" className="row justify-content-center align-items-center">
                 <div id="login-column">
                     <div className="login-box">
-                    {error && <Alert variant="danger">{error}</Alert>}
+                    
                         <form className="login-form form"  action="" method="post" onSubmit={handleOnSignUpSubmit} autoComplete="off">
+                        {error && <Alert variant="danger">{error}</Alert>}
+                      
                             <div className="logoimg text-center">
                               <img  alt="studyroo logo" src={process.env.PUBLIC_URL + '/images/logo.png'} className="img-fluid"></img>            
                             </div>
@@ -108,16 +124,20 @@ dispatch(signUpFail(error.message))
                                 <label for="password" className="text-lb">Password</label><br/>
                                 <input id="newpassword" type={PasswordInputType} name="password" placeholder="Enter your  Password" id="password" className="form-control" onChange={handleOnChange} value={password} required/>
                                 <span className="toggle-password field-icon">{ToggleIcon}</span>
+                                
                             </div>
                             {isLoading && <Spinner variant="primary" animation="border" />}
+                         
                               <div className="form-group">
                                 <label for="password" className="text-lb">Confirm Password</label><br/>
-                                <input id="loginpassword-cnrm"  type ={ConfirmPasswordInputType} name="confirmPassword" placeholder="Enter your Confirm Password" id="password" className="form-control" onChange={handleOnChange} value={confirmPassword} required/>
+                                <input id="loginpassword-cnrm"  type ={ConfirmPasswordInputType} name="confirmPassword" placeholder="Enter your Confirm Password" id="password" className="form-control" onChange={(e)=>checkValidation(e)} value={confirmPassword} required/>
                                 <span className="toggle-password field-icon">{ConfirmToggleIcon}</span>
+                                {<span style={{ fontSize: 14,color: "#5c5d5d"}}>{isError}</span>}
                             </div>
+                            
                             <div className="form-group resiterlink">
                               <div className="chck">
-                                <input type="checkbox" id="box-2"/>
+                                <input type="checkbox" id="box-2" checked={isChecked} onChange={()=>setIsChecked(!isChecked)}/>
                               <label for="box-2">I Accept the Terms of use & Privacy Policy. </label>
                               </div>
                                
@@ -127,7 +147,7 @@ dispatch(signUpFail(error.message))
                              <div className="footersingbtn">
                                <input type="submit" name="submit" className="btn getin-btn" value="Sign Up"/>
                              </div>
-                               <p>Already have an account? <a  onClick={() => formSwitcher("login")}> Sign In</a></p>
+                               <p>Already have an account? <a className="forgettext" onClick={() => formSwitcher("login")}> Sign In</a></p>
                         </form>
                     </div>
                 </div>
