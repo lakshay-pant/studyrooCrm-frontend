@@ -78,6 +78,7 @@ history.push("/dashboard")
                 <div id="login-column">
                     <div className="login-box">
                     {error && <Alert variant="danger">{error}</Alert>}
+                   
                         <form className="login-form form" action="" method="post" onSubmit={handleOnSubmit}>
                             <div className="logoimg text-center">
                               <img src={process.env.PUBLIC_URL + '/images/logo.png'} className="img-fluid" alt="studyroo-logo"></img>

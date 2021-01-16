@@ -101,6 +101,7 @@ setIsError("Confirm Password should match with Password")}else{
                     
                         <form className="login-form form"  action="" method="post" onSubmit={handleOnSignUpSubmit} autoComplete="off">
                         {error && <Alert variant="danger">{error}</Alert>}
+                        {isStore && <Alert variant="success">"Successfully Posted"</Alert>}
                       
                             <div className="logoimg text-center">
                               <img  alt="studyroo logo" src={process.env.PUBLIC_URL + '/images/logo.png'} className="img-fluid"></img>            

@@ -2,7 +2,9 @@ import {EntryPage} from "./pages/entry/Entry.page";
 import './App.css';
 import "./components/Fontawesomeicons"
 import {Dashboard} from "../src/pages/dashboard/Dashboard.page"
-import { BrowserRouter as Router, Route, Link,Switch } from "react-router-dom";
+import {DefaultLayout} from "./layout/DefaultLayout"
+import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
+import {PrivateRoute} from "./components/private-route/PrivateRoute.comp"
 
 function App() {
   return( 
@@ -12,11 +14,11 @@ function App() {
         <Route exact path="/">
         <EntryPage/>
         </Route>
-        <Route path="/dashboard">
+        <PrivateRoute path="/dashboard">
         <Dashboard/>
-        </Route>
+        </PrivateRoute>
         </Switch>
-      </Router>
+    </Router>
       </div>
   
   )}
