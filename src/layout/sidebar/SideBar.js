@@ -2,7 +2,7 @@ import React from 'react'
 import "./sidebar.style.css"
 
 export const SideBar = () => {
-    return (<div>
+    return (<div className="sidebar-mini layout-fixed">
         {/*-- Main Sidebar Container */}
       <div>
       <aside className="main-sidebar sidebar-dark-primary elevation-4">

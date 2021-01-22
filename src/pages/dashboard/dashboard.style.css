@@ -16286,10 +16286,10 @@ html.maximized-card {
   justify-content: center;
 }
 
-.login-box,
+/* .login-box,
 .register-box {
   width: 360px;
-}
+} */
 
 @media (max-width: 576px) {
   .login-box,

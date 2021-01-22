@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.html {
+html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
@@ -23,7 +23,7 @@ section {
   display: block;
 }
 
-* {
+body {
   margin: 0;
   font-family: "Roboto Slab", serif;
   font-size: 15px;
@@ -31,6 +31,7 @@ section {
   line-height: 1.5;
   color: #6c7474;
   text-align: left;
+  background-color: #fff;
 }
 /*custom css*/
 .navbar-search .input-group-append button {
@@ -16286,10 +16287,10 @@ html.maximized-card {
   justify-content: center;
 }
 
-.login-box,
+/* .login-box,
 .register-box {
-  width: 360px;
-}
+  width: 360px
+} */
 
 @media (max-width: 576px) {
   .login-box,

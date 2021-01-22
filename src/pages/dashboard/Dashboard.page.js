@@ -2,8 +2,8 @@ import React from 'react'
 import "./dashboard.style.css"
 
 export const Dashboard = () => {
+  
   return (
-    
     <div className="html "> <div id="page-top" className="hold-transition sidebar-mini layout-fixed">
      
 
@@ -433,6 +433,7 @@ export const Dashboard = () => {
     
        
         </div></div>
+   
    
   )
 }
