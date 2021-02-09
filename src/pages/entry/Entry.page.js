@@ -2,42 +2,15 @@ import React,{useState} from 'react'
 import "./entry.style.css";
 import {Login} from "../../components/login/Login.comp"
 import { ResetPassword } from "../../components/password-reset/PasswordReset.comp";
-import {Signup} from "../../components/signup/Signup.comp" 
 
 
 export const EntryPage = () => {
-  const [frmLoad, setFrmLoad] = useState("SignUp");
-  const [email, setEmail] = useState("");
-    
-  
-    const handleOnChange = (e) => {
-      const { name, value } = e.target;
-  
-      switch (name) {
-       
-
-        case "email":
-          setEmail(value);
-          break;
-  
+  const [frmLoad, setFrmLoad] = useState("login");
       
-        default:
-          break;
-      }
-    };
-
-    
-  
     
     const handleOnResetSubmit = (e) => {
       e.preventDefault();
   
-      if (!email) {
-        return alert("Please enter the email!");
-      }
-  
-      //TODO call api to submit the form
-      console.log(email);
     };
   
     const formSwitcher = (frmType) => {
@@ -46,16 +19,6 @@ export const EntryPage = () => {
     
     
     return (  <div>
-{frmLoad === "SignUp" && (
-        <Signup
-          
-          formSwitcher={formSwitcher}
-         
-        
-
-        />
-      )}
-
 
       {frmLoad === "login" && (
         <Login
@@ -70,7 +33,7 @@ export const EntryPage = () => {
          // handleOnChange={handleOnChange}
           handleOnResetSubmit={handleOnResetSubmit}
           formSwitcher={formSwitcher}
-          email={email}
+         
         />
       )}
 

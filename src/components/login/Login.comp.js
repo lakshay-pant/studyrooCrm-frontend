@@ -19,6 +19,8 @@ const {isLoading,isAuth,error}=useSelector(state=>state.login)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+   
+
     const handleOnChange = (e) => {
         const { name, value } = e.target;
     
@@ -109,8 +111,9 @@ history.push("/dashboard")
                                <input type="submit" name="submit" className="btn getin-btn" value="Sign in"/>
                                
                              </div>
-                             
+                             <p>Are you new here? <a className="forgettext" href="/registration"> Register Now</a></p>     
                         </form>
+                        
                         
                     </div>
                 </div>

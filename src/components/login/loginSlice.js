@@ -26,11 +26,11 @@ const loginSlice=createSlice({
             state.isLoading=false
             state.error=payload
 
-        },
+        }
     }
 })
 
 const {reducer,actions}=loginSlice
 
-export const {loginPending,loginSuccess,loginFail}=actions
+export const {loginPending,loginSuccess,loginFail,resetErrorMsg}=actions
 export default reducer

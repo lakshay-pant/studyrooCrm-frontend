@@ -8,8 +8,9 @@ import {
     Spinner,Alert
   } from "react-bootstrap";
 import {userSignUp} from "../../api/userApi"
+import "./registration.style.css"
 
-export const Signup = ({formSwitcher}) => {
+export const Signup = () => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
     const [ConfirmPasswordInputType,ConfirmToggleIcon]=useConfirmPasswordToggle()
     const dispatch=useDispatch()
@@ -148,7 +149,7 @@ setIsError("Confirm Password should match with Password")}else{
                              <div className="footersingbtn">
                                <input type="submit" name="submit" className="btn getin-btn" value="Sign Up"/>
                              </div>
-                               <p>Already have an account? <a className="forgettext" onClick={() => formSwitcher("login")}> Sign In</a></p>
+                               <p>Already have an account? <a className="forgettext" href="/"> Sign In</a></p>
                         </form>
                     </div>
                 </div>
@@ -160,7 +161,3 @@ setIsError("Confirm Password should match with Password")}else{
     )
 }
 
-Signup.propTypes={
-  formSwitcher: PropTypes.func.isRequired,
-
-}
