@@ -8,6 +8,7 @@ import {
   } from "react-bootstrap";
 import {userLogin} from "../../api/userApi"
 import {useHistory} from "react-router-dom"
+import {getUserProfile} from "../../pages/dashboard/userAction"
 
 export const Login = ({formSwitcher}) => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
@@ -55,11 +56,12 @@ const {isLoading,isAuth,error}=useSelector(state=>state.login)
         try{
 
 const isAuth=await userLogin({email,password})
-console.log(isAuth)
+
 if(isAuth.status=="error"){
   return dispatch(loginFail(isAuth.message))
 }
 dispatch(loginSuccess())
+dispatch(getUserProfile())
 history.push("/dashboard")
 
         }catch(error){
