@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import PropTypes from "prop-types"
 import usePasswordToggle from "../../hooks/usePasswordToggle"
 import {loginPending,loginSuccess,loginFail} from "./loginSlice"
@@ -20,7 +20,7 @@ const {isLoading,isAuth,error}=useSelector(state=>state.login)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-   
+  
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -62,7 +62,7 @@ if(isAuth.status=="error"){
 }
 dispatch(loginSuccess())
 dispatch(getUserProfile())
-history.push("/dashboard")
+history.push("/add-student")
 
         }catch(error){
  dispatch(loginFail(error.message))

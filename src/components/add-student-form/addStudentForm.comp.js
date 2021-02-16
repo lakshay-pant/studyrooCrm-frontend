@@ -1,33 +1,10 @@
 import React from 'react'
 import "./addStudent.style.css"
 
-export const addStudentForm = () => {
+export const AddStudentForm = () => {
     return (
         <div>
-              {/*-- Main content -*/}
-<div class="maincontent-rightside add-student">
-    <section class="maincontent">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-            <div class="add-student">
-              <div class="add-text">
-                <div class="add-round">
-                <span><i class="fal fa-user-graduate"></i></span>
-              </div>
-            <small>  Add Student</small>
-            </div>
-            </div>
-          </div>
-        
-      </div>
-  </div>
-</section>
-
-
-
-{/*-- student-form -*/}
-<section class="student-from">
+           <section class="student-from">
   <div class="container-fluid">
   <div class="student-bg">
       <div class="col-md-12">
@@ -147,8 +124,8 @@ export const addStudentForm = () => {
     </div>
   </div>
   </div>
-</section>
-{/*-- student form end -*/}</div>
+</section> 
         </div>
     )
 }
+
