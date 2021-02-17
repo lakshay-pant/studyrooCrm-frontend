@@ -3,7 +3,7 @@ import "./addStudent.style.css"
 
 export const AddStudentForm = () => {
     return (
-        <div>
+        <div className="body">
            <section class="student-from">
   <div class="container-fluid">
   <div class="student-bg">

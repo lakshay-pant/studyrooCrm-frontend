@@ -9,6 +9,7 @@ import {
   } from "react-bootstrap";
 import {userSignUp} from "../../api/userApi"
 import "./registration.style.css"
+import {Link} from "react-router-dom"
 
 export const Signup = () => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
@@ -149,7 +150,7 @@ setIsError("Confirm Password should match with Password")}else{
                              <div className="footersingbtn">
                                <input type="submit" name="submit" className="btn getin-btn" value="Sign Up"/>
                              </div>
-                               <p>Already have an account? <a className="forgettext" href="/"> Sign In</a></p>
+                               <p>Already have an account? <Link to="/"><a className="forgettext"> Sign In</a></Link></p>
                         </form>
                     </div>
                 </div>

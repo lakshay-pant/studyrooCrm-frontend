@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
 import {PrivateRoute} from "./components/private-route/PrivateRoute.comp"
 import { Registration } from "./pages/registeration/Registeration.page";
 import {NewStudent} from "./pages/newStudent/newStudent.page";
+import {StudentOverview} from "./pages/studentOverview/studentOverview.page"
 
 function App() {
   return( 
@@ -24,6 +25,9 @@ function App() {
         </PrivateRoute>
         <PrivateRoute path="/add-student">
         <NewStudent/>
+        </PrivateRoute>
+        <PrivateRoute path="/student-overview">
+        <StudentOverview/>
         </PrivateRoute>
         
         </Switch>

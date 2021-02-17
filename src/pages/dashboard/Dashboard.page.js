@@ -1,5 +1,6 @@
 import React from 'react'
 import "./dashboard.style.css"
+import {Link} from "react-router-dom"
 
 export const Dashboard = () => {
   
@@ -37,13 +38,13 @@ export const Dashboard = () => {
         <div className="container-fluid">
            <div className="boxese-ul">
            <ul className="list-unstyled">
-              <li>
-            <a href="#">
+              <li>   <a>
                 <span>
                     <i className="fal fa-user-graduate"></i>
                 </span>
-                <p className="mb-0">Add New Student</p>
+                <Link to="/add-student">  <p className="mb-0">Add New Student</p></Link>
             </a>
+         
               </li>
               <li>
                <a href="#">

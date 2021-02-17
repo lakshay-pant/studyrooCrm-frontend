@@ -9,6 +9,7 @@ import {
 import {userLogin} from "../../api/userApi"
 import {useHistory} from "react-router-dom"
 import {getUserProfile} from "../../pages/dashboard/userAction"
+import {Link} from "react-router-dom"
 
 export const Login = ({formSwitcher}) => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
@@ -16,7 +17,11 @@ const dispatch=useDispatch()
 
 const history=useHistory()
 
+
+
 const {isLoading,isAuth,error}=useSelector(state=>state.login)
+
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -62,7 +67,7 @@ if(isAuth.status=="error"){
 }
 dispatch(loginSuccess())
 dispatch(getUserProfile())
-history.push("/add-student")
+history.push("/student-overview")
 
         }catch(error){
  dispatch(loginFail(error.message))
@@ -113,7 +118,7 @@ history.push("/add-student")
                                <input type="submit" name="submit" className="btn getin-btn" value="Sign in"/>
                                
                              </div>
-                             <p>Are you new here? <a className="forgettext" href="/registration"> Register Now</a></p>     
+                             <p>Are you new here? <Link to="/registration"><a className="forgettext"> Register Now</a></Link></p>     
                         </form>
                         
                         
