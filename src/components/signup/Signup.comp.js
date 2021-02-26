@@ -1,13 +1,11 @@
 import React,{useState} from 'react'
-import PropTypes from "prop-types"
 import usePasswordToggle from "../../hooks/usePasswordToggle"
 import useConfirmPasswordToggle from "../../hooks/useConfirmPasswordToggle"
-import {signUpPending,signUpSuccess,signUpFail} from "./signupSlice"
 import {useDispatch, useSelector} from "react-redux"
 import {
     Spinner,Alert
   } from "react-bootstrap";
-import {userSignUp} from "../../api/userApi"
+import {newUserRegistration} from "./UserSignUpAction"
 import "./registration.style.css"
 import {Link} from "react-router-dom"
 
@@ -15,7 +13,9 @@ export const Signup = () => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
     const [ConfirmPasswordInputType,ConfirmToggleIcon]=useConfirmPasswordToggle()
     const dispatch=useDispatch()
-    const {isLoading,isStore,error}=useSelector(state=>state.signUp)
+    const { isLoading, status, message } = useSelector(
+      (state) => state.signUp
+    );
 
     const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -59,7 +59,7 @@ export const Signup = () => {
 
     const handleOnSignUpSubmit=async(e)=>{
       e.preventDefault()
-      if (!firstName || !password||!lastName||!confirmPassword) {
+      if (!firstName || !password||!lastName||!confirmPassword||!email) {
         return alert("Fill up all the form!");
         
       }
@@ -67,22 +67,10 @@ export const Signup = () => {
         return alert("Accept the Terms of use & Privacy Policy");
       }
       
-      dispatch(signUpPending())
-
-      try{
-
-const isAuth=await userSignUp({firstName,lastName,email,password})
-console.log(isAuth)
-if(isAuth.status=="error"){
-return dispatch(signUpFail(isAuth.message))
-}
-dispatch(signUpSuccess())
-
-      }catch(error){
-dispatch(signUpFail(error.message))
-
-      }
-      console.log(firstName,password,lastName,confirmPassword)
+      const newRegistration = {
+        firstName,lastName,email,password,confirmPassword
+      };
+      dispatch(newUserRegistration(newRegistration));
     }
 
     const checkValidation=(e)=>{
@@ -102,8 +90,11 @@ setIsError("Confirm Password should match with Password")}else{
                     <div className="login-box">
                     
                         <form className="login-form form"  action="" method="post" onSubmit={handleOnSignUpSubmit} autoComplete="off">
-                        {error && <Alert variant="danger">{error}</Alert>}
-                        {isStore && <Alert variant="success">"Successfully Posted"</Alert>}
+                        {message && (
+            <Alert variant={status === "success" ? "success" : "danger"}>
+              {message}
+            </Alert>
+          )}
                       
                             <div className="logoimg text-center">
                               <img  alt="studyroo logo" src={process.env.PUBLIC_URL + '/images/logo.png'} className="img-fluid"></img>            

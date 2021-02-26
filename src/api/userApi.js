@@ -4,6 +4,20 @@ const signUpUrl="http://localhost:3001/v1/user"
 const userProfileUrl ="http://localhost:3001/v1/user"
 const newAccessJWT="http://localhost:3001/v1/tokens"
 
+export const userSignUp = (frmData) => {
+  return new Promise(async(resolve, reject) => {
+    try {
+      const res = await axios.post(signUpUrl, frmData);
+
+      resolve(res.data);
+
+      
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const userLogin = (frmData) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -24,19 +38,7 @@ export const userLogin = (frmData) => {
     });
   };
  
-export const userSignUp = (frmData) => {
-    return new Promise(async(resolve, reject) => {
-      try {
-        const res = await axios.post(signUpUrl, frmData);
-  
-        resolve(res.data);
-  
-        
-      } catch (error) {
-        reject(error);
-      }
-    });
-  };
+
 
   export const fetchNewAccessJWT = () => {
     return new Promise(async (resolve, reject) => {

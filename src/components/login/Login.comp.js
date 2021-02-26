@@ -22,6 +22,8 @@ const history=useHistory()
 const {isLoading,isAuth,error}=useSelector(state=>state.login)
 
 
+
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -67,7 +69,7 @@ if(isAuth.status=="error"){
 }
 dispatch(loginSuccess())
 dispatch(getUserProfile())
-history.push("/student-overview")
+history.push("/dashboard")
 
         }catch(error){
  dispatch(loginFail(error.message))
