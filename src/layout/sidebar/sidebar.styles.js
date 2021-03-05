@@ -1,20 +1,19 @@
 import styled from '@emotion/styled';
 
 export const SidebarContainer = styled.div`
-  width: ${p => p.isSidebarOpen ? '20%' : '5%'};
-  max-width: 280px;
+  width: ${p => p.isSidebarOpen ? '25%' : '5%'};
+  max-width: 227px;
   min-width: 80px;
-  background-image: linear-gradient(
-    315deg,
-    ${p => p.colorPalette.bgColor1} 0%,
-    ${p => p.colorPalette.bgColor2} 74%),
-    url(${p => p.backgroundImage});
+  background-color: #fff;
+  box-shadow: 0px 3px 6px #00000029;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  color: ${p => p.colorPalette.fontColorSelected};
+  color: #5C5D5D;
   position: relative; // Toggler
-  transition: .2s ease-in all
+  transition: .2s ease-in all;
+  margin-top: -55px;
+  z-index: 99999;
 `
 
 export const SidebarHeader = styled.h3`
@@ -34,28 +33,27 @@ export const MenuItem = styled.div`
     text-align: center;
     ${p.selected && `background-color: ${p.colorPalette.selectedBackgroundCollapsedMode === 'dark' ? 'rgba(0, 0, 0, 0.6)' : 'rgba(255, 255, 255, 0.6)'}`};
   `};
-  padding: 6px 20px;
+  padding: 15px;
   font-weight: 600;
-  color: ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.fontColor} ;  
+  color: ${p => p.selected ? '#F37E32' : '#5C5D5D'} ;  
   font-family: ${p => p.font};
   white-space: nowrap;
   position: relative; // Dropdown Icon
   transition: .2s ease-in all;
   &:hover {
-    color: ${p => p.colorPalette.fontColorSelected};
+    color: #fff;
     transition: .1s ease-in all;
+    background:#F37E32;
   }
+
   &:after {
     content: '';
-    border: 1px solid ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.dividerColor};
     display: ${p => p.isSidebarOpen && p.selected && p.isOpen ? 'none' : 'block'};
-    margin: 8px 0 4px;    
     transition: .1s ease-in all;
   };
   ${p => !p.selected && `
     &:hover {
       &:after {
-        border: 1px solid rgba(255, 255, 255, 0.2);
         transition: .1s ease-in all;
       }
     }
@@ -64,8 +62,13 @@ export const MenuItem = styled.div`
 
 export const Text = styled.p`
   display: ${p => p.isSidebarOpen ? 'inline' : 'none'};
+  @media (max-width: 778px) {
+    display:none;
+  }
 `
-
+export const Info = styled.div`
+  display: ${p => p.isSidebarOpen ? 'block' : 'none'};
+`
 export const Icon = styled.img`
   ${p => p.isSidebarOpen && `padding-right: 20px; transition: .2s ease-in padding-right`};
   height: 16px;
@@ -79,11 +82,14 @@ export const SubMenuItemContainer = styled.div`
   ${p => !p.isSidebarOpen && 'text-align: center'};
 `;
 export const SubMenuItem = styled.p`
-  color: ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.fontColor};
+  color: #5C5D5D;
   ${p => p.selected && 'font-weight: bold; letter-spacing: 2px;'};
   transition: .2s;
+  margin-bottom:0;
+  padding:12px;
   &:hover {
-    color: ${p => p.colorPalette.fontColorSelected}
+    color: #fff;
+    background:#F37E32;
   }
 `;
 
@@ -91,9 +97,9 @@ export const SubMenuItem = styled.p`
 // Dropdown icon ----------------------------------------------------------------------
 export const DropdownIcon = styled.span`
   position: absolute;
-  top: ${p => p.isOpen ? '16px' : '12px'};
+  top: ${p => p.isOpen ? '25px' : '21px'};
   right: 24px;
-  border: solid ${p => p.selected ? p.colorPalette.fontColorSelected : p.colorPalette.fontColor};
+  border: solid #5C5D5D;
   border-width: 0 1px 1px 0;
   padding: 3px;
   transform: ${p => p.isOpen ? 'rotate(-135deg)' : 'rotate(45deg)'};
@@ -103,11 +109,12 @@ export const DropdownIcon = styled.span`
 // Toggler -----------------------------------------------------------------------------
 export const TogglerContainer = styled.div`
   position: absolute;
-  width: 30%;
-  bottom: 10%;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+  width: 10%;
+  top: 1%;
+  right: 15px;
+  @media (max-width: 778px) {
+    top:0.5%;
+  }
 `
 
 export const Toggler = styled.div`
@@ -119,10 +126,10 @@ export const Toggler = styled.div`
       position: absolute;
       left: 0;
       top: .25em;
-      height: .1em;
+      height: .11em;
       width: 100%;
-      background: #fff;
+      background: #5C5D5D;
       box-shadow: 
-        0 .75em 0 0 #fff,
-        0 1.5em 0 0 #fff;        
+        0 .4em 0 0 #5C5D5D,
+        0 0.8em 0 0 #5C5D5D;        
     }`

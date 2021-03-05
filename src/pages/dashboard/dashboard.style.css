@@ -29,7 +29,6 @@ section {
   font-size: 15px;
   font-weight: 400;
   line-height: 1.5;
-  color: #6c7474;
   text-align: left;
 }
 /*custom css*/
@@ -87,20 +86,22 @@ section {
   width: 20%;
   padding: 0px 15px;
   text-align: center;
+  background-color: #fff;
+  box-shadow: 0px 3px 13px #78787829;
+  border-radius: 10px;
+  margin: 0 5px;
+  padding: 25px 10px;
+  text-decoration: none;
+  margin-bottom: 30px;
 }
 .boxese-ul ul li a {
   display: block;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
-  /* min-height: 151px; */
-  box-shadow: 0px 3px 13px #78787829;
-  border-radius: 10px;
-  flex-wrap: wrap;
-  font-size: 15px;
-  color: #5c5d5d;
-  padding: 25px 10px;
-  text-decoration: none;
+    width: 100%; 
+    text-align: center;
+    /* min-height: 151px; */
+    flex-wrap: wrap;
+    font-size: 15px;
+    color: #5c5d5d;
 }
 .boxese-ul ul li a span {
   width: 43px;
@@ -6443,7 +6444,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
 }
 
 .user-panel .image {
-  padding-left: 0.8rem;
+  text-align: center;
 }
 
 .user-panel img {
@@ -7979,6 +7980,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
   .sidebar-mini.sidebar-collapse
     .main-sidebar.sidebar-focused
@@ -8145,6 +8147,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
   .sidebar-mini-md.sidebar-collapse
     .main-sidebar.sidebar-focused
@@ -30149,4 +30152,36 @@ a.text-muted:hover {
   background-color: #fff;
   border-color: #dee2e6;
   color: #6c757d;
+}
+.pendingtask .table td{
+  border-top: 0;
+}
+.pendingtask .table td:nth-child(2){
+  border-left: solid 1px #eee;
+}
+.pendingtask .table tr:hover{
+  background: #F9F9FB;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.pendingtask .table 
+.pendingtask .table-responsive{
+  border-radius: 5px;
+  color: #5C5D5D;
+}
+
+.pendingtask {
+  padding-left: 20px;
+  color: #5C5D5D;
+}
+.pendingtask .wel-admin {
+padding-left: 20px;
+}
+.task-className li{
+  text-align: center;
+}
+.task-className ul{
+  margin-bottom: 0;
+}
+.task-className ul li a{
+  color: #5C5D5D;
 }

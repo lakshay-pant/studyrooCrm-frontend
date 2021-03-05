@@ -59,7 +59,7 @@ export const Signup = () => {
 
     const handleOnSignUpSubmit=async(e)=>{
       e.preventDefault()
-      if (!firstName || !password||!lastName||!confirmPassword||!email) {
+      if (!firstName || !password||!lastName||!email) {
         return alert("Fill up all the form!");
         
       }
@@ -68,7 +68,7 @@ export const Signup = () => {
       }
       
       const newRegistration = {
-        firstName,lastName,email,password,confirmPassword
+        firstName,lastName,email,password
       };
       dispatch(newUserRegistration(newRegistration));
     }

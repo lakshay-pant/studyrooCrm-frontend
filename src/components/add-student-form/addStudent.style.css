@@ -69,6 +69,8 @@ body {
 }
 .info span {
   font-size: 10px;
+  font-weight: 500;
+  color: #5C5D5D;
 }
 .maincontent {
   background: #f37e32 0% 0% no-repeat padding-box;
@@ -79,23 +81,25 @@ body {
   margin-top: -50px;
 }
 .boxese-ul ul li {
-  width: 20%;
-  padding: 0px 15px;
-  text-align: center;
+    width: 20%;
+    padding: 0px 15px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0px 3px 13px #78787829;
+    border-radius: 10px;
+    margin: 0 5px;
+    padding: 25px 10px;
+    text-decoration: none;
+    margin-bottom: 30px;
 }
 .boxese-ul ul li a {
   display: block;
-  width: 100%;
-  background-color: #fff;
-  text-align: center;
-  /* min-height: 151px; */
-  box-shadow: 0px 3px 13px #78787829;
-  border-radius: 10px;
-  flex-wrap: wrap;
-  font-size: 15px;
-  color: #5c5d5d;
-  padding: 25px 10px;
-  text-decoration: none;
+    width: 100%; 
+    text-align: center;
+    /* min-height: 151px; */
+    flex-wrap: wrap;
+    font-size: 15px;
+    color: #5c5d5d;
 }
 .boxese-ul ul li a span {
   width: 43px;
@@ -113,6 +117,7 @@ body {
   display: block;
   margin-top: 10px;
   width: 100%;
+  color: #5C5D5D;
 }
 .headingdiv {
   border-bottom: 2px solid #ecebeb;
@@ -138,6 +143,9 @@ body {
   height: 11px;
   left: 0;
   bottom: -6px;
+}
+.student-bg .headingdiv:after{
+  background: none;
 }
 .client-mett table {
   background: #fff;
@@ -264,7 +272,7 @@ body {
   display: flex;
   align-items: center;
   background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 13px;
+  box-shadow: 0px 3px 13px #78787829;
   border-radius: 10px;
   padding: 10px;
   min-height: 142px;
@@ -6067,6 +6075,9 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   .sidebar-open .main-sidebar::before {
     margin-left: 0;
   }
+  .user-panel .info{      
+    display: none;
+  }
 }
 
 :not(.layout-fixed) .main-sidebar {
@@ -6437,19 +6448,27 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   white-space: nowrap;
 }
 
-.user-panel .image {
-  padding-left: 0.8rem;
-}
-
 .user-panel img {
   height: auto;
 }
 
 .user-panel .info {
-  display: inline-block;
+  margin: 0 auto;
+  display: block;
   padding: 5px 5px 5px 10px;
+  letter-spacing: 0px;
+  text-align: center;
 }
-
+.user-panel .info a {
+  text-align: center;
+  color: #F37E32;
+  font-size: 20px;
+  margin-top: 10px;
+  line-height: 1.2;
+}
+.user-panel .info a:hover{
+  text-decoration: none;
+}
 .user-panel .dropdown-menu,
 .user-panel .status {
   font-size: 0.875rem;
@@ -7973,6 +7992,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-form,
   .sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info {
     display: block !important;
+    transform: translateZ(0);
     -webkit-transform: translateZ(0);
   }
   .sidebar-mini.sidebar-collapse
@@ -8140,6 +8160,7 @@ body.sidebar-collapse:not(.sidebar-mini-md):not(.sidebar-mini)
   .sidebar-mini-md.sidebar-collapse .main-sidebar:hover .user-panel > .info {
     display: block !important;
     -webkit-transform: translateZ(0);
+    transform: translateZ(0);
   }
   .sidebar-mini-md.sidebar-collapse
     .main-sidebar.sidebar-focused
@@ -16283,12 +16304,13 @@ html.maximized-card {
 
 .login-box,
 .register-box {
-  width: 360px;
+  width: 665px;
 }
 
 @media (max-width: 576px) {
   .login-box,
   .register-box {
+    margin: 0 auto;
     margin-top: 0.5rem;
     width: 90%;
   }
