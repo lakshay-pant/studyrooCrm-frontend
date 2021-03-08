@@ -7,21 +7,25 @@ import {PrivateRoute} from "./components/private-route/PrivateRoute.comp"
 import { Registration } from "./pages/registeration/Registeration.page";
 import {NewStudent} from "./pages/newStudent/newStudent.page";
 import {StudentOverview} from "./pages/studentOverview/studentOverview.page"
+import {useHistory} from "react-router-dom"
+
 
 function App() {
+
+  const history=useHistory()
   return( 
+
     <div className="App">
-    <Router>
+    <Router history={history} >
       <Switch>
         <Route exact path="/">
         <EntryPage/>
         </Route>
-        <Route exact path="/registration">
+        <Route  path="/registration">
             <Registration />
           </Route>
-        <PrivateRoute path="/dashboard">
+        <PrivateRoute  path="/dashboard">
         <Dashboard/>
-        <addStudentForm/>
         </PrivateRoute>
         <PrivateRoute path="/add-student">
         <NewStudent/>

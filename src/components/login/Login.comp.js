@@ -25,7 +25,7 @@ const history=useHistory()
 const {isLoading,isAuth,error}=useSelector(state=>state.login)
 
 useEffect(() => {
-  sessionStorage.getItem("accessJWT") && history.push("/dashboard");
+  sessionStorage.getItem("accessJWT") && history.push("/dashboard"); 
 }, [history, isAuth]);
 
 
@@ -71,7 +71,7 @@ useEffect(() => {
 
 const isAuth=await userLogin({email,password})
 
-if(isAuth.status=="error"){
+if(isAuth.status==="error"){
   return dispatch(loginFail(isAuth.message))
 }
 dispatch(loginSuccess())

@@ -8,7 +8,7 @@ const store = configureStore({
         login:loginReducer,
         signUp:signUpReducer,
         user: userReducer,
-        student:addStudent
+        addStudent:addStudent
     },
   })
   
