@@ -30153,3 +30153,6 @@ a.text-muted:hover {
   border-color: #dee2e6;
   color: #6c757d;
 }
+.maincontent-rightside.add-student .maincontent {
+  padding: 50px 0px 50px 0px;
+}

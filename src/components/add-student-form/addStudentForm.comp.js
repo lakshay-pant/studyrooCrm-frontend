@@ -120,6 +120,24 @@ const [offShorePhone, setOffShorePhone] = useState("");
 
     return (
       <div className="content-wrapper">
+    <div class="maincontent-rightside add-student">  
+    <section class="maincontent">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+            <div class="add-student">
+              <div class="add-text">
+                <div class="add-round">
+                <span><i class="fal fa-user-graduate"></i></span>
+              </div>
+            <small>  Add Student</small>
+            </div>
+            </div>
+          </div>
+        
+      </div>
+  </div>
+</section>
 <section class="student-from">
   <div class="container-fluid">
   <div class="student-bg">
@@ -151,7 +169,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             
              <div class="form-group col-md-4">
               <label>Birthday</label>
-              <input type="text" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
+              <input type="date" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
             </div>
              <div class="form-group col-md-4">
               <label>Gender</label>
@@ -269,7 +287,8 @@ const [offShorePhone, setOffShorePhone] = useState("");
     
   </div>
   </div>
-</section>       
+</section>
+</div>   
 </div>
 
     )

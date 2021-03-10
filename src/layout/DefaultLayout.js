@@ -13,13 +13,13 @@ export const DefaultLayout = ({children}) => {
   };
   const menuItems = [
     {name: 'Dashboard', to: '/dashboard', icon: '/images/Dashboard.png', subMenuItems: [] },
-    {name: 'Students', to: '/dashboard', icon: '/images/student.png', subMenuItems: [{ name: 'All Students', to: ''},        
+    {name: 'Students',to: '/all-student', icon: '/images/student.png', subMenuItems: [{ name: 'All Students', to: ''},        
     { name: 'Mandarian Speaking', to: ''},
     { name: 'Portoguese Speaking', to: ''},
     { name: 'Europeans', to: ''},
     { name: 'Test', to: ''},
     { name: 'Uncatorized', to: ''}] },
-    {name: 'Tasks', to: '', icon: '/images/task.png', 
+    {name: 'Tasks', to: '/add-task', icon: '/images/task.png', 
       subMenuItems: [
       ] },
     {name: 'Courses', to: '/dashboard', icon: '/images/courses.png', subMenuItems: [] },

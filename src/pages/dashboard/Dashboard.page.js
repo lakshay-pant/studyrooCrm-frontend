@@ -51,7 +51,7 @@ export const Dashboard = () => {
                 <span>
                    <i className="fal fa-tasks"></i>
                 </span>
-                <p className="mb-0">Add New Task</p>
+                <Link to="/add-task">  <p className="mb-0">Add New Task</p></Link>
             </a>
               </li>
               <li>

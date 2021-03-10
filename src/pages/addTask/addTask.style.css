@@ -1,0 +1,22 @@
+.new-task-bg{
+    background: #fff;
+    padding: 20px;
+  }
+  .new-task-bg .headingdiv:after{
+  display: none;
+  }
+  .new-task-bg .headingdiv{
+    border-bottom: 1px solid #ecebeb;
+    color: #F37E32;
+    margin-bottom: 25px;
+  }
+  .new-task-bg form .footersingbtn{
+  margin-top: 50px;
+  }
+  .new-task-bg form .form-check{
+  margin-bottom: 20px;
+  }
+  
+  section.addtask-from {
+      background: #fff;
+  }
