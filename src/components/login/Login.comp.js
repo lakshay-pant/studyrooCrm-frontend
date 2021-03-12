@@ -32,6 +32,7 @@ useEffect(() => {
 
 
 
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -77,7 +78,7 @@ if(isAuth.status==="error"){
 }
 dispatch(loginSuccess())
 dispatch(getUserProfile())
-history.push(location.pathname)
+history.push("/dashboard")
 
         }catch(error){
  dispatch(loginFail(error.message))

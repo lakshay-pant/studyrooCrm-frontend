@@ -1,9 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import "./addStudent.style.css"
 import {useDispatch, useSelector} from "react-redux"
 import {
   Spinner,Alert
 } from "react-bootstrap";
+import {Link,useLocation} from "react-router-dom"
 
 import {addStudent} from "./addStudentAction"
 
@@ -15,6 +16,13 @@ export const AddStudentForm = () => {
   const { isLoading, status, message } = useSelector(
     (state) => state.addStudent
   );
+
+  const location=useLocation()
+
+
+
+
+  
  
 
   const [firstName, setFirstName] = useState("");
