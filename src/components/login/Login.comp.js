@@ -9,13 +9,14 @@ import {
 import {userLogin} from "../../api/userApi"
 import {useHistory} from "react-router-dom"
 import {getUserProfile} from "../../pages/dashboard/userAction"
-import {Link} from "react-router-dom"
+import {Link,useLocation} from "react-router-dom"
 
 export const Login = ({formSwitcher}) => {
     const [PasswordInputType,ToggleIcon]=usePasswordToggle()
 const dispatch=useDispatch()
 
 const history=useHistory()
+const location=useLocation()
 
 
 
@@ -76,7 +77,7 @@ if(isAuth.status==="error"){
 }
 dispatch(loginSuccess())
 dispatch(getUserProfile())
-history.push("/dashboard")
+history.push(location.pathname)
 
         }catch(error){
  dispatch(loginFail(error.message))

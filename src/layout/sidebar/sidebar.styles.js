@@ -71,8 +71,7 @@ export const Info = styled.div`
 `
 export const Icon = styled.img`
   ${p => p.isSidebarOpen && `padding-right: 20px; transition: .2s ease-in padding-right`};
-  height: 16px;
-  width: 16px;
+  
 `
 
 // Sub menu items -------------------------------------------------------------------------

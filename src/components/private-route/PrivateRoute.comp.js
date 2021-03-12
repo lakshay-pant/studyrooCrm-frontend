@@ -31,7 +31,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={() =>
+      render={({ location }) =>
         isAuth ? <DefaultLayout>{children}</DefaultLayout> : <Redirect to="/" />
       }
     />
