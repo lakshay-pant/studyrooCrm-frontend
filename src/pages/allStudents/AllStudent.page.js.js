@@ -1,7 +1,12 @@
 import React from 'react';
 import "./allStudent.style.css";
+import { useSelector } from "react-redux";
+
+
 
 export const AllStudent = () => {
+
+    
     return(
         <div className="body">
             <div className="maincontent-rightside student-view">

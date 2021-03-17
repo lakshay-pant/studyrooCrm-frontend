@@ -15,7 +15,7 @@ const studentListSlice = createSlice({
       state.isLoading = true;
     },
     fetchStudentSuccess: (state, action) => {
-      state.tickets = action.payload;
+      state.students = action.payload;
       state.isLoading = false;
     },
     fetchStudentFail: (state, { payload }) => {

@@ -1,8 +1,23 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import "./dashboard.style.css"
 import {Link} from "react-router-dom"
+import { useSelector ,useDispatch} from "react-redux";
+import {fetchAllStudents} from "../allStudents/allStudentAction"
 
 export const Dashboard = () => {
+  const dispatch = useDispatch();
+  const { students, isLoading, error } = useSelector(
+    (state) => state.allStudent
+  );
+
+  useEffect(() => {
+    if (!students.length) {
+      dispatch(fetchAllStudents());
+    }
+  }, [students, dispatch]);
+
+  var studentNumber=students.length
+
   
   return (
     <div className="html "> <div id="page-top" className="hold-transition sidebar-mini layout-fixed">
@@ -211,7 +226,7 @@ export const Dashboard = () => {
                 
               </div>
               <div className="activi-value">
-                <span>00</span>
+                <span>{studentNumber}</span>
               </div>
             </div>
           </div>
