@@ -1,10 +1,32 @@
-import React from 'react';
+import React,{useEffect} from 'react';
+import { useDispatch } from "react-redux";
 import "./allStudent.style.css";
 import { useSelector } from "react-redux";
+import {fetchAllStudents} from "./allStudentAction"
 
 
 
 export const AllStudent = () => {
+
+    const dispatch = useDispatch();
+  const { students, isLoading, error } = useSelector(
+    (state) => state.allStudent
+  );
+
+  useEffect(() => {
+    if (!students.length) {
+      dispatch(fetchAllStudents());
+    }
+  }, [students, dispatch]);
+
+  const inquiryRecieved =  students.filter(function(student) {
+    return student.salesStatus == "Inquiry Recieved";
+});
+
+console.log(inquiryRecieved)
+
+
+
 
     
     return(
@@ -70,7 +92,7 @@ export const AllStudent = () => {
                                 <div class="data-block">
                                     <div class="data-heading">
                                         <p class="head">Inquiry received</p>
-                                        <p><span>2 students</span></p>
+                                        <p><span>{inquiryRecieved.length} students</span></p>
                                     </div>
                                     <div class="data-content">
                                         <div class="data-con-box">
@@ -81,7 +103,7 @@ export const AllStudent = () => {
                                             <div class="data-text">
                                                 <p>Inquiry 1</p>
                                                 <div class="contact">
-                                                    <p>04556 789 887</p>
+                                                    <p>9999999</p>
                                                     <p>test@test.com</p>
                                                 </div>
                                             </div>

@@ -8,10 +8,17 @@ import {Link,useLocation} from "react-router-dom"
 
 import {addStudent} from "./addStudentAction"
 
+import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
+
 
 
 export const AddStudentForm = () => {
   const dispatch=useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchAllStudents());
+      }, [dispatch]);
+    
 
   const { isLoading, status, message } = useSelector(
     (state) => state.addStudent
