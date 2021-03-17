@@ -28,6 +28,7 @@ input#stfile:before {
     padding: 5px 8px;
     outline: none;
     white-space: nowrap;
+    user-select: none;
     -webkit-user-select: none;
     cursor: pointer;
     margin-left: 50px;
@@ -54,7 +55,8 @@ input#stfile:before {
     margin-bottom: 30px;
 }
 .student-collection .data-block .data-heading p{
-  margin-bottom: 10px;
+    margin-bottom: 10px;
+    text-align: center;
 }
 .student-collection .data-block .data-heading{
     background: #EAEBEC;
@@ -96,6 +98,7 @@ input#stfile:before {
    border-radius: 5px;
    padding: 5px 10px;
    margin-bottom: 15px;
+   color: #6c7474;
 }
 .data-con-box .data-img{
     display: table-cell;

@@ -8,44 +8,43 @@ export const AllStudent = () => {
 
     
     return(
-        <div className="body">
-            <div className="maincontent-rightside student-view">
+        <div className="content-wrapper">
+            <div className="maincontent-rightside student-view add-student">
                
-            <section class="maincontent">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6">
-                        <div class="add-student">
-                            <div class="add-text">
-                            <div class="add-round">
-                            <span><i class="fal fa-tasks"></i></span>
+            <section className="maincontent">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <div className="add-student">
+                                <div className="add-text">
+                                <div className="add-round">
+                                <span><i className="fal fa-tasks"></i></span>
+                                </div>
+                                <small>All Students</small>
                             </div>
-                            <small>All Students</small>
                         </div>
                         </div>
-                        </div>
-                        <div class="col-md-6">
-                        <div class="import-from">
-                            <p>Import from spreadsheet</p>
-                            <div class="st-file-upload">
-                                <label for="file-upload" class="custom-file-upload">
-                                <i class="fas fa-user-graduate"></i> Add New Student
-                                <span>+</span>
-                                </label>
+                        <div className="col-md-6">
+                           <div className="import-from">
+                                <p>Import from spreadsheet</p>
+                                <div className="st-file-upload">
+                                    <label for="file-upload" className="custom-file-upload">
+                                    <i className="fas fa-user-graduate"></i> Add New Student
+                                    <span>+</span>
+                                    </label>
 
-                                <input id="file-upload" type="file"/>
+                                    <input id="file-upload" type="file"/>
+                                </div>       
                             </div>
-                            
-                        </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="student-data">
-                <div class="container">
+            <section className="student-data">
+                <div className="container">
 
-                    <div class="student-filter">
+                    <div className="student-filter">
                         <div class="row">
                             <div class="col-md-9 col-sm-6 col-12">
                                 <div class="headingdiv">I need help with students & leads</div>
@@ -65,7 +64,7 @@ export const AllStudent = () => {
                         </div>
                     </div>
 
-                        <div class="student-collection">
+                    <div className="student-collection">
                         <div class="row">
                             <div class="col-md-4 col-12">
                                 <div class="data-block">
@@ -175,19 +174,19 @@ export const AllStudent = () => {
                                 </div>
                            </div>
                             
-                           <div class="col-md-4 col-12">
-                            <div class="data-block">
-                                <div class="data-heading">
-                                    <p class="head">COUNSELLING</p>
-                                    <p><span>0 students</span></p>
-                                </div>
-                                <div class="data-content">
-                                    <div class="no-data">
-                                    <p>No Students Found</p>
+                            <div class="col-md-4 col-12">
+                                    <div class="data-block">
+                                        <div class="data-heading">
+                                            <p class="head">COUNSELLING</p>
+                                            <p><span>0 students</span></p>
+                                        </div>
+                                        <div class="data-content">
+                                            <div class="no-data">
+                                            <p>No Students Found</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
                         
                             <div class="col-md-4 col-12">
                                 <div class="data-block">
@@ -238,7 +237,6 @@ export const AllStudent = () => {
                                         </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
                             
@@ -305,7 +303,6 @@ export const AllStudent = () => {
                                         </div>
                                         </div>
                                     </div>
-                                </div>
                                 </div>
                             </div>
 
@@ -379,7 +376,8 @@ export const AllStudent = () => {
                                 </div>
                             </div>
                         </div>
-                         
+                    </div>    
+                </div>        
             </section>
                 
         </div>
