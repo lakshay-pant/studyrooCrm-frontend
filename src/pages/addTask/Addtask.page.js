@@ -17,7 +17,7 @@ export const Addtask = () => {
     const [dueDate, setDueDate] = useState("");
     const [taskDetails, setTaskDetails] = useState("");
     const [studentAssign, setStudentAssign] = useState("");
-    const [userGroups, setUserGroups] = useState("hello");
+    const [userGroup, setUserGroup] = useState("");
     const [offices, setOffices] = useState("");
       
     
@@ -46,7 +46,7 @@ export const Addtask = () => {
             break;
     
             case "userGroup":
-              setUserGroups(value);
+              setUserGroup(value);
               break;
     
               case "offices":
@@ -63,7 +63,7 @@ export const Addtask = () => {
       const handleOnTaskSubmit=async(e)=>{
         e.preventDefault()
         console.log(taskName)
-        if (!taskName || !type||!dueDate||!taskDetails||!studentAssign||!offices||userGroups) {
+        if (!taskName || !type||!dueDate||!taskDetails||!studentAssign||!offices||userGroup) {
           return alert("Fill up all the form!");
           
         }
@@ -73,7 +73,7 @@ export const Addtask = () => {
     
         try{
     
-    const isAuth=await createNewTask({taskName,type,dueDate,taskDetails,studentAssign,offices})
+    const isAuth=await createNewTask({taskName,type,dueDate,taskDetails,studentAssign,offices,userGroup})
     console.log(isAuth)
     if(isAuth.status=="error"){
     return dispatch(addTaskError(isAuth.message))
@@ -164,8 +164,9 @@ export const Addtask = () => {
                             <div class="form-row"> 
                                 <div class="form-group col-md-6">
                                     <label>User Groups</label>
-                                    <input type="text" class="form-control" placeholder="0 selected" name="userGroups" value={userGroups} onChange={handleOnChange} /> 
+                                    <input type="text" class="form-control" placeholder="selected" name="userGroup" value={userGroup} onChange={handleOnChange} />
                                 </div>
+                                
                                 <div class="form-group col-md-6">
                                     <label>Offices</label>
                                     <input type="text" class="form-control" placeholder="All" name="offices" value={offices} onChange={handleOnChange}/> 
