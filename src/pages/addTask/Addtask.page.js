@@ -1,7 +1,92 @@
-import React from 'react';
+import React,{useState} from 'react'
 import "./addTask.style.css";
+import {useDispatch, useSelector} from "react-redux"
+import {addTaskPending,addTaskSuccess,addTaskError} from "./addTaskSlice"
+import {
+  Spinner,Alert
+} from "react-bootstrap";
+import {createNewTask} from "../../api/taskApi"
+
 
 export const Addtask = () => {
+
+    const dispatch=useDispatch()
+ 
+    const [taskName, setTaskName] = useState("");
+    const [type, setType] = useState("");
+    const [dueDate, setDueDate] = useState("");
+    const [taskDetails, setTaskDetails] = useState("");
+    const [studentAssign, setStudentAssign] = useState("");
+    const [userGroups, setUserGroups] = useState("hello");
+    const [offices, setOffices] = useState("");
+      
+    
+      const handleOnChange = (e) => {
+        const { name, value } = e.target;
+    
+        switch (name) {
+          case "taskName":
+            setTaskName(value);
+            break;
+    
+            case "type":
+                setType(value);
+            break;
+    
+            case "dueDate":
+            setDueDate(value);
+            break;
+    
+            case "taskDetails":
+            setTaskDetails(value);
+            break;
+    
+            case "studentAssign":
+            setStudentAssign(value);
+            break;
+    
+            case "userGroup":
+              setUserGroups(value);
+              break;
+    
+              case "offices":
+                setOffices(value);
+                break;
+        
+             default:
+            break;
+        }
+      };
+    
+
+
+      const handleOnTaskSubmit=async(e)=>{
+        e.preventDefault()
+        console.log(taskName)
+        if (!taskName || !type||!dueDate||!taskDetails||!studentAssign||!offices||userGroups) {
+          return alert("Fill up all the form!");
+          
+        }
+      
+        
+        dispatch(addTaskPending())
+    
+        try{
+    
+    const isAuth=await createNewTask({taskName,type,dueDate,taskDetails,studentAssign,offices})
+    console.log(isAuth)
+    if(isAuth.status=="error"){
+    return dispatch(addTaskError(isAuth.message))
+    }
+    dispatch(addTaskSuccess())
+    
+        }catch(error){
+    dispatch(addTaskError(error.message))
+    
+        }
+        console.log(taskName,type,dueDate,taskDetails,studentAssign,offices)
+      }
+
  return(
     <div className="content-wrapper">
     <div class="maincontent-rightside add-student"> 
@@ -26,29 +111,33 @@ export const Addtask = () => {
         <section class="addtask-from">
           <div class="container-fluid">
            <div class="new-task-bg">
-                <form>
+           <form onSubmit={handleOnTaskSubmit} >
                     <div class="col-md-12">
                         <div class="headingdiv">What is your task about?</div>
                         <div class="form-bgclr">
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                 <label>Task Name</label>
-                                <input type="text" class="form-control" placeholder="" name="" />
+                                <input type="text" class="form-control" placeholder="" name="taskName" value={taskName} onChange={handleOnChange}/>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Type</label>
-                                    <select class="form-control" name="cars" id="cars">
-                                        <option value="volvo">Follow up</option>
-                                        <option value="saab">Female</option>
+                                    <select class="form-control" name="type" id="cars" onChange={handleOnChange} value={type}>
+                                        <option>Call</option>
+                                        <option >Client Meeting</option>
+                                        <option >Event</option>
+                                        <option >Follow up</option>
+                                        <option >Sale</option>
+                                        <option >Text Message</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                 <label>Due Date*</label>
-                                <input type="date" class="form-control" placeholder="" name="" />
+                                <input type="date" class="form-control" placeholder="" name="dueDate" value={dueDate} onChange={handleOnChange} />
                                 </div>
                                 <div class="form-group col-md-12">
                                 <label>Task Details (comments)</label>
-                                <textarea class="form-control" rows="5"></textarea>
+                                <textarea class="form-control" rows="5" name="taskDetails" value={taskDetails} onChange={handleOnChange}></textarea>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +148,7 @@ export const Addtask = () => {
                                 <div class="form-row"> 
                                 <div class="form-group col-md-12">
                                     <label>Student</label>
-                                    <textarea class="form-control" rows="5"></textarea>
+                                    <textarea class="form-control" rows="5" name="studentAssign" value={studentAssign} onChange={handleOnChange}></textarea>
                                 </div>
                                 </div>
                             </div>
@@ -69,16 +158,17 @@ export const Addtask = () => {
                             <div class="form-bgclr">
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" />
-                                <label class="form-check-label" for="exampleCheck1">Assign this task for users in groups or offices</label>
+                                <label class="form-check-label" for="exampleCheck1">
+                                    Assign this task for users in groups or offices</label>
                             </div>
                             <div class="form-row"> 
                                 <div class="form-group col-md-6">
                                     <label>User Groups</label>
-                                    <input type="text" class="form-control" placeholder="0 selected" name="" /> 
+                                    <input type="text" class="form-control" placeholder="0 selected" name="userGroups" value={userGroups} onChange={handleOnChange} /> 
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Offices</label>
-                                    <input type="text" class="form-control" placeholder="All" name="" /> 
+                                    <input type="text" class="form-control" placeholder="All" name="offices" value={offices} onChange={handleOnChange}/> 
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" />
