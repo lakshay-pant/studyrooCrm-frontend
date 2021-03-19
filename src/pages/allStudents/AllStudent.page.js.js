@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import "./allStudent.style.css";
 import { useSelector } from "react-redux";
 import {fetchAllStudents} from "./allStudentAction"
+import {InquiryRecieved} from "../../components/allStudentTemplates/InquiryRecieved"
 
 
 
@@ -88,57 +89,7 @@ console.log(inquiryRecieved)
 
                     <div className="student-collection">
                         <div class="row">
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Inquiry received</p>
-                                        <p><span>{inquiryRecieved.length} students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="data-con-box">
-                                        <div class="data-wrap">
-                                            <div class="data-img">
-                                                <img src="images/stu.png" class="img-fluid" alt="student" />
-                                            </div>
-                                            <div class="data-text">
-                                                <p>Inquiry 1</p>
-                                                <div class="contact">
-                                                    <p>9999999</p>
-                                                    <p>test@test.com</p>
-                                                </div>
-                                            </div>
-                                            <div class="st-number">
-                                                    <p>STU1</p>
-                                            </div>
-                                        </div>
-                                        <div class="post-time">
-                                                <p><i class="fas fa-calendar-alt"></i>Last Contacted 3 Days Ago</p>
-                                        </div>
-                                        </div>
-
-                                        <div class="data-con-box">
-                                        <div class="data-wrap">
-                                            <div class="data-img">
-                                                <img src="images/stu.png" class="img-fluid" alt="student" />
-                                            </div>
-                                            <div class="data-text">
-                                                <p>Inquiry 1</p>
-                                                <div class="contact">
-                                                    <p>04556 789 887</p>
-                                                    <p>test@test.com</p>
-                                                </div>
-                                            </div>
-                                            <div class="st-number">
-                                                    <p>STU1</p>
-                                            </div>
-                                        </div>
-                                        <div class="post-time">
-                                                <p><i class="fas fa-calendar-alt"></i>Last Contacted 3 Days Ago</p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                           <InquiryRecieved/>
 
                             <div class="col-md-4 col-12">
                                 <div class="data-block">

@@ -18,7 +18,7 @@ export const Addtask = () => {
     const [studentAssign, setStudentAssign] = useState("");
     const [assignTo, setAssignTo] = useState("");
 
-    const [userGroups, setUserGroup] = useState("");
+    const [userGroup, setUserGroup] = useState("");
     const [offices, setOffices] = useState("");
       
     
@@ -47,7 +47,7 @@ export const Addtask = () => {
                 setAssignTo(value);
                 break;
         
-            case "userGroups":
+            case "userGroup":
               setUserGroup(value);
               break;
     
@@ -65,7 +65,7 @@ export const Addtask = () => {
       const handleOnTaskSubmit=async(e)=>{
         e.preventDefault()
         console.log(taskName)
-        if (!taskName || !type||!dueDate||!studentAssign||!assignTo||!offices||!userGroups) {
+        if (!taskName || !type||!dueDate||!studentAssign||!assignTo||!offices||!userGroup) {
           return alert("Fill up all the form!");
           
         }
@@ -75,7 +75,7 @@ export const Addtask = () => {
     
         try{
     
-    const isAuth=await createNewTask({taskName,type,dueDate,studentAssign,assignTo,offices,userGroups})
+    const isAuth=await createNewTask({taskName,type,dueDate,studentAssign,assignTo,offices,userGroup})
     console.log(isAuth)
     if(isAuth.status=="error"){
     return dispatch(addTaskError(isAuth.message))
@@ -86,7 +86,7 @@ export const Addtask = () => {
     dispatch(addTaskError(error.message))
     
         }
-        console.log(taskName,type,dueDate,studentAssign,assignTo,offices,userGroups)
+        console.log(taskName,type,dueDate,studentAssign,assignTo,offices,userGroup)
       }
 
  return(
@@ -166,7 +166,7 @@ export const Addtask = () => {
                             <div class="form-row"> 
                                 <div class="form-group col-md-6">
                                     <label>User Groups</label>
-                                    <input type="text" class="form-control" placeholder="selected" name="userGroups" value={userGroups} onChange={handleOnChange} />
+                                    <input type="text" class="form-control" placeholder="selected" name="userGroup" value={userGroup} onChange={handleOnChange} />
                                 </div>
                                 
                                 <div class="form-group col-md-6">
