@@ -3,6 +3,14 @@ import * as s from "./App.styles";
 import SideBar from "./sidebar/SideBar"
 import * as Palette from './colors'
 import "./defaultLayout.style.css"
+import { Dropdown } from 'bootstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+library.add(faEyeSlash,faEye)
 
 
 export const DefaultLayout = ({children}) => {

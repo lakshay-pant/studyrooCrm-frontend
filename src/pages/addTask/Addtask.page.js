@@ -15,9 +15,10 @@ export const Addtask = () => {
     const [taskName, setTaskName] = useState("");
     const [type, setType] = useState("");
     const [dueDate, setDueDate] = useState("");
-    const [taskDetails, setTaskDetails] = useState("");
     const [studentAssign, setStudentAssign] = useState("");
-    const [userGroup, setUserGroup] = useState("");
+    const [assignTo, setAssignTo] = useState("");
+
+    const [userGroups, setUserGroup] = useState("");
     const [offices, setOffices] = useState("");
       
     
@@ -37,15 +38,16 @@ export const Addtask = () => {
             setDueDate(value);
             break;
     
-            case "taskDetails":
-            setTaskDetails(value);
-            break;
-    
+           
             case "studentAssign":
             setStudentAssign(value);
             break;
     
-            case "userGroup":
+            case "assignTo":
+                setAssignTo(value);
+                break;
+        
+            case "userGroups":
               setUserGroup(value);
               break;
     
@@ -63,7 +65,7 @@ export const Addtask = () => {
       const handleOnTaskSubmit=async(e)=>{
         e.preventDefault()
         console.log(taskName)
-        if (!taskName || !type||!dueDate||!taskDetails||!studentAssign||!offices||userGroup) {
+        if (!taskName || !type||!dueDate||!studentAssign||!assignTo||!offices||!userGroups) {
           return alert("Fill up all the form!");
           
         }
@@ -73,7 +75,7 @@ export const Addtask = () => {
     
         try{
     
-    const isAuth=await createNewTask({taskName,type,dueDate,taskDetails,studentAssign,offices,userGroup})
+    const isAuth=await createNewTask({taskName,type,dueDate,studentAssign,assignTo,offices,userGroups})
     console.log(isAuth)
     if(isAuth.status=="error"){
     return dispatch(addTaskError(isAuth.message))
@@ -84,7 +86,7 @@ export const Addtask = () => {
     dispatch(addTaskError(error.message))
     
         }
-        console.log(taskName,type,dueDate,taskDetails,studentAssign,offices)
+        console.log(taskName,type,dueDate,studentAssign,assignTo,offices,userGroups)
       }
 
  return(
@@ -137,7 +139,7 @@ export const Addtask = () => {
                                 </div>
                                 <div class="form-group col-md-12">
                                 <label>Task Details (comments)</label>
-                                <textarea class="form-control" rows="5" name="taskDetails" value={taskDetails} onChange={handleOnChange}></textarea>
+                                <textarea class="form-control" rows="5" name="assignTo" value={assignTo} onChange={handleOnChange}></textarea>
                                 </div>
                             </div>
                         </div>
@@ -164,7 +166,7 @@ export const Addtask = () => {
                             <div class="form-row"> 
                                 <div class="form-group col-md-6">
                                     <label>User Groups</label>
-                                    <input type="text" class="form-control" placeholder="selected" name="userGroup" value={userGroup} onChange={handleOnChange} />
+                                    <input type="text" class="form-control" placeholder="selected" name="userGroups" value={userGroups} onChange={handleOnChange} />
                                 </div>
                                 
                                 <div class="form-group col-md-6">
