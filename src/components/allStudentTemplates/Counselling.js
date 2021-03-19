@@ -4,7 +4,7 @@ import "./allStud.style.css";
 import { useSelector } from "react-redux";
 import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 
-export const InquiryRecieved = () => {
+export const Counselling = () => {
 
     const dispatch = useDispatch();
   const { students, isLoading, error } = useSelector(
@@ -16,19 +16,19 @@ export const InquiryRecieved = () => {
     }
   }, [students, dispatch]);
 
-  const inquiryRecieved =  students.filter(function(student) {
-    return student.salesStatus == "Inquiry Recieved";
+  const counselling =  students.filter(function(student) {
+    return student.salesStatus == "Counselling";
 });
     return (
         <div class="col-md-4 col-12">
         <div class="data-block">
             <div class="data-heading">
-                <p class="head">Inquiry received</p>
-                <p><span>{inquiryRecieved.length} students</span></p>
+                <p class="head">Counselling</p>
+                <p><span>{counselling.length} students</span></p>
             </div>
             <div class="data-content">
         
-        {inquiryRecieved.length?(inquiryRecieved.map((row)=>(
+        {counselling.length?(counselling.map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

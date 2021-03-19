@@ -4,27 +4,15 @@ import "./allStudent.style.css";
 import { useSelector } from "react-redux";
 import {fetchAllStudents} from "./allStudentAction"
 import {InquiryRecieved} from "../../components/allStudentTemplates/InquiryRecieved"
+import {Counselling} from "../../components/allStudentTemplates/Counselling"
+import {QuotationSent} from "../../components/allStudentTemplates/QuotationSent"
+import {Application} from "../../components/allStudentTemplates/Application"
+import {WaitingForLoo} from "../../components/allStudentTemplates/WaitingForLoo"
 
 
 
 export const AllStudent = () => {
 
-    const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
-    (state) => state.allStudent
-  );
-
-  useEffect(() => {
-    if (!students.length) {
-      dispatch(fetchAllStudents());
-    }
-  }, [students, dispatch]);
-
-  const inquiryRecieved =  students.filter(function(student) {
-    return student.salesStatus == "Inquiry Recieved";
-});
-
-console.log(inquiryRecieved)
 
 
 
@@ -90,62 +78,15 @@ console.log(inquiryRecieved)
                     <div className="student-collection">
                         <div class="row">
                            <InquiryRecieved/>
-
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">COUNSELLING</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                              <Counselling/>
                             
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">QUOTATION SENT</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">COUNSELLING</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <QuotationSent/>
+                            <Application/>
+                            <WaitingForLoo/>
 
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">QUOTATION SENT</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                           </div>
+                            
+
+                            
                             
                             <div class="col-md-4 col-12">
                                     <div class="data-block">

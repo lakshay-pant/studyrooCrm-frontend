@@ -245,7 +245,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
              <select class="form-control" name="salesStatus" id="cars" onChange={handleOnChange} value={salesStatus}>
               <option >Inquiry Recieved</option>
               <option >Counselling</option>
-              <option >Quation Sent</option>
+              <option >Quotation Sent</option>
               <option >Application</option>
               <option >Waiting for Loo</option>
               <option >Payment Pending</option>
