@@ -55,7 +55,7 @@ export const Dashboard = () => {
            <ul className="list-unstyled">
               <li>   <a>
                 <span>
-                    <i className="fal fa-user-graduate"></i>
+                    <i className="fa fa-user-graduate"></i>
                 </span>
                 <Link to="/add-student">  <p className="mb-0">Add New Student</p></Link>
             </a>
@@ -64,7 +64,7 @@ export const Dashboard = () => {
               <li>
                <a href="#">
                 <span>
-                   <i className="fal fa-tasks"></i>
+                   <i className="fa fa-tasks"></i>
                 </span>
                 <Link to="/add-task">  <p className="mb-0">Add New Task</p></Link>
             </a>
@@ -72,7 +72,7 @@ export const Dashboard = () => {
               <li>
                <a href="#">
                 <span>
-                    <i className="fal fa-usd-circle"></i>
+                    <i className="fa fa-usd"></i>
                 </span>
                 <p className="mb-0">See Agency Revenue</p>
             </a>
@@ -80,7 +80,7 @@ export const Dashboard = () => {
               <li>
                 <a href="#">
                 <span>
-                    <i className="fal fa-chart-pie-alt"></i>
+                    <i className="fa fa-chart-pie"></i>
                 </span>
                 <p className="mb-0">See Agency Performance</p>
             </a>
@@ -88,7 +88,7 @@ export const Dashboard = () => {
               <li>
                 <a href="#">
                 <span>
-                    <i className="fal fa-user-graduate"></i>
+                    <i className="fa fa-user-graduate"></i>
                 </span>
                 <p className="mb-0">Student Portal</p>
             </a>
@@ -140,10 +140,10 @@ export const Dashboard = () => {
              </div>
              <div className="task-className">
                <ul className="list-unstyled"><li>
-                 <a href="#"><i className="far fa-circle nav-icon"></i>Urgent</a>
+                 <a href="#"><i className="fa fa-circle nav-icon"></i>Urgent</a>
                </li>
                <li>
-                 <a href="#"><i className="far fa-circle nav-icon"></i>Normal</a>
+                 <a href="#"><i className="fa fa-circle nav-icon"></i>Normal</a>
                </li></ul>
              </div>
             </div>
@@ -220,7 +220,7 @@ export const Dashboard = () => {
              
               <div className="activi-content">
                    <span>
-                    <i className="fal fa-user-graduate"></i>
+                    <i className="fa fa-user-graduate"></i>
                 </span>
                 <p>Students Added<small>last 30 days</small></p>
                 
@@ -236,7 +236,7 @@ export const Dashboard = () => {
              
               <div className="activi-content">
                    <span>
-                    <i className="fal fa-user-graduate"></i>
+                    <i className="fa fa-user-graduate"></i>
                 </span>
                 <p>Sales Added<small>last 30 days</small></p>
                 
@@ -252,7 +252,7 @@ export const Dashboard = () => {
              
               <div className="activi-content">
                    <span>
-                    <i className="fal fa-user-graduate"></i>
+                    <i className="fa fa-user-graduate"></i>
                 </span>
                 <p>Tasks Added<small>last 30 days</small></p>
                 
@@ -268,7 +268,7 @@ export const Dashboard = () => {
              
               <div className="activi-content">
                    <span>
-                    <i className="fal fa-user-graduate"></i>
+                    <i className="fa fa-user-graduate"></i>
                 </span>
                 <p>Task Completed<small>last 30 days</small></p>
                 

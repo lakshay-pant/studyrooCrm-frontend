@@ -77,7 +77,7 @@ export const DefaultLayout = ({children}) => {
                                   aria-label="Search" aria-describedby="basic-addon2"/>
                               <div className="input-group-append">
                                   <button className="btn btn-primary" type="button">
-                                      <i className="fas fa-search fa-sm"></i>
+                                      <i className="fa fa-search fa-sm"></i>
                                   </button>
                               </div>
                           </div>
@@ -88,14 +88,14 @@ export const DefaultLayout = ({children}) => {
           {/*-- Notifications Dropdown Menu -*/}
         <li className="nav-item dropdown">
           <a className="nav-link" data-toggle="dropdown" href="#">
-           <i className="fal fa-bell"></i>
+           <i className="fa fa-bell"></i>
             <span className="badge badge-warning navbar-badge">3</span>
           </a>
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span className="dropdown-item dropdown-header">3 Notifications</span>
             <div className="dropdown-divider"></div>
             <a href="#" className="dropdown-item">
-              <i className="fas fa-envelope mr-2"></i> 4 new messages
+              <i className="fa fa-envelope mr-2"></i> 4 new messages
               <span className="float-right text-muted text-sm">3 mins</span>
             </a>
             
@@ -104,7 +104,7 @@ export const DefaultLayout = ({children}) => {
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link" data-toggle="dropdown" href="#">
-          <i className="fal fa-cog"></i>
+          <i className="fa fa-cog"></i>
            
           </a>
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -121,11 +121,11 @@ export const DefaultLayout = ({children}) => {
                                   </a>
   
                                   <a className="dropdown-item" href="#">
-                                      <i className="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                      <i className="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Activity Log
                                   </a>
                                    <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                      <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                      <i className="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Logout
                                   </a>
           </div>
@@ -154,7 +154,7 @@ colorPalette={Palette.brown}/>
    <a href="#">
         <div className="morefeature-box">
         <span>
-          <i className="fas fa-quote-right"></i>
+          <i className="fa fa-quote-right"></i>
         </span>
         <div className="qutemsg">
           <small>Quotes</small>

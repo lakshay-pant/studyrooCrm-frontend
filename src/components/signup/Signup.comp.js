@@ -17,7 +17,7 @@ export const Signup = () => {
       (state) => state.signUp
     );
 
-    const [firstName, setFirstName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
