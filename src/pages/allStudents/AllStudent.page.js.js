@@ -29,7 +29,7 @@ export const AllStudent = () => {
                             <div className="add-student">
                                 <div className="add-text">
                                 <div className="add-round">
-                                <span><i className="fal fa-tasks"></i></span>
+                                <span><i className="fa fa-tasks"></i></span>
                                 </div>
                                 <small>All Students</small>
                             </div>
@@ -40,7 +40,7 @@ export const AllStudent = () => {
                                 <p>Import from spreadsheet</p>
                                 <div className="st-file-upload">
                                     <label for="file-upload" className="custom-file-upload">
-                                    <i className="fas fa-user-graduate"></i> Add New Student
+                                    <i className="fa fa-user-graduate"></i> Add New Student
                                     <span>+</span>
                                     </label>
 
@@ -68,7 +68,7 @@ export const AllStudent = () => {
                                         <option value="exisitng">Existing Student</option>  
                                     </select>
                                     <div class="st-filter">
-                                        <p><i class="fab fa-buffer"></i>Filter</p>
+                                        <p><i class="fa fa-buffer"></i>Filter</p>
                                     </div>
                                 </div>
                             </div>

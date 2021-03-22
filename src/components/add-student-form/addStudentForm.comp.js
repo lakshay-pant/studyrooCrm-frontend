@@ -143,7 +143,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             <div class="add-student">
               <div class="add-text">
                 <div class="add-round">
-                <span><i class="fal fa-user-graduate"></i></span>
+                <span><i class="fa fa-user-graduate"></i></span>
               </div>
             <small>  Add Student</small>
             </div>
