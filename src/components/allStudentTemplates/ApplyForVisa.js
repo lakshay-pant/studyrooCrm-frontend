@@ -4,7 +4,7 @@ import "./allStud.style.css";
 import { useSelector } from "react-redux";
 import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 
-export const QuotationSent  = () => {
+export const ApplyForVisa = () => {
 
     const dispatch = useDispatch();
   const { students, isLoading, error } = useSelector(
@@ -16,19 +16,19 @@ export const QuotationSent  = () => {
     }
   }, [students, dispatch]);
 
-  const quotationSent  =  students.filter(function(student) {
-    return student.salesStatus == "Quotation Sent";
+  const applyForVisa =  students.filter(function(student) {
+    return student.salesStatus == "Apply for Visa";
 });
     return (
         <div class="col-md-4 col-12">
         <div class="data-block">
             <div class="data-heading">
-                <p class="head">Quotation Sent</p>
-                <p><span>{quotationSent .length} students</span></p>
+                <p class="head">Apply for Visa</p>
+                <p><span>{applyForVisa.length} students</span></p>
             </div>
             <div class="data-content">
-        
-        {quotationSent .length?(quotationSent .map((row)=>(
+
+        {applyForVisa.length?(applyForVisa.map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">
@@ -57,9 +57,9 @@ export const QuotationSent  = () => {
         <p>No Students Found</p>
         </div>
     )}
-              
 
-                
+
+
             </div>
         </div>
     </div>
