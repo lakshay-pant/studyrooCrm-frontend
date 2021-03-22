@@ -42,7 +42,7 @@ const [onShorePhone, setOnShorePhone] = useState("");
 const [offShorePhone, setOffShorePhone] = useState("");
   const [email, setEmail] = useState("");
   const [salesPipeline, setSalesPipeline] = useState("OnShore");
-  const [salesStatus, setSalesStatus] = useState("Inquiry Recieved");
+  const [salesStatus, setSalesStatus] = useState("Course in Progress");
   const [heatLevel, setHeatLevel] = useState("Very Hot");
   const [note, setNote] = useState("");
   

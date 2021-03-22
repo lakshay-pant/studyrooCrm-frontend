@@ -8,6 +8,16 @@ import {Counselling} from "../../components/allStudentTemplates/Counselling"
 import {QuotationSent} from "../../components/allStudentTemplates/QuotationSent"
 import {Application} from "../../components/allStudentTemplates/Application"
 import {WaitingForLoo} from "../../components/allStudentTemplates/WaitingForLoo"
+import {PaymentPending} from "../../components/allStudentTemplates/PaymentPending"
+import {WaitingForCoE} from "../../components/allStudentTemplates/WaitingForCoE"
+import {ApplyForVisa} from "../../components/allStudentTemplates/ApplyForVisa"
+import {WaitingForVisaRequirement} from "../../components/allStudentTemplates/WaitingForVisaRequirement"
+import {WaitingForVisa} from "../../components/allStudentTemplates/WaitingForVisa"
+import {VisaGranted} from "../../components/allStudentTemplates/VisaGranted"
+import {CourseInProgress} from "../../components/allStudentTemplates/CourseinProgress"
+import {Link} from "react-router-dom"
+
+
 
 
 
@@ -39,10 +49,10 @@ export const AllStudent = () => {
                            <div className="import-from">
                                 <p>Import from spreadsheet</p>
                                 <div className="st-file-upload">
-                                    <label for="file-upload" className="custom-file-upload">
+                                <Link to="/add-student"><label for="file-upload" className="custom-file-upload">
                                     <i className="fas fa-user-graduate"></i> Add New Student
                                     <span>+</span>
-                                    </label>
+                                    </label></Link>
 
                                     <input id="file-upload" type="file"/>
                                 </div>       
@@ -83,212 +93,18 @@ export const AllStudent = () => {
                             <QuotationSent/>
                             <Application/>
                             <WaitingForLoo/>
+<PaymentPending/>
+                        <WaitingForCoE/>
+                            <ApplyForVisa/>
 
+                            <WaitingForVisaRequirement/>
+                            <WaitingForVisa/>
+<VisaGranted/>
+<CourseInProgress/>
                             
 
+
                             
-                            
-                            <div class="col-md-4 col-12">
-                                    <div class="data-block">
-                                        <div class="data-heading">
-                                            <p class="head">COUNSELLING</p>
-                                            <p><span>0 students</span></p>
-                                        </div>
-                                        <div class="data-content">
-                                            <div class="no-data">
-                                            <p>No Students Found</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                        
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Application</p>
-                                        <p><span>2 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="data-con-box">
-                                        <div class="data-wrap">
-                                            <div class="data-img">
-                                                <img src="images/stu.png" class="img-fluid" alt="student" />
-                                            </div>
-                                            <div class="data-text">
-                                                <p>Inquiry 1</p>
-                                                <div class="contact">
-                                                    <p>04556 789 887</p>
-                                                    <p>test@test.com</p>
-                                                </div>
-                                            </div>
-                                            <div class="st-number">
-                                                    <p>STU1</p>
-                                            </div>
-                                        </div>
-                                        <div class="post-time">
-                                                <p><i class="fas fa-calendar-alt"></i>Last Contacted 3 Days Ago</p>
-                                        </div>
-                                        </div>
-
-                                        <div class="data-con-box">
-                                        <div class="data-wrap">
-                                            <div class="data-img">
-                                                <img src="images/stu.png" class="img-fluid" alt="student" />
-                                            </div>
-                                            <div class="data-text">
-                                                <p>Inquiry 1</p>
-                                                <div class="contact">
-                                                    <p>04556 789 887</p>
-                                                    <p>test@test.com</p>
-                                                </div>
-                                            </div>
-                                            <div class="st-number">
-                                                    <p>STU1</p>
-                                            </div>
-                                        </div>
-                                        <div class="post-time">
-                                                <p><i class="fas fa-calendar-alt"></i>Last Contacted 3 Days Ago</p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Waiting for Coe</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Payment Pending</p>
-                                        <p><span>2 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="data-con-box">
-                                        <div class="data-wrap">
-                                            <div class="data-img">
-                                                <img src="images/stu.png" class="img-fluid" alt="student" />
-                                            </div>
-                                            <div class="data-text">
-                                                <p>Inquiry 1</p>
-                                                <div class="contact">
-                                                    <p>04556 789 887</p>
-                                                    <p>test@test.com</p>
-                                                </div>
-                                            </div>
-                                            <div class="st-number">
-                                                    <p>STU1</p>
-                                            </div>
-                                        </div>
-                                        <div class="post-time">
-                                                <p><i class="fas fa-calendar-alt"></i>Last Contacted 3 Days Ago</p>
-                                        </div>
-                                        </div>
-
-                                        <div class="data-con-box">
-                                        <div class="data-wrap">
-                                            <div class="data-img">
-                                                <img src="images/stu.png" class="img-fluid" alt="student" />
-                                            </div>
-                                            <div class="data-text">
-                                                <p>Inquiry 1</p>
-                                                <div class="contact">
-                                                    <p>04556 789 887</p>
-                                                    <p>test@test.com</p>
-                                                </div>
-                                            </div>
-                                            <div class="st-number">
-                                                    <p>STU1</p>
-                                            </div>
-                                        </div>
-                                        <div class="post-time">
-                                                <p><i class="fas fa-calendar-alt"></i>Last Contacted 3 Days Ago</p>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Apply for visa</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Waiting for Visa</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Visa Granted</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">Courses in Progress</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4 col-12">
-                                <div class="data-block">
-                                    <div class="data-heading">
-                                        <p class="head">QUOTATION SENT</p>
-                                        <p><span>0 students</span></p>
-                                    </div>
-                                    <div class="data-content">
-                                        <div class="no-data">
-                                        <p>No Students Found</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>    
                 </div>        
