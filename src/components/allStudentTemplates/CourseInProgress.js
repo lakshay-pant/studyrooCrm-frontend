@@ -28,7 +28,7 @@ export const CourseInProgress = () => {
             </div>
             <div class="data-content">
 
-        {courseInProgress.length?(courseInProgress.map((row)=>(
+        {courseInProgress.length?(courseInProgress.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

@@ -28,7 +28,7 @@ export const Application = () => {
             </div>
             <div class="data-content">
         
-        {application.length?(application.map((row)=>(
+        {application.length?(application.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

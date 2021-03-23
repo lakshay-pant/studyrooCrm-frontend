@@ -71,13 +71,6 @@ export const DefaultLayout = ({children}) => {
   };
     return (
       <div><nav className="main-header navbar navbar-expand navbar-white navbar-light">
-      {/*-- Left navbar links - */}
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          <a className="nav-link" data-widget="pushmenu" href="#" role="button"><i className="fas fa-bars"></i></a>
-        </li>
-       
-      </ul>
   
       {/*-- SEARCH FORM -*/}
       <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">

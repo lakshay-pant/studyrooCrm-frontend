@@ -6,20 +6,32 @@ import {
   Spinner,Alert
 } from "react-bootstrap";
 import {createNewTask} from "../../api/taskApi"
+import {filterSerachStudent} from "../allStudents/allStudentAction"
 
 
 export const Addtask = () => {
+    const {searchStudentList  } = useSelector(
+        (state) => state.allStudent
+      );
+
+      const { isLoading,
+        status,
+        message} = useSelector(
+        (state) => state.addTask
+      );
+      
 
     const dispatch=useDispatch()
  
-    const [taskName, setTaskName] = useState("");
-    const [type, setType] = useState("");
-    const [dueDate, setDueDate] = useState("");
-    const [studentAssign, setStudentAssign] = useState("");
-    const [assignTo, setAssignTo] = useState("");
+    const [taskName, setTaskName] = useState("hello");
+    const [type, setType] = useState("follow");
+    const [dueDate, setDueDate] = useState("3ed aug 1996");
+    const [taskDetails, setTaskDetails] = useState("ss");
+    const [studentAssign, setStudentAssign] = useState("bcskc");
+    const [assignTo, setAssignTo] = useState("cscs");
 
-    const [userGroup, setUserGroup] = useState("");
-    const [offices, setOffices] = useState("");
+    const [userGroup, setUserGroup] = useState("css");
+    const [offices, setOffices] = useState("cscss");
       
     
       const handleOnChange = (e) => {
@@ -37,14 +49,18 @@ export const Addtask = () => {
             case "dueDate":
             setDueDate(value);
             break;
-    
+            case "taskDetails":
+                setTaskDetails(value);
+                break;
            
             case "studentAssign":
             setStudentAssign(value);
+           ;
             break;
     
             case "assignTo":
                 setAssignTo(value);
+                dispatch(filterSerachStudent(value))
                 break;
         
             case "userGroup":
@@ -111,9 +127,18 @@ export const Addtask = () => {
         </section>
 
         <section class="addtask-from">
+        
+
           <div class="container-fluid">
            <div class="new-task-bg">
+               
            <form onSubmit={handleOnTaskSubmit} >
+           {message && (
+            <Alert variant={status === "success" ? "success" : "danger"}>
+              {message}
+            </Alert>
+          )}
+           
                     <div class="col-md-12">
                         <div class="headingdiv">What is your task about?</div>
                         <div class="form-bgclr">
@@ -139,7 +164,8 @@ export const Addtask = () => {
                                 </div>
                                 <div class="form-group col-md-12">
                                 <label>Task Details (comments)</label>
-                                <textarea class="form-control" rows="5" name="assignTo" value={assignTo} onChange={handleOnChange}></textarea>
+                                <textarea class="form-control" rows="5" name="taskDetails" value={taskDetails} onChange={handleOnChange}></textarea>
+                               
                                 </div>
                             </div>
                         </div>
@@ -150,14 +176,46 @@ export const Addtask = () => {
                                 <div class="form-row"> 
                                 <div class="form-group col-md-12">
                                     <label>Student</label>
-                                    <textarea class="form-control" rows="5" name="studentAssign" value={studentAssign} onChange={handleOnChange}></textarea>
+                                   
+                                    <textarea class="form-control" rows="1" name="assignTo" value={assignTo} onChange={handleOnChange}></textarea>
+                                    {searchStudentList.length ? (
+          searchStudentList.map((row) => (
+            <tr key={row._id}>
+              
+              
+              <td>{row.firstName}</td>
+              
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="4" className="text-center">
+              No students
+            </td>
+          </tr>
+        )}
                                 </div>
                                 </div>
                             </div>
                         </div>
+                        
+
+
                         <div class="col-md-12">
-                            <div class="headingdiv">Who is assigned to this task?</div>
+                            
+                            
                             <div class="form-bgclr">
+
+                            <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group ">
+                                            <label>This task will be assigned to...</label>
+                                            {isLoading && <Spinner variant="primary" animation="border" />}
+                                            <input type="text" class="form-control" placeholder="" name="studentAssign" value={studentAssign} onChange={handleOnChange}/>
+                                        </div>
+                                    </div>
+                                </div>
+                            
                             <div class="form-check">
                                 <input type="checkbox" class="form-check-input" />
                                 <label class="form-check-label" for="exampleCheck1">

@@ -28,7 +28,7 @@ export const QuotationSent  = () => {
             </div>
             <div class="data-content">
         
-        {quotationSent .length?(quotationSent .map((row)=>(
+        {quotationSent.length?(quotationSent.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

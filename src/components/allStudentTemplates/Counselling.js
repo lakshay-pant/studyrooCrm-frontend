@@ -28,7 +28,7 @@ export const Counselling = () => {
             </div>
             <div class="data-content">
         
-        {counselling.length?(counselling.map((row)=>(
+        {counselling.length?(counselling.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

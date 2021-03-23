@@ -28,7 +28,7 @@ export const WaitingForVisa = () => {
             </div>
             <div class="data-content">
 
-        {waitingForVisa.length?(waitingForVisa.map((row)=>(
+        {waitingForVisa.length?(waitingForVisa.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

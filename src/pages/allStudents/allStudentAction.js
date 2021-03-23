@@ -1,7 +1,8 @@
 import {
     fetchStudentLoading,
     fetchStudentSuccess,
-    fetchStudentFail
+    fetchStudentFail,
+    searchStudents
     
   } from "./allStudentSlice";
   
@@ -18,4 +19,8 @@ import {
     } catch (error) {
       dispatch(fetchStudentFail(error.message));
     }
+  };
+
+  export const filterSerachStudent = (str) => (dispatch) => {
+    dispatch(searchStudents(str));
   };

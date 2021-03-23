@@ -4,6 +4,7 @@ const initialState = {
   students: [],
   isLoading: false,
   error: "",
+  searchStudentList: []
   
 };
 
@@ -22,9 +23,15 @@ const studentListSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    searchStudents: (state, { payload }) => {
+      state.searchStudentList = state.students.filter((row) => {
+        if (!payload) return row;
+
+        return row.firstName.toLowerCase().includes(payload.toLowerCase());
+      });
     
-  },
-});
+  }
+}})
 
 const { reducer, actions } = studentListSlice;
 
@@ -32,6 +39,7 @@ export const {
   fetchStudentLoading,
   fetchStudentSuccess,
   fetchStudentFail,
+  searchStudents
 } = actions;
 
 export default reducer;

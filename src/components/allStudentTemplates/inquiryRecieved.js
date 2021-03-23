@@ -28,7 +28,7 @@ export const InquiryRecieved = () => {
             </div>
             <div class="data-content">
         
-        {inquiryRecieved.length?(inquiryRecieved.map((row)=>(
+        {inquiryRecieved.length?(inquiryRecieved.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">
