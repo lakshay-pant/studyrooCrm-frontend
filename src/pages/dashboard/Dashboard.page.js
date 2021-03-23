@@ -4,8 +4,12 @@ import {Link} from "react-router-dom"
 import { useSelector ,useDispatch} from "react-redux";
 import {fetchAllStudents} from "../allStudents/allStudentAction"
 
+
 export const Dashboard = () => {
   const dispatch = useDispatch();
+
+ 
+
   const { students, isLoading, error } = useSelector(
     (state) => state.allStudent
   );

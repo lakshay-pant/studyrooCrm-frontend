@@ -10,10 +10,13 @@ import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
+import {userLogout} from "../api/userApi"
+import { useHistory } from "react-router-dom";
 library.add(faEyeSlash,faEye)
 
 
 export const DefaultLayout = ({children}) => {
+  const history=useHistory()
     const backgroundImage = 'images/mountain.jpg';
   const sidebarHeader = {
     fullName: 'Yo Yo Travel',
@@ -60,6 +63,12 @@ export const DefaultLayout = ({children}) => {
     header: 'Roboto Slab',
     menu: 'Roboto Slab'
   }
+  const logMeOut = () => {
+    sessionStorage.removeItem("accessJWT");
+    localStorage.removeItem("crmSite");
+    userLogout();
+    history.push("/");
+  };
     return (
       <div><nav className="main-header navbar navbar-expand navbar-white navbar-light">
       {/*-- Left navbar links - */}
@@ -124,7 +133,7 @@ export const DefaultLayout = ({children}) => {
                                       <i className="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Activity Log
                                   </a>
-                                   <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                   <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onClick={logMeOut}>
                                       <i className="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Logout
                                   </a>

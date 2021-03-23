@@ -3,6 +3,7 @@ const loginUrl="http://localhost:3001/v1/user/login"
 const signUpUrl="http://localhost:3001/v1/user"
 const userProfileUrl ="http://localhost:3001/v1/user"
 const newAccessJWT="http://localhost:3001/v1/tokens"
+const logoutUrl="http://localhost:3001/v1/user/logout"
 
 export const userSignUp = (frmData) => {
   return new Promise(async(resolve, reject) => {
@@ -91,5 +92,17 @@ export const userLogin = (frmData) => {
         reject(error.message);
       }
     });
+  };
+
+  export const userLogout = async () => {
+    try {
+      await axios.delete(logoutUrl, {
+        headers: {
+          Authorization: sessionStorage.getItem("accessJWT"),
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
  
