@@ -5,6 +5,7 @@ import userReducer from "./pages/dashboard/userSlice"
 import addStudent from "./components/add-student-form/addStudentSlice"
 import addTask from "./pages/addTask/addTaskSlice"
 import allStudent from "./pages/allStudents/allStudentSlice"
+import getUser from "./components/getAllTheUsers/getUsersSlice"
 
 const store = configureStore({
     reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
         user: userReducer,
         addStudent:addStudent,
         addTask:addTask,
-        allStudent:allStudent
+        allStudent:allStudent,
+        getUser:getUser
     },
   })
   

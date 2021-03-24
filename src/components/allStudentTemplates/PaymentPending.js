@@ -28,7 +28,7 @@ export const PaymentPending = () => {
             </div>
             <div class="data-content">
 
-        {paymentPending.length?(paymentPending.map((row)=>(
+        {paymentPending.length?(paymentPending.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

@@ -28,7 +28,7 @@ export const WaitingForLoo = () => {
             </div>
             <div class="data-content">
         
-        {waitingForLoo.length?(waitingForLoo.map((row)=>(
+        {waitingForLoo.length?(waitingForLoo.reverse().map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

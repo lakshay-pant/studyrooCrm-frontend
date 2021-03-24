@@ -4,6 +4,7 @@ const signUpUrl="http://localhost:3001/v1/user"
 const userProfileUrl ="http://localhost:3001/v1/user"
 const newAccessJWT="http://localhost:3001/v1/tokens"
 const logoutUrl="http://localhost:3001/v1/user/logout"
+const getAllUsers="http://localhost:3001/v1/user/all-users"
 
 export const userSignUp = (frmData) => {
   return new Promise(async(resolve, reject) => {
@@ -106,3 +107,14 @@ export const userLogin = (frmData) => {
     }
   };
  
+  export const getAllUser = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await axios.get(getAllUsers);
+  
+        resolve(result);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };

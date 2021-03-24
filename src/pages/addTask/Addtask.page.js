@@ -14,24 +14,26 @@ export const Addtask = () => {
         (state) => state.allStudent
       );
 
-      const { isLoading,
-        status,
-        message} = useSelector(
-        (state) => state.addTask
-      );
       
 
     const dispatch=useDispatch()
- 
-    const [taskName, setTaskName] = useState("hello");
-    const [type, setType] = useState("follow");
-    const [dueDate, setDueDate] = useState("3ed aug 1996");
-    const [taskDetails, setTaskDetails] = useState("ss");
-    const [studentAssign, setStudentAssign] = useState("bcskc");
-    const [assignTo, setAssignTo] = useState("cscs");
 
-    const [userGroup, setUserGroup] = useState("css");
-    const [offices, setOffices] = useState("cscss");
+    const { isLoading,
+      status,
+      message} = useSelector(
+      (state) => state.addTask
+    );
+    
+ 
+    const [taskName, setTaskName] = useState("");
+    const [type, setType] = useState("");
+    const [dueDate, setDueDate] = useState("");
+    const [taskDetails, setTaskDetails] = useState("");
+    const [studentAssign, setStudentAssign] = useState("");
+    const [assignTo, setAssignTo] = useState("");
+
+    const [userGroup, setUserGroup] = useState("");
+    const [offices, setOffices] = useState("");
       
     
       const handleOnChange = (e) => {
@@ -131,15 +133,18 @@ export const Addtask = () => {
 
           <div class="container-fluid">
            <div class="new-task-bg">
+           
                
            <form onSubmit={handleOnTaskSubmit} >
-           {message && (
-            <Alert variant={status === "success" ? "success" : "danger"}>
+           
+           
+                    <div class="col-md-12">
+                    {message && (
+            <Alert variant={status==="success" ? "success" : "danger"}>
               {message}
             </Alert>
           )}
-           
-                    <div class="col-md-12">
+                    
                         <div class="headingdiv">What is your task about?</div>
                         <div class="form-bgclr">
                             <div class="form-row">
