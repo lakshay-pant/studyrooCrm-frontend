@@ -8,6 +8,7 @@ const initialState = {
   
 };
 
+
 const userListSlice = createSlice({
   name: "userList",
   initialState,
@@ -26,8 +27,9 @@ const userListSlice = createSlice({
     searchUsers: (state, { payload }) => {
       state.searchUserList = state.users.filter((row) => {
         if (!payload) return row;
+        
 
-        return row.firstName.toLowerCase().includes(payload.toLowerCase());
+        return row.email.toLowerCase().includes(payload.toLowerCase());
       });
     
   }

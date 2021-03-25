@@ -4,14 +4,20 @@ import {useDispatch, useSelector} from "react-redux"
 import {addTaskPending,addTaskSuccess,addTaskError} from "./addTaskSlice"
 import {
   Spinner,Alert
-} from "react-bootstrap";
+} from "react-bootstrap"
 import {createNewTask} from "../../api/taskApi"
 import {filterSerachStudent} from "../allStudents/allStudentAction"
+import {filterSearchUser,fetchAllUsers} from "../../components/getAllTheUsers/getUsersAction"
+import {fetchAllStudents} from "../allStudents/allStudentAction"
 
 
 export const Addtask = () => {
     const {searchStudentList  } = useSelector(
         (state) => state.allStudent
+      );
+
+      const {searchUserList } = useSelector(
+        (state) => state.getUser
       );
 
       
@@ -40,12 +46,12 @@ export const Addtask = () => {
         const { name, value } = e.target;
     
         switch (name) {
-          case "taskName":
+            case "taskName":
             setTaskName(value);
             break;
     
             case "type":
-                setType(value);
+            setType(value);
             break;
     
             case "dueDate":
@@ -54,16 +60,21 @@ export const Addtask = () => {
             case "taskDetails":
                 setTaskDetails(value);
                 break;
+
+                case "assignTo":
+                  setAssignTo(value);
+                  dispatch(fetchAllStudents())
+                
+                  dispatch(filterSerachStudent(value))
+                  break;
            
             case "studentAssign":
             setStudentAssign(value);
-           ;
+            dispatch(fetchAllUsers())
+            dispatch(filterSearchUser(value));
             break;
     
-            case "assignTo":
-                setAssignTo(value);
-                dispatch(filterSerachStudent(value))
-                break;
+           
         
             case "userGroup":
               setUserGroup(value);
@@ -216,7 +227,24 @@ export const Addtask = () => {
                                         <div class="form-group ">
                                             <label>This task will be assigned to...</label>
                                             {isLoading && <Spinner variant="primary" animation="border" />}
-                                            <input type="text" class="form-control" placeholder="" name="studentAssign" value={studentAssign} onChange={handleOnChange}/>
+                                            
+                                            <textarea class="form-control" rows="1" name="studentAssign" value={studentAssign} onChange={handleOnChange}></textarea>
+                                          {searchUserList.length ? (
+          searchUserList.map((row) => (
+            <tr key={row._id}>
+              
+              
+              <td>{row.firstName}</td>
+              
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="4" className="text-center">
+              No students
+            </td>
+          </tr>
+        )}
                                         </div>
                                     </div>
                                 </div>
