@@ -106,7 +106,7 @@ export const Addtask = () => {
     
     const isAuth=await createNewTask({taskName,type,dueDate,studentAssign,assignTo,offices,userGroup})
     console.log(isAuth)
-    if(isAuth.status=="error"){
+    if(isAuth.status==="error"){
     return dispatch(addTaskError(isAuth.message))
     }
     dispatch(addTaskSuccess())

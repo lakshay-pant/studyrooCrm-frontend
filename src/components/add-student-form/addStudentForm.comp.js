@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from "react-redux"
 import {
   Spinner,Alert
 } from "react-bootstrap";
-import {Link,useLocation} from "react-router-dom"
 
 import {addStudent} from "./addStudentAction"
 
@@ -24,7 +23,6 @@ export const AddStudentForm = () => {
     (state) => state.addStudent
   );
 
-  const location=useLocation()
 
 
 

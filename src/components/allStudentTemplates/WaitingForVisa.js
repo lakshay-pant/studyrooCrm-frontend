@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const WaitingForVisa = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,7 +17,7 @@ export const WaitingForVisa = () => {
   }, [students, dispatch]);
 
   const waitingForVisa =  students.filter(function(student) {
-    return student.salesStatus == "Waiting for Visa";
+    return student.salesStatus === "Waiting for Visa";
 });
     return (
         <div class="col-md-4 col-12">

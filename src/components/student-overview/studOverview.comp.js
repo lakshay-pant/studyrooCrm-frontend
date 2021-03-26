@@ -15,7 +15,7 @@ export const StudOverview = () => {
               <div className="col-md-7">
                 <div className="add-student-button">
                   <label>Import from spreadsheet</label>
-                  <a href="#">
+                  <a href="/#">
                     <i className="fal fa-user-graduate"></i>
                     Add New Student
                     <span><i className="fal fa-plus"></i></span>

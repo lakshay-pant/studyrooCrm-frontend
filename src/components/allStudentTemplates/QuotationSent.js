@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const QuotationSent  = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,14 +17,14 @@ export const QuotationSent  = () => {
   }, [students, dispatch]);
 
   const quotationSent  =  students.filter(function(student) {
-    return student.salesStatus == "Quotation Sent";
+    return student.salesStatus === "Quotation Sent";
 });
     return (
         <div class="col-md-4 col-12">
         <div class="data-block">
             <div class="data-heading">
                 <p class="head">Quotation Sent</p>
-                <p><span>{quotationSent .length} students</span></p>
+                <p><span>{quotationSent.length} students</span></p>
             </div>
             <div class="data-content">
         

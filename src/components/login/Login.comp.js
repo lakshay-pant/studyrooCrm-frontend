@@ -19,10 +19,6 @@ const history=useHistory()
 const location=useLocation()
 
 
-
-
-
-
 const {isLoading,isAuth,error}=useSelector(state=>state.login)
 
 useEffect(() => {

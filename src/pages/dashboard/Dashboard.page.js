@@ -10,7 +10,7 @@ export const Dashboard = () => {
 
  
 
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
 
@@ -57,7 +57,8 @@ export const Dashboard = () => {
         <div className="container-fluid">
            <div className="boxese-ul">
            <ul className="list-unstyled">
-              <li>   <a>
+              <li>   
+                <a href="/#">
                 <span>
                     <i className="fa fa-user-graduate"></i>
                 </span>
@@ -66,7 +67,7 @@ export const Dashboard = () => {
          
               </li>
               <li>
-               <a href="#">
+               <a href="/#">
                 <span>
                    <i className="fa fa-tasks"></i>
                 </span>
@@ -74,7 +75,7 @@ export const Dashboard = () => {
             </a>
               </li>
               <li>
-               <a href="#">
+               <a href="/#">
                 <span>
                     <i className="fa fa-usd"></i>
                 </span>
@@ -82,7 +83,7 @@ export const Dashboard = () => {
             </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/#">
                 <span>
                     <i className="fa fa-chart-pie"></i>
                 </span>
@@ -90,7 +91,7 @@ export const Dashboard = () => {
             </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/#">
                 <span>
                     <i className="fa fa-user-graduate"></i>
                 </span>
@@ -144,10 +145,10 @@ export const Dashboard = () => {
              </div>
              <div className="task-className">
                <ul className="list-unstyled"><li>
-                 <a href="#"><i className="fa fa-circle nav-icon"></i>Urgent</a>
+                 <a href="/#"><i className="fa fa-circle nav-icon"></i>Urgent</a>
                </li>
                <li>
-                 <a href="#"><i className="fa fa-circle nav-icon"></i>Normal</a>
+                 <a href="/#"><i className="fa fa-circle nav-icon"></i>Normal</a>
                </li></ul>
              </div>
             </div>
@@ -293,7 +294,7 @@ export const Dashboard = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="garph">
-              <img src="images/graph.jpg" className="img-fluid"/>
+              <img src="images/graph.jpg" alt="Graph" className="img-fluid"/>
             </div>
           </div>
         </div>

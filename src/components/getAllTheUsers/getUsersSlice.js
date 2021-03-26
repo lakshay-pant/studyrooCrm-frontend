@@ -29,7 +29,7 @@ const userListSlice = createSlice({
         if (!payload) return row;
         
 
-        return row.email.toLowerCase().includes(payload.toLowerCase());
+        return row.firstName.toLowerCase().includes(payload.toLowerCase());
       });
     
   }

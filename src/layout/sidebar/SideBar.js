@@ -213,7 +213,7 @@ const Sidebar = props => {
           <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
         </div>
         <div class="info">
-          <a href="#" class="d-block">Artur Szulakowski </a>
+          <a href="/#" class="d-block">Artur Szulakowski </a>
           <span>MANAGING DIRECTOR</span>
         </div>
       </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>

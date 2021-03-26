@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Route, Redirect ,useLocation} from "react-router-dom";
+import { Route} from "react-router-dom";
 import { loginSuccess } from "../login/loginSlice";
 import { getUserProfile } from "../../pages/dashboard/userAction";
 

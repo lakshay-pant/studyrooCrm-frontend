@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const WaitingForCoE = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,7 +17,7 @@ export const WaitingForCoE = () => {
   }, [students, dispatch]);
 
   const waitingForCoE =  students.filter(function(student) {
-    return student.salesStatus == "Waiting for CoE";
+    return student.salesStatus === "Waiting for CoE";
 });
     return (
         <div class="col-md-4 col-12">
@@ -28,7 +28,7 @@ export const WaitingForCoE = () => {
             </div>
             <div class="data-content">
 
-        {waitingForCoE.length?(waitingForCoE.reverse().map((row)=>(
+        {waitingForCoE.length?(waitingForCoE.map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

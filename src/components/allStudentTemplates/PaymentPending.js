@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const PaymentPending = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,7 +17,7 @@ export const PaymentPending = () => {
   }, [students, dispatch]);
 
   const paymentPending =  students.filter(function(student) {
-    return student.salesStatus == "Payment Pending";
+    return student.salesStatus === "Payment Pending";
 });
     return (
         <div class="col-md-4 col-12">
@@ -28,7 +28,7 @@ export const PaymentPending = () => {
             </div>
             <div class="data-content">
 
-        {paymentPending.length?(paymentPending.reverse().map((row)=>(
+        {paymentPending.length?(paymentPending.map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">

@@ -5,8 +5,6 @@ import * as Palette from './colors'
 import "./defaultLayout.style.css"
 import { Dropdown } from 'bootstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheckSquare, faCoffee } from '@fortawesome/fontawesome-free-solid';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
@@ -89,44 +87,44 @@ export const DefaultLayout = ({children}) => {
          <ul className="navbar-nav topiconsbar">
           {/*-- Notifications Dropdown Menu -*/}
         <li className="nav-item dropdown">
-          <a className="nav-link" data-toggle="dropdown" href="#">
+          <a className="nav-link" data-toggle="dropdown" href="/#">
            <i className="fa fa-bell"></i>
             <span className="badge badge-warning navbar-badge">3</span>
           </a>
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
             <span className="dropdown-item dropdown-header">3 Notifications</span>
             <div className="dropdown-divider"></div>
-            <a href="#" className="dropdown-item">
+            <a href="/#" className="dropdown-item">
               <i className="fa fa-envelope mr-2"></i> 4 new messages
               <span className="float-right text-muted text-sm">3 mins</span>
             </a>
             
-            <a href="#" className="dropdown-item dropdown-footer">See All Notifications</a>
+            <a href="/#" className="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
         </li>
         <li className="nav-item dropdown">
-          <a className="nav-link" data-toggle="dropdown" href="#">
+          <a className="nav-link" data-toggle="dropdown" href="/#">
           <i className="fa fa-cog"></i>
            
           </a>
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
            
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="#">
+            <a className="dropdown-item" href="/#">
                                       <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Profile
                                   </a>
             
-          <a className="dropdown-item" href="#">
+          <a className="dropdown-item" href="/#">
                                       <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Settings
                                   </a>
   
-                                  <a className="dropdown-item" href="#">
+                                  <a className="dropdown-item" href="/#">
                                       <i className="fa fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Activity Log
                                   </a>
-                                   <a className="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal" onClick={logMeOut}>
+                                   <a className="dropdown-item" href="/#" data-toggle="modal" data-target="#logoutModal" onClick={logMeOut}>
                                       <i className="fa fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Logout
                                   </a>
@@ -153,7 +151,7 @@ colorPalette={Palette.brown}/>
   <div className="headingdiv">More features to help you</div>
   <div className="row">
     <div className="col-md-3">
-   <a href="#">
+   <a href="/#">
         <div className="morefeature-box">
         <span>
           <i className="fa fa-quote-right"></i>
@@ -166,7 +164,7 @@ colorPalette={Palette.brown}/>
    </a>
     </div>
      <div className="col-md-3">
-    <a href="#">
+    <a href="/#">
         <div className="morefeature-box">
         <span>
      <i className="fal fa-tasks"></i>
@@ -179,7 +177,7 @@ colorPalette={Palette.brown}/>
     </a>
     </div>
      <div className="col-md-3">
-    <a href="#">  <div className="morefeature-box">
+    <a href="/#">  <div className="morefeature-box">
         <span>
         <i className="fas fa-rss-square"></i>
         </span>
@@ -190,7 +188,7 @@ colorPalette={Palette.brown}/>
       </div></a>
     </div>
      <div className="col-md-3">
-     <a href="#">
+     <a href="/#">
         <div className="morefeature-box">
         <span>
           <i className="fas fa-envelope-open-text"></i>

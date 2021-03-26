@@ -75,7 +75,7 @@ export const Signup = () => {
 
     const checkValidation=(e)=>{
       setConfirmPassword(e.target.value)
-      if(password!=confirmPassword){
+      if(password!==confirmPassword){
 setIsError("Confirm Password should match with Password")}else{
   setIsError()
 }}

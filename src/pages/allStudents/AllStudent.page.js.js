@@ -1,8 +1,4 @@
-import React,{useEffect} from 'react';
-import { useDispatch } from "react-redux";
 import "./allStudent.style.css";
-import { useSelector } from "react-redux";
-import {fetchAllStudents} from "./allStudentAction"
 import {InquiryRecieved} from "../../components/allStudentTemplates/InquiryRecieved"
 import {Counselling} from "../../components/allStudentTemplates/Counselling"
 import {QuotationSent} from "../../components/allStudentTemplates/QuotationSent"

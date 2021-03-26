@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const VisaGranted = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,7 +17,7 @@ export const VisaGranted = () => {
   }, [students, dispatch]);
 
   const visaGranted =  students.filter(function(student) {
-    return student.salesStatus == "Visa Granted";
+    return student.salesStatus === "Visa Granted";
 });
     return (
         <div class="col-md-4 col-12">

@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const CourseInProgress = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,7 +17,7 @@ export const CourseInProgress = () => {
   }, [students, dispatch]);
 
   const courseInProgress =  students.filter(function(student) {
-    return student.salesStatus == "Course in Progress";
+    return student.salesStatus === "Course in Progress";
 });
     return (
         <div class="col-md-4 col-12">

@@ -7,7 +7,7 @@ import {fetchAllStudents} from "../../pages/allStudents/allStudentAction"
 export const WaitingForLoo = () => {
 
     const dispatch = useDispatch();
-  const { students, isLoading, error } = useSelector(
+  const { students } = useSelector(
     (state) => state.allStudent
   );
   useEffect(() => {
@@ -17,7 +17,7 @@ export const WaitingForLoo = () => {
   }, [students, dispatch]);
 
   const waitingForLoo =  students.filter(function(student) {
-    return student.salesStatus == "Waiting for Loo";
+    return student.salesStatus === "Waiting for Loo";
 });
     return (
         <div class="col-md-4 col-12">
@@ -28,7 +28,7 @@ export const WaitingForLoo = () => {
             </div>
             <div class="data-content">
         
-        {waitingForLoo.length?(waitingForLoo.reverse().map((row)=>(
+        {waitingForLoo.length?(waitingForLoo.map((row)=>(
               <div class="data-con-box" key={row._id}>
               <div class="data-wrap">
                   <div class="data-img">
