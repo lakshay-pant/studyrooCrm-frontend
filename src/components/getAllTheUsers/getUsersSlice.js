@@ -34,7 +34,6 @@ const userListSlice = createSlice({
     
   }
 }})
-
 const { reducer, actions } = userListSlice;
 
 export const {

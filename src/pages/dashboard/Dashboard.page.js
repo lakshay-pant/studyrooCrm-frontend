@@ -14,6 +14,10 @@ export const Dashboard = () => {
     (state) => state.allStudent
   );
 
+  const {user } = useSelector(
+    (state) => state.user
+  );
+
   useEffect(() => {
     if (!students.length) {
       dispatch(fetchAllStudents());
@@ -45,7 +49,7 @@ export const Dashboard = () => {
           <div className="row">
               <div className="col-md-12">
                   <div className="wel-admin">
-                                <h2>Welcome, Artur. </h2>
+                                <h2>Welcome, {user.firstName} </h2>
                                 <span>What would you like to do?</span>
                        </div>
               </div>

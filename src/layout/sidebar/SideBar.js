@@ -2,6 +2,8 @@ import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import * as s from './sidebar.styles';
+import {useSelector} from "react-redux";
+
 
 const Sidebar = props => {
   const { 
@@ -30,6 +32,11 @@ const Sidebar = props => {
   const [isSidebarOpen, setSidebarState] = useState(true);
   const [header, setHeader] = useState(sidebarHeader.fullName);
   const [subMenusStates, setSubmenus] = useState({})
+
+  const {user } = useSelector(
+    (state) => state.user
+  );
+
 
   // Effects
 
@@ -181,7 +188,7 @@ const Sidebar = props => {
 
   return (
     <s.SidebarContainer backgroundImage={backgroundImage} isSidebarOpen={isSidebarOpen} colorPalette={colorPalette}>
-      {isSidebarOpen && <s.SidebarHeader font={fonts.header}><a href="index3.html" class="brand-link">
+      {isSidebarOpen && <s.SidebarHeader font={fonts.header}><a href="" class="brand-link">
       <img src="images/logo.png" alt="Studyroo-logo" class="img-fluid"
          />
      
@@ -194,7 +201,7 @@ const Sidebar = props => {
           <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
         </div>
         <div class="info">
-          <a href="#" class="d-block">Artur Szulakowski </a>
+          <a href="#" class="d-block">{user.firstName} {user.lastName} </a>
           <span>MANAGING DIRECTOR</span>
         </div>
       </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
@@ -213,7 +220,8 @@ const Sidebar = props => {
           <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
         </div>
         <div class="info">
-          <a href="/#" class="d-block">Artur Szulakowski </a>
+
+          <a href="#" class="d-block">{user.firstName}{user.lastName} </a>
           <span>MANAGING DIRECTOR</span>
         </div>
       </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>

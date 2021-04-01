@@ -9,6 +9,7 @@ import {createNewTask} from "../../api/taskApi"
 import {filterSerachStudent} from "../allStudents/allStudentAction"
 import {filterSearchUser,fetchAllUsers} from "../../components/getAllTheUsers/getUsersAction"
 import {fetchAllStudents} from "../allStudents/allStudentAction"
+import { searchStudents } from '../allStudents/allStudentSlice';
 
 
 export const Addtask = () => {
@@ -20,6 +21,9 @@ export const Addtask = () => {
         (state) => state.getUser
       );
 
+      const {user } = useSelector(
+        (state) => state.user
+      );
       
 
     const dispatch=useDispatch()
@@ -194,14 +198,29 @@ export const Addtask = () => {
                                     <label>Student</label>
                                    
                                     <textarea class="form-control" rows="1" name="assignTo" value={assignTo} onChange={handleOnChange}></textarea>
-                                    {searchStudentList.length ? (
+                                   {searchStudentList.length && searchStudentList[0].clientId==user._id? (<h1>My Students</h1>):(<h1>Other students</h1>)}
+                                    {searchStudentList.length ? (    
           searchStudentList.map((row) => (
-            <tr key={row._id}>
-              
-              
-              <td>{row.firstName}</td>
-              
-            </tr>
+            <div class="student-search-data">
+    <table>
+       <thead>
+         <tr>
+           <td>
+              <th><i class="fas fa-user-graduate"></i>My Student</th>
+           </td>
+           <td>
+             <th>3 results</th>
+           </td>
+         </tr>
+       </thead>
+       <tbody>
+         <tr><td><span>{row._id}</span></td>
+             <td><p>{row.firstName}</p></td>
+          </tr>
+          
+       </tbody>
+    </table>
+  </div>
           ))
         ) : (
           <tr>

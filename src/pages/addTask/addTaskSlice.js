@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoading: false,
-  status: "success",
-  message: "he",
+  status: "",
+  message: "",
 };
 
 const addTaskSlice = createSlice({
