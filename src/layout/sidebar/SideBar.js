@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom';
 import * as s from './sidebar.styles';
 import {useSelector} from "react-redux";
 
-
 const Sidebar = props => {
-  const { 
-    backgroundImage = '', 
+  const {
+    backgroundImage = '',
     sidebarHeader = {
       fullName: '',
       shortName: ''
@@ -36,8 +35,6 @@ const Sidebar = props => {
   const {user } = useSelector(
     (state) => state.user
   );
-
-
   // Effects
 
   // Set selected menu item based on URL pathname
@@ -76,12 +73,18 @@ const Sidebar = props => {
 
     menuItems.forEach((item, index) => {
       const hasSubmenus = !!item.subMenuItems.length;
-
       if (hasSubmenus) {
-        newSubmenus[index] = {};
-        newSubmenus[index]['isOpen'] = false;
-        newSubmenus[index]['selected'] = null;
+        item.subMenuItems.forEach((item, index) => {
+          newSubmenus[index] = {};
+          newSubmenus[index]['isOpen'] = false;
+          newSubmenus[index]['selected'] = null;
+        });
       }
+      // if (hasSubmenus) {
+      //   newSubmenus[index] = {};
+      //   newSubmenus[index]['isOpen'] = false;
+      //   newSubmenus[index]['selected'] = null;
+      // }
     })
 
 
@@ -107,8 +110,8 @@ const Sidebar = props => {
 
     const subMenusCopy = JSON.parse(JSON.stringify(subMenusStates));
 
-    if (subMenusStates.hasOwnProperty(index)) { 
-      subMenusCopy[index]['isOpen'] = !subMenusStates[index]['isOpen'] 
+    if (subMenusStates.hasOwnProperty(index)) {
+      subMenusCopy[index]['isOpen'] = !subMenusStates[index]['isOpen']
       setSubmenus(subMenusCopy)
     }
     else {
@@ -121,10 +124,10 @@ const Sidebar = props => {
   }
 
   const handleSubMenuItemClick = (menuItemIdx, subMenuItemIdx) => {
-    const subMenusCopy = JSON.parse(JSON.stringify(subMenusStates));
+     const subMenusCopy = JSON.parse(JSON.stringify(subMenusStates));
 
     subMenusCopy[menuItemIdx]['selected'] = subMenuItemIdx;
-    setSubmenus(subMenusCopy);
+     setSubmenus(subMenusCopy);
   }
 
 
@@ -153,7 +156,7 @@ const Sidebar = props => {
     return (
       <s.ItemContainer key={index}>
         <Link to={item.to} style={{ textDecoration: 'none' }}>
-          <s.MenuItem           
+          <s.MenuItem
             font={fonts.menu}
             selected={isItemSelected}
             onClick={() => handleMenuItemClick(item.name, index)}
@@ -161,7 +164,7 @@ const Sidebar = props => {
             isOpen={isOpen}
             colorPalette={colorPalette}
           >
-           <s.Icon isSidebarOpen={isSidebarOpen} src={item.icon}></s.Icon> 
+            <s.Icon isSidebarOpen={isSidebarOpen} src={item.icon}></s.Icon>
             <s.Text isSidebarOpen={isSidebarOpen}>{item.name}</s.Text>
             {hasSubmenus && isSidebarOpen && (
               <s.DropdownIcon selected={isItemSelected} isOpen={isOpen} colorPalette={colorPalette} />
@@ -172,7 +175,7 @@ const Sidebar = props => {
         {/* Display submenus if they exist  */}
         <AnimatePresence>
           {hasSubmenus && isOpen && (
-            <motion.nav 
+            <motion.nav
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.35 }}
@@ -185,55 +188,55 @@ const Sidebar = props => {
       </s.ItemContainer>
     )
   });
-
+  
   return (
-    <s.SidebarContainer backgroundImage={backgroundImage} isSidebarOpen={isSidebarOpen} colorPalette={colorPalette}>
-      {isSidebarOpen && <s.SidebarHeader font={fonts.header}><a href="" class="brand-link">
-      <img src="images/logo.png" alt="Studyroo-logo" class="img-fluid"
-         />
-     
-    </a>
-
-    
+      <s.SidebarContainer backgroundImage={backgroundImage} isSidebarOpen={isSidebarOpen} colorPalette={colorPalette}>
+        {isSidebarOpen && <s.SidebarHeader font={fonts.header}><a href="" class="brand-link">
+        <img src="images/logo.png" alt="Studyroo-logo" class="img-fluid"
+           />
+       
+      </a>
+  
       
-      <div class="user-panel ">
-        <div class="image">
-          <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">{user.firstName} {user.lastName} </a>
-          <span>MANAGING DIRECTOR</span>
-        </div>
-      </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
-        <s.Toggler />
-      </s.TogglerContainer></s.SidebarHeader>}
-      {!isSidebarOpen && <s.SidebarHeader font={fonts.header}><a href="index3.html" class="brand-link">
-      <img src="images/logo.png" alt="Studyroo-logo" class="img-fluid"
-         />
-     
-    </a>
-
-    
+        
+        <div class="user-panel ">
+          <div class="image">
+            <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
+          </div>
+          <div class="info">
+            <a href="#" class="d-block">{user.firstName} {user.lastName} </a>
+            <span>MANAGING DIRECTOR</span>
+          </div>
+        </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
+          <s.Toggler />
+        </s.TogglerContainer></s.SidebarHeader>}
+        {!isSidebarOpen && <s.SidebarHeader font={fonts.header}><a href="index3.html" class="brand-link">
+        <img src="images/logo.png" alt="Studyroo-logo" class="img-fluid"
+           />
+       
+      </a>
+  
       
-      <div class="user-panel ">
-        <div class="image">
-          <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
-        </div>
-        <div class="info">
-
-          <a href="#" class="d-block">{user.firstName}{user.lastName} </a>
-          <span>MANAGING DIRECTOR</span>
-        </div>
-      </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
-        <s.Toggler />
-      </s.TogglerContainer></s.SidebarHeader>}
-                         
-                         
-      
-      <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
-      
-    </s.SidebarContainer>
-  )
-}
-
-export default Sidebar
+        
+        <div class="user-panel ">
+          <div class="image">
+            <img src="images/admin.svg" class="img-circle elevation-2" alt="User Image"/>
+          </div>
+          <div class="info">
+  
+            <a href="/#" class="d-block">Artur Szulakowski </a>
+            <span>MANAGING DIRECTOR</span>
+          </div>
+        </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
+          <s.Toggler />
+        </s.TogglerContainer></s.SidebarHeader>}
+                           
+                           
+        
+        <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
+        
+      </s.SidebarContainer>
+    )
+  }
+  
+  export default Sidebar

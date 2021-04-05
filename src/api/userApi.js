@@ -6,6 +6,7 @@ const newAccessJWT="http://localhost:3001/v1/tokens"
 const logoutUrl="http://localhost:3001/v1/user/logout"
 const getAllUsers="http://localhost:3001/v1/user/all-users"
 
+
 export const userSignUp = (frmData) => {
   return new Promise(async(resolve, reject) => {
     try {

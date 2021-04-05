@@ -1,4 +1,4 @@
-import "./allStudent.style.css";
+import "./allStudentStyle.css";
 import {InquiryRecieved} from "../../components/allStudentTemplates/InquiryRecieved"
 import {Counselling} from "../../components/allStudentTemplates/Counselling"
 import {QuotationSent} from "../../components/allStudentTemplates/QuotationSent"
@@ -11,16 +11,11 @@ import {WaitingForVisaRequirement} from "../../components/allStudentTemplates/Wa
 import {WaitingForVisa} from "../../components/allStudentTemplates/WaitingForVisa"
 import {VisaGranted} from "../../components/allStudentTemplates/VisaGranted"
 import {CourseInProgress} from "../../components/allStudentTemplates/CourseInProgress"
+
 import {Link} from "react-router-dom"
 
 
-export const AllStudent = () => {
-
-
-
-
-
-    
+ const AllStudent = () => {
     return(
         <div className="content-wrapper">
             <div className="maincontent-rightside student-view add-student">
@@ -42,7 +37,7 @@ export const AllStudent = () => {
                            <div className="import-from">
                                 <p>Import from spreadsheet</p>
                                 <div className="st-file-upload">
-                                <Link to="/add-student"><label for="file-upload" className="custom-file-upload">
+                                <Link to="/addstudent"><label for="file-upload" className="custom-file-upload">
                                     <i className="fa fa-user-graduate"></i> Add New Student
                                     <span>+</span>
                                     </label></Link>
@@ -122,3 +117,5 @@ export const AllStudent = () => {
 
     )
 }
+
+export default AllStudent;

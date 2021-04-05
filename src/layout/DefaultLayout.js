@@ -22,7 +22,7 @@ export const DefaultLayout = ({children}) => {
   };
   const menuItems = [
     {name: 'Dashboard', to: '/dashboard', icon: '/images/Dashboard.png', subMenuItems: [] },
-    {name: 'Students',to: '/all-student', icon: '/images/student.png', subMenuItems: [{ name: 'All Students', to: ''},        
+    {name: 'Students',  to: '/dashboard' , icon: '/images/student.png', subMenuItems: [{ name: 'All Students', to: '/all-student'},        
     { name: 'Mandarian Speaking', to: ''},
     { name: 'Portoguese Speaking', to: ''},
     { name: 'Europeans', to: ''},

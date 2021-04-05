@@ -5,7 +5,7 @@ import { useSelector ,useDispatch} from "react-redux";
 import {fetchAllStudents} from "../allStudents/allStudentAction"
 
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const dispatch = useDispatch();
 
  
@@ -66,7 +66,7 @@ export const Dashboard = () => {
                 <span>
                     <i className="fa fa-user-graduate"></i>
                 </span>
-                <Link to="/add-student">  <p className="mb-0">Add New Student</p></Link>
+                <Link to="/addstudent">  <p className="mb-0">Add New Student</p></Link>
             </a>
          
               </li>
@@ -330,3 +330,4 @@ export const Dashboard = () => {
   )
 }
 
+export default Dashboard;
