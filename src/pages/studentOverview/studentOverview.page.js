@@ -1,10 +1,10 @@
 import React from 'react'
-import {StudOverview} from "../../components/student-overview/studOverview.comp"
+import {UncategorizedStudents} from "../../components/student-overview/studOverview.comp"
 
 export const StudentOverview = () => {
     return (
         <div>
-            <StudOverview/>
+            <UncategorizedStudents/>
         </div>
     )
 }
