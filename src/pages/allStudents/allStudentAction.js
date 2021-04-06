@@ -7,13 +7,13 @@ import {
   } from "./allStudentSlice";
   
   import {
-    getAllStudents
+    getAllUserStudents
   } from "../../api/studentApi";
   
   export const fetchAllStudents = () => async (dispatch) => {
     dispatch(fetchStudentLoading());
     try {
-      const result = await getAllStudents();
+      const result = await getAllUserStudents();
       result.data.result.length &&
         dispatch(fetchStudentSuccess(result.data.result));
     } catch (error) {

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import "./addTask.style.css";
 import {useDispatch, useSelector} from "react-redux"
 import {addTaskPending,addTaskSuccess,addTaskError} from "./addTaskSlice"
@@ -10,6 +10,7 @@ import {filterSerachStudent} from "../allStudents/allStudentAction"
 import {filterSearchUser,fetchAllUsers} from "../../components/getAllTheUsers/getUsersAction"
 import {fetchAllStudents} from "../allStudents/allStudentAction"
 import { searchStudents } from '../allStudents/allStudentSlice';
+import "./addFilter.style.css"
 
 
 export const Addtask = () => {
@@ -24,15 +25,40 @@ export const Addtask = () => {
       const {user } = useSelector(
         (state) => state.user
       );
+
+
       
 
-    const dispatch=useDispatch()
+      const dispatch = useDispatch();
+      const { students} = useSelector(
+        (state) => state.allStudent
+      );
+      
 
     const { isLoading,
       status,
       message} = useSelector(
       (state) => state.addTask
     );
+
+    useEffect(() => {
+      window.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        window.removeEventListener("mousedown", handleClickOutside);
+      };
+    });
+  
+    const handleClickOutside = event => {
+      const { current: wrap } = wrapperRef;
+      if (wrap && !wrap.contains(event.target)) {
+        setDisplay(false);
+      }
+    };
+  
+    const updatePokeDex = poke => {
+      setAssignTo(poke);
+      setDisplay(false);
+    };
     
  
     const [taskName, setTaskName] = useState("");
@@ -44,6 +70,17 @@ export const Addtask = () => {
 
     const [userGroup, setUserGroup] = useState("");
     const [offices, setOffices] = useState("");
+    const [display, setDisplay] = useState(false);
+  const [options, setOptions] = useState([]);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    if (!students.length) {
+      dispatch(fetchAllStudents());
+    }
+    setOptions(students)
+  }, [ students,dispatch]);
+
       
     
       const handleOnChange = (e) => {
@@ -67,9 +104,7 @@ export const Addtask = () => {
 
                 case "assignTo":
                   setAssignTo(value);
-                  dispatch(fetchAllStudents())
-                
-                  dispatch(filterSerachStudent(value))
+                  
                   break;
            
             case "studentAssign":
@@ -197,38 +232,38 @@ export const Addtask = () => {
                                 <div class="form-group col-md-12">
                                     <label>Student</label>
                                    
-                                    <textarea class="form-control" rows="1" name="assignTo" value={assignTo} onChange={handleOnChange}></textarea>
-                                   {searchStudentList.length && searchStudentList[0].clientId==user._id? (<h1>My Students</h1>):(<h1>Other students</h1>)}
-                                    {searchStudentList.length ? (    
-          searchStudentList.map((row) => (
-            <div class="student-search-data">
-    <table>
-       <thead>
-         <tr>
-           <td>
-              <th><i class="fas fa-user-graduate"></i>My Student</th>
-           </td>
-           <td>
-             <th>3 results</th>
-           </td>
-         </tr>
-       </thead>
-       <tbody>
-         <tr><td><span>{row._id}</span></td>
-             <td><p>{row.firstName}</p></td>
-          </tr>
-          
-       </tbody>
-    </table>
-  </div>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="4" className="text-center">
-              No students
-            </td>
-          </tr>
-        )}
+                                    
+                                    <div ref={wrapperRef} className="flex-container flex-column pos-rel">
+      <input
+        id="auto"
+        onClick={() => setDisplay(!display)}
+        placeholder="Type to search"
+        value={assignTo}
+        name="assignTo"
+        onChange={handleOnChange}
+        autoComplete="off"
+      />
+      {display && (
+        <div className="autoContainer">
+          {options
+            .filter(({ firstName }) => firstName.indexOf(assignTo.toLowerCase()) > -1)
+            .map((value, i) => {
+              return (
+                <div
+                  onClick={() => updatePokeDex(value.firstName)}
+                  className="option"
+                  key={i}
+                  tabIndex="0"
+                >
+                  <span>{value.firstName}</span>
+                 
+                </div>
+              );
+            })}
+        </div>
+      )}
+    </div>
+                                   
                                 </div>
                                 </div>
                             </div>
