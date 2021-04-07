@@ -6,10 +6,9 @@ import {
   Spinner,Alert
 } from "react-bootstrap"
 import {createNewTask} from "../../api/taskApi"
-import {filterSerachStudent} from "../allStudents/allStudentAction"
 import {filterSearchUser,fetchAllUsers} from "../../components/getAllTheUsers/getUsersAction"
 import {fetchAllStudents} from "../allStudents/allStudentAction"
-import { searchStudents } from '../allStudents/allStudentSlice';
+
 import "./addFilter.style.css"
 
 
@@ -18,14 +17,15 @@ export const Addtask = () => {
         (state) => state.allStudent
       );
 
-      const {searchUserList } = useSelector(
+      const {users } = useSelector(
         (state) => state.getUser
       );
+
+      
 
       const {user } = useSelector(
         (state) => state.user
       );
-
 
       
 
@@ -52,12 +52,18 @@ export const Addtask = () => {
       const { current: wrap } = wrapperRef;
       if (wrap && !wrap.contains(event.target)) {
         setDisplay(false);
+        setDisplayUsers(false)
       }
     };
   
-    const updatePokeDex = poke => {
-      setAssignTo(poke);
+    const updatePokeDex = stud => {
+      setAssignTo(stud);
       setDisplay(false);
+    };
+
+    const updateUser = poke => {
+      setStudentAssign(poke);
+      setDisplayUsers(false);
     };
     
  
@@ -72,6 +78,8 @@ export const Addtask = () => {
     const [offices, setOffices] = useState("");
     const [display, setDisplay] = useState(false);
   const [options, setOptions] = useState([]);
+  const [displayUsers, setDisplayUsers] = useState(false);
+  const [optionsUsers, setUserOptions] = useState([]);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -80,6 +88,13 @@ export const Addtask = () => {
     }
     setOptions(students)
   }, [ students,dispatch]);
+
+  useEffect(() => {
+    if (!users.length) {
+      dispatch(fetchAllUsers());
+    }
+    setUserOptions(users)
+  }, [ users,dispatch]);
 
       
     
@@ -109,8 +124,7 @@ export const Addtask = () => {
            
             case "studentAssign":
             setStudentAssign(value);
-            dispatch(fetchAllUsers())
-            dispatch(filterSearchUser(value));
+        
             break;
     
            
@@ -233,7 +247,7 @@ export const Addtask = () => {
                                     <label>Student</label>
                                    
                                     
-                                    <div ref={wrapperRef} className="flex-container flex-column pos-rel">
+                                    <div ref={wrapperRef}>
       <input
         id="auto"
         onClick={() => setDisplay(!display)}
@@ -251,7 +265,7 @@ export const Addtask = () => {
               return (
                 <div
                   onClick={() => updatePokeDex(value.firstName)}
-                  className="option"
+                  
                   key={i}
                   tabIndex="0"
                 >
@@ -282,23 +296,37 @@ export const Addtask = () => {
                                             <label>This task will be assigned to...</label>
                                             {isLoading && <Spinner variant="primary" animation="border" />}
                                             
-                                            <textarea class="form-control" rows="1" name="studentAssign" value={studentAssign} onChange={handleOnChange}></textarea>
-                                          {searchUserList.length ? (
-          searchUserList.map((row) => (
-            <tr key={row._id}>
-              
-              
-              <td>{row.firstName}</td>
-              
-            </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="4" className="text-center">
-              No students
-            </td>
-          </tr>
-        )}
+                                           
+                                            <div ref={wrapperRef} className="flex-container flex-column pos-rel">
+      <input
+        id="auto"
+        onClick={() => setDisplayUsers(!displayUsers)}
+        placeholder="Type to search"
+        onChange={handleOnChange}
+        autoComplete="off"
+        value={studentAssign} 
+        name="studentAssign"
+      />
+      {displayUsers && (
+        <div className="autoContainer">
+          {optionsUsers
+            .filter(({ firstName }) => firstName.indexOf(studentAssign.toLowerCase()) > -1)
+            .map((value, i) => {
+              return (
+                <div
+                  onClick={() => updateUser(value.firstName)}
+                  className="option"
+                  key={i}
+                  tabIndex="0"
+                >
+                  <span>{value.firstName}</span>
+                 
+                </div>
+              );
+            })}
+        </div>
+      )}
+    </div>
                                         </div>
                                     </div>
                                 </div>
