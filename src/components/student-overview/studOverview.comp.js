@@ -404,8 +404,6 @@ export const UncategorizedStudents = () => {
                               <td>{(Moment(item.birthday).format('DD/MM/YYYY'))}</td>
                               <td></td>
                               <td>{item.salesStatus}</td>
-
-
                               <td />
                             </tr>
                           )
