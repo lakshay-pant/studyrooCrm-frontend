@@ -9,6 +9,7 @@
     border-bottom: 1px solid #ecebeb;
     color: #F37E32;
     margin-bottom: 25px;
+    margin-top: 25px;
   }
   .new-task-bg form .footersingbtn{
   margin-top: 50px;
@@ -242,4 +243,34 @@
     overflow-y:scroll;
   }
 
+  .new-task-bg .pos-rel .autoContainer {
+    background: transparent linear-gradient( 180deg, #fff 0%, #ffffff 100%) 0% 0% no-repeat padding-box;
+    border: 1px solid #eaebec; 
+    border-radius: 5px;
+    padding: .375rem .75rem;
+    height: 140px;
+    overflow-y: scroll;
+    }
+    .autoContainer .option span {
+    font-size: 14px;
+    }
+    
+    .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar {
+    background-color: black;
+    width: 7px;
+    height: 7px;
+    border-radius: 25px;
+    }
+    .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar-button {
+    background: #dcdcdc;
+    }
+    .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar-thumb {
+    background-color: #f37e32;
+    width: 5px;
+    border-radius: 25px;
+    }
+    .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar-track-piece {
+    background-color: #dcdcdc;
+    width: 7px;
+    }
   

@@ -12,7 +12,7 @@ export const addTask = (frmDt) => async (dispatch) => {
 
     const result = await createNewTask(frmDt);
     result.status === "success"
-      ? dispatch(addTaskSuccess(result.message))
+      ? dispatch(addTaskSuccess(result.status,result.message))
       : dispatch(addTaskError(result.message));
 
     console.log(result);
