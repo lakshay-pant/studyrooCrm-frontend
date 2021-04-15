@@ -32,7 +32,7 @@ function App() {
               return (
                 <>
                 <PrivateRoute path={`${url}/`}  exact ><Dashboard/></PrivateRoute>
-                <PrivateRoute path={`${url}/all-student`} ><AllStudent/></PrivateRoute>
+                <PrivateRoute path={`${url}/all-student`} ><StudentOverview /></PrivateRoute>
 
               </>
               )
@@ -44,7 +44,7 @@ function App() {
             <NewStudent />
           </PrivateRoute>
           <PrivateRoute path="/student-overview">
-            <StudentOverview />
+          <AllStudent/>
           </PrivateRoute>
           <PrivateRoute path="/add-task">
             <Addtask />

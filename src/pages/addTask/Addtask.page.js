@@ -9,7 +9,7 @@ import { createNewTask } from "../../api/taskApi"
 import { filterSearchUser, fetchAllUsers } from "../../components/getAllTheUsers/getUsersAction"
 import { fetchAllStudents } from "../allStudents/allStudentAction"
 
-import "./addFilter.style.css"
+
 
 
 export const Addtask = () => {

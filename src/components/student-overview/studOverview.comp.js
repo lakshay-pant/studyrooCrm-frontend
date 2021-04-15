@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import "./studOverview.style.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -12,14 +12,17 @@ import ModalTitle from "react-bootstrap/ModalTitle";
 import { fetchAllStudents } from "../../pages/allStudents/allStudentAction";
 import { filterSearchUser, fetchAllUsers } from "../getAllTheUsers/getUsersAction";
 import Moment from 'moment';
-
-
+import axios from "axios"
+import { Accordion } from 'react-bootstrap';
 
 export const UncategorizedStudents = () => {
   const dispatch = useDispatch();
   const { students } = useSelector(
     (state) => state.allStudent
   );
+
+  const [studentUserName,setStudentUserName]=useState("")
+  const [cliId,setCliId]=useState("")
   useEffect(() => {
     if (!students.length) {
       dispatch(fetchAllStudents());
@@ -31,19 +34,15 @@ export const UncategorizedStudents = () => {
   );
 
   console.log("users", users)
+
+
+  
+  
   useEffect(() => {
     if (!users.length) {
       dispatch(fetchAllUsers());
     }
   }, [users, dispatch]);
-
-  const assign = users.filter(function (user) {
-    if (students.clientId == users._id) {
-      return users.firstName;
-    };
-  });
-  console.log("assign", assign)
-
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -54,6 +53,8 @@ export const UncategorizedStudents = () => {
   const hideModal = () => {
     setIsOpen(false);
   };
+
+  
 
   return (
     <div className="content-wrapper">
@@ -70,11 +71,11 @@ export const UncategorizedStudents = () => {
               <div class="col-lg-7 col-12">
                 <div class="add-student-button">
                   <label>Import from spreadsheet</label>
-                  <a href="#">
+                  <Link to="/addstudent">
                     <i class="fal fa-user-graduate"></i>
                                         Add New Student
                                         <span><i class="fal fa-plus"></i></span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -101,7 +102,7 @@ export const UncategorizedStudents = () => {
                           <div class="activi-inputs">
                             <div class="filter">
                               <div class="view">
-                                <Link to="/all-student">
+                                <Link to="/student-overview">
                                   <i class="fas fa-th"></i>
                                   <label class="labelheade">View as pipelines</label>
                                 </Link>
@@ -395,19 +396,26 @@ export const UncategorizedStudents = () => {
                     </thead>
                     <tbody>
                       {
-                        students.map(function (item) {
-                          return (
+                        students.slice(0).reverse().map( (item)=>(
                             <tr key={item.id}>
                               <td>{item.firstName}</td>
-                              <td>{(Moment(item.birthday).format('DD/MM/YYYY'))}</td>
+                              <td>{(Moment(item.addedAt).format('DD/MM/YYYY'))}</td>
                               <td>{item.email}</td>
-                              <td>{(Moment(item.birthday).format('DD/MM/YYYY'))}</td>
+                              <td>{(Moment(item.addedAt).format('DD/MM/YYYY'))}</td>
                               <td></td>
                               <td>{item.salesStatus}</td>
+                              <td>{item.userName}</td>
+                              
+
+                              <td>
+                                                    <div class="action">
+                                                        <a href="#"><i class="fas fa-pen"></i></a>
+                                                    </div>
+                                                </td>
                               <td />
                             </tr>
                           )
-                        })
+                        )
                       }
 
 
