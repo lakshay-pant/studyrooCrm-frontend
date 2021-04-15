@@ -256,12 +256,11 @@ export const Addtask = () => {
                 <div>
                   <div class="col-md-12">
 
-
+                  <div class="headingdiv">Is your task related to a student?</div>
                     <div class="form-bgclr">
 
                       <div class="form-row">
-                        <div class="col-md-12">
-                          <div class="form-group ">
+                          <div class="form-group col-md-6">
                             <label>Student</label>
 
 
@@ -275,7 +274,7 @@ export const Addtask = () => {
                                 autoComplete="off"
                                 value={assignTo}
                                 name="assignTo"
-
+                                className="form-control"
                               />
                               {display && (
                                 <div className="autoContainer">
@@ -300,15 +299,53 @@ export const Addtask = () => {
                             </div>
 
                           </div>
+
+                          <div class="form-group col-md-6">
+                          <label>This task will be assigned to...</label>
+                          {isLoading && <Spinner variant="primary" animation="border" />}
+
+
+                          <div ref={wrapperRef}
+                            className="flex-container flex-column pos-rel">
+                            <input
+                              id="auto"
+                              onClick={() => setDisplayUsers(!displayUsers)}
+                              placeholder="Type to search"
+                              onChange={handleOnChange}
+                              autoComplete="off"
+                              value={studentAssign}
+                              name="studentAssign"
+                              className="form-control"
+                            />
+                            {displayUsers && (
+                              <div className="autoContainer">
+                                {optionsUsers
+                                  .filter(({ firstName }) => firstName.indexOf(studentAssign.toLowerCase()) > -1)
+                                  .map((value, i) => {
+                                    return (
+                                      <div
+                                        onClick={() => updateUser(value.firstName)}
+                                        className="option"
+                                        key={i}
+                                        tabIndex="0"
+                                      >
+                                        <span>{value.firstName}</span>
+
+                                      </div>
+                                    );
+                                  })}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
 
                   </div>
                 </div>
+               
                 <div class="col-md-12">
-
-
+                  <div class="headingdiv">Who is assigned to this task?</div>
                   <div class="form-bgclr">
 
                     <div class="form-row">
@@ -328,6 +365,7 @@ export const Addtask = () => {
                               autoComplete="off"
                               value={studentAssign}
                               name="studentAssign"
+                              className="form-control"
                             />
                             {displayUsers && (
                               <div className="autoContainer">

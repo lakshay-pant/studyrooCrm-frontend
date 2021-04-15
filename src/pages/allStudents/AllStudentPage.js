@@ -1,5 +1,5 @@
 import "./allStudentStyle.css";
-import {InquiryRecieved} from "../../components/allStudentTemplates/InquiryRecieved"
+import {InquiryRecieved} from "../../components/allStudentTemplates/inquiryRecieved"
 import {Counselling} from "../../components/allStudentTemplates/Counselling"
 import {QuotationSent} from "../../components/allStudentTemplates/QuotationSent"
 import {Application} from "../../components/allStudentTemplates/Application"
