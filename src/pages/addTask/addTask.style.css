@@ -244,13 +244,13 @@
   }
 
   .new-task-bg .pos-rel .autoContainer {
-    background: transparent linear-gradient( 180deg, #fff 0%, #ffffff 100%) 0% 0% no-repeat padding-box;
-    border: 1px solid #eaebec; 
+    
+    background: #f37e32;
     border-radius: 5px;
     padding: .375rem .75rem;
     height: 140px;
     overflow-y: scroll;
-    }
+}
     .autoContainer .option span {
     font-size: 14px;
     }
@@ -265,9 +265,9 @@
     background: #dcdcdc;
     }
     .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar-thumb {
-    background-color: #f37e32;
-    width: 5px;
-    border-radius: 25px;
+      background-color: #fff;
+      width: 5px;
+      border-radius: 25px;
     }
     .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar-track-piece {
     background-color: #dcdcdc;
