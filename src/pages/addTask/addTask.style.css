@@ -5,6 +5,9 @@
   .new-task-bg .headingdiv:after{
   display: none;
   }
+  #users{
+    display: none;
+  }
   .new-task-bg .headingdiv{
     border-bottom: 1px solid #ecebeb;
     color: #F37E32;

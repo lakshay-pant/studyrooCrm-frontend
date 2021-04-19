@@ -94,6 +94,7 @@ export const Addtask = () => {
   const [optionsUsers, setUserOptions] = useState([]);
   const wrapperRef = useRef(null);
   const wrapperRef1 = useRef(null);
+  const [checked, setChecked] = useState(false)
 
 
   useEffect(() => {
@@ -157,6 +158,9 @@ export const Addtask = () => {
   };
 
 
+  const handleCheckBox = () => {
+    setChecked(!checked)
+  }
 
   const handleOnTaskSubmit = async (e) => {
     e.preventDefault()
@@ -353,12 +357,16 @@ export const Addtask = () => {
                         </div>
                       </div>
                     </div>
-                    <div class="form-check">
-                      <input type="checkbox" class="form-check-input" />
-                      <label class="form-check-label" for="exampleCheck1">
+
+
+                    <div class="form-check custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="defaultUnchecked"
+                        onClick={handleCheckBox}></input>
+                      <label class="custom-control-label" for="defaultUnchecked">
+
                         Assign this task for users in groups or offices</label>
                     </div>
-                    <div class="form-row">
+                    <div class="form-row" id={checked ? "" : "users"}>
                       <div class="form-group col-md-6">
                         <label>User Groups</label>
                         <input type="text" class="form-control" placeholder="selected" name="userGroup" value={userGroup} onChange={handleOnChange} />
@@ -368,11 +376,13 @@ export const Addtask = () => {
                         <label>Offices</label>
                         <input type="text" class="form-control" placeholder="All" name="offices" value={offices} onChange={handleOnChange} />
                       </div>
-                      <div class="form-check">
-                        <input type="checkbox" class="form-check-input" />
-                        <label class="form-check-label" for="exampleCheck1">This task is urgent (should be completed as soon as possible)!</label>
-                      </div>
+                      
                     </div>
+                    <div class="form-check custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="defaultUnchecked1" />
+                      <label class="custom-control-label" for="defaultUnchecked1">
+                       This task is urgent (should be completed as soon as possible)!</label>
+                      </div>
                     <div class="footersingbtn">
                       <input type="submit" name="Save" class="btn getin-btn" value="Save" />
                     </div>
