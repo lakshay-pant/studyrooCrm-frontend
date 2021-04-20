@@ -9,14 +9,11 @@ import { NewStudent } from "./pages/newStudent/newStudent.page";
 import { StudentOverview } from "./pages/studentOverview/studentOverview.page"
 import { Addtask } from "./pages/addTask/Addtask.page"
 import AllStudent from "./pages/allStudents/AllStudentPage.js"
-
-
+import Example from "./components/student-overview/filterModal"
 
 function App() {
 
-
   return (
-
     <div className="App">
       <Router  >
         <Switch>
@@ -49,6 +46,11 @@ function App() {
           <PrivateRoute path="/add-task">
             <Addtask />
           </PrivateRoute>
+          <PrivateRoute path="/filter-modal">
+            <Example />
+          </PrivateRoute>
+
+          
 
 
         </Switch>

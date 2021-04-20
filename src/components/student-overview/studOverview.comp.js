@@ -16,10 +16,13 @@ import axios from "axios"
 import { Accordion } from 'react-bootstrap';
 
 export const UncategorizedStudents = () => {
+ 
+
   const dispatch = useDispatch();
   const { students } = useSelector(
     (state) => state.allStudent
   );
+ 
 
   const [studentUserName,setStudentUserName]=useState("")
   const [cliId,setCliId]=useState("")
@@ -73,8 +76,8 @@ export const UncategorizedStudents = () => {
                   <label>Import from spreadsheet</label>
                   <Link to="/addstudent">
                     <i class="fal fa-user-graduate"></i>
-                                        Add New Student
-                                        <span><i class="fal fa-plus"></i></span>
+                        Add New Student
+                    <span><i class="fal fa-plus"></i></span>
                   </Link>
                 </div>
               </div>
@@ -120,10 +123,8 @@ export const UncategorizedStudents = () => {
                                 <i class="fas fa-filter"></i>
                                 <label class="labelheade">Filters</label>
                               </button>
-                              <div class="modal fade filters-modal show" id="filters" aria-modal="true">
+                              <div class="modal fade filters-modal show" id="update" aria-modal="true">
                                 <Modal show={isOpen} onHide={hideModal}>
-
-
                                   <Modal.Body>
                                     <div class="fl-head">
                                       <h5><span><i class="fal fa-filter"></i></span> Filters</h5>
@@ -408,11 +409,12 @@ export const UncategorizedStudents = () => {
                               
 
                               <td>
-                                                    <div class="action">
-                                                        <a href="#"><i class="fas fa-pen"></i></a>
-                                                    </div>
+                                  <div class="action">
+                                      <a href="#"><i class="fas fa-pen"></i></a>
+                                  </div>
                                                 </td>
                               <td />
+                             
                             </tr>
                           )
                         )
@@ -447,7 +449,6 @@ export const UncategorizedStudents = () => {
                                                         </div>
                                                     </td>
                                                 </tr>
-
                                                 <tr>
                                                 <td>Adam Malkowski</td>
                                                 <td>01/02/2021</td>
@@ -475,7 +476,6 @@ export const UncategorizedStudents = () => {
                                                     </div>
                                                 </td>
                                                 </tr>
-
                                                 <tr>
                                                     <td>Adam Malkowski</td>
                                                     <td>01/02/2021</td>
@@ -503,7 +503,6 @@ export const UncategorizedStudents = () => {
                                                         </div>
                                                     </td>
                                                 </tr>
-
                                                 <tr>
                                                     <td>2 Adam Malkowski</td>
                                                     <td>01/02/2021</td>
