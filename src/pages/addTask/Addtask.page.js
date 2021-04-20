@@ -264,10 +264,8 @@ export const Addtask = () => {
                     <div class="form-bgclr">
 
                       <div class="form-row">
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-12">
                             <label>Student</label>
-
-
                             <div ref={wrapperRef1}
                               className="flex-container flex-column pos-rel">
                               <input
@@ -282,13 +280,20 @@ export const Addtask = () => {
                               />
                               {display && (
                                 <div className="autoContainer">
+                                  <div className="auto-area">
+                                  <div class="ssg-header">
+                                    <div class="ssg-icon"><i class="fas fa-user-graduate"></i></div>
+                                    <div class="ssg-name">My students</div>
+                                    <div class="ssg-info">3 results</div>
+                                  </div>
+                                  <div className="ssg-content">
                                   {options
                                     .filter(({ firstName }) => firstName.indexOf(assignTo.toLowerCase()) > -1)
                                     .map((value, i) => {
                                       return (
                                         <div
                                           onClick={() => updatePokeDex(value.firstName)}
-                                          className="option"
+                                          className="option ssg-item"
 
                                           key={i}
                                           tabIndex="0"
@@ -298,6 +303,8 @@ export const Addtask = () => {
                                         </div>
                                       );
                                     })}
+                                    </div>
+                                    </div>
                                 </div>
                               )}
                             </div>

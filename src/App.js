@@ -9,14 +9,10 @@ import { NewStudent } from "./pages/newStudent/newStudent.page";
 import { StudentOverview } from "./pages/studentOverview/studentOverview.page"
 import { Addtask } from "./pages/addTask/Addtask.page"
 import AllStudent from "./pages/allStudents/AllStudentPage.js"
-
-
-
+import { UncategorizedStudents } from "./components/student-overview/studOverview.comp"
 function App() {
 
-
   return (
-
     <div className="App">
       <Router  >
         <Switch>
@@ -46,9 +42,15 @@ function App() {
           <PrivateRoute path="/student-overview">
           <AllStudent/>
           </PrivateRoute>
+          <PrivateRoute path="/student-list">
+          <UncategorizedStudents/>
+          </PrivateRoute>
           <PrivateRoute path="/add-task">
             <Addtask />
           </PrivateRoute>
+         
+
+          
 
 
         </Switch>

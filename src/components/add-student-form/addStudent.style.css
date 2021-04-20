@@ -91,6 +91,8 @@ body {
     padding: 25px 10px;
     text-decoration: none;
     margin-bottom: 30px;
+    position: relative;
+    transition: all ease 0.6s;
 }
 .boxese-ul ul li a {
   display: block;
@@ -117,6 +119,7 @@ body {
   display: block;
   margin-top: 10px;
   width: 100%;
+  text-align: center;
   color: #5C5D5D;
 }
 .headingdiv {
@@ -144,9 +147,7 @@ body {
   left: 0;
   bottom: -6px;
 }
-.student-bg .headingdiv:after{
-  background: none;
-}
+
 .client-mett table {
   background: #fff;
 }
@@ -464,6 +465,7 @@ body {
 .student-bg {
   background: #fff;
   padding: 20px;
+  margin: 30px 20px;
 }
 .form-bgclr {
   background: #fcfcfc 0% 0% no-repeat padding-box;
@@ -30166,4 +30168,11 @@ a.text-muted:hover {
   background-color: #fff;
   border-color: #dee2e6;
   color: #6c757d;
+}
+.boxese-ul ul li a:hover{
+   text-decoration: none;
+}
+.boxese-ul ul li:hover {
+  bottom: 10px;
+  transition: all 0.5s;
 }
