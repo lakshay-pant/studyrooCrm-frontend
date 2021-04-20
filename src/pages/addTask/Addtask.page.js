@@ -343,13 +343,20 @@ export const Addtask = () => {
                             />
                             {displayUsers && (
                               <div className="autoContainer">
+                                  <div className="auto-area">
+                                  <div class="ssg-header">
+                                    <div class="ssg-icon"><i class="fas fa-user" aria-hidden="true"></i></div>
+                                    <div class="ssg-name">My Users</div>
+                                    <div class="ssg-info">3 results</div>
+                                  </div>
+                                  <div className="ssg-content">
                                 {optionsUsers
                                   .filter(({ firstName }) => firstName.indexOf(studentAssign.toLowerCase()) > -1)
                                   .map((value, i) => {
                                     return (
                                       <div
                                         onClick={() => updateUser(value.firstName)}
-                                        className="option"
+                                        className="option ssg-item"
                                         key={i}
                                         tabIndex="0"
                                       >
@@ -358,6 +365,8 @@ export const Addtask = () => {
                                       </div>
                                     );
                                   })}
+                              </div>
+                              </div>
                               </div>
                             )}
                           </div>

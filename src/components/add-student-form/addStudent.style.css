@@ -30176,3 +30176,6 @@ a.text-muted:hover {
   bottom: 10px;
   transition: all 0.5s;
 }
+.add-student input[type="file"]{
+  display: block;
+}

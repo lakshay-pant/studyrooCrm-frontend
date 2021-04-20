@@ -448,7 +448,7 @@ section.addtask-from {
 .new-task-bg .pos-rel .autoContainer {
   border-radius: 5px;
   padding: .75rem;
-  height: 140px;
+  height: 195px;
   overflow-y: scroll;
 }
   .autoContainer .option span {
@@ -465,7 +465,7 @@ section.addtask-from {
   background: #dcdcdc;
   }
   .new-task-bg .pos-rel .autoContainer::-webkit-scrollbar-thumb {
-    background-color: #fff;
+    background-color: #F88C04;
     width: 5px;
     border-radius: 25px;
   }
@@ -517,5 +517,12 @@ section.addtask-from {
   flex: 1;
   text-align: left;
   color: #3E4B5B;
+  cursor: pointer;
   transition: all 0.2s ease;
+}
+.form-bgclr .auto-area .ssg-content .ssg-item:focus{
+  outline:none;
+}
+.form-bgclr .auto-area .ssg-content .ssg-item:hover span{
+   color: #F88C04;
 }

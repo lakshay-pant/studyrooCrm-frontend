@@ -198,33 +198,215 @@ const [offShorePhone, setOffShorePhone] = useState("");
               
             </select>
             </div>
+            <div class="form-group col-md-4">
+              <label>Email</label>
+              <input type="text" class="form-control" placeholder="" name="email" value={email} onChange={handleOnChange}/>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Name in their native language</label>
+              <input type="text" class="form-control" placeholder="" name="name" />
+            </div>
           </div>
       </div>
     </div>
 
 
     <div class="col-md-12">
-      <div class="headingdiv">Contact</div>
+      <div class="headingdiv">Applicant Current Location</div>
       <div class="form-bgclr">
        
           <div class="form-row">
             <div class="form-group col-md-4">
-              <label>Email</label>
+              <label>Onshore (In Australia)</label>
               <input type="text" class="form-control" placeholder="" name="email" value={email} onChange={handleOnChange}/>
             </div>
              <div class="form-group col-md-4">
-              <label>Onshore phone</label>
+              <label>Offshore (Overseas)</label>
               <input type="text" class="form-control" placeholder="" name="onShorePhone" value={onShorePhone} onChange={handleOnChange}/>
             </div>
-             <div class="form-group col-md-4">
-              <label>Offshore phone</label>
-              <input type="text" class="form-control" placeholder="" name="offShorePhone" value={offShorePhone} onChange={handleOnChange}/>
-            </div>
-            
           </div>
         
       </div>
     </div>
+    
+    <div class="col-md-12">    
+      <div class="headingdiv">Onshore Information</div>
+      <div class="form-bgclr">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Phone</label>    
+              <input type="text" class="form-control" placeholder="" name="firstName" value={firstName} onChange={handleOnChange} />
+            </div>
+             <div class="form-group col-md-4">
+              <label>Address</label>
+              <input type="text" class="form-control" placeholder="" name="middleName" value={middleName} onChange={handleOnChange}/>
+            </div>
+             <div class="form-group col-md-4">
+              <label>Enter a location</label>
+              <input type="text" class="form-control" placeholder="" name="lastName" value={lastName} onChange={handleOnChange}/>
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label>Unit number</label>
+              <input type="text" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label>Street number</label>
+              <input type="text" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
+            </div>
+
+            <div class="form-group col-md-4">
+              <label>Street Name</label>
+              <input type="text" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label>City</label>
+              <select class="form-control" name="nationality" id="cars" onChange={handleOnChange} value={nationality}>
+                 <option>XYZ</option>
+                 <option>XYZ</option>
+                 <option>XYZ</option>
+                 <option>XYZ</option>   
+                 <option>XYZ</option>
+              </select>
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label>Country</label>
+              <select class="form-control" name="nationality" id="cars" onChange={handleOnChange} value={nationality}>
+                 <option >India</option>
+              </select>
+            </div>
+
+            
+            <div class="form-group col-md-4">
+              <label>Zipcode</label>
+              <input type="text" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
+            </div>
+            
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">    
+      <div class="headingdiv">Education Details</div>
+      <div class="form-bgclr">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>USI (Unique Student Number)</label>              
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+             <div class="form-group col-md-4">
+              <label>Education Level</label>
+              <input type="text" class="form-control" placeholder="" name="" />
+            </div>
+             <div class="form-group col-md-4">
+              <label>Institute Name</label>
+              <input type="text" class="form-control" placeholder="" name="" />
+            </div>
+            
+            <div class="form-group col-md-4">
+              <label>GPA</label>
+              <input type="text" class="form-control" placeholder="" name="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Year level</label>
+              <input type="text" class="form-control" placeholder="" name="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>School curriculum</label>
+              <input type="text" class="form-control" placeholder="" name="" value={birthday} onChange={handleOnChange}/>
+            </div>
+            <div class="form-group col-md-4">
+              <label>School curriculum details</label>
+              <input type="text" class="form-control" placeholder="" name="" value={birthday} onChange={handleOnChange}/>
+            </div>
+      
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">    
+      <div class="headingdiv">Passports</div>
+      <div class="form-bgclr">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Number</label>              
+              <input type="text" class="form-control" placeholder="" name="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Nationality</label>
+              <input type="text" class="form-control" placeholder="" name="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Issue Date</label>
+              <input type="date" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Expiry Date</label>
+              <input type="date" class="form-control" placeholder="" name="" value="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Comments</label>
+              <input type="text" class="form-control" placeholder="" name="" value="" />
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">    
+      <div class="headingdiv">Visas</div>
+      <div class="form-bgclr">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Grant date</label>
+              <input type="date" class="form-control" placeholder="" name="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Expiry Date</label>
+              <input type="date" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Type</label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Other comments (remarks)</label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md-12">    
+      <div class="headingdiv">Insurance</div>
+      <div class="form-bgclr">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Start date</label>
+              <input type="date" class="form-control" placeholder="" name="" />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Expiry Date</label>
+              <input type="date" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Type</label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Number</label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Other comments (remarks)</label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+          </div>
+      </div>
+    </div>
+
 
     <div class="col-md-12">
       <div class="headingdiv">CRM</div>
@@ -257,7 +439,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </select>
             </div>
              <div class="form-group col-md-4">
-              <label>Heat level</label>
+              <label>Lead level</label>
              <select class="form-control" name="heatLevel" id="cars" onChange={handleOnChange} value={heatLevel}>
               <option >Very Hot</option>
               <option >Hot</option>
@@ -265,7 +447,50 @@ const [offShorePhone, setOffShorePhone] = useState("");
               <option >Cold</option>
             </select>
             </div>
-            
+            <div class="form-group col-md-4">
+              <label>Other comments (remarks)</label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+          </div>
+          {isLoading && <Spinner variant="primary" animation="border" />}
+       
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="headingdiv">Documents</div>
+      <div class="form-bgclr">
+      
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Passport</label>
+              <input type="file"  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Certificate</label>
+              <input type="file" />
+            </div>
+             
+          </div>
+          {isLoading && <Spinner variant="primary" animation="border" />}
+       
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="headingdiv">Others</div>
+      <div class="form-bgclr">
+      
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Status </label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+            <div class="form-group col-md-4">
+              <label>Referral source </label>
+              <input type="text" class="form-control" placeholder="" name=""  />
+            </div>
+             
           </div>
           {isLoading && <Spinner variant="primary" animation="border" />}
        
@@ -273,12 +498,12 @@ const [offShorePhone, setOffShorePhone] = useState("");
     </div>
 
      <div class="col-md-12">
-      <div class="headingdiv">Add a note</div>
+      <div class="headingdiv">Counsellors</div>
       <div class="form-bgclr">
      
           <div class="form-row">
             <div class="form-group col-md-12">
-             <textarea class="form-control" rows="5" placeholder="Onshore" name="note" value={note} onChange={handleOnChange}></textarea>
+             <textarea class="form-control" rows="5" placeholder="Add a note" name="note" ></textarea>
               
             </div>
            
