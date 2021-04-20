@@ -102,6 +102,7 @@
 }
 .activi-inputs .filter .view a i{
   color: #ff6100;
+  padding-right: 5px;
 }
 .filter button {
    background: transparent;
@@ -248,6 +249,7 @@ body.modal-open .css-mgzecu{
 
  .student-leads .filter i {
   color: #F37E32;
+  padding-right: 5px;
 }
 
  /*responsive start*/
@@ -284,3 +286,162 @@ body:not(.sidebar-mini-md) .content-wrapper {
 
 
 /* uncategorized-students end */
+
+/*student-filter start*/
+.update-crm .crm-form{
+  padding: 1.5rem 2rem;
+}
+.crm-form{
+  background: #fff;
+  border-radius: 5px;
+}
+#studentFilter{
+  background: #f2f4f8;
+}
+#studentFilter .modal-content {
+   background: #f2f4f8;
+   border-bottom: 0;
+}
+.student-filter-area {
+   padding: 15px 25px;
+}
+#studentFilter .modal-top{
+ background: #e6e8eb;
+ padding: 15px 25px;
+}
+#studentFilter label p {
+   display: inline;
+   color: red;
+}
+#studentFilter .form-control::placeholder {
+   font-size: 14px;
+   color: #eaeaea;
+}
+#studentFilter .headingdiv{
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+#studentFilter .crm-form textarea{
+  height: auto;
+}
+#studentFilter .headingdiv:after{
+  height: 5px;
+  bottom: -5px;
+}
+#studentFilter .personal i{
+  color: #F88C04;
+  margin-right: 5px;
+}
+
+#studentFilter .personal .text-muted{
+  color: #aaa!important;
+}
+#studentFilter .personal .row{
+  margin-bottom: 10px;
+}
+#studentFilter .modal-content button.close{
+  background: none;
+  top: 12px;
+  color: #999;
+}
+#studentFilter .card-header{
+   border-bottom: 0;
+   padding-bottom: 0;
+   padding: 0;
+   margin-top: 30px;
+   margin-bottom: 5px;
+   background: transparent;
+}
+#studentFilter .card-header a:hover{
+  text-decoration: none;
+}
+#studentFilter .card-header i.rotate-icon {
+   right: 0;
+   position: absolute;
+   font-size: 20px;
+}
+#studentFilter .card-body{
+ padding: 1.5rem 2rem;
+}
+#studentFilter .card{
+  background: none;
+   border-radius: .3rem!important;
+   border: none;
+   box-shadow: none;
+}
+#studentFilter .card-body{
+  position: relative;
+   display: -ms-flexbox;
+   display: flex;
+   -ms-flex-direction: column;
+   flex-direction: column;
+   min-width: 0;
+   word-wrap: break-word;
+   background-color: #fff;
+   background-clip: border-box;
+   border: 1px solid rgba(0,0,0,.1);
+   border-radius: 6px;
+   box-shadow: 0px 2px 4px rgb(126 142 177 / 12%);
+}
+.fotercontent .form-buttons-w {
+   margin-top: 1.5rem;
+   padding-top: 1rem;
+   border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+#studentFilter .fotercontent{
+   display: block;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 30px;
+   margin-top: 0;
+}
+#studentFilter .fotercontent button{
+  font-size: 14px;
+  padding: 5px 20px;
+}
+#studentFilter .fotercontent .getin-btn{
+  background: transparent linear-gradient(99deg, #F48035 0%, #E5B123 100%) 0% 0% no-repeat padding-box;
+  border-color: #fff;
+}
+#studentFilter .visa{
+  margin-top: 30px;
+}
+#studentFilter .form-group select.form-control, #studentFilter .form-group input.form-control{
+  font-size: 14px;
+}
+#studentFilter .element-actions {
+   float: right;
+   position: relative;
+   z-index: 2;
+   margin-top: -0.2rem;
+}
+#studentFilter .element-actions a span {
+   color: #F88C04;
+   font-size: 12px;
+}
+#studentFilter .modal-footer{
+  border-top: 0;
+}
+#studentFilter .modal-dialog.modal-lg{
+   margin-top: 0;
+   margin-bottom: 0;
+}
+table th{
+  text-transform: uppercase;
+}
+.uncategorized-list table tr td:last-child{
+  position: sticky;
+    right: 0;
+    border-left: solid 1px #eaeaea;
+    width: 20%;
+}
+@media (min-width: 992px){
+#studentFilter .modal-lg {
+   max-width: 995px;
+}
+#personalEdit .modal-lg {
+   max-width: 995px;
+}
+}
+/*student-filter end */

@@ -30156,3 +30156,6 @@ a.text-muted:hover {
 .maincontent-rightside.add-student .maincontent {
   padding: 50px 0px 50px 0px;
 }
+a:hover{
+   text-decoration: none;
+}
