@@ -44,16 +44,24 @@ export const UncategorizedStudents = () => {
     }
   }, [users, dispatch]);
 
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen2, setIsOpen2] = useState(false);
 
   const showModal = () => {
     setIsOpen(true);
+  }
+
+  const showModal2 = () => {
+    setIsOpen2(true);
   }
 
   const hideModal = () => {
     setIsOpen(false);
   };
 
+  const hideModal2 = () => {
+    setIsOpen2(false);
+  };
   
 
   return (
@@ -409,8 +417,128 @@ export const UncategorizedStudents = () => {
 
                               <td>
                                                     <div class="action">
-                                                        <a href="#"><i class="fas fa-pen"></i></a>
+                                                        <a onClick={showModal2}><i class="fas fa-pen"></i></a>
                                                     </div>
+                                                    <div class="modal fade filters-modal show" id="filters" aria-modal="true">
+                                <Modal show={isOpen2} onHide={hideModal2}>
+
+
+                                  <Modal.Body>
+                                    <div class="fl-head">
+                                      <h5><span><i class="fal fa-filter"></i></span> Filters</h5>
+                                      <button onClick={hideModal2} className="close">
+                                        <span aria-hidden="true">&times;</span>
+                                      </button>
+                                    </div>
+                                    <div class="fl-form">
+                                      <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                          <label>List</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Visa expiring</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Courses ending</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Offers</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Status</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Sale</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Referal source</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Next follow up date</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Heat level</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                          <label>Sort by</label>
+                                          <select name="" class="form-control">
+                                            <option value="volvo">1</option>
+                                            <option value="saab">Saab</option>
+                                            <option value="mercedes">Mercedes</option>
+                                            <option value="audi">Audi</option>
+                                          </select>
+                                        </div>
+                                        <div class="fotercontent">
+                                          <div class="rest">
+                                            <a href="#"><span><i class="far fa-redo"></i></span> Reset</a>
+                                          </div>
+                                          <div class="footersingbtn">
+                                            <input type="submit" name="Save" class="btn getin-btn" value="Save" />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </Modal.Body>
+
+                                  <Modal.Footer>
+
+                                  </Modal.Footer>
+                                </Modal>
+                              </div>
                                                 </td>
                               <td />
                             </tr>
