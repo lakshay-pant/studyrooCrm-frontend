@@ -154,17 +154,15 @@ const [offShorePhone, setOffShorePhone] = useState("");
 <section class="student-from">
   <div class="container-fluid">
   <div class="student-bg">
-  
-      <div class="col-md-12">
-      
-      {message && (
+  {message && (
             <Alert variant={status === "success" ? "success" : "danger"}>
               {message}
             </Alert>
           )}
+            <form onSubmit={handleOnStudentSubmit} >
+      <div class="col-md-12">    
       <div class="headingdiv">Personal</div>
       <div class="form-bgclr">
-      <form onSubmit={handleOnStudentSubmit} >
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>First Name*</label>
@@ -200,6 +198,9 @@ const [offShorePhone, setOffShorePhone] = useState("");
               
             </select>
             </div>
+          </div>
+      </div>
+    </div>
 
 
     <div class="col-md-12">
@@ -289,17 +290,9 @@ const [offShorePhone, setOffShorePhone] = useState("");
        
       </div>
     </div>
-          </div>
         </form>
       </div>
     </div>
-
-
-    
-
-    
-  </div>
-  </div>
 </section>
 </div>   
 </div>
