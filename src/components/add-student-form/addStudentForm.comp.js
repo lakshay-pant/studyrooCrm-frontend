@@ -355,11 +355,11 @@ const [offShorePhone, setOffShorePhone] = useState("");
       
     }
     const newStudent = {
-      firstName,middleName,lastName,email,gender,nationality,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShorePhone,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShorePhone,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource
+      firstName,middleName,lastName,email,gender,nationality,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource
     };
     dispatch(addStudent(newStudent));
     
-    console.log(firstName,lastName,email,birthday,middleName,gender,nationality,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel)
+    console.log(firstName,lastName,email,birthday,middleName,gender,nationality,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource)
   }
 
     return (
@@ -446,11 +446,11 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Onshore (In Australia)</label>
-              <input type="text" class="form-control" placeholder="" name="onShoreLocation" value={onShoreCurrentLocation} onChange={handleOnChange}/>
+              <input type="text" class="form-control" placeholder="" name="onShoreCurrentLocation" value={onShoreCurrentLocation} onChange={handleOnChange}/>
             </div>
              <div class="form-group col-md-4">
               <label>Offshore (Overseas)</label>
-              <input type="text" class="form-control" placeholder="" name="offShoreLocation" value={offShoreCurrentLocation} onChange={handleOnChange}/>
+              <input type="text" class="form-control" placeholder="" name="offShoreCurrentLocation" value={offShoreCurrentLocation} onChange={handleOnChange}/>
             </div>
           </div>
         
