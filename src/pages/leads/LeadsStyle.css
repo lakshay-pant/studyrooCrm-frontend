@@ -1,0 +1,64 @@
+/*leads pages start*/
+.leads-page select.form-control.filter-box{
+    font-size: 15px;
+    color: #5C5D5D;
+    width: 170px;
+ }
+ .leads-page .student-lead select.form-control.filter-box{
+   width: 115px;
+   background: transparent linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+ }
+ .tooltip {
+   position: relative;
+   display: inline-block;
+   opacity: 1;
+ }
+ 
+ .tooltip .tooltiptext {
+   visibility: hidden;
+   width: 55px;
+   background: transparent linear-gradient(0deg, #F48035 0%, #DD5903 100%);
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 4px 0;
+   position: absolute;
+   z-index: 1;
+   margin-left: -10px;
+ }
+ 
+ .tooltip:hover .tooltiptext {
+   visibility: visible;
+ }
+ 
+ .tooltip .tooltiptext::after {
+   content: " ";
+   position: absolute;
+   bottom: 100%; 
+   margin-left: -22px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: transparent transparent #e1600b transparent;
+ }
+ .leads-page .student-lead {
+     display: flex;
+ }
+ .leads-page .inbox-icon{
+     background: transparent linear-gradient(180deg, #FAFAFA 0%, #FFFFFF 100%);
+     box-shadow: 0px 3px 6px #0000001f;
+     display: flex;
+     height: 33px;
+     border-radius: 5px 0px 0px 5px;
+     justify-content: center;
+     align-items: center;
+     padding: 10px;
+     margin-bottom: 10px;
+     margin-right: 10px;
+ }
+ .lead-page-list .stuednttable.table-responsive table.table{
+    border-top: solid 1px #fff;
+ }
+ .stuednttable.table-responsive th{
+    text-transform: uppercase;
+ }
+ /* leads page end */

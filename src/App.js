@@ -10,6 +10,7 @@ import { StudentOverview } from "./pages/studentOverview/studentOverview.page"
 import { Addtask } from "./pages/addTask/Addtask.page"
 import AllStudent from "./pages/allStudents/AllStudentPage.js"
 import { UncategorizedStudents } from "./components/student-overview/studOverview.comp"
+import  LeadsPopup  from "./pages/allStudents/leadsPopup"
 function App() {
 
   return (
@@ -48,7 +49,9 @@ function App() {
           <PrivateRoute path="/add-task">
             <Addtask />
           </PrivateRoute>
-         
+          <PrivateRoute path="/leads-popup">
+            <LeadsPopup />
+          </PrivateRoute>
 
           
 
