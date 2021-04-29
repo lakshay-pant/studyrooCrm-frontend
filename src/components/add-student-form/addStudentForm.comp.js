@@ -31,8 +31,8 @@ export const AddStudentForm = () => {
   const [middleName, setMiddleName] = useState("");
 const [lastName, setLastName] = useState("");
 const [birthday, setBirthday] = useState("");
-const [gender, setGender] = useState("Male");
-const [nationality, setNationality] = useState("Indian");
+const [genders, setGenders] = useState("Male");
+const [nation, setNation] = useState("indian");
 const [onShorePhone, setOnShorePhone] = useState("");
 const [offShorePhone, setOffShorePhone] = useState("");
   const [email, setEmail] = useState("");
@@ -41,15 +41,15 @@ const [offShorePhone, setOffShorePhone] = useState("");
   const [heatLevel, setHeatLevel] = useState("Very Hot");
   const [note, setNote] = useState("");
   const [visaExpiryDate, setVisaExpiryDate] = useState("");
-  const [visaType, setVisaType] = useState("");
+  const [visaType, setVisaType] = useState("Any");
   const [visaComments, setVisaComments] = useState("");
   const [insuranceStartDate, setInsuranceStartDate] = useState("");
   const [insuranceExpiryDate, setInsuranceExpiryDate] = useState("");
-  const [insuranceType, setInsuranceType] = useState("");
+  const [insuranceType, setInsuranceType] = useState("Single(Just for the student)");
   const [insuranceNumber, setInsuranceNumber] = useState("");
   const [insuranceComment, setInsuranceComment] = useState("");
   const [otherComments, setOtherComments] = useState("");
-  const [referalSource, setReferalSource] = useState("");
+  const [referalSource, setReferalSource] = useState("Unkown");
   const [instituteName, setInstituteName] = useState("");
   const [gpa, setGpa] = useState("");
   const [yearLevel, setYearLevel] = useState("");
@@ -66,9 +66,10 @@ const [offShorePhone, setOffShorePhone] = useState("");
   const [offShoreStreetNumber, setOffShoreStreetNumber] = useState("");
   const [streetNa, setStreetNa] = useState("");
   const [passComments, setPassComments] = useState("");
+  const [locationStatus, setLocationStatus] = useState("onShore");
  
-  const [offShoreCity, setOffShoreCity] = useState("");
-  const [offShoreCountry, setOffShoreCountry] = useState("");
+  const [offShoreCity, setOffShoreCity] = useState("XYZ");
+  const [offShoreCountry, setOffShoreCountry] = useState("India");
   const [offShoreZipCode, setOffShoreZipCode] = useState("");
   const [usi, setUsi] = useState("");
   const [educationLevel, setEducationLevel] = useState("");
@@ -79,8 +80,8 @@ const [offShorePhone, setOffShorePhone] = useState("");
   const [unitNumber, setUnitNumber] = useState("");
   const [streetNumber, setStreetNumber] = useState("");
   const [streetName, setStreetName] = useState("");
-  const [city, setCity] = useState("");
-  const [country, setCountry] = useState("");
+  const [city, setCity] = useState("XYZ");
+  const [country, setCountry] = useState("India");
   const [zipCode, setZipCode] = useState("");
 
 
@@ -108,12 +109,12 @@ const [offShorePhone, setOffShorePhone] = useState("");
         setBirthday(value);
         break;
 
-        case "gender":
-        setGender(value);
+        case "genders":
+        setGenders(value);
         break;
 
-        case "nationality":
-          setNationality(value);
+        case "nation":
+          setNation(value);
           break;
 
           case "onShorePhone":
@@ -188,9 +189,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                 setInstituteName(value);
                 break;
 
-                case "instituteName":
-                  setInstituteName(value);
-                  break;
+                
 
                   case "gpa":
                     setGpa(value);
@@ -200,9 +199,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                       setYearLevel(value);
                       break;
                     
-                      case "yearLevel":
-                        setYearLevel(value);
-                        break;
+                     
 
                 
                         case "schoolCurriculum":
@@ -222,9 +219,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                 setPassNationality(value);
                                 break;
 
-                                case "passNationality":
-                                  setPassNationality(value);
-                                  break;
+                            
 
                                   case "passIssueDate":
                                     setPassIssueDate(value);
@@ -327,6 +322,10 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                                 setPassComments(value);
                                                 break;
 
+                                                case "locationStatus":
+                                                  setLocationStatus(value);
+                                                  break;
+
 
 
 
@@ -349,17 +348,14 @@ const [offShorePhone, setOffShorePhone] = useState("");
 
   const handleOnStudentSubmit=async(e)=>{
     e.preventDefault()
-    console.log(nationality)
-    if (!firstName || !middleName||!lastName||!email||!gender||!nationality||!salesPipeline||!salesStatus||!heatLevel||!note||!onShorePhone||!offShorePhone||!birthday) {
-      return alert("Fill up all the form!");
-      
-    }
+    console.log(nation)
+    
     const newStudent = {
-      firstName,middleName,lastName,email,gender,nationality,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource
+      firstName,middleName,lastName,email,genders,nation,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource
     };
     dispatch(addStudent(newStudent));
     
-    console.log(firstName,lastName,email,birthday,middleName,gender,nationality,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,status,referalSource)
+    console.log(firstName,lastName,email,birthday,middleName,genders,nation,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource)
   }
 
     return (
@@ -415,7 +411,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </div>
              <div class="form-group col-md-4">
               <label>Gender</label>
-             <select class="form-control" name="gender" id="cars" onChange={handleOnChange} value={gender}>
+             <select class="form-control" name="genders" id="cars" onChange={handleOnChange} value={genders}>
               <option >Male</option>
               <option >Female</option>
              
@@ -424,7 +420,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             
              <div class="form-group col-md-4">
               <label>Nationality</label>
-             <select class="form-control" name="nationality" id="cars" onChange={handleOnChange} value={nationality}>
+             <select class="form-control" name="nation" id="cars" onChange={handleOnChange} value={nation}>
               <option >Indian</option>
               
             </select>
@@ -491,7 +487,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             
             <div class="form-group col-md-4">
               <label>City</label>
-              <select class="form-control" name="city" value={city} id="cars" onChange={handleOnChange} value={nationality}>
+              <select class="form-control" name="city" value={city} id="cars" onChange={handleOnChange} >
                  <option>XYZ</option>
                  <option>XYZ</option>
                  <option>XYZ</option>
@@ -502,7 +498,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             
             <div class="form-group col-md-4">
               <label>Country</label>
-              <select class="form-control" name="country" value={country} id="cars" onChange={handleOnChange} value={nationality}>
+              <select class="form-control" name="country" value={country} id="cars" onChange={handleOnChange} >
                  <option >India</option>
               </select>
             </div>
@@ -582,24 +578,24 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>USI (Unique Student Number)</label>              
-              <input type="text" class="form-control" placeholder="" name="usi" value={usi} />
+              <input type="text" class="form-control" placeholder="" name="usi" value={usi}  onChange={handleOnChange} />
             </div>
              <div class="form-group col-md-4">
               <label>Education Level</label>
-              <input type="text" class="form-control" placeholder="" name="educationLevel" value={educationLevel}/>
+              <input type="text" class="form-control" placeholder="" name="educationLevel" value={educationLevel}  onChange={handleOnChange}/>
             </div>
              <div class="form-group col-md-4">
               <label>Institute Name</label>
-              <input type="text" class="form-control" placeholder="" name="instituteName" value={instituteName}/>
+              <input type="text" class="form-control" placeholder="" name="instituteName" value={instituteName}  onChange={handleOnChange}/>
             </div>
             
             <div class="form-group col-md-4">
               <label>GPA</label>
-              <input type="text" class="form-control" placeholder="" name="gpa" value={gpa} />
+              <input type="text" class="form-control" placeholder="" name="gpa" value={gpa}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Year level</label>
-              <input type="text" class="form-control" placeholder="" name="yearLevel" value={yearLevel} />
+              <input type="text" class="form-control" placeholder="" name="yearLevel" value={yearLevel}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>School curriculum</label>
@@ -620,23 +616,23 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Number</label>              
-              <input type="text" class="form-control" placeholder="" name="passNumber" value={passNumber} />
+              <input type="text" class="form-control" placeholder="" name="passNumber" value={passNumber}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Nationality</label>
-              <input type="text" class="form-control" placeholder="" name="passNationality" value={passNationality} />
+              <input type="text" class="form-control" placeholder="" name="passNationality" value={passNationality}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Issue Date</label>
-              <input type="date" class="form-control" placeholder="" name="passIssueDate" value={passIssueDate}  />
+              <input type="date" class="form-control" placeholder="" name="passIssueDate" value={passIssueDate}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Expiry Date</label>
-              <input type="date" class="form-control" placeholder="" name="passExpiryDate" value={passExpiryDate} />
+              <input type="date" class="form-control" placeholder="" name="passExpiryDate" value={passExpiryDate}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Comments</label>
-              <input type="text" class="form-control" placeholder="" name="passComments" value={passComments} />
+              <input type="text" class="form-control" placeholder="" name="passComments" value={passComments}  onChange={handleOnChange} />
             </div>
           </div>
       </div>
@@ -648,11 +644,11 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Grant date</label>
-              <input type="date" class="form-control" placeholder="" name="grantDate" value={grantDate} />
+              <input type="date" class="form-control" placeholder="" name="grantDate" value={grantDate}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Expiry Date</label>
-              <input type="date" class="form-control" placeholder="" name="visaExpiryDate" value={visaExpiryDate}  />
+              <input type="date" class="form-control" placeholder="" name="visaExpiryDate" value={visaExpiryDate}   onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Type</label>
@@ -667,7 +663,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </div>
             <div class="form-group col-md-4">
               <label>Other comments (remarks)</label>
-              <input type="text" class="form-control" placeholder="" name="visaComments" value={visaComments}  />
+              <input type="text" class="form-control" placeholder="" name="visaComments" value={visaComments}  onChange={handleOnChange} />
             </div>
           </div>
       </div>
@@ -679,11 +675,11 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Start date</label>
-              <input type="date" class="form-control" placeholder="" name="insuranceStartDate" value={insuranceStartDate} />
+              <input type="date" class="form-control" placeholder="" name="insuranceStartDate" value={insuranceStartDate}  onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Expiry Date</label>
-              <input type="date" class="form-control" placeholder="" name="insuranceExpiryDate" value={insuranceExpiryDate}  />
+              <input type="date" class="form-control" placeholder="" name="insuranceExpiryDate" value={insuranceExpiryDate }   onChange={handleOnChange} />
             </div>
             <div class="form-group col-md-4">
               <label>Type</label>
@@ -697,11 +693,11 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </div>
             <div class="form-group col-md-4">
               <label>Number</label>
-              <input type="text" class="form-control" placeholder="" name="insuranceNumber" value={insuranceNumber}  />
+              <input type="text" class="form-control" placeholder="" name="insuranceNumber" value={insuranceNumber}   onChange={handleOnChange}/>
             </div>
             <div class="form-group col-md-4">
               <label>Other comments (remarks)</label>
-              <input type="text" class="form-control" placeholder="" name="insuranceComment" value={insuranceComment}  />
+              <input type="text" class="form-control" placeholder="" name="insuranceComment" value={insuranceComment}  onChange={handleOnChange} />
             </div>
           </div>
       </div>
@@ -715,7 +711,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Sales pipeline *</label>
-              <select class="form-control" name="salesStatus" id="cars" onChange={handleOnChange} value={salesPipeline}>
+              <select class="form-control" name="salesPipeline" id="cars" onChange={handleOnChange} value={salesPipeline}>
               <option >OnShore</option>
               <option >OffShore</option>
               
@@ -749,7 +745,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </div>
             <div class="form-group col-md-4">
               <label>Other comments (remarks)</label>
-              <input type="text" class="form-control" placeholder="" name="otherComments" value={otherComments}  />
+              <input type="text" class="form-control" placeholder="" name="otherComments" value={otherComments}  onChange={handleOnChange} />
             </div>
           </div>
           {isLoading && <Spinner variant="primary" animation="border" />}
@@ -784,7 +780,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Status </label>
-              <select class="form-control" name="status" id="cars" onChange={handleOnChange} value={status}>
+              <select class="form-control" name="locationStatus" id="cars" onChange={handleOnChange} value={locationStatus}>
               <option >onShore</option>
               <option >offShore</option>
             
@@ -820,7 +816,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
      
           <div class="form-row">
             <div class="form-group col-md-12">
-             <textarea class="form-control" rows="5" placeholder="Add a note" name="note" value={note} ></textarea>
+             <textarea class="form-control" rows="5" placeholder="Add a note" name="note" value={note}  onChange={handleOnChange}></textarea>
               
             </div>
            
