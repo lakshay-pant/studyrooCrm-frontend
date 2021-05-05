@@ -870,7 +870,6 @@ export const UncategorizedStudents = () => {
                                     </div>
                                     </Modal>
                                     
-                                    
                                   </div>
                               </td>
                              

@@ -719,7 +719,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </div>
              <div class="form-group col-md-4">
               <label>Sale status *</label>
-             <select class="form-control" name="salesStatus" id="cars" onChange={handleOnChange} value={salesStatus}>
+             <select class="form-control" id="cars" name="salesStatus"  onChange={handleOnChange} value={salesStatus}>
               <option >Inquiry Recieved</option>
               <option >Counselling</option>
               <option >Quotation Sent</option>
@@ -736,7 +736,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
             </div>
              <div class="form-group col-md-4">
               <label>Lead level</label>
-             <select class="form-control" name="heatLevel" id="cars" onChange={handleOnChange} value={heatLevel}>
+             <select class="form-control" id="cars" name="heatLevel"  onChange={handleOnChange} value={heatLevel}>
               <option >Very Hot</option>
               <option >Hot</option>
               <option >Warm</option>
@@ -780,7 +780,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
           <div class="form-row">
             <div class="form-group col-md-4">
               <label>Status </label>
-              <select class="form-control" name="locationStatus" id="cars" onChange={handleOnChange} value={locationStatus}>
+              <select class="form-control" id="cars" name="locationStatus"  onChange={handleOnChange} value={locationStatus}>
               <option >onShore</option>
               <option >offShore</option>
             

@@ -245,6 +245,10 @@ button.close span {
 body.modal-open .css-mgzecu{
    z-index: 9;
 }
+
+.modal-backdrop.fade {
+  opacity: 0.1;
+}
  /*popups css end*/
 
  .student-leads .filter i {
