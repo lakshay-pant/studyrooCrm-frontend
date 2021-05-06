@@ -480,11 +480,11 @@ const Leads = () => {
                                                                                         <div class="planned">
                                                                                             <div class="row">
                                                                                                 <div class="col-md-12 col-12">
-                                                                                                <div class="planner-head">
-                                                                                                    <h5>PLANNED</h5>
+                                                                                                    <div class="planner-head">
+                                                                                                        <h5>PLANNED</h5>
+                                                                                                    </div>
                                                                                                 </div>
-                                                                                                </div>
-                                                                                            </div>
+                                                                                             </div>
                                                                                                 <div class="call-area">
                                                                                                     <div class="row">
                                                                                                         <div class="col-md-11">

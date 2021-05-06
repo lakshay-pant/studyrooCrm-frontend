@@ -486,9 +486,7 @@ body {
 .student-bg .headingdiv {
   color: #f37e32;
 }
-.student-bg .col-md-12 {
-  margin-bottom: 20px;
-}
+
 /*add student css*/
 /*popups css*/
 .change-columns .modal-content button.close {
@@ -30178,4 +30176,31 @@ a.text-muted:hover {
 }
 .add-student input[type="file"]{
   display: block;
+}
+
+section.student-from .card-header {
+  background: none;
+  border: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+section.student-from .card{
+   box-shadow: none;
+   border: 0;
+}
+section.student-from .card-body{
+   padding-left: 0;
+}
+
+.student-from .accordion label p {
+    display: inline;
+    color: red;
+}
+.student-from .headingdiv{
+    position: relative;
+}
+.student-from .headingdiv i {
+  position: absolute;
+  right: 0;
 }
