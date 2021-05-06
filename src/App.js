@@ -12,6 +12,8 @@ import AllStudent from "./pages/allStudents/AllStudentPage.js"
 import { UncategorizedStudents } from "./components/student-overview/studOverview.comp"
 import  LeadsPopup  from "./pages/allStudents/leadsPopup"
 import Leads from "./pages/leads/Leads"
+import { Profile } from "./pages/profile/Profile"
+
 function App() {
 
   return (
@@ -58,6 +60,9 @@ function App() {
             <Leads />
           </PrivateRoute>
 
+          <PrivateRoute path="/profile-page">
+            <Profile />
+          </PrivateRoute>
 
         </Switch>
       </Router>
