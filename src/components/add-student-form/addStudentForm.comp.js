@@ -480,156 +480,155 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                                               </div>
                                                          </div>
     
-                                                    <div class="col-md-12"> 
-                                                          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                                  <div class="card">
-                                                                      <div class="card-header" role="tab" id="onshore">
-                                                                        <a data-toggle="collapse" data-parent="#accordionEx" href="#onshore1" aria-expanded="true"
-                                                                          aria-controls="onshore1">
-                                                                          <div class="headingdiv">Onshore Information <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                        </a>
-                                                                      </div>
-                                                                      <div id="onshore1" class="collapse show" role="tabpanel" aria-labelledby="onshore"
-                                                                          data-parent="#accordionEx">
-                                                                          <div class="card-body">
-                                                                          <div class="form-bgclr">
-                                                                                <div class="form-row">
-                                                                                <div class="form-row">
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Phone</label>    
-                                                                                        <input type="text" class="form-control" placeholder="" name="onShorePhone" value={onShorePhone} onChange={handleOnChange} />
-                                                                                      </div>
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Address</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="onShoreAddress" value={onShoreAddress} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Enter a location</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="onShoreLocation" value={onShoreLocation} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Unit number</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="unitNumber" value={unitNumber} onChange={handleOnChange}/>
-                                                                                      </div>
+                                                            <div class="col-md-12"> 
+                                                                  <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                                                                          <div class="card">
+                                                                              <div class="card-header" role="tab" id="onshore">
+                                                                                <a data-toggle="collapse" data-parent="#accordionEx" href="#onshore1" aria-expanded="true"
+                                                                                  aria-controls="onshore1">
+                                                                                  <div class="headingdiv">Onshore Information <i class="fas fa-angle-down rotate-icon"></i></div>
+                                                                                </a>
+                                                                              </div>
+                                                                              <div id="onshore1" class="collapse show" role="tabpanel" aria-labelledby="onshore"
+                                                                                  data-parent="#accordionEx">
+                                                                                  <div class="card-body">
+                                                                                  <div class="form-bgclr">
+                                                                                        <div class="form-row">
+                                                                                        <div class="form-row">
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Phone</label>    
+                                                                                                <input type="text" class="form-control" placeholder="" name="onShorePhone" value={onShorePhone} onChange={handleOnChange} />
+                                                                                              </div>
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Address</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="onShoreAddress" value={onShoreAddress} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Enter a location</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="onShoreLocation" value={onShoreLocation} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Unit number</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="unitNumber" value={unitNumber} onChange={handleOnChange}/>
+                                                                                              </div>
 
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Street number</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="streetNumber" value={streetNumber} onChange={handleOnChange}/>
-                                                                                      </div>
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Street number</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="streetNumber" value={streetNumber} onChange={handleOnChange}/>
+                                                                                              </div>
 
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Street Name</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="streetName" value={streetName} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>City</label>
-                                                                                        <select class="form-control" name="city" value={city} id="cars" onChange={handleOnChange} >
-                                                                                          <option>XYZ</option>
-                                                                                          <option>XYZ</option>
-                                                                                          <option>XYZ</option>
-                                                                                          <option>XYZ</option>   
-                                                                                          <option>XYZ</option>
-                                                                                        </select>
-                                                                                      </div>
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Country</label>
-                                                                                        <select class="form-control" name="country" value={country} id="cars" onChange={handleOnChange} >
-                                                                                          <option >India</option>
-                                                                                        </select>
-                                                                                      </div>
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Street Name</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="streetName" value={streetName} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>City</label>
+                                                                                                <select class="form-control" name="city" value={city} id="cars" onChange={handleOnChange} >
+                                                                                                  <option>XYZ</option>
+                                                                                                  <option>XYZ</option>
+                                                                                                  <option>XYZ</option>
+                                                                                                  <option>XYZ</option>   
+                                                                                                  <option>XYZ</option>
+                                                                                                </select>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Country</label>
+                                                                                                <select class="form-control" name="country" value={country} id="cars" onChange={handleOnChange} >
+                                                                                                  <option >India</option>
+                                                                                                </select>
+                                                                                              </div>
 
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Zipcode</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="zipCode" value={zipCode} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      
-                                                                                    </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Zipcode</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="zipCode" value={zipCode} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              
+                                                                                            </div>
+                                                                                          </div>
+                                                                                        </div>
                                                                                   </div>
-                                                                                </div>
+                                                                              </div>
+                                                                          </div>
+                                                                  </div>
+                                                            </div>
+
+                                                            <div class="col-md-12">
+                                                                  <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+                                                                          <div class="card">
+                                                                              <div class="card-header" role="tab" id="offshore2">
+                                                                                <a data-toggle="collapse" data-parent="#accordionEx" href="#offshore3" aria-expanded="true"
+                                                                                  aria-controls="location1">
+                                                                                  <div class="headingdiv">Offshore Information <i class="fas fa-angle-down rotate-icon"></i></div>
+                                                                                </a>
+                                                                              </div>
+                                                                              <div id="offshore3" class="collapse show" role="tabpanel" aria-labelledby="offshore2"
+                                                                                  data-parent="#accordionEx">
+                                                                                  <div class="card-body">
+                                                                                  <div class="form-bgclr">
+                                                                                        <div class="form-row">
+                                                                                        <div class="form-group col-md-4">
+                                                                                                <label>Phone</label>    
+                                                                                                <input type="text" class="form-control" placeholder="" name="offShorePhone" value={offShorePhone} onChange={handleOnChange} />
+                                                                                              </div>
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Address</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="offShoreAdress" value={offShoreAdress} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Enter a location</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="offShoreLocation" value={offShoreLocation} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Unit number</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="offShoreUnitNumber" value={offShoreUnitNumber} onChange={handleOnChange}/>
+                                                                                              </div>
+
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Street number</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="offShoreStreetNumber" value={offShoreStreetNumber} onChange={handleOnChange}/>
+                                                                                              </div>
+
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Street Name</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="streetNa" value={streetNa} onChange={handleOnChange}/>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>City</label>
+                                                                                                <select class="form-control" name="offShoreCity" id="cars" onChange={handleOnChange} value={offShoreCity}>
+                                                                                                  <option>XYZ</option>
+                                                                                                  <option>XYZ</option>
+                                                                                                  <option>XYZ</option>
+                                                                                                  <option>XYZ</option>   
+                                                                                                  <option>XYZ</option>
+                                                                                                </select>
+                                                                                              </div>
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Country</label>
+                                                                                                <select class="form-control" name="offShoreCountry" id="cars" onChange={handleOnChange} value={offShoreCountry}>
+                                                                                                  <option >India</option>
+                                                                                                </select>
+                                                                                              </div>
+
+                                                                                              
+                                                                                              <div class="form-group col-md-4">
+                                                                                                <label>Zipcode</label>
+                                                                                                <input type="text" class="form-control" placeholder="" name="offShoreZipCode" value={offShoreZipCode} onChange={handleOnChange}/>
+                                                                                              </div>
+                    
+                                                                                          </div>
+                                                                                        </div>
+                                                                                  </div>
+                                                                              </div>
                                                                           </div>
                                                                       </div>
-                                                                  </div>
-                                                          </div>
-                                                    </div>
-
-                                                    <div class="col-md-12"> 
-      
-                                                           <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                                  <div class="card">
-                                                                      <div class="card-header" role="tab" id="offshore2">
-                                                                        <a data-toggle="collapse" data-parent="#accordionEx" href="#offshore3" aria-expanded="true"
-                                                                          aria-controls="location1">
-                                                                          <div class="headingdiv">Offshore Information <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                        </a>
-                                                                      </div>
-                                                                      <div id="offshore3" class="collapse show" role="tabpanel" aria-labelledby="offshore2"
-                                                                          data-parent="#accordionEx">
-                                                                          <div class="card-body">
-                                                                          <div class="form-bgclr">
-                                                                                <div class="form-row">
-                                                                                <div class="form-group col-md-4">
-                                                                                        <label>Phone</label>    
-                                                                                        <input type="text" class="form-control" placeholder="" name="offShorePhone" value={offShorePhone} onChange={handleOnChange} />
-                                                                                      </div>
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Address</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="offShoreAdress" value={offShoreAdress} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Enter a location</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="offShoreLocation" value={offShoreLocation} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Unit number</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="offShoreUnitNumber" value={offShoreUnitNumber} onChange={handleOnChange}/>
-                                                                                      </div>
-
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Street number</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="offShoreStreetNumber" value={offShoreStreetNumber} onChange={handleOnChange}/>
-                                                                                      </div>
-
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Street Name</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="streetNa" value={streetNa} onChange={handleOnChange}/>
-                                                                                      </div>
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>City</label>
-                                                                                        <select class="form-control" name="offShoreCity" id="cars" onChange={handleOnChange} value={offShoreCity}>
-                                                                                          <option>XYZ</option>
-                                                                                          <option>XYZ</option>
-                                                                                          <option>XYZ</option>
-                                                                                          <option>XYZ</option>   
-                                                                                          <option>XYZ</option>
-                                                                                        </select>
-                                                                                      </div>
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Country</label>
-                                                                                        <select class="form-control" name="offShoreCountry" id="cars" onChange={handleOnChange} value={offShoreCountry}>
-                                                                                          <option >India</option>
-                                                                                        </select>
-                                                                                      </div>
-
-                                                                                      
-                                                                                      <div class="form-group col-md-4">
-                                                                                        <label>Zipcode</label>
-                                                                                        <input type="text" class="form-control" placeholder="" name="offShoreZipCode" value={offShoreZipCode} onChange={handleOnChange}/>
-                                                                                      </div>
-            
-                                                                                  </div>
-                                                                                </div>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                     </div>
+                                                            </div>
 
       
                                                            <div class="col-md-12">
@@ -656,8 +655,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                                                                 <div class="form-group col-md-4">
                                                                                   <label>Institute Name</label>
                                                                                   <input type="text" class="form-control" placeholder="" name="instituteName" value={instituteName}  onChange={handleOnChange}/>
-                                                                                </div>
-                                                                                
+                                                                                </div>        
                                                                                 <div class="form-group col-md-4">
                                                                                   <label>GPA</label>
                                                                                   <input type="text" class="form-control" placeholder="" name="gpa" value={gpa}  onChange={handleOnChange} />
@@ -1024,7 +1022,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                                                 <input type="submit" name="Save" class="btn getin-btn" value="Save"/>
                                                               </div>
        
-           </div>
+                                                           </div>
         </form>
       </div>
     </div>
