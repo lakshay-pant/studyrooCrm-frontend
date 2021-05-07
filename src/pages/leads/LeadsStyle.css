@@ -556,6 +556,10 @@
 .leadsFilter .calendar-flyer .modal-dialog{
  max-width: 500px;
 }
+.modal-dialog {
+  margin-left: 21.50rem !important;
+  max-width: 1005px !important;
+}
 }
 a:hover{
   text-decoration: none!important;
@@ -563,3 +567,53 @@ a:hover{
 .modal-body{
   padding: 0;
 }
+#leadspopup1{
+  background: #f7f7f7;
+}
+#leadspopup1 .card{
+   margin: 0;
+}
+#leadspopup1 .card-body{
+   padding-left: 50px;
+   padding-top: 0;
+}
+.modal-body{
+  padding: 0 !important;
+}
+#leadspopup a {
+   display: inline-block;
+   color: #EAEBEC;
+}
+#leadspopup a i{
+  font-size: 18px;
+  color: #EAEBEC;
+}
+#leadspopup a button.close span{
+   color:#EAEBEC;
+   background: none;
+   top:0;
+   font-size: 25px;
+}
+#leadspopup a button.close{
+   right: 0;
+   left: 35px;
+   top: 4px;
+   position: absolute;
+}
+.accordion>.card>#leadspopup {
+  padding: 15px;
+  border-radius: 0;
+  margin-bottom: -1px;
+  width: 5%;
+  position: absolute;
+  background: transparent linear-gradient(0deg, #F4F4F4 0%, #FFFFFF 100%);
+  box-shadow: 0px 3px 16px #00000012;
+  z-index: 99;
+  left: -2px;
+  border-radius: 5px;
+  color: #EAEBEC;
+}
+.accordion>.card>#leadspopup .arrow{
+   text-align: center;
+}
+

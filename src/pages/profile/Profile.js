@@ -12,7 +12,7 @@ export const Profile = () => {
                 <div class="profile-page-content">
                     <div class="row">
 
-                        <div class="col-md-3 col-12">
+                        <div class="col-md-4 col-12">
                             <div class="profile">
                                 <div class="profile-img">
                                 <img src="images/admin.svg" class="img-fluid" alt="profile" />
@@ -21,12 +21,13 @@ export const Profile = () => {
                                 <p class="name">Artur Szulakowski </p>
                                 <span>MANAGING DIRECTOR</span>
                                 </div>
+                                <i class="fas fa-pen"></i>
                                 <div class="profile-status">
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-9 col-12">
+                        <div class="col-sm-8 col-12">
                         <div class="profile-detail">
                            <div class="headingdiv">Personal</div>
                            <form>
