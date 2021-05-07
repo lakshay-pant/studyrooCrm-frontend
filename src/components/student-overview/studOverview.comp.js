@@ -14,6 +14,9 @@ import { filterSearchUser, fetchAllUsers } from "../getAllTheUsers/getUsersActio
 import Moment from 'moment';
 import axios from "axios"
 import { Accordion } from 'react-bootstrap';
+import {editStudent} from "./studentOverviewAction"
+
+import {deleteStudent} from "./studentOverviewDeleteAction"
 
 export const UncategorizedStudents = () => {
  
@@ -49,12 +52,352 @@ export const UncategorizedStudents = () => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
+  const [ID, setID] = useState("");
+  const [userName, setUserName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [middleName, setMiddleName] = useState("");
+const [lastName, setLastName] = useState("");
+const [birthday, setBirthday] = useState("");
+const [genders, setGenders] = useState("Male");
+const [nation, setNation] = useState("indian");
+const [onShorePhone, setOnShorePhone] = useState("");
+const [offShorePhone, setOffShorePhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [salesPipeline, setSalesPipeline] = useState("OnShore");
+  const [salesStatus, setSalesStatus] = useState("Inquiry Recieved");
+  const [heatLevel, setHeatLevel] = useState("Very Hot");
+  const [note, setNote] = useState("");
+  const [visaExpiryDate, setVisaExpiryDate] = useState("");
+  const [visaType, setVisaType] = useState("Any");
+  const [visaComments, setVisaComments] = useState("");
+  const [insuranceStartDate, setInsuranceStartDate] = useState("");
+  const [insuranceExpiryDate, setInsuranceExpiryDate] = useState("");
+  const [insuranceType, setInsuranceType] = useState("Single(Just for the student)");
+  const [insuranceNumber, setInsuranceNumber] = useState("");
+  const [insuranceComment, setInsuranceComment] = useState("");
+  const [otherComments, setOtherComments] = useState("");
+  const [referalSource, setReferalSource] = useState("Unkown");
+  const [instituteName, setInstituteName] = useState("");
+  const [gpa, setGpa] = useState("");
+  const [yearLevel, setYearLevel] = useState("");
+  const [schoolCurriculum, setSchoolCurriculum] = useState("");
+  const [schoolCurriculumDetails, setSchoolCurriculumDetails] = useState("");
+  const [passNumber, setPassNumber] = useState("");
+  const [passNationality, setPassNationality] = useState("");
+  const [passIssueDate, setPassIssueDate] = useState("");
+  const [passExpiryDate, setPassExpiryDate] = useState("");
+  const [grantDate, setGrantDate] = useState("");
+  const [offShoreAdress, setOffShoreAdress] = useState("");
+  const [offShoreLocation, setOffShoreLocation] = useState("");
+  const [offShoreUnitNumber, setOffShoreUnitNumber] = useState("");
+  const [offShoreStreetNumber, setOffShoreStreetNumber] = useState("");
+  const [streetNa, setStreetNa] = useState("");
+  const [passComments, setPassComments] = useState("");
+  const [locationStatus, setLocationStatus] = useState("onShore");
+ 
+  const [offShoreCity, setOffShoreCity] = useState("XYZ");
+  const [offShoreCountry, setOffShoreCountry] = useState("India");
+  const [offShoreZipCode, setOffShoreZipCode] = useState("");
+  const [usi, setUsi] = useState("");
+  const [educationLevel, setEducationLevel] = useState("");
+  const [offShoreCurrentLocation, setOffShoreCurrentLocation] = useState("");
+  const [onShoreAddress, setOnShoreAddress] = useState("");
+  const [onShoreLocation, setOnShoreLocation] = useState("");
+  const [onShoreCurrentLocation, setOnShoreCurrentLocation] = useState("");
+  const [unitNumber, setUnitNumber] = useState("");
+  const [streetNumber, setStreetNumber] = useState("");
+  const [streetName, setStreetName] = useState("");
+  const [city, setCity] = useState("XYZ");
+  const [country, setCountry] = useState("India");
+  const [zipCode, setZipCode] = useState("");
+
+
+
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    switch (name) {
+      case "firstName":
+        setFirstName(value);
+        break;
+
+        case "userName":
+        setUserName(value);
+        break;
+
+
+
+        case "middleName":
+        setMiddleName(value);
+        break;
+
+        case "lastName":
+        setLastName(value);
+        break;
+
+        case "birthday":
+        setBirthday(value);
+        break;
+
+        case "genders":
+        setGenders(value);
+        break;
+
+        case "nation":
+          setNation(value);
+          break;
+
+          case "onShorePhone":
+            setOnShorePhone(value);
+            break;
+
+            case "offShorePhone":
+            setOffShorePhone(value);
+            break;
+
+      case "email":
+        setEmail(value);
+        break;
+
+      case "salesPipeline":
+      setSalesPipeline(value);
+      break;
+
+      case "salesStatus":
+      setSalesStatus(value);
+      break;
+
+      case "heatLevel":
+      setHeatLevel(value);
+      break;
+
+      case "note":
+      setNote(value);
+      break;
+
+      case "visaExpiryDate":
+        setVisaExpiryDate(value);
+        break;
+
+        case "visaType":
+          setVisaType(value);
+          break;
+
+          case "visaComments":
+            setVisaComments(value);
+            break;
+
+            case "insuranceStartDate":
+            setInsuranceStartDate(value);
+            break;
+
+            case "insuranceExpiryDate":
+            setInsuranceExpiryDate(value);
+            break;
+
+            case "insuranceType":
+            setInsuranceType(value);
+            break;
+
+            case "insuranceNumber":
+            setInsuranceNumber(value);
+            break;
+
+            case "insuranceComment":
+              setInsuranceComment(value);
+              break;
+
+              case "otherComments":
+              setOtherComments(value);
+              break;
+
+              case "referalSource":
+              setReferalSource(value);
+              break;
+
+              case "instituteName":
+                setInstituteName(value);
+                break;
+
+                
+
+                  case "gpa":
+                    setGpa(value);
+                    break;
+
+                    case "yearLevel":
+                      setYearLevel(value);
+                      break;
+                    
+                     
+
+                
+                        case "schoolCurriculum":
+                          setSchoolCurriculum(value);
+                          break;
+
+                          case "schoolCurriculumDetails":
+                            setSchoolCurriculumDetails(value);
+                            break;
+
+                            case "passNumber":
+                              setPassNumber(value);
+                              break;
+
+
+                              case "passNationality":
+                                setPassNationality(value);
+                                break;
+
+                            
+
+                                  case "passIssueDate":
+                                    setPassIssueDate(value);
+                                    break;
+
+                                    case "passExpiryDate":
+                                    setPassExpiryDate(value);
+                                    break;
+
+                                    case "grantDate":
+                                    setGrantDate(value);
+                                    break;
+
+                                    case "offShoreAdress":
+                                    setOffShoreAdress(value);
+                                    break;
+
+                                    case "offShoreLocation":
+                                    setOffShoreLocation(value);
+                                    break;
+
+                                    case "offShoreUnitNumber":
+                                    setOffShoreUnitNumber(value);
+                                    break;
+
+                                    case "offShoreStreetNumber":
+                                    setOffShoreStreetNumber(value);
+                                    break;
+
+                                    case "streetNa":
+                                    setStreetNa(value);
+                                    break;
+
+                                    case "offShoreCity":
+                                    setOffShoreCity(value);
+                                    break;
+
+                                    case "offShoreCountry":
+                                    setOffShoreCountry(value);
+                                    break;
+
+                                    case "offShoreZipCode":
+                                    setOffShoreZipCode(value);
+                                    break;
+
+                                    case "usi":
+                                    setUsi(value);
+                                    break;
+
+                                    case "educationLevel":
+                                    setEducationLevel(value);
+                                    break;
+
+                                    case "educationLevel":
+                                      setEducationLevel(value);
+                                      break;
+
+                                      case "offShoreCurrentLocation":
+                                      setOffShoreCurrentLocation(value);
+                                      break;
+
+                                      case "onShoreAddress":
+                                        setOnShoreAddress(value);
+                                        break;
+
+                                        case "onShoreLocation":
+                                          setOnShoreLocation(value);
+                                          break;
+
+                                          case "onShoreCurrentLocation":
+                                            setOnShoreCurrentLocation(value);
+                                            break;
+
+                                            case "unitNumber":
+                                            setUnitNumber(value);
+                                            break;
+
+                                            case "streetNumber":
+                                            setStreetNumber(value);
+                                            break;
+
+                                            case "streetName":
+                                            setStreetName(value);
+                                            break;
+
+
+                                            case "city":
+                                              setCity(value);
+                                              break;
+
+                                              case "country":
+                                              setCountry(value);
+                                              break;
+
+                                              case "zipCode":
+                                              setZipCode(value);
+                                              break;
+
+                                              case "passComments":
+                                                setPassComments(value);
+                                                break;
+
+                                                case "locationStatus":
+                                                  setLocationStatus(value);
+                                                  break;
+
+
+
+
+
+
+
+
+    
+
+      
+
+       
+
+      default:
+        break;
+    }
+  };
+
+  
+
+  const handleOnStudentSubmit=async(e)=>{
+    e.preventDefault()
+    console.log(nation)
+    
+    const newStudent = {
+      firstName,middleName,lastName,email,genders,nation,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource
+    };
+    console.log(ID)
+    dispatch(editStudent(newStudent,ID));
+    
+    console.log(firstName,lastName,email,birthday,middleName,genders,nation,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource)
+  }
 
   const showModal = () => {
     setIsOpen(true);
   }
 
-  const showModal2 = () => {
+  const showModal2 = (id) => {
+    
+    setID(id)
+    
     setIsOpen2(true);
   }
 
@@ -65,6 +408,14 @@ export const UncategorizedStudents = () => {
   const hideModal2 = () => {
     setIsOpen2(false);
   };
+
+
+  const deleteStudentRecord = () => {
+
+    dispatch(deleteStudent(ID))
+    
+  };
+
   
 
   return (
@@ -421,10 +772,11 @@ export const UncategorizedStudents = () => {
                               <td>{(Moment(item.addedAt).format('DD/MM/YYYY'))}</td>
                               <td>{item.salesStatus}</td>
                               <td>{item.userName}</td> 
-                              <td>{item.userName}</td>             
+                              <td>{item.userName}</td>   
+                              <td>{ID}</td>            
                               <td>
                                   <div class="action">
-                                      <a onClick={showModal2}><i class="fas fa-pen"></i></a>
+                                      <a onClick={()=>showModal2(item._id)}><i class="fas fa-pen"></i></a>
                                   </div>
                                   <div class="modal fade filters-modal show" aria-modal="true">
                                       <Modal show={isOpen2} onHide={hideModal2}>
@@ -438,433 +790,327 @@ export const UncategorizedStudents = () => {
                                               </button>
                                             </div>
                                           <Modal.Body>
+                                            <form onSubmit={handleOnStudentSubmit} >  <div class="student-filter-area">
 
-                                                <div class="student-filter-area">
+<div class="row">
 
-                                                  <div class="row">
+  <div class="col-lg-7 col-12">
 
-                                                    <div class="col-lg-7 col-12">
+      <div class="update-crm">
+        <div class="headingdiv">CRM</div>
+        <div class="crm-form">
+          <div class="form-row">
 
-                                                        <div class="update-crm">
-                                                          <div class="headingdiv">CRM</div>
-                                                          <div class="crm-form">
-                                                            <div class="form-row">
+              <div class="form-group col-md-6 col-12">
+                <label>Sales Pipeline<p>*</p></label>
+                <select class="form-control" name="salesPipeline" id="cars" onChange={handleOnChange} value={salesPipeline}>
+                  <option value="allstudent">OnShore</option>
+                  <option value="europeans">OffShore</option>
+                </select>
+              </div>
 
-                                                                <div class="form-group col-md-6 col-12">
-                                                                  <label>Sales Pipeline<p>*</p></label>
-                                                                  <select class="form-control" name="cars" id="cars">
-                                                                    <option value="allstudent">All Student</option>
-                                                                    <option value="europeans">Europeans</option>
-                                                                    <option value="allstudent">All Student</option>
-                                                                    <option value="europeans">Europeans</option>
-                                                                  </select>
-                                                                </div>
+              <div class="form-group col-md-6 col-12">
+                <label>Sale Status<p>*</p></label>
+                <select class="form-control" name="salesStatus" id="cars" onChange={handleOnChange} value={salesStatus}>
+                <option >Inquiry Recieved</option>
+                                                                                      <option >Counselling</option>
+                                                                                      <option >Quotation Sent</option>
+                                                                                      <option >Application</option>
+                                                                                      <option >Waiting for Loo</option>
+                                                                                      <option >Payment Pending</option>
+                                                                                      <option >Waiting for CoE</option>
+                                                                                      <option >Apply for Visa</option>
+                                                                                      <option >Waiting for Visa Requirement</option>
+                                                                                      <option >Waiting for Visa</option>
+                                                                                      <option >Visa Granted</option>
+                                                                                      <option >Course in Progress</option>    
+                                                                          
+                </select>
+              </div>
 
-                                                                <div class="form-group col-md-6 col-12">
-                                                                  <label>Sale Status<p>*</p></label>
-                                                                  <select class="form-control" name="cars" id="cars">
-                                                                    <option value="allstudent">All Student</option>
-                                                                    <option value="europeans">Europeans</option>
-                                                                    <option value="allstudent">All Student</option>
-                                                                  </select>
-                                                                </div>
+              <div class="form-group col-md-6 col-12">
+                <label>Heat Level</label>
+                <select class="form-control" name="heatLevel" id="cars" onChange={handleOnChange} value={heatLevel}>
+                                                                                      <option >Very Hot</option>
+                                                                                      <option >Hot</option>
+                                                                                      <option >Warm</option>
+                                                                                      <option >Cold</option>
+                </select>
+              </div>
 
-                                                                <div class="form-group col-md-6 col-12">
-                                                                  <label>Heat Level</label>
-                                                                  <select class="form-control" name="cars" id="cars">
-                                                                    <option value="allstudent">Very Hot</option>
-                                                                    <option value="europeans">Hot</option>
-                                                                    <option value="allstudent">Warm</option>
-                                                                  </select>
-                                                                </div>
+              <div class="form-group col-md-12 col-12">
+                <label>Other comments (remarks)</label>
+                <textarea  rows="5" class="form-control" placeholder="insert text here" value={otherComments} name="otherComments" onChange={handleOnChange}></textarea>
+              </div>      
+          </div>
+        </div>
+      </div>
+      
 
-                                                                <div class="form-group col-md-12 col-12">
-                                                                  <label>Other comments (remarks)</label>
-                                                                  <textarea name="message" rows="5" class="form-control" placeholder="insert text here"></textarea>
-                                                                </div>      
-                                                            </div>
-                                                          </div>
-                                                        </div>
-                                                        
+      <div class="others">
+        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <div class="card">
+                <div class="card-header" role="tab" id="headingOne1">
+                  <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
+                    aria-controls="collapseOne1">
+                    <div class="headingdiv">Others <i class="fas fa-angle-down rotate-icon"></i></div>
+                  </a>
+                </div>
+                <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
+                    data-parent="#accordionEx">
+                    <div class="card-body">
+                        <div class="crm-form">
+                          <div class="form-row">
 
-                                                        <div class="others">
-                                                          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                              <div class="card">
-                                                                  <div class="card-header" role="tab" id="headingOne1">
-                                                                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne1" aria-expanded="true"
-                                                                      aria-controls="collapseOne1">
-                                                                      <div class="headingdiv">Others <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                    </a>
-                                                                  </div>
-                                                                  <div id="collapseOne1" class="collapse show" role="tabpanel" aria-labelledby="headingOne1"
-                                                                      data-parent="#accordionEx">
-                                                                      <div class="card-body">
-                                                                          <div class="crm-form">
-                                                                            <div class="form-row">
+                              <div class="form-group col-md-4 col-12">
+                                <label>Status <p>*</p></label>
+                                <select class="form-control" name="locationStatus" value={locationStatus} id="cars" onChange={handleOnChange}>
+                                  <option >Onshore</option>
+                                  <option >Offshore</option>
+                                </select>
+                              </div>
 
-                                                                                <div class="form-group col-md-4 col-12">
-                                                                                  <label>Status <p>*</p></label>
-                                                                                  <select class="form-control" name="cars" id="cars">
-                                                                                    <option value="allstudent">Onshore</option>
-                                                                                    <option value="europeans">Offshore</option>
+                              <div class="form-group col-md-4 col-12">
+                                <label>Referral source <p>*</p></label>
+                                <select class="form-control" name="referalSource" value={referalSource} onChange={handleOnChange} id="cars">
+                                  <option >unknown</option>
+                                  <option >Youtube</option>
+                                  <option >Instagram</option>
+                                  <option >Facebook</option>
+                                  <option >Google</option>
+                                </select>
+                              </div>
+
+                        
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="counsellor">
+        <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <div class="card">
+                <div class="card-header" role="tab" id="headingOne2">
+                  <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne2" aria-expanded="true"
+                    aria-controls="collapseOne2">
+                    <div class="headingdiv">Counsellors <i class="fas fa-angle-down rotate-icon"></i></div>
+                  </a>
+                </div>
+                <div id="collapseOne2" class="collapse show" role="tabpanel" aria-labelledby="headingOne2"
+                    data-parent="#accordionEx">
+                  <div class="card-body">
+                    <div class="crm-form">
+                      <div class="form-row">
+
+                          <div class="form-group col-md-12 col-12">
+                            <label>Counsellor 1</label>
+                            <input type="text" class="form-control" placeholder="" name="userNmae" value={userName} onChange={handleOnChange} />
+                          </div>
+
+                          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+      <div class="notes">
+          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+              <div class="card">
+                  <div class="card-header" role="tab" id="headingOne3">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne3" aria-expanded="true"
+                      aria-controls="collapseOne3">
+                      <div class="headingdiv">Add a note <i class="fas fa-angle-down rotate-icon"></i></div>
+                    </a>
+                  </div>
+                  <div id="collapseOne3" class="collapse show" role="tabpanel" aria-labelledby="headingOne3"
+                      data-parent="#accordionEx">
+                    <div class="card-body">
+                      <div class="crm-form">
+                        <div class="form-row">
+
+                            <div class="form-group col-md-12 col-12">
+                              <textarea name="note" value={note} rows="4" class="form-control" placeholder="Add a Note" onChange={handleOnChange}></textarea>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+      <div class="update-student">
+          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+              <div class="card">
+                  <div class="card-header" role="tab" id="headingOne4">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne4" aria-expanded="true"
+                      aria-controls="collapseOne4">
+                      <div class="headingdiv">Personal <i class="fas fa-angle-down rotate-icon"></i></div>
+                    </a>
+                  </div>
+                  <div id="collapseOne4" class="collapse show" role="tabpanel" aria-labelledby="headingOne4"
+                      data-parent="#accordionEx">
+                      <div class="card-body">
+                          <div class="crm-form">
+                              <div class="form-row">
+
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>First Name<p>*</p></label>
+                                    <input type="text" class="form-control" placeholder="" name="firstName" value={firstName} onChange={handleOnChange}/>
+                                  </div>
+
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>Last Name<p>*</p></label>
+                                    <input type="text" class="form-control" placeholder="" name="lastName" value={lastName} onChange={handleOnChange}/>
+                                  </div>
+
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>Birthday<p>*</p></label>
+                                    <input type="date" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange}/>
+                                  </div>
+
+                                
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>Gender</label>
+                                    <select class="form-control" name="genders" value={genders} onChange={handleOnChange}>
+                                      <option >Male</option>
+                                      <option >Female</option>
+                                      <option >Other</option>
+                                    </select>
+                                  </div>
+
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>Status<p>*</p></label>
+                                    <input type="date" class="form-control" placeholder="" name="salesPipeline" value={salesPipeline} onChange={handleOnChange}/>
+                                  </div>
+
+                                  <div class="form-group col-md-4 col-12">
+                                    <label>Nationality</label>
+                                    <select class="form-control" name="nation" value={nation} onChange={handleOnChange}>
+                                      <option >Poland</option>
+                                      <option >Peru</option>
+                                      <option >Norway</option>
+                                      <option >Ghana</option>
+                                    </select>
+                                  </div>  
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    </div>
+
+
+      <div class="contact">
+         <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+            <div class="card">
+                <div class="card-header" role="tab" id="headingOne1">
+                  <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne5" aria-expanded="true"
+                    aria-controls="collapseOne5">
+                    <div class="headingdiv">Contact <i class="fas fa-angle-down rotate-icon"></i></div>
+                  </a>
+                </div>
+                <div id="collapseOne5" class="collapse show" role="tabpanel" aria-labelledby="headingOne5"
+                    data-parent="#accordionEx">
+                    <div class="card-body">
+                        <div class="crm-form">
+                            <div class="form-row">
+
+                              <div class="form-group col-md-12 col-12">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="" name="email" value={email} onChange={handleOnChange}/>
+                              </div>
+
+                              <div class="form-group col-md-12 col-12">
+                                <label>Onshore phone</label>
+                                <input type="text" class="form-control" placeholder="" name="onShorePhone" value={onShorePhone} onChange={handleOnChange}/>
+                              </div>
+
+                              <div class="form-group col-md-12 col-12">
+                                <label>Offshore phone</label>
+                                <input type="text" class="form-control" placeholder="" name="offShorePhone" value={offShorePhone} onChange={handleOnChange}/>
+                              </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      <div class="visa">
+          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
+              <div class="card">
+                  <div class="card-header" role="tab" id="headingOne6">
+                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne6" aria-expanded="true"
+                      aria-controls="collapseOne6">
+                      <div class="headingdiv">Visa <i class="fas fa-angle-down rotate-icon"></i></div>
+                    </a>
+                  </div>
+                  <div id="collapseOne6" class="collapse show" role="tabpanel" aria-labelledby="headingOne6"
+                      data-parent="#accordionEx">
+                        <div class="card-body">
+                          <div class="crm-form">
+                            <div class="form-row">
+
+                                <div class="form-group col-md-4 col-12">
+                                  <label>Type</label>
+                                  <select class="form-control" name="visaType" id="cars" onChange={handleOnChange} value={visaType}>
+                                                                                    <option >Any</option>
+                                                                                    <option >Student visa</option>
+                                                                                    <option >Working holiday</option>
+                                                                                    <option >Work & holiday</option>
+                                                                                    <option >Citizenship</option>
+                                                                                    <option >other</option>
                                                                                   </select>
-                                                                                </div>
+                                </div>
 
-                                                                                <div class="form-group col-md-4 col-12">
-                                                                                  <label>Referral source <p>*</p></label>
-                                                                                  <select class="form-control" name="cars" id="cars">
-                                                                                    <option value="allstudent">unknown</option>
-                                                                                    <option value="europeans">Youtube</option>
-                                                                                    <option value="europeans">Instagram</option>
-                                                                                    <option value="europeans">Facebook</option>
-                                                                                    <option value="europeans">Google</option>
-                                                                                  </select>
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-4 col-12">
-                                                                                  <label>Referral details</label>
-                                                                                  <select class="form-control" name="cars" id="cars">
-                                                                                    <option value="allstudent">Zbigniew Malkowski</option>
-                                                                                  </select>
-                                                                                </div>
-                                                                            </div>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                        </div>
-
-                                                        <div class="counsellor">
-                                                          <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                              <div class="card">
-                                                                  <div class="card-header" role="tab" id="headingOne2">
-                                                                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne2" aria-expanded="true"
-                                                                      aria-controls="collapseOne2">
-                                                                      <div class="headingdiv">Counsellors <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                    </a>
-                                                                  </div>
-                                                                  <div id="collapseOne2" class="collapse show" role="tabpanel" aria-labelledby="headingOne2"
-                                                                      data-parent="#accordionEx">
-                                                                    <div class="card-body">
-                                                                      <div class="crm-form">
-                                                                        <div class="form-row">
-
-                                                                            <div class="form-group col-md-12 col-12">
-                                                                              <label>Counsellor 1</label>
-                                                                              <input type="text" class="form-control" placeholder="" name="" value="Artur Szulakowski" />
-                                                                            </div>
-
-                                                                            <div class="form-group col-md-12 col-12">
-                                                                              <label>Counsellor 2</label>
-                                                                              <input type="text" class="form-control" placeholder="" name="" />
-                                                                            </div>
-                                                                      </div>
-                                                                    </div>
-                                                                  </div>
-                                                                </div>
-                                                              </div>
-                                                          </div>
-                                                        </div>
+                                <div class="form-group col-md-4 col-12">
+                                  <label>Visa expire date</label>
+                                  <input type="date" class="form-control" placeholder="" name="visaExpiryDate" value={visaExpiryDate} onChange={handleOnChange} />
+                                </div>
+                          </div>
+                        </div>
+                  </div>
+              </div>
+              </div>
+          </div>
+       </div>
+  </div>                                                
+  
+</div>
+</div>
 
 
-                                                        <div class="notes">
-                                                            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                                <div class="card">
-                                                                    <div class="card-header" role="tab" id="headingOne3">
-                                                                      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne3" aria-expanded="true"
-                                                                        aria-controls="collapseOne3">
-                                                                        <div class="headingdiv">Add a note <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                      </a>
-                                                                    </div>
-                                                                    <div id="collapseOne3" class="collapse show" role="tabpanel" aria-labelledby="headingOne3"
-                                                                        data-parent="#accordionEx">
-                                                                      <div class="card-body">
-                                                                        <div class="crm-form">
-                                                                          <div class="form-row">
 
-                                                                              <div class="form-group col-md-12 col-12">
-                                                                                <textarea name="message" rows="4" class="form-control" placeholder="Add a Note"></textarea>
-                                                                              </div>
-                                                                          </div>
-                                                                        </div>
-                                                                      </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="update-student">
-                                                            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                                <div class="card">
-                                                                    <div class="card-header" role="tab" id="headingOne4">
-                                                                      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne4" aria-expanded="true"
-                                                                        aria-controls="collapseOne4">
-                                                                        <div class="headingdiv">Personal <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                      </a>
-                                                                    </div>
-                                                                    <div id="collapseOne4" class="collapse show" role="tabpanel" aria-labelledby="headingOne4"
-                                                                        data-parent="#accordionEx">
-                                                                        <div class="card-body">
-                                                                            <div class="crm-form">
-                                                                                <div class="form-row">
 
-                                                                                    <div class="form-group col-md-4 col-12">
-                                                                                      <label>First Name<p>*</p></label>
-                                                                                      <input type="text" class="form-control" placeholder="" name="" value="Artur"/>
-                                                                                    </div>
+<div class="fotercontent">      
+<div class="form-buttons-w">
+<div className="row">
+   <div className="col-md-9">
+      <button type="button" onClick={()=>deleteStudentRecord()} class="btn btn-danger btn-secondary"/>
+   </div>
+   <div className="col-md-3">
+      
+   <input type="submit" name="Save" class="btn float-right btn-primary getin-btn" value="Save"/>
+   </div>
+</div>      
+</div>          
+</div>
+</form>
 
-                                                                                    <div class="form-group col-md-4 col-12">
-                                                                                      <label>Last Name<p>*</p></label>
-                                                                                      <input type="text" class="form-control" placeholder="" name="" value="Szulakowski"/>
-                                                                                    </div>
-
-                                                                                    <div class="form-group col-md-4 col-12">
-                                                                                      <label>Birthday<p>*</p></label>
-                                                                                      <input type="date" class="form-control" placeholder="" name="" value=""/>
-                                                                                    </div>
-
-                                                                                  
-                                                                                    <div class="form-group col-md-4 col-12">
-                                                                                      <label>Gender</label>
-                                                                                      <select class="form-control" name="gender">
-                                                                                        <option value="allstudent">Male</option>
-                                                                                        <option value="europeans">Female</option>
-                                                                                        <option value="allstudent">Other</option>
-                                                                                      </select>
-                                                                                    </div>
-
-                                                                                    <div class="form-group col-md-4 col-12">
-                                                                                      <label>Status<p>*</p></label>
-                                                                                      <input type="date" class="form-control" placeholder="" name="" value="Onshore"/>
-                                                                                    </div>
-
-                                                                                    <div class="form-group col-md-4 col-12">
-                                                                                      <label>Nationality</label>
-                                                                                      <select class="form-control" name="gender">
-                                                                                        <option value="allstudent">Poland</option>
-                                                                                        <option value="europeans">Peru</option>
-                                                                                        <option value="allstudent">Norway</option>
-                                                                                        <option value="allstudent">Ghana</option>
-                                                                                      </select>
-                                                                                    </div>  
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                      </div>
-                              
-
-                                                        <div class="contact">
-                                                           <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                              <div class="card">
-                                                                  <div class="card-header" role="tab" id="headingOne1">
-                                                                    <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne5" aria-expanded="true"
-                                                                      aria-controls="collapseOne5">
-                                                                      <div class="headingdiv">Contact <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                    </a>
-                                                                  </div>
-                                                                  <div id="collapseOne5" class="collapse show" role="tabpanel" aria-labelledby="headingOne5"
-                                                                      data-parent="#accordionEx">
-                                                                      <div class="card-body">
-                                                                          <div class="crm-form">
-                                                                              <div class="form-row">
-
-                                                                                <div class="form-group col-md-12 col-12">
-                                                                                  <label>Email</label>
-                                                                                  <input type="email" class="form-control" placeholder="" name="" value="adams258@o2.pl"/>
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-12 col-12">
-                                                                                  <label>Onshore phone</label>
-                                                                                  <input type="text" class="form-control" placeholder="" name="" />
-                                                                                </div>
-
-                                                                                <div class="form-group col-md-12 col-12">
-                                                                                  <label>Offshore phone</label>
-                                                                                  <input type="text" class="form-control" placeholder="" name="" />
-                                                                                </div>
-
-                                                                              </div>
-                                                                          </div>
-                                                                      </div>
-                                                                  </div>
-                                                              </div>
-                                                          </div>
-                                                        </div>
-
-                                                        <div class="visa">
-                                                            <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
-                                                                <div class="card">
-                                                                    <div class="card-header" role="tab" id="headingOne6">
-                                                                      <a data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne6" aria-expanded="true"
-                                                                        aria-controls="collapseOne6">
-                                                                        <div class="headingdiv">Visa <i class="fas fa-angle-down rotate-icon"></i></div>
-                                                                      </a>
-                                                                    </div>
-                                                                    <div id="collapseOne6" class="collapse show" role="tabpanel" aria-labelledby="headingOne6"
-                                                                        data-parent="#accordionEx">
-                                                                          <div class="card-body">
-                                                                            <div class="crm-form">
-                                                                              <div class="form-row">
-
-                                                                                  <div class="form-group col-md-4 col-12">
-                                                                                    <label>Type</label>
-                                                                                    <input type="text" class="form-control" placeholder="" name="" value="500"/>
-                                                                                  </div>
-
-                                                                                  <div class="form-group col-md-4 col-12">
-                                                                                    <label>Visa expire date</label>
-                                                                                    <input type="text" class="form-control" placeholder="" name="" value="03/06/2022" />
-                                                                                  </div>
-                                                                            </div>
-                                                                          </div>
-                                                                    </div>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                         </div>
-                                                    </div>                                                
-                                                    <div class="col-lg-5 col-12">
-                                                        <div class="personal">
-                                                                <div class="headingdiv">Personal Details
-                                                                    <div class="element-actions" >
-                                                                      <a href="" class="btn btn-sm" data-toggle="modal" data-target="#personalEdit" >
-                                                                        <i class="fa fa-pencil" aria-hidden="true"></i><span>Edit</span>
-                                                                      </a>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="first-name">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-address-book" aria-hidden="true"></i>
-                                                                          <span class="text-muted">First name</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>Chen-Ting</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="last-name">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-address-book" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Last name</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>Tsung</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="birth">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Birthday</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>01/01/1999</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="status mb-10">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Status</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>Male</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="nationality">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-globe" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Nationality</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>Taiwan</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="email">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Email</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>a0961005565@gmail.com</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="phone">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-phone" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Onshore phone</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>+61 409 130 865</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="phone">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <i class="fa fa-phone" aria-hidden="true"></i>
-                                                                          <span class="text-muted">Offshore phone</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>+61 409 130 865</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>
-
-                                                                <div class="visa">
-                                                                  <div class="row">
-                                                                      <div class='col-sm-6 col-12'>
-                                                                          <span class="text-muted">Visa expiry date</span>
-                                                                      </div>
-                                                                      <div class='col-sm-6 col-12 text-right'>
-                                                                      <span class="text"><b>10/09/2022</b></span>
-                                                                  </div>
-                                                                  </div>
-                                                                </div>                   
-                                                         </div>
-                                                    </div>
-                                                  </div>
-                                                </div>
-
-                                                
-                                          </Modal.Body>
-
-                                          <Modal.Footer>
-                                            <div class="fotercontent">      
-                                              <div class="form-buttons-w">
-                                                  <div className="row">
-                                                     <div className="col-md-9">
-                                                        <button type="button" class="btn btn-danger btn-secondary">Delete</button>
-                                                     </div>
-                                                     <div className="col-md-3">
-                                                        <button type="button" class="btn float-right btn-primary getin-btn">Save</button>
-                                                     </div>
-                                                  </div>      
-                                              </div>          
-                                            </div>
-                                          </Modal.Footer>
+                                              
+                                            </Modal.Body>
                                           </div>
                                       </div>
                                     </div>

@@ -6,19 +6,19 @@ const initialState = {
   message: "",
 };
 
-const editStudentSlice = createSlice({
-  name: "editStudent",
+const deleteStudentSlice = createSlice({
+  name: "deleteStudent",
   initialState,
   reducers: {
-    editStudentPending: (state) => {
+    deleteStudentPending: (state) => {
       state.isLoading = true;
     },
-    editStudentSuccess: (state, { payload }) => {
+    deleteStudentSuccess: (state, { payload }) => {
       state.isLoading = false;
       state.status = "success";
       state.message = payload;
     },
-    editStudentError: (state, { payload }) => {
+    deleteStudentError: (state, { payload }) => {
       state.isLoading = false;
       state.status = "error";
       state.message = payload;
@@ -26,12 +26,12 @@ const editStudentSlice = createSlice({
   },
 });
 
-const { reducer, actions } = editStudentSlice;
+const { reducer, actions } = deleteStudentSlice;
 
 export const {
-  editStudentPending,
-  editStudentSuccess,
-  editStudentError
+  deleteStudentPending,
+  deleteStudentSuccess,
+  deleteStudentError
 } = actions;
 
 export default reducer;
