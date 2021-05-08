@@ -9,7 +9,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faEye,faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 import {userLogout} from "../api/userApi"
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 library.add(faEyeSlash,faEye)
 
 
@@ -28,6 +28,7 @@ export const DefaultLayout = ({children}) => {
     { name: 'Europeans', to: ''},
     { name: 'Test', to: ''},
     { name: 'Uncatorized', to: ''}] },
+    {name: 'Leads', to: '/leads', icon: '/images/courses.png', subMenuItems: [] },
     {name: 'Tasks', to: '/add-task', icon: '/images/task.png', 
       subMenuItems: [
       ] },
@@ -110,10 +111,10 @@ export const DefaultLayout = ({children}) => {
           <div className="dropdown-menu dropdown-menu-lg dropdown-menu-right">
            
             <div className="dropdown-divider"></div>
-            <a className="dropdown-item" href="/#">
+           <Link to="/profile-page"><a className="dropdown-item" >
                                       <i className="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                       Profile
-                                  </a>
+                                  </a></Link> 
             
           <a className="dropdown-item" href="/#">
                                       <i className="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>

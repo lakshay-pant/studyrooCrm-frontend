@@ -755,9 +755,9 @@ const [offShorePhone, setOffShorePhone] = useState("");
                         <th>NAME</th>
                         <th>CREATED DATES</th>
                         <th>INFO</th>
-                        <th>DATES</th>
+                        <th>HEAT LEVEL</th>
                         <th>VISA</th>
-                        <th>Sale status</th>
+                        <th>SALE STATUS</th>
                         <th>ASSIGNED TO</th>
                         <th>ACTIONS</th>
                       </tr>
@@ -769,11 +769,12 @@ const [offShorePhone, setOffShorePhone] = useState("");
                               <td>{item.firstName}</td>
                               <td>{(Moment(item.addedAt).format('DD/MM/YYYY'))}</td>
                               <td>{item.email}</td>
-                              <td>{(Moment(item.addedAt).format('DD/MM/YYYY'))}</td>
+                              <td>{item.heatLevel}</td>
+                              <td>{item.visaType}<br/>Exp:<br/>{item.visaExpiryDate}</td>
                               <td>{item.salesStatus}</td>
                               <td>{item.userName}</td> 
                               <td>{item.userName}</td>   
-                              <td>{ID}</td>            
+                                        
                               <td>
                                   <div class="action">
                                       <a onClick={()=>showModal2(item._id)}><i class="fas fa-pen"></i></a>
