@@ -27,6 +27,8 @@ export const Profile = () => {
                             </div>
                         </div>
 
+                        
+
                         <div class="col-sm-8 col-12">
                         <div class="profile-detail">
                            <div class="headingdiv">Personal</div>

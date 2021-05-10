@@ -9,13 +9,21 @@ import 'react-tabs/style/react-tabs.css';
 
 const Leads = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isOpen2, setIsOpen2] = useState(false);
     
     const showModal = () => {
         setIsOpen(true);
     }
 
+    const showModal2 = () => {
+        setIsOpen2(true);
+    }
+
     const hideModal = () => {
         setIsOpen(false);
+    };
+    const hideModal2 = () => {
+        setIsOpen2(false);
     };
 
     return(
@@ -64,16 +72,172 @@ const Leads = () => {
                                                     <span class="tooltiptext">Archive</span>
                                                 </div>
 
-                                                <select class="form-control filter-box">
-                                                    <option>Add Lead</option>
-                                                    <option>2</option>
+                                                <select class="form-control filter-box" onClick={showModal2}>
+                                                    <option >Add Lead</option>
+                                                    {/*<option>2</option>
                                                     <option>3</option>
                                                     <option>4</option>
-                                                    <option>5</option>
+                                                    <option>5</option>*/}
                                                 </select>
                                             </div>
-                                        </div>
 
+                                            {/*modal-body--*/}
+                                            <div class="modal fade filters-modal show" id="addLeads" aria-modal="true">
+                                                    <Modal show={isOpen2} onHide={hideModal2}>
+                                                        <Modal.Body>
+                                                        <div class="modal fade change-columns" id="addLeads" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-top leads-top">
+                                                                            <h5>Add Lead</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={hideModal2}>
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    
+                                                                        <div class="modal-body">
+                                                                            <div class="student-filter-area">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12 col-12">
+                                                                                       <div class="update-crm add-leads">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-6 col-12">
+                                                                                                    <div class="form-row">
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Contact Person</label>
+                                                                                                            <div class="input-icons">
+                                                                                                                <i class="fa fa-user icon"></i>
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="" />
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Organization</label>
+                                                                                                            <div class="input-icons">
+                                                                                                                <i class="fa fa-building icon" aria-hidden="true"></i>
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="" />
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Title</label>
+                                                                                                            <input type="text" class="form-control" placeholder="" name="" />
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <div class="form-row">
+                                                                                                                <div class="form-group col-md-6 col-6">
+                                                                                                                    <label>Value</label>
+                                                                                                                    <input type="text" class="form-control" placeholder="" name="" value=""/>
+                                                                                                                </div>
+                                                                                                                <div class="form-group col-md-6 col-6">
+                                                                                                                    <label></label>
+                                                                                                                    <select class="form-control" name="cars" id="cars">
+                                                                                                                    <option value="allstudent">Indian Rupee</option>
+                                                                                                                    <option value="europeans">Europeans</option>
+                                                                                                                    <option value="allstudent">All Student</option>
+                                                                                                                    <option value="europeans">Europeans</option>
+                                                                                                                    </select>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Labels</label>
+                                                                                                            <select class="form-control" name="cars" id="cars">
+                                                                                                                <option value="allstudent">Hot</option>
+                                                                                                                <option value="europeans">Cold</option>
+                                                                                                                <option value="allstudent">Warm</option>
+                                                                                                                <option value="europeans">Europeans</option>
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Owner</label>
+                                                                                                            <select class="form-control" name="cars" id="cars" value="you">
+                                                                                                                <option value="allstudent">Hot</option>
+                                                                                                                <option value="europeans">Cold</option>
+                                                                                                                <option value="allstudent">Warm</option>
+                                                                                                                <option value="europeans">Europeans</option>
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Visible To</label>
+                                                                                                            <div class="input-icons">
+                                                                                                                <i class="fa fa-th icon" aria-hidden="true"></i>
+                                                                                                                <select class="form-control input-field" name="cars" id="cars" >
+                                                                                                                    <option value="allstudent"></option>
+                                                                                                                    <option value="europeans">Cold</option>
+                                                                                                                    <option value="allstudent">Warm</option>
+                                                                                                                    <option value="europeans">Europeans</option>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="col-md-6 col-12 person-area">
+                                                                                                    <div class="person">
+                                                                                                        <div class="heading">
+                                                                                                            <i class="fa fa-user"></i>
+                                                                                                            <span>Person</span>
+                                                                                                        </div>
+                                                                                                        <div class="row">
+                                                                                                            <div class="form-group col-md-6 col-6 left">
+                                                                                                                <label>Phone</label>
+                                                                                                                <input type="text" class="form-control" placeholder="" name="" />
+                                                                                                            </div>
+                                                                                                            <div class="col-md-6 col-6 form-group right">
+                                                                                                                <label>Work</label>
+                                                                                                                <select class="form-control" name="cars" id="cars" value="Work">
+                                                                                                                <option value="allstudent">Hot</option>
+                                                                                                                <option value="europeans">Cold</option>
+                                                                                                                <option value="allstudent">Warm</option>
+                                                                                                                <option value="europeans">Europeans</option>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                            <div class="form-group col-md-6 col-6 left">
+                                                                                                                <label>Email</label>
+                                                                                                                <input type="text" class="form-control" placeholder="" name="" />
+                                                                                                            </div>
+                                                                                                            <div class="col-md-6 col-6 form-group right">
+                                                                                                                <label>Work</label>
+                                                                                                                <select class="form-control" name="cars" id="cars" value="Work">
+                                                                                                                <option value="allstudent">Hot</option>
+                                                                                                                <option value="europeans">Cold</option>
+                                                                                                                <option value="allstudent">Warm</option>
+                                                                                                                <option value="europeans">Europeans</option>
+                                                                                                                </select>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="fotercontent">
+                                                                                    <div class="rest">
+                                                                                        <a href="#"><span><i class="far fa-redo"></i></span> Reset</a>
+                                                                                    </div>
+                                                                                    <div class="footersingbtn">
+                                                                                        <input type="submit" name="Save" class="btn getin-btn" value="Save" />
+                                                                                    </div>
+                                                                                </div>{/*<!-- Modal -->*/}
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                        </Modal.Body>
+                                                  </Modal>
+                                            </div>
+
+                                        </div>
                                         <div class="col-md-6 col-12">
                                             <form class="activform ml-auto">
                                                 <div class="form-row">

@@ -617,3 +617,98 @@ a:hover{
    text-align: center;
 }
 
+
+/* Add-leads poprip */
+.add-leads .input-icons i {
+  position: absolute;
+  color: #6C7474;
+}
+
+.add-leads .input-icons {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.add-leads .icon {
+  padding: 10px;
+  color: green;
+  min-width: 40px;
+  text-align: center;
+}
+.add-leads .input-icons .input-field {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.modal-top.leads-top {
+color: #6C7474;
+padding: 12px 48px 12px 16px;
+height: 48px;
+background-color: #f7f7f7;
+border-bottom: 1px solid #e5e5e5;
+}         
+.add-leads .form-group{
+margin-bottom: 0.5rem;
+}
+.add-leads .person-area{
+background-color: #fff;
+border-left: 1px solid #e5e5e5;
+
+}
+.add-leads .person-area .form-group.left{
+padding-right: 2px;
+}
+.add-leads .person-area .form-group.right{
+padding-left: 2px;
+}
+.add-leads .person-area .heading{
+width: 100%;
+color: #F48035;
+margin: 8px 0;
+padding: 4px 16px;
+box-sizing: border-box;
+text-align: justify;
+padding-left: 0;
+border-bottom: solid 1px #eee;
+margin-bottom: 15px;
+}
+.add-leads .person-area .heading i {
+height: 16px;
+width: 16px;
+display: inline-flex;
+flex: 0 0 auto;
+box-sizing: border-box;
+margin-right: 4px;
+fill: #404346;
+}
+.add-leads .person-area .heading span {
+letter-spacing: .25px;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+/*.add-leads .person-area .heading :after {
+display: flex;
+content: "";
+position: relative;
+background: rgba(38,41,44,.12);
+height: 1px;
+flex-grow: 1;
+margin-left: 8px;
+margin-top: -1px;
+}
+*/
+.change-columns .modal-content .leads-top button.close {
+position: absolute;
+right: 9px;
+top: 10px;
+z-index: 999;
+color: #6C7474;
+opacity: 1;
+
+background: none;
+width: 30px;
+height: 30px;
+}
+/*add-leads popup end */
