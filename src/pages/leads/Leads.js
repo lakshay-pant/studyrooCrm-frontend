@@ -74,10 +74,7 @@ const Leads = () => {
 
                                                 <select class="form-control filter-box" onClick={showModal2}>
                                                     <option >Add Lead</option>
-                                                    {/*<option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>*/}
+                                                  
                                                 </select>
                                             </div>
 

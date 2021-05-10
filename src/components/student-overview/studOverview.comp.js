@@ -394,9 +394,31 @@ const [offShorePhone, setOffShorePhone] = useState("");
     setIsOpen(true);
   }
 
-  const showModal2 = (id) => {
+  const showModal2 = (item) => {
+    console.log(item._id)
     
-    setID(id)
+    setID(item._id)
+    setSalesPipeline(item.salesPipeline)
+    setSalesStatus(item.salesStatus)
+    setHeatLevel(item.heatLevel)
+    setOtherComments(item.otherComments)
+    setLocationStatus(item.locationStatus)
+    setFirstName(item.firstName)
+    setReferalSource(item.referalSource)
+    setUserName(item.userName)
+    setNote(item.note)
+    setLastName(item.lastName)
+    setBirthday(item.birthday)
+    setGenders(item.genders)
+    setNation(item.nation)
+    setEmail(item.email)
+    setOnShorePhone(item.onShorePhone)
+    setOffShorePhone(item.offShorePhone)
+    setVisaType(item.visaType)
+    setVisaExpiryDate(item.visaExpiryDate)
+
+
+
     
     setIsOpen2(true);
   }
@@ -777,7 +799,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                         
                               <td>
                                   <div class="action">
-                                      <a onClick={()=>showModal2(item._id)}><i class="fas fa-pen"></i></a>
+                                      <a onClick={()=>showModal2(item)}><i class="fas fa-pen"></i></a>
                                   </div>
                                   <div class="modal fade filters-modal show" aria-modal="true">
                                       <Modal show={isOpen2} onHide={hideModal2}>
@@ -805,8 +827,8 @@ const [offShorePhone, setOffShorePhone] = useState("");
               <div class="form-group col-md-6 col-12">
                 <label>Sales Pipeline<p>*</p></label>
                 <select class="form-control" name="salesPipeline" id="cars" onChange={handleOnChange} value={salesPipeline}>
-                  <option value="allstudent">OnShore</option>
-                  <option value="europeans">OffShore</option>
+                  <option >OnShore</option>
+                  <option >OffShore</option>
                 </select>
               </div>
 
@@ -987,10 +1009,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                     </select>
                                   </div>
 
-                                  <div class="form-group col-md-4 col-12">
-                                    <label>Status<p>*</p></label>
-                                    <input type="date" class="form-control" placeholder="" name="salesPipeline" value={salesPipeline} onChange={handleOnChange}/>
-                                  </div>
+                                  
 
                                   <div class="form-group col-md-4 col-12">
                                     <label>Nationality</label>
