@@ -82,13 +82,14 @@ const Leads = () => {
                                             <div class="modal fade filters-modal show" id="addLeads" aria-modal="true">
                                                     <Modal show={isOpen2} onHide={hideModal2}>
                                                         <Modal.Body>
-                                                        <div class="modal fade change-columns" id="addLeads" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog modal-lg" role="document">
-                                                                    <div class="modal-content">
+
+                                                                <div class="modal-dialog modal-lg add-leads" role="document">
+                                                               
+                                                                    <div class="modal-content ">
                                                                         <div class="modal-top leads-top">
                                                                             <h5>Add Lead</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" onClick={hideModal2}>
-                                                                                <span aria-hidden="true">&times;</span>
+                                                                                &times;
                                                                             </button>
                                                                         </div>
                                                                     
@@ -229,7 +230,6 @@ const Leads = () => {
 
                                                                     </div>
                                                                 </div>
-                                                        </div>
                                                         </Modal.Body>
                                                   </Modal>
                                             </div>
@@ -359,7 +359,8 @@ const Leads = () => {
                                     {/*modal-body--*/}
                                     <div class="modal fade filters-modal show " id="leadsFilter" aria-modal="true">
                                             <Modal show={isOpen} onHide={hideModal}>
-                                                <Modal.Body>
+                                                <Modal.Body class="myleadsfilter">
+                                                <div class="modal-dialog modal-lg " role="document">
                                                 <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
                                                                     <div class="card">
                                                                         <div role="tab" id="leadspopup">
@@ -782,7 +783,8 @@ const Leads = () => {
                                                                     </div>
                                                                     </div>
                                                                                             
-                                                                                            </Modal.Body>
+                                                </div>
+                                                </Modal.Body>
 
                                                                                             
                                                                                             

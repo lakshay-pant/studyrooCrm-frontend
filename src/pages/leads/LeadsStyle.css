@@ -556,9 +556,9 @@
 .leadsFilter .calendar-flyer .modal-dialog{
  max-width: 500px;
 }
-.modal-dialog {
-  margin-left: 21.50rem !important;
-  max-width: 1005px !important;
+.myleadsfilter .modal-dialog {
+  padding: 0;
+  margin: 0;
 }
 }
 a:hover{
@@ -699,16 +699,23 @@ margin-left: 8px;
 margin-top: -1px;
 }
 */
-.change-columns .modal-content .leads-top button.close {
+.add-leads .modal-content .leads-top button.close {
 position: absolute;
 right: 9px;
 top: 10px;
 z-index: 999;
 color: #6C7474;
 opacity: 1;
-
 background: none;
 width: 30px;
 height: 30px;
+}
+
+
+@media (min-width: 576px){
+  .modal-dialog.add-leads{
+    max-width: 700px!important;
+    margin: 1.75rem auto !important;
+}
 }
 /*add-leads popup end */
