@@ -41,7 +41,7 @@ const Leads = () => {
                                         <div className="add-round">
                                             <span><i className="fa fa-tasks"></i></span>
                                         </div>
-                                        <small>All Students</small>
+                                        <small>Leads</small>
                                     </div>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@ const Leads = () => {
                                             </div>
 
                                             {/*modal-body--*/}
-                                            <div class="modal fade filters-modal show" id="addLeads" aria-modal="true">
+                                            <div class="modal fade filters-modal show" id="task" aria-modal="true">
                                                     <Modal show={isOpen2} onHide={hideModal2}>
                                                         <Modal.Body>
 

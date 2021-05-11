@@ -13,6 +13,7 @@ import { UncategorizedStudents } from "./components/student-overview/studOvervie
 import  LeadsPopup  from "./pages/allStudents/leadsPopup"
 import Leads from "./pages/leads/Leads"
 import { Profile } from "./pages/profile/Profile"
+import TaskList from "./pages/addTask/taskList"
 
 function App() {
 
@@ -60,8 +61,13 @@ function App() {
             <Leads />
           </PrivateRoute>
 
+
           <PrivateRoute path="/profile-page">
             <Profile />
+          </PrivateRoute>
+
+          <PrivateRoute path ="/task-list">
+             <TaskList />
           </PrivateRoute>
 
         </Switch>
