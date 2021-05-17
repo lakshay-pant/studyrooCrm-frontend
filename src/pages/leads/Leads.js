@@ -454,7 +454,7 @@ const Leads = () => {
                                                                                                                                                         </div>
                                                                                                                                                         <div class="col-md-11 col-12">
                                                                                                                                                             <div class="meeting-input">
-                                                                                                                                                            <Tabs>
+                                                                                                                                                            {/*<Tabs>
                                                                                                                                                                     <TabPanel>
                                                                                                                                                                         <div id="home" class="tab-pane active show">
                                                                                                                                                                             <input type="text" class="form-control" placeholder="Call"/>
@@ -502,9 +502,12 @@ const Leads = () => {
                                                                                                                                                                 <Tab>
                                                                                                                                                                 <div class="icon-bg"><i class="fa fa-paper-plane" aria-hidden="true"></i></div>
                                                                                                                                                                 </Tab>
+                                                                                                                                                                <Tab>
+                                                                                                                                                                <div class="icon-bg"><i class="fa fa-phone" aria-hidden="true"></i></div>
+                                                                                                                                                                </Tab>
                                                                                                                                                                 </TabList>
 
-                                                                                                                                                            </Tabs>
+                                                                                                                                                            </Tabs>*/}
                                                                                                                                                                 
                                                                                                                                                                 
                                                                                                                                                             </div>

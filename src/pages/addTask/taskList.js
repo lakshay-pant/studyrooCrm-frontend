@@ -192,9 +192,12 @@ const TaskList = () => {
                                             </div>
                                             
                                              {/*modal-body--*/}
-                                            <div class="modal fade filters-modal show " id="taskupdate" aria-modal="true">
+                                            <div class="modal fade filters-modal show"  aria-modal="true">
                                                     <Modal show={isOpen} onHide={hideModal}>
-                                                        <Modal.body>
+                                                    <div id="taskupdate">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                                     <Modal.Body>
                                                         <div class="modal-dialog modal-lg" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-top">
@@ -309,11 +312,14 @@ const TaskList = () => {
                                                                             <div class="footersingbtn">
                                                                                 <input type="submit" name="Save" class="btn getin-btn" value="Save"/>
                                                                             </div>
-                                                                    </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                         </div>
-                                                                </Modal.body>
+                                                                </Modal.Body>
+                                                        </div>
+                                                        </div>
+                                                        </div>
                                                             </Modal>
                                                         </div>
                                                         {/*modal end */}
