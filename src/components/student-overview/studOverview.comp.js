@@ -110,6 +110,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
   const [city, setCity] = useState("XYZ");
   const [country, setCountry] = useState("India");
   const [zipCode, setZipCode] = useState("");
+  const [visaExFilter, setVisaExFilter] = useState("");
 
 
 
@@ -120,6 +121,10 @@ const [offShorePhone, setOffShorePhone] = useState("");
     switch (name) {
       case "firstName":
         setFirstName(value);
+        break;
+
+        case "visaExFilter":
+        setVisaExFilter(value);
         break;
 
         case "userName":
@@ -361,19 +366,12 @@ const [offShorePhone, setOffShorePhone] = useState("");
 
 
 
-
-
-
-    
-
-      
-
-       
-
-      default:
+ default:
         break;
     }
   };
+
+
 
   
 
@@ -434,6 +432,13 @@ const [offShorePhone, setOffShorePhone] = useState("");
 
   const deleteStudentRecord = () => {
 
+    dispatch(deleteStudent(ID))
+    
+  };
+
+  const dateFilter = () => {
+
+    var visaExpDate=
     dispatch(deleteStudent(ID))
     
   };
@@ -534,11 +539,22 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                         </div>
                                         <div class="form-group col-md-6">
                                           <label>Visa expiring</label>
-                                          <select name="" class="form-control">
-                                            <option value="volvo">1</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                          <select name="visaExFilter" class="form-control"  value={visaExFilter} onChange={handleOnChange}>
+                                            <option >Anytime</option>
+                                            <option>In 1 month</option>
+                                            <option>In 2 months</option>
+                                            <option>In 3 months</option>
+                                            <option>In 4 months</option>
+                                            <option>In 5 months</option>
+                                            <option>In 6 months</option>
+                                            <option>In 7 months</option>
+                                            <option>In 8 months</option>
+                                            <option>In 9 months</option>
+                                            <option>In 10 months</option>
+                                            <option>In 11 months</option>
+                                            <option>In 12 months</option>
+                                            <option>In 24 months</option>
+                                            
                                           </select>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -562,28 +578,36 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                         <div class="form-group col-md-6">
                                           <label>Status</label>
                                           <select name="" class="form-control">
-                                            <option value="volvo">1</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                          <option >Onshore</option>
+                                                                                          <option >Offshore</option>
+                                            
                                           </select>
                                         </div>
                                         <div class="form-group col-md-6">
-                                          <label>Sale</label>
+                                          <label>Sales Status</label>
                                           <select name="" class="form-control">
-                                            <option value="volvo">1</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                          <option >Inquiry Recieved</option>
+                                                                                      <option >Counselling</option>
+                                                                                      <option >Quotation Sent</option>
+                                                                                      <option >Application</option>
+                                                                                      <option >Waiting for Loo</option>
+                                                                                      <option >Payment Pending</option>
+                                                                                      <option >Waiting for CoE</option>
+                                                                                      <option >Apply for Visa</option>
+                                                                                      <option >Waiting for Visa Requirement</option>
+                                                                                      <option >Waiting for Visa</option>
+                                                                                      <option >Visa Granted</option>
+                                                                                      <option >Course in Progress</option>
                                           </select>
                                         </div>
                                         <div class="form-group col-md-6">
                                           <label>Referal source</label>
                                           <select name="" class="form-control">
-                                            <option value="volvo">1</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                          <option >unknown</option>
+                                                                                          <option >Youtube</option>
+                                                                                          <option >Instagram</option>
+                                                                                          <option >Facebook</option>
+                                                                                          <option >Google</option>
                                           </select>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -598,10 +622,10 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                         <div class="form-group col-md-6">
                                           <label>Heat level</label>
                                           <select name="" class="form-control">
-                                            <option value="volvo">1</option>
-                                            <option value="saab">Saab</option>
-                                            <option value="mercedes">Mercedes</option>
-                                            <option value="audi">Audi</option>
+                                          <option >Very Hot</option>
+                                                                                      <option >Hot</option>
+                                                                                      <option >Warm</option>
+                                                                                      <option >Cold</option>
                                           </select>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -781,7 +805,8 @@ const [offShorePhone, setOffShorePhone] = useState("");
                         <th>VISA</th>
                         <th>SALE STATUS</th>
                         <th>ASSIGNED TO</th>
-                        <th>ACTIONS</th>
+                        <th>STATUS</th>
+                        <th>PHONE</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -795,7 +820,8 @@ const [offShorePhone, setOffShorePhone] = useState("");
                               <td>{item.visaType}<br/>Exp:<br/>{item.visaExpiryDate}</td>
                               <td>{item.salesStatus}</td>
                               <td>{item.userName}</td> 
-                              <td>{item.userName}</td>   
+                              <td>{item.locationStatus}</td>   
+                              <td>Onshore:{item.onShorePhone}<br/>Offshore{item.offShorePhone}</td>
                                         
                               <td>
                                   <div class="action">

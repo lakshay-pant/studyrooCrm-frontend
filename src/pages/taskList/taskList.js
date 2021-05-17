@@ -6,17 +6,18 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const TaskList = () => {
+export const TaskList = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen3, setIsOpen3] = useState(false);
     
-    const showModal = () => {
-        setIsOpen(true);
+    const showModal3 = () => {
+        setIsOpen3(true);
     }
 
-    const hideModal = () => {
-        setIsOpen(false);
+    const hideModal3 = () => {
+        setIsOpen3(false);
     };
 
     return(
@@ -163,7 +164,7 @@ const TaskList = () => {
                                             <span></span>
                                             </div>
                                             <div class="data">
-                                            <p>Follow up quote(Adam Malkowski)</p>
+                                            <p >Follow up quote(Adam Malkowski)</p>
                                             <p>Assigned to: Artur Szulakowski. Created by: Automation</p>
                                             </div>
                                             <div class="number">
@@ -181,11 +182,11 @@ const TaskList = () => {
                                                     <span>Mark as in Progress</span>
                                                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                                 </a> 
-                                                <a class="task-btn-done" onClick={showModal}> 
+                                                <a class="task-btn-done"  > 
                                                     <span> Edit </span>
-                                                    <i class="fas fa-pen" aria-hidden="true" ></i>
+                                                    <i class="fas fa-pen" aria-hidden="true" onClick={()=>showModal3()} ></i>
                                                 </a> 
-                                                <a href="#" class="task-btn-done">
+                                                <a href="#" class="task-btn-done" >
                                                     <span> Delete </span>
                                                     <i class="fa fa-times" aria-hidden="true"></i>
                                                 </a> 
@@ -193,13 +194,13 @@ const TaskList = () => {
                                             
                                              {/*modal-body--*/}
                                             <div class="modal fade filters-modal show " id="taskupdate" aria-modal="true">
-                                                    <Modal show={isOpen} onHide={hideModal}>
-                                                        <Modal.body>
+                                                    <Modal show={isOpen3} onHide={hideModal3}>
+                                                        <Modal.Body>
                                                         <div class="modal-dialog modal-lg" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-top">
                                                                     <h5>Update Task</h5>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="button" onClick={()=>hideModal3} class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                     </div>
@@ -313,7 +314,7 @@ const TaskList = () => {
                                                                     </div>
                                                                 </div>
                                                         </div>
-                                                                </Modal.body>
+                                                                </Modal.Body>
                                                             </Modal>
                                                         </div>
                                                         {/*modal end */}
@@ -426,4 +427,3 @@ const TaskList = () => {
 
 }
 
-export default TaskList;
