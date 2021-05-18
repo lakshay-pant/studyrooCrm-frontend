@@ -8,6 +8,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const Leads = () => {
+    const [tabIndex, setTabIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
     
@@ -432,7 +433,9 @@ const Leads = () => {
                                                                                                         <div class="row">
                                                                                                             <div class="col-md-12">
                                                                                                                 <div class="notes-area">
-                                                                                                                    <Tabs className="react-tabs first">
+                                                                                                                   
+                                                                                                                 <Tabs className="react-tabs first" selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+                                                                                                                        
                                                                                                                         <TabList>
                                                                                                                             <Tab>Notes</Tab>
                                                                                                                             <Tab>Activity 2</Tab>
@@ -454,7 +457,7 @@ const Leads = () => {
                                                                                                                                                         </div>
                                                                                                                                                         <div class="col-md-11 col-12">
                                                                                                                                                             <div class="meeting-input">
-                                                                                                                                                            {/*<Tabs>
+                                                                                                                                                             <Tabs>
                                                                                                                                                                     <TabPanel>
                                                                                                                                                                         <div id="home" class="tab-pane active show">
                                                                                                                                                                             <input type="text" class="form-control" placeholder="Call"/>
@@ -507,8 +510,8 @@ const Leads = () => {
                                                                                                                                                                 </Tab>
                                                                                                                                                                 </TabList>
 
-                                                                                                                                                            </Tabs>*/}
-                                                                                                                                                                
+                                                                                                                                                            </Tabs>
+x`                                                                                                                                                                
                                                                                                                                                                 
                                                                                                                                                             </div>
                                                                                                                                                         </div>
