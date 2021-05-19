@@ -10,6 +10,8 @@ import 'react-tabs/style/react-tabs.css';
 const Leads = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
+    const [ key, setKey ] = useState('home'); 
+
     
     const showModal = () => {
         setIsOpen(true);
@@ -73,8 +75,7 @@ const Leads = () => {
                                                 </div>
 
                                                 <select class="form-control filter-box" onClick={showModal2}>
-                                                    <option >Add Lead</option>
-                                                  
+                                                    <option >Add Lead</option>          
                                                 </select>
                                             </div>
 
@@ -360,7 +361,6 @@ const Leads = () => {
                                     <div class="modal fade filters-modal show " id="leadsFilter" aria-modal="true">
                                             <Modal show={isOpen} onHide={hideModal}>
                                                 <Modal.Body class="myleadsfilter">
-                                                <div class="modal-dialog modal-lg " role="document">
                                                 <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
                                                                     <div class="card">
                                                                         <div role="tab" id="leadspopup">
@@ -432,16 +432,16 @@ const Leads = () => {
                                                                                                         <div class="row">
                                                                                                             <div class="col-md-12">
                                                                                                                 <div class="notes-area">
-                                                                                                                    <Tabs className="react-tabs first">
+                                                                                                                   
+                                                                                                                <Tabs className="react-tabs first">
+                                                                                                                        
                                                                                                                         <TabList>
                                                                                                                             <Tab>Notes</Tab>
                                                                                                                             <Tab>Activity 2</Tab>
                                                                                                                         </TabList>
                                                                                                                     
                                                                                                                         <TabPanel>
-                                                                                                                            <p>
-                                                                                                                                            Hello
-                                                                                                                                            </p>
+                                                                                                                            <p>Hello</p>
                                                                                                                         </TabPanel>
                                                                                                                         <TabPanel>
                                                                                                                         
@@ -454,7 +454,7 @@ const Leads = () => {
                                                                                                                                                         </div>
                                                                                                                                                         <div class="col-md-11 col-12">
                                                                                                                                                             <div class="meeting-input">
-                                                                                                                                                            {/*<Tabs>
+                                                                                                                                                             <Tabs>
                                                                                                                                                                     <TabPanel>
                                                                                                                                                                         <div id="home" class="tab-pane active show">
                                                                                                                                                                             <input type="text" class="form-control" placeholder="Call"/>
@@ -507,8 +507,8 @@ const Leads = () => {
                                                                                                                                                                 </Tab>
                                                                                                                                                                 </TabList>
 
-                                                                                                                                                            </Tabs>*/}
-                                                                                                                                                                
+                                                                                                                                                            </Tabs>
+                                                                                                                                                       
                                                                                                                                                                 
                                                                                                                                                             </div>
                                                                                                                                                         </div>
@@ -786,14 +786,8 @@ const Leads = () => {
                                                                     </div>
                                                                     </div>
                                                                                             
-                                                </div>
-                                                </Modal.Body>
-
-                                                                                            
-                                                                                            
-                                                                                        
-                                                                                
-                                                                            </Modal>
+                                                </Modal.Body>             
+                                            </Modal>
                                                                      
                                               
                                                   

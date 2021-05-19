@@ -108,6 +108,33 @@
     font-size: 14px;
     color: #5C5D5D;
 }
+#emailupdate .change-bg {
+    padding: 20px;
+}
+#emailupdate .fotercontent{
+    margin-top: 0;
+    border-top: solid 1px #eaebec;
+    padding-top: 15px;
+}
+
+#emailupdate .alert p{
+    margin-bottom: 0;
+}
+button.close span{
+    top: 0;
+}
+#emailupdate.pswupdate label p {
+    display: inline;
+    color: red;
+}
+#emailupdate .fotercontent{
+    margin-top: 20px;
+}
+#emailupdate p.light {
+    font-size: 13px;
+    padding-right: 20px;
+    color: #bebebe;
+}
 @media (max-width: 768px){
 .profile-page .profile-detail{
     margin-top: 35px;
