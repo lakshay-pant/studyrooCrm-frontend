@@ -8,9 +8,10 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 const Leads = () => {
-    const [tabIndex, setTabIndex] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
+    const [ key, setKey ] = useState('home'); 
+
     
     const showModal = () => {
         setIsOpen(true);
@@ -74,8 +75,7 @@ const Leads = () => {
                                                 </div>
 
                                                 <select class="form-control filter-box" onClick={showModal2}>
-                                                    <option >Add Lead</option>
-                                                  
+                                                    <option >Add Lead</option>          
                                                 </select>
                                             </div>
 
@@ -361,7 +361,6 @@ const Leads = () => {
                                     <div class="modal fade filters-modal show " id="leadsFilter" aria-modal="true">
                                             <Modal show={isOpen} onHide={hideModal}>
                                                 <Modal.Body class="myleadsfilter">
-                                                <div class="modal-dialog modal-lg " role="document">
                                                 <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
                                                                     <div class="card">
                                                                         <div role="tab" id="leadspopup">
@@ -434,7 +433,7 @@ const Leads = () => {
                                                                                                             <div class="col-md-12">
                                                                                                                 <div class="notes-area">
                                                                                                                    
-                                                                                                                 <Tabs className="react-tabs first" selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+                                                                                                                <Tabs className="react-tabs first">
                                                                                                                         
                                                                                                                         <TabList>
                                                                                                                             <Tab>Notes</Tab>
@@ -442,9 +441,7 @@ const Leads = () => {
                                                                                                                         </TabList>
                                                                                                                     
                                                                                                                         <TabPanel>
-                                                                                                                            <p>
-                                                                                                                                            Hello
-                                                                                                                                            </p>
+                                                                                                                            <p>Hello</p>
                                                                                                                         </TabPanel>
                                                                                                                         <TabPanel>
                                                                                                                         
@@ -511,7 +508,7 @@ const Leads = () => {
                                                                                                                                                                 </TabList>
 
                                                                                                                                                             </Tabs>
-x`                                                                                                                                                                
+                                                                                                                                                       
                                                                                                                                                                 
                                                                                                                                                             </div>
                                                                                                                                                         </div>
@@ -789,14 +786,8 @@ x`
                                                                     </div>
                                                                     </div>
                                                                                             
-                                                </div>
-                                                </Modal.Body>
-
-                                                                                            
-                                                                                            
-                                                                                        
-                                                                                
-                                                                            </Modal>
+                                                </Modal.Body>             
+                                            </Modal>
                                                                      
                                               
                                                   

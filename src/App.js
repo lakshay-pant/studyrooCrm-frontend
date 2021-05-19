@@ -14,6 +14,7 @@ import  LeadsPopup  from "./pages/allStudents/leadsPopup"
 import Leads from "./pages/leads/Leads"
 import { Profile } from "./pages/profile/Profile"
 import TaskList from "./pages/addTask/taskList"
+import LeadTest from "./pages/leads/LeadTest"
 
 function App() {
 
@@ -68,6 +69,10 @@ function App() {
 
           <PrivateRoute path ="/task-list">
              <TaskList />
+          </PrivateRoute>
+
+          <PrivateRoute path ="/lead-test">
+             <LeadTest />
           </PrivateRoute>
 
         </Switch>
