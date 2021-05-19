@@ -6,18 +6,17 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import "bootstrap/dist/css/bootstrap.min.css";
 
 export const TaskList = () => {
 
-    const [isOpen3, setIsOpen3] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     
-    const showModal3 = () => {
-        setIsOpen3(true);
+    const showModal = () => {
+        setIsOpen(true);
     }
 
-    const hideModal3 = () => {
-        setIsOpen3(false);
+    const hideModal = () => {
+        setIsOpen(false);
     };
 
     return(
@@ -164,7 +163,7 @@ export const TaskList = () => {
                                             <span></span>
                                             </div>
                                             <div class="data">
-                                            <p >Follow up quote(Adam Malkowski)</p>
+                                            <p>Follow up quote(Adam Malkowski)</p>
                                             <p>Assigned to: Artur Szulakowski. Created by: Automation</p>
                                             </div>
                                             <div class="number">
@@ -182,25 +181,28 @@ export const TaskList = () => {
                                                     <span>Mark as in Progress</span>
                                                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                                                 </a> 
-                                                <a class="task-btn-done"  > 
+                                                <a class="task-btn-done" onClick={showModal}> 
                                                     <span> Edit </span>
-                                                    <i class="fas fa-pen" aria-hidden="true" onClick={()=>showModal3()} ></i>
+                                                    <i class="fas fa-pen" aria-hidden="true" ></i>
                                                 </a> 
-                                                <a href="#" class="task-btn-done" >
+                                                <a href="#" class="task-btn-done">
                                                     <span> Delete </span>
                                                     <i class="fa fa-times" aria-hidden="true"></i>
                                                 </a> 
                                             </div>
                                             
                                              {/*modal-body--*/}
-                                            <div class="modal fade filters-modal show " id="taskupdate" aria-modal="true">
-                                                    <Modal show={isOpen3} onHide={hideModal3}>
-                                                        <Modal.Body>
+                                            <div class="modal fade filters-modal show"  aria-modal="true">
+                                                    <Modal show={isOpen} onHide={hideModal}>
+                                                    <div id="taskupdate">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                                     <Modal.Body>
                                                         <div class="modal-dialog modal-lg" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-top">
                                                                     <h5>Update Task</h5>
-                                                                    <button type="button" onClick={()=>hideModal3} class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
                                                                     </button>
                                                                     </div>
@@ -310,11 +312,14 @@ export const TaskList = () => {
                                                                             <div class="footersingbtn">
                                                                                 <input type="submit" name="Save" class="btn getin-btn" value="Save"/>
                                                                             </div>
-                                                                    </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                         </div>
                                                                 </Modal.Body>
+                                                        </div>
+                                                        </div>
+                                                        </div>
                                                             </Modal>
                                                         </div>
                                                         {/*modal end */}

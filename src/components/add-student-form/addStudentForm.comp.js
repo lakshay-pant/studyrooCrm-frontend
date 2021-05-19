@@ -84,6 +84,11 @@ const [offShorePhone, setOffShorePhone] = useState("");
   const [city, setCity] = useState("XYZ");
   const [country, setCountry] = useState("India");
   const [zipCode, setZipCode] = useState("");
+  const [fileName, setFileName] = useState("");
+
+  const onChangeFile=e=>{
+    setFileName(e.target.files[0])
+  }
 
 
 
@@ -349,14 +354,15 @@ const [offShorePhone, setOffShorePhone] = useState("");
 
   const handleOnStudentSubmit=async(e)=>{
     e.preventDefault()
-    console.log(nation)
+    console.log(fileName)
+
     
     const newStudent = {
-      firstName,middleName,lastName,email,genders,nation,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource
+      fileName,firstName,middleName,lastName,email,genders,nation,salesPipeline,salesStatus,heatLevel,note,onShorePhone,offShorePhone,birthday,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource
     };
     dispatch(addStudent(newStudent));
     
-    console.log(firstName,lastName,email,birthday,middleName,genders,nation,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource)
+    console.log(fileName,firstName,lastName,email,birthday,middleName,genders,nation,onShorePhone,offShorePhone,note,salesPipeline,salesStatus,heatLevel,onShoreCurrentLocation,offShoreCurrentLocation,onShoreAddress,onShoreLocation,unitNumber,streetNumber,streetName,city,country,zipCode,offShoreAdress,offShoreLocation,offShoreUnitNumber,offShoreStreetNumber,streetNa,offShoreCity,offShoreCountry,offShoreZipCode,usi,educationLevel,instituteName,gpa,yearLevel,schoolCurriculum,schoolCurriculumDetails,passNumber,passNationality,passIssueDate,passExpiryDate,passComments,grantDate,visaExpiryDate,visaType,visaComments,insuranceStartDate,insuranceExpiryDate,insuranceType,insuranceNumber,insuranceComment,otherComments,locationStatus,referalSource)
   }
 
     return (
@@ -387,7 +393,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
               {message}
             </Alert>
           )}
-            <form onSubmit={handleOnStudentSubmit} >
+            <form onSubmit={handleOnStudentSubmit} enctype="multipart/form-data" >
                                                         <div class="col-md-12">  
                                                               <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
                                                                   <div class="card">
@@ -896,7 +902,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
                                                                                     <div class="form-row">
                                                                                       <div class="form-group col-md-4">
                                                                                         <label>Passport</label>
-                                                                                        <input type="file"  />
+                                                                                        <input type="file" fileName="passportImage" onChange={onChangeFile} />
                                                                                       </div>
                                                                                       <div class="form-group col-md-4">
                                                                                         <label>Certificate</label>
