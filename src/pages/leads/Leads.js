@@ -1,16 +1,142 @@
 import "./LeadsStyle.css";
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Modal from "react-bootstrap/Modal";
 import ModalBody from "react-bootstrap/ModalBody";
 import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import {addLead} from "./addLeadAction"
+import { useDispatch, useSelector } from "react-redux"
+import {
+    Spinner, Alert
+  } from "react-bootstrap"
+
+  import {fetchAllLeads} from "./showLeadAction"
+
+  import Moment from 'moment';
+
+
+
 
 const Leads = () => {
+
+    const { isLoadingLead,
+        statusLead,
+        messageLead } = useSelector(
+          (state) => state.addLead
+        );
+
+
+        const {leads, isLoadingShowlead,error} = useSelector(
+              (state) => state.leadList
+            );
+
     const [isOpen, setIsOpen] = useState(false);
     const [isOpen2, setIsOpen2] = useState(false);
-    const [ key, setKey ] = useState('home'); 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [middleName, setMiddleName] = useState("");
+    const [onShoreLocation, setOnShoreLocation] = useState("");
+    const [offShoreLocation, setOffShoreLocation] = useState("");
+    const [locationStatus, setLocationStatus] = useState("");
+    const [leadLevel, setLeadLevel] = useState("");
+    const [refferalSource, setRefferalSource] = useState("");
+    const [onShorePhone, setOnShorePhone] = useState("");
+    const [offShorePhone, setOffShorePhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [nationality, setNationality] = useState("");
+    const [gender, setGender] = useState("");
+    const [birthday, setBirthday] = useState("");
+ 
+
+    const dispatch = useDispatch();
+
+    
+
+    const handleOnChange = (e) => {
+        const { name, value } = e.target;
+    
+        switch (name) {
+          case "firstName":
+            setFirstName(value);
+            break;
+    
+          case "middleName":
+            setMiddleName(value);
+            break;
+    
+          case "lastName":
+            setLastName(value);
+            break;
+
+          case "onShoreLocation":
+            setOnShoreLocation(value);
+            break;
+    
+          case "offShoreLocation":
+            setOffShoreLocation(value);
+    
+            break;
+    
+          case "locationStatus":
+            setLocationStatus(value);
+    
+            break;
+    
+    
+    
+          case "leadLevel":
+            setLeadLevel(value);
+            break;
+    
+          case "refferalSource":
+            setRefferalSource(value);
+            break;
+
+            case "onShorePhone":
+                setOnShorePhone(value);
+                break;
+
+
+                case "offShorePhone":
+                    setOffShorePhone(value);
+                    break;
+
+                    case "email":
+                        setEmail(value);
+                        break;
+
+                        case "nationality":
+                            setNationality(value);
+                            break;
+
+                            case "gender":
+                            setGender(value);
+                            break;
+
+                            case "birthday":
+                            setBirthday(value);
+                            break;
+    
+          default:
+            break;
+        }
+      };
+
+      const handleOnLeadSubmit=async(e)=>{
+        e.preventDefault()
+       
+    
+        
+        const newLead = {
+          firstName,middleName,lastName,email,gender,onShoreLocation,onShorePhone,offShorePhone,refferalSource,nationality,leadLevel,offShoreLocation,locationStatus,birthday
+        };
+        dispatch(addLead(newLead));
+        
+        
+      }
+    
 
     
     const showModal = () => {
@@ -26,7 +152,15 @@ const Leads = () => {
     };
     const hideModal2 = () => {
         setIsOpen2(false);
+        
+        
     };
+
+    useEffect(() => {
+        if (!leads.length) {
+          dispatch(fetchAllLeads());
+        }
+      }, [leads, dispatch]);
 
     return(
         <div className="content-wrapper">
@@ -85,6 +219,12 @@ const Leads = () => {
                                                         <Modal.Body>
 
                                                                 <div class="modal-dialog modal-lg add-leads" role="document">
+
+                                                                {messageLead && (
+                    <Alert variant={statusLead === "success" ? "success" : "danger"}>
+                      {messageLead}
+                    </Alert>
+                  )}
                                                                
                                                                     <div class="modal-content ">
                                                                         <div class="modal-top leads-top">
@@ -95,7 +235,7 @@ const Leads = () => {
                                                                         </div>
                                                                     
                                                                         <div class="modal-body">
-                                                                            <div class="student-filter-area">
+                                                                        <form onSubmit={handleOnLeadSubmit} >  <div class="student-filter-area">
                                                                                 <div class="row">
                                                                                     <div class="col-lg-12 col-12">
                                                                                        <div class="update-crm add-leads">
@@ -103,77 +243,86 @@ const Leads = () => {
                                                                                                 <div class="col-md-6 col-12">
                                                                                                     <div class="form-row">
 
-                                                                                                        <div class="form-group col-md-12 col-12">
-                                                                                                            <label>Contact Person</label>
-                                                                                                            <div class="input-icons">
-                                                                                                                <i class="fa fa-user icon"></i>
-                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="" />
-                                                                                                            </div>
+                                                                                                
+
+                                                                                                    <div class="form-group col-md-12 col-12" >
+                                                                                                            <label>First Name</label>
+                                                                                                            
+                                                                                                               
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="firstName" value={firstName} onChange={handleOnChange} />
+                                                                                                            
                                                                                                         </div>
 
                                                                                                         <div class="form-group col-md-12 col-12">
-                                                                                                            <label>Organization</label>
-                                                                                                            <div class="input-icons">
-                                                                                                                <i class="fa fa-building icon" aria-hidden="true"></i>
-                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="" />
-                                                                                                            </div>
+                                                                                                            <label>Middle Name</label>
+                                                                                                            
+                                                                                                               
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="middleName" value={middleName} onChange={handleOnChange} />
+                                                                                                            
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Last Name</label>
+                                                                                                            
+                                                                                                               
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="lastName" value={lastName} onChange={handleOnChange} />
+                                                                                                            
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>Location Status</label>
+                                                                                                            <select class="form-control" name="locationStatus" value={locationStatus} id="cars" onChange={handleOnChange}>
+                                                                                                                <option >OnShore</option>
+                                                                                                                <option >OffShore</option>
+                                                                                                            
+                                                                                                            </select>
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>OnShore(Location)</label>
+                                                                                                            
+                                                                                                               
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="onShoreLocation" value={onShoreLocation} onChange={handleOnChange}/>
+                                                                                                            
+                                                                                                        </div>
+
+                                                                                                        <div class="form-group col-md-12 col-12">
+                                                                                                            <label>OffShore(Location)</label>
+                                                                                                            
+                                                                                                               
+                                                                                                                <input type="text" class="form-control input-field" placeholder="" name="offShoreLocation" value={offShoreLocation} onChange={handleOnChange}/>
+                                                                                                            
                                                                                                         </div>
                                                                                                 
-                                                                                                        <div class="form-group col-md-12 col-12">
-                                                                                                            <label>Title</label>
-                                                                                                            <input type="text" class="form-control" placeholder="" name="" />
-                                                                                                        </div>
+                                                                                            
+
+                                                                                                        
 
                                                                                                         <div class="form-group col-md-12 col-12">
-                                                                                                            <div class="form-row">
-                                                                                                                <div class="form-group col-md-6 col-6">
-                                                                                                                    <label>Value</label>
-                                                                                                                    <input type="text" class="form-control" placeholder="" name="" value=""/>
-                                                                                                                </div>
-                                                                                                                <div class="form-group col-md-6 col-6">
-                                                                                                                    <label></label>
-                                                                                                                    <select class="form-control" name="cars" id="cars">
-                                                                                                                    <option value="allstudent">Indian Rupee</option>
-                                                                                                                    <option value="europeans">Europeans</option>
-                                                                                                                    <option value="allstudent">All Student</option>
-                                                                                                                    <option value="europeans">Europeans</option>
-                                                                                                                    </select>
-                                                                                                                </div>
-                                                                                                            </div>
-                                                                                                        </div>
-
-                                                                                                        <div class="form-group col-md-12 col-12">
-                                                                                                            <label>Labels</label>
-                                                                                                            <select class="form-control" name="cars" id="cars">
-                                                                                                                <option value="allstudent">Hot</option>
-                                                                                                                <option value="europeans">Cold</option>
-                                                                                                                <option value="allstudent">Warm</option>
-                                                                                                                <option value="europeans">Europeans</option>
+                                                                                                            <label>Lead Level</label>
+                                                                                                            <select class="form-control" id="cars" name="leadLevel" value={leadLevel} onChange={handleOnChange}>
+                                                                                                                <option >Hot</option>
+                                                                                                                <option >Cold</option>
+                                                                                                                <option >Warm</option>
+                                                                                                                <option >Europeans</option>
                                                                                                             </select>
                                                                                                         </div>
 
                                                                                                         <div class="form-group col-md-12 col-12">
-                                                                                                            <label>Owner</label>
-                                                                                                            <select class="form-control" name="cars" id="cars" value="you">
-                                                                                                                <option value="allstudent">Hot</option>
-                                                                                                                <option value="europeans">Cold</option>
-                                                                                                                <option value="allstudent">Warm</option>
-                                                                                                                <option value="europeans">Europeans</option>
-                                                                                                            </select>
-                                                                                                        </div>
+                                                                                        <label>Referral source </label>
+                                                                                        <select class="form-control" name="refferalSource" value={refferalSource} onChange={handleOnChange} >
+                                                                                          <option >unknown</option>
+                                                                                          <option >Youtube</option>
+                                                                                          <option >Instagram</option>
+                                                                                          <option >Facebook</option>
+                                                                                          <option >Google</option>
+                                                                                        </select>
+                                                                                      </div>
 
-                                                                                                        <div class="form-group col-md-12 col-12">
-                                                                                                            <label>Visible To</label>
-                                                                                                            <div class="input-icons">
-                                                                                                                <i class="fa fa-th icon" aria-hidden="true"></i>
-                                                                                                                <select class="form-control input-field" name="cars" id="cars" >
-                                                                                                                    <option value="allstudent"></option>
-                                                                                                                    <option value="europeans">Cold</option>
-                                                                                                                    <option value="allstudent">Warm</option>
-                                                                                                                    <option value="europeans">Europeans</option>
-                                                                                                                </select>
-                                                                                                            </div>
-                                                                                                        </div>
+
+                                                                                       
+
+                                                                                                        
 
                                                                                                     </div>
                                                                                                 </div>
@@ -186,30 +335,35 @@ const Leads = () => {
                                                                                                         </div>
                                                                                                         <div class="row">
                                                                                                             <div class="form-group col-md-6 col-6 left">
-                                                                                                                <label>Phone</label>
-                                                                                                                <input type="text" class="form-control" placeholder="" name="" />
+                                                                                                                <label>OffShorePhone</label>
+                                                                                                                <input type="text" class="form-control" placeholder="" name="offShorePhone" value={offShorePhone} onChange={handleOnChange}/>
+                                                                                                            </div>
+                                                                                                            <div class="form-group col-md-6 col-6 left">
+                                                                                                                <label>OnShorePhone</label>
+                                                                                                                <input type="text" class="form-control" placeholder="" name="onShorePhone" value={onShorePhone} onChange={handleOnChange} />
                                                                                                             </div>
                                                                                                             <div class="col-md-6 col-6 form-group right">
-                                                                                                                <label>Work</label>
-                                                                                                                <select class="form-control" name="cars" id="cars" value="Work">
-                                                                                                                <option value="allstudent">Hot</option>
-                                                                                                                <option value="europeans">Cold</option>
-                                                                                                                <option value="allstudent">Warm</option>
-                                                                                                                <option value="europeans">Europeans</option>
+                                                                                                                <label>Gender</label>
+                                                                                                                <select class="form-control" id="cars" name="gender" value={gender} onChange={handleOnChange}>
+                                                                                                                <option >Male</option>
+                                                                                                                <option >Female</option>
+                                                                                                                <option >Others</option>
+                                                                                                               
                                                                                                                 </select>
                                                                                                             </div>
                                                                                                             <div class="form-group col-md-6 col-6 left">
                                                                                                                 <label>Email</label>
-                                                                                                                <input type="text" class="form-control" placeholder="" name="" />
+                                                                                                                <input type="text" class="form-control" placeholder="" name="email" value={email} onChange={handleOnChange}/>
                                                                                                             </div>
-                                                                                                            <div class="col-md-6 col-6 form-group right">
-                                                                                                                <label>Work</label>
-                                                                                                                <select class="form-control" name="cars" id="cars" value="Work">
-                                                                                                                <option value="allstudent">Hot</option>
-                                                                                                                <option value="europeans">Cold</option>
-                                                                                                                <option value="allstudent">Warm</option>
-                                                                                                                <option value="europeans">Europeans</option>
-                                                                                                                </select>
+                                                                                                            <div class="form-group col-md-6 col-6 left">
+                                                                                                                <label>Nationality</label>
+                                                                                                                <input type="text" class="form-control" placeholder="" name="nationality" value={nationality} onChange={handleOnChange}/>
+                                                                                                            </div>
+
+                                                                                                            <div class="form-group col-md-6 col-6 left">
+                                                                                                                <label>Birthdate</label>
+                                                                                                                <input type="date" class="form-control" placeholder="" name="birthday" value={birthday} onChange={handleOnChange} />
+                                                                                                                
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
@@ -219,14 +373,13 @@ const Leads = () => {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="fotercontent">
-                                                                                    <div class="rest">
-                                                                                        <a href="#"><span><i class="far fa-redo"></i></span> Reset</a>
-                                                                                    </div>
+                                                                                    
                                                                                     <div class="footersingbtn">
                                                                                         <input type="submit" name="Save" class="btn getin-btn" value="Save" />
                                                                                     </div>
                                                                                 </div>{/*<!-- Modal -->*/}
-                                                                            </div>
+                                                                            </div></form>
+                                                                          
                                                                         </div>
 
                                                                     </div>
@@ -288,77 +441,35 @@ const Leads = () => {
                                             <thead>     
                                                 <tr>       
                                                     <th>NAME</th>
+                                                    <th>Gender</th>
+                                                    <th>Nationality</th>
+                                                    <th>Location Status</th>
                                                     <th>PHONE</th>
-                                                    <th>email</th>
-                                                    <th>Activity date</th>
+                                                    <th>Email</th>
+                                                    <th>Birthday</th>
                                                     <th>Priority</th>
-                                                    <th>Source</th>
+                                                    
                                                     <th>Created Date</th>
                                                     <th>Created Time</th>
                                                     <th>Assignee</th>
-                                                    <th>Options</th>
+                                                    <th>Refferal Source</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                        <tr>
-                                                            <td onClick={showModal}>Adam Malkowski</td>
-                                                            <td>0180002021</td>
-                                                            <td>adams258@o2.pl</td>
-                                                            <td>01/04/2021</td>
-                                                            <td>5</td>
-                                                            <td>Course</td>
-                                                            <td>30/03/2021</td>
-                                                            <td>05:35PM</td>
-                                                            <td>Lorem Ipsum</td>
-                                                            <td>XYZ</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>Adam Malkowski</td>
-                                                            <td>0180002021</td>
-                                                            <td>adams258@o2.pl</td>
-                                                            <td>01/04/2021</td>
-                                                            <td>5</td>
-                                                            <td>Course</td>
-                                                            <td>30/03/2021</td>
-                                                            <td>05:35PM</td>
-                                                            <td>Lorem Ipsum</td>
-                                                            <td>XYZ</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>Adam Malkowski</td>
-                                                            <td>0180002021</td>
-                                                            <td>adams258@o2.pl</td>
-                                                            <td>01/04/2021</td>
-                                                            <td>5</td>
-                                                            <td>Course</td>
-                                                            <td>30/03/2021</td>
-                                                            <td>05:35PM</td>
-                                                            <td>Lorem Ipsum</td>
-                                                            <td>XYZ</td>
-                                                        </tr>
-
-                                                        <tr>
-                                                            <td>Adam Malkowski</td>
-                                                            <td>0180002021</td>
-                                                            <td>adams258@o2.pl</td>
-                                                            <td>01/04/2021</td>
-                                                            <td>5</td>
-                                                            <td>Course</td>
-                                                            <td>30/03/2021</td>
-                                                            <td>05:35PM</td>
-                                                            <td>Lorem Ipsum</td>
-                                                            <td>XYZ</td>
-                                                        </tr>
-
-                                                    
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                    {/*modal-body--*/}
-                                    <div class="modal fade filters-modal show " id="leadsFilter" aria-modal="true">
+                                                {leads.slice(0).reverse().map( (item)=>(<tr key={item.id} > <td onClick={showModal}>{item.firstName}</td>
+                                                <td>{item.gender}</td>
+                                                <td>{item.nationality}</td>
+                                                <td>{item.locationStatus}</td>
+                                                <td>onShoreNO:-{item.onShorePhone}<br/>offShoreNo:-{item.offShorePhone}</td>
+                                                <td>{item.email}</td>
+                                                <td>{item.birthday}</td>
+                                                <td>{item.leadLevel}</td>
+                              <td>{(Moment(item.addedAt).format('DD/MM/YYYY'))}</td>
+                              <td>{(Moment(item.addedAt).format('HH:mm:ss'))}</td>
+                              <td>{item.userName}</td>
+                              <td>{item.refferalSource}</td>
+                              
+                                        <td><div class="modal fade filters-modal show " id="leadsFilter" aria-modal="true">
                                             <Modal show={isOpen} onHide={hideModal}>
                                                 <Modal.Body class="myleadsfilter">
                                                 <div class="accordion md-accordion" id="accordionEx" role="tablist" aria-multiselectable="true">
@@ -791,7 +902,15 @@ const Leads = () => {
                                                                      
                                               
                                                   
-                                </div>
+                                </div></td></tr>))}
+                                                       
+                                                    
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    {/*modal-body--*/}
+                                    
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoading: false,
-  status: "",
-  message: "",
+  isLoadingDelete: false,
+  statusDelete: "",
+  messageDelete: "",
 };
 
 const deleteStudentSlice = createSlice({
@@ -11,17 +11,17 @@ const deleteStudentSlice = createSlice({
   initialState,
   reducers: {
     deleteStudentPending: (state) => {
-      state.isLoading = true;
+      state.isLoadingDelete = true;
     },
     deleteStudentSuccess: (state, { payload }) => {
-      state.isLoading = false;
-      state.status = "success";
-      state.message = payload;
+      state.isLoadingDelete = false;
+      state.statusDelete = "success";
+      state.messageDelete = payload;
     },
     deleteStudentError: (state, { payload }) => {
-      state.isLoading = false;
-      state.status = "error";
-      state.message = payload;
+      state.isLoadingDelete = false;
+      state.statusDelete = "error";
+      state.messageDelete = payload;
     },
   },
 });

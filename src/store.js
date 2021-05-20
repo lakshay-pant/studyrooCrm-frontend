@@ -8,6 +8,8 @@ import allStudent from "./pages/allStudents/allStudentSlice"
 import getUser from "./components/getAllTheUsers/getUsersSlice"
 import editStudent from "./components/student-overview/studentOverviewSlice"
 import deleteStudent from "./components/student-overview/studentOverviewDeleteSlice"
+import addLead from "./pages/leads/addLeadSlice"
+import leadList from "./pages/leads/showLeadSlice"
 
 
 const store = configureStore({
@@ -20,7 +22,9 @@ const store = configureStore({
         allStudent:allStudent,
         getUser:getUser,
         editStudent:editStudent,
-        deleteStudent:deleteStudent
+        deleteStudent:deleteStudent,
+        addLead:addLead,
+        leadList:leadList
     },
   })
   

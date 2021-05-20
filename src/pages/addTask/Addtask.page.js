@@ -8,6 +8,7 @@ import {
 import { createNewTask } from "../../api/taskApi"
 import { filterSearchUser, fetchAllUsers } from "../../components/getAllTheUsers/getUsersAction"
 import { fetchAllStudents } from "../allStudents/allStudentAction"
+import {addTask} from "./addTaskAction"
 
 
 
@@ -169,24 +170,11 @@ export const Addtask = () => {
       return alert("Fill up all the form!");
 
     }
+const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
+
+    dispatch(addTask(newTask))
 
 
-    dispatch(addTaskPending())
-
-    try {
-
-      const isAuth = await createNewTask({ taskName, type, dueDate, studentAssign, assignTo, offices, userGroup })
-      console.log(isAuth)
-      if (isAuth.status === "error") {
-        return dispatch(addTaskError(isAuth.message))
-      }
-      dispatch(addTaskSuccess())
-
-    } catch (error) {
-      dispatch(addTaskError(error.message))
-
-    }
-    console.log(taskName, type, dueDate, studentAssign, assignTo, offices, userGroup)
   }
 
   return (

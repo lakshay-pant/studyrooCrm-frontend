@@ -16,6 +16,10 @@ import axios from "axios"
 import { Accordion } from 'react-bootstrap';
 import {editStudent} from "./studentOverviewAction"
 
+import {
+  Spinner,Alert
+} from "react-bootstrap";
+
 import {deleteStudent} from "./studentOverviewDeleteAction"
 
 export const UncategorizedStudents = () => {
@@ -37,6 +41,14 @@ export const UncategorizedStudents = () => {
 
   const { users } = useSelector(
     (state) => state.getUser
+  );
+
+  const { isLoadingEdit, statusEdit, messageEdit } = useSelector(
+    (state) => state.editStudent
+  );
+
+  const { isLoadingDelete, statusDelete, messageDelete } = useSelector(
+    (state) => state.deleteStudent
   );
 
   console.log("users", users)
@@ -846,6 +858,17 @@ const [offShorePhone, setOffShorePhone] = useState("");
   <div class="col-lg-7 col-12">
 
       <div class="update-crm">
+      {messageEdit && (
+            <Alert variant={statusEdit ==="success" ? "success" : "danger"}>
+              {messageEdit}
+            </Alert>
+          )}
+
+{messageDelete && (
+            <Alert variant={statusDelete ==="success" ? "danger" : "success"}>
+              {messageDelete}
+            </Alert>
+          )}
         <div class="headingdiv">CRM</div>
         <div class="crm-form">
           <div class="form-row">
@@ -1172,114 +1195,7 @@ const [offShorePhone, setOffShorePhone] = useState("");
 
 
 
-                      {/* <tr>
-                                                    <td>Adam Malkowski</td>
-                                                    <td>01/02/2021</td>
-                                                    <td>adams258@o2.pl
-                                                        Predicted income: A$21,600.00</td>
-                                                    <td>01/04/2021</td>
-                                                    <td>500
-                                                        Exp: 03/06/2022
-                                                    </td>
-                                                    <td>Course in progress</td>
-                                                    <td>
-                                                        <div class="assign">
-                                                            <div class="assign-img-wrap">
-                                                            <img src="images/admin.png" class="img-fluid" />
-                                                            </div>
-                                                            <div class="assign-name">
-                                                            <p class="name">Artur Szulakowski</p>
-                                                            <p class="dept">Headquarters</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="action">
-                                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                <td>Adam Malkowski</td>
-                                                <td>01/02/2021</td>
-                                                <td>adams258@o2.pl
-                                                    Predicted income: A$21,600.00</td>
-                                                <td>01/04/2021</td>
-                                                <td>500
-                                                    Exp: 03/06/2022
-                                                </td>
-                                                <td>Course in progress</td>
-                                                <td>
-                                                    <div class="assign">
-                                                        <div class="assign-img-wrap">
-                                                            <img src="images/admin.png" class="img-fluid" />
-                                                        </div>
-                                                        <div class="assign-name">
-                                                            <p class="name">Artur Szulakowski</p>
-                                                            <p class="dept">Headquarters</p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="action">
-                                                        <a href="#"><i class="fas fa-pen"></i></a>
-                                                    </div>
-                                                </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Adam Malkowski</td>
-                                                    <td>01/02/2021</td>
-                                                    <td>adams258@o2.pl
-                                                        Predicted income: A$21,600.00</td>
-                                                    <td>01/04/2021</td>
-                                                    <td>500
-                                                        Exp: 03/06/2022
-                                                    </td>
-                                                    <td>Course in progress</td>
-                                                    <td>
-                                                        <div class="assign">
-                                                            <div class="assign-img-wrap">
-                                                            <img src="images/admin.png" class="img-fluid" />
-                                                            </div>
-                                                            <div class="assign-name">
-                                                            <p class="name">Artur Szulakowski</p>
-                                                            <p class="dept">Headquarters</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="action">
-                                                            <a href="#"><i class="fas fa-pen"></i></a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2 Adam Malkowski</td>
-                                                    <td>01/02/2021</td>
-                                                    <td>adams258@o2.pl
-                                                        Predicted income: A$21,600.00</td>
-                                                    <td>01/04/2021</td>
-                                                    <td>500
-                                                        Exp: 03/06/2022
-                                                    </td>
-                                                    <td>Course in progress</td>
-                                                    <td>
-                                                        <div class="assign">
-                                                            <div class="assign-img-wrap">
-                                                                <img src="images/admin.png" class="img-fluid" />
-                                                            </div>
-                                                            <div class="assign-name">
-                                                                <p class="name">Artur Szulakowski</p>
-                                                                <p class="dept">Headquarters</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                    <div class="action">
-                                                        <a href="#"><i class="fas fa-pen"></i></a>
-                                                    </div>
-                                                    </td>
-                                                </tr> */}
+                      
                     </tbody>
                   </table>
                 </div>

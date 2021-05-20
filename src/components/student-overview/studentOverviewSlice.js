@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoading: false,
-  status: "",
-  message: "",
+  isLoadingEdit: false,
+  statusEdit: "",
+  messageEdit: "",
 };
 
 const editStudentSlice = createSlice({
@@ -11,17 +11,17 @@ const editStudentSlice = createSlice({
   initialState,
   reducers: {
     editStudentPending: (state) => {
-      state.isLoading = true;
+      state.isLoadingEdit = true;
     },
     editStudentSuccess: (state, { payload }) => {
-      state.isLoading = false;
-      state.status = "success";
-      state.message = payload;
+      state.isLoadingEdit = false;
+      state.statusEdit = "success";
+      state.messageEdit = payload;
     },
     editStudentError: (state, { payload }) => {
-      state.isLoading = false;
-      state.status = "error";
-      state.message = payload;
+      state.isLoadingEdit = false;
+      state.statusEdit = "error";
+      state.messageEdit = payload;
     },
   },
 });
