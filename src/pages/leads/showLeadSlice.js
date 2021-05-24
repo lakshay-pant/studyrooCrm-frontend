@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   leads: [],
-  isLoading: false,
+  isLoadingShowlead: false,
   error: "",
   searchLeadList: []
   
@@ -13,14 +13,14 @@ const leadListSlice = createSlice({
   initialState,
   reducers: {
     fetchLeadLoading: (state) => {
-      state.isLoading = true;
+      state.isLoadingShowlead = true;
     },
     fetchLeadSuccess: (state, action) => {
       state.leads = action.payload;
-      state.isLoading = false;
+      state.isLoadingShowlead = false;
     },
     fetchLeadFail: (state, { payload }) => {
-      state.isLoading = false;
+      state.isLoadingShowlead = false;
       state.error = payload;
     },
     searchLeads: (state, { payload }) => {
