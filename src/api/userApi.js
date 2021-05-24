@@ -41,6 +41,22 @@ export const userLogin = (frmData) => {
     });
   };
  
+  export const UpdateAllUser = (frmData,id) => {
+    console.log("from api", frmData);
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await axios.patch("http://localhost:3001/v1/user/me", frmData, {
+          headers: {
+            Authorization: sessionStorage.getItem("accessJWT"),
+          },
+        });
+          console.log("RESULT",result.data)
+        resolve(result.data);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
 
 
   export const fetchNewAccessJWT = () => {

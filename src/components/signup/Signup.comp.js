@@ -17,14 +17,18 @@ export const Signup = () => {
       (state) => state.signUp
     );
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [birthdate, setDate] = useState("");
+    const [tele, setTel] = useState("");
+    const [gender, setGender] = useState("");
+  
     const [isError, setIsError] = useState("");
     const [isChecked, setIsChecked] = useState(false);
-    
+  
   
     const handleOnChange = (e) => {
       const { name, value } = e.target;
@@ -33,11 +37,24 @@ export const Signup = () => {
         case "firstName":
           setFirstName(value);
           break;
-
-          case "lastName":
+  
+        case "lastName":
           setLastName(value);
           break;
-
+  
+        case "birthdate":
+          setDate(value);
+          break;
+  
+        case "tele":
+          setTel(value);
+          break;
+  
+  
+        case "gender":
+          setGender(value);
+          break;
+  
         case "email":
           setEmail(value);
           break;
@@ -45,17 +62,16 @@ export const Signup = () => {
         case "password":
           setPassword(value);
           break;
-
-        
   
-         
-
+  
+  
+  
+  
         default:
           break;
       }
     };
-
-    
+      
 
     const handleOnSignUpSubmit=async(e)=>{
       e.preventDefault()
@@ -68,7 +84,7 @@ export const Signup = () => {
       }
       
       const newRegistration = {
-        firstName,lastName,email,password
+        firstName,lastName,email,password,tele,birthdate,gender,
       };
       dispatch(newUserRegistration(newRegistration));
     }
@@ -128,7 +144,25 @@ setIsError("Confirm Password should match with Password")}else{
                                 <span className="toggle-password field-icon">{ConfirmToggleIcon}</span>
                                 {<span style={{ fontSize: 14,color: "#5c5d5d"}}>{isError}</span>}
                             </div>
-                            
+                            <div className="form-group row">
+
+<div class="form-group col-md-6">
+  <label>Birthday</label>
+  <input type="" class="form-control" placeholder="" name="birthdate" onChange={handleOnChange} value={birthdate} required/>
+</div>
+<div class="form-group col-md-6">
+  <label>Phone Number</label>
+  <input type="" class="form-control" placeholder="" name="tele" onChange={handleOnChange} value={tele} required/>
+</div>
+</div>
+<div class="form-group col-md-6">
+<label>Gender</label>
+<select class="form-control" name="gender" onChange={handleOnChange} value={gender} required>
+  <option value="allstudent">Male</option>
+  <option value="europeans">Female</option>
+  <option value="allstudent">Other</option>
+</select>
+</div>
                             <div className="form-group resiterlink">
                               <div className="chck">
                                 <input type="checkbox" id="box-2" checked={isChecked} onChange={()=>setIsChecked(!isChecked)}/>

@@ -6,19 +6,19 @@ const initialState = {
   message: "",
 };
 
-const userRegestrationSlice = createSlice({
-  name: "userRegistration",
+const editUserSlice = createSlice({
+  name: "editUser",
   initialState,
   reducers: {
-    registrationPending: (state) => {
+    editUserPending: (state) => {
       state.isLoading = true;
     },
-    registrationSuccess: (state, { payload }) => {
+    editUserSuccess: (state, { payload }) => {
       state.isLoading = false;
       state.status = "success";
       state.message = payload;
     },
-    registrationError: (state, { payload }) => {
+    editUserError: (state, { payload }) => {
       state.isLoading = false;
       state.status = "error";
       state.message = payload;
@@ -26,12 +26,12 @@ const userRegestrationSlice = createSlice({
   },
 });
 
-const { reducer, actions } = userRegestrationSlice;
+const { reducer, actions } = editUserSlice;
 
 export const {
-  registrationPending,
-  registrationSuccess,
-  registrationError,
+  editUserPending,
+  editUserSuccess,
+  editUserError
 } = actions;
 
 export default reducer;

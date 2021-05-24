@@ -12,7 +12,7 @@ import AllStudent from "./pages/allStudents/AllStudentPage.js"
 import { UncategorizedStudents } from "./components/student-overview/studOverview.comp"
 import  LeadsPopup  from "./pages/allStudents/leadsPopup"
 import Leads from "./pages/leads/Leads"
-import { Profile } from "./pages/profile/Profile"
+import { Profile } from "./pages/profile/profile"
 import {TaskList} from "./pages/taskList/taskList"
 
 function App() {
