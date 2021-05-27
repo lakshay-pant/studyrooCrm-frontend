@@ -724,3 +724,32 @@ height: 30px;
 }
 }
 /*add-leads popup end */
+
+
+#leadsFilter.leadsedit .modal-body{
+  background-color: #fff;
+}
+#leadsFilter.leadsedit button.close span{
+  top: 0;
+  right: 12px;
+}
+#leadsFilter.leadsedit form{
+  height: 450px;
+  overflow-x: auto;
+}
+button.editleads-icon {
+  border: none;
+  background: none;
+  color: #F48035;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}
+#leadsFilter.leadsedit .left-icon {
+  font-size: 22px;
+  color: #6c7474;
+  margin-top: 8px;
+}
+#leadsFilter.leadsedit .call-sec .icon-bg{
+  padding: 10px;
+}
