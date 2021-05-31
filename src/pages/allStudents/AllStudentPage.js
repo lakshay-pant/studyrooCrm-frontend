@@ -52,6 +52,7 @@ import ModalTitle from "react-bootstrap/ModalTitle";
                         <div className="col-md-6">
                            <div className="import-from">
                                 <p>Import from spreadsheet</p>
+
                                 <div className="st-file-upload">
                                 <Link to="/addstudent"><label for="file-upload" className="custom-file-upload">
                                     <i className="fa fa-user-graduate"></i> Add New Student

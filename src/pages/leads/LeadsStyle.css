@@ -289,7 +289,7 @@
 }
 .main-timeline.call.sub .timeline{
    margin-top: 20px;
-   margin-left: 85px;
+   margin-left: 72px;
    border-radius: 0;
    border:solid 1px #eaeaea;
 }
@@ -753,3 +753,5 @@ button.editleads-icon {
 #leadsFilter.leadsedit .call-sec .icon-bg{
   padding: 10px;
 }
+
+
