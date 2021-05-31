@@ -533,10 +533,6 @@ export const UncategorizedStudents = () => {
 		await editUpdate();
 	};
 
-	const dateFilter = () => {
-		var visaExpDate = dispatch(deleteStudent(ID));
-	};
-
 	return (
 		<div className="content-wrapper">
 			<div className="maincontent-rightside student-view add-student uncategorized">

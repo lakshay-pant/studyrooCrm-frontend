@@ -1,34 +1,68 @@
-import axios from "axios";
-const addLeadUrl="http://localhost:3001/v1/leads"
-
-
+import axios from 'axios';
+const addLeadUrl = 'http://localhost:3001/v1/leads';
 
 export const createNewLead = (frmData) => {
-  console.log("from api", frmData);
-  return new Promise(async (resolve, reject) => {
-    try {
-      const result = await axios.post(addLeadUrl, frmData, {
-        headers: {
-          Authorization: sessionStorage.getItem("accessJWT"),
-        },
-      });
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.post(addLeadUrl, frmData, {
+				headers: {
+					Authorization: sessionStorage.getItem('accessJWT'),
+				},
+			});
 
-      resolve(result.data);
-    } catch (error) {
-      console.log(error.message);
-      reject(error);
-    }
-  });
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
 };
 
 export const getAllUserLeads = () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const result = await axios.get("http://localhost:3001/v1/leads/all-leads");
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.get(
+				'http://localhost:3001/v1/leads/all-leads'
+			);
 
-      resolve(result);
-    } catch (error) {
-      reject(error);
-    }
-  });
+			resolve(result);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+export const getAllUserSingleLead = (_id) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.get('http://localhost:3001/v1/leads/' + _id);
+
+			resolve(result);
+		} catch (error) {
+			reject(error);
+		}
+	});
+};
+
+export const addLeadTask = (frmData, id) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/leads/' + id,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
 };
