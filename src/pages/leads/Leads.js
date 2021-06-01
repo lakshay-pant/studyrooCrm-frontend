@@ -53,6 +53,8 @@ const Leads = () => {
 	const [taskCompleted, setTaskCompleted] = useState(false);
 	const [statusNote, setStatusNote] = useState('');
 	const [leadId, setLeadId] = useState('');
+	const [taskEndTime, setTaskEndTime] = useState('');
+	const [taskStartTime, setTaskStartTime] = useState('');
 
 	const dispatch = useDispatch();
 
@@ -138,6 +140,14 @@ const Leads = () => {
 				setAssignee(value);
 				break;
 
+			case 'taskStartTime':
+				setTaskStartTime(value);
+				break;
+
+			case 'taskEndTime':
+				setTaskEndTime(value);
+				break;
+
 			default:
 				break;
 		}
@@ -158,6 +168,8 @@ const Leads = () => {
 			taskNote,
 			assignee,
 			taskCompleted,
+			taskStartTime,
+			taskEndTime,
 		};
 		console.log('TASKS', newLeadTask);
 		await dispatch(leadTask(newLeadTask, leadId));
@@ -1651,11 +1663,306 @@ const Leads = () => {
 																																	handleOnChange
 																																}
 																															/>
-																															<input
-																																type="text"
+																															<select
 																																class="form-control"
-																																place="time"
-																															/>
+																																id="time"
+																																name="taskStartTime"
+																																value={
+																																	taskStartTime
+																																}
+																																onChange={
+																																	handleOnChange
+																																}
+																															>
+																																<option>
+																																	12:00 AM
+																																</option>
+																																<option>
+																																	12:15 AM
+																																</option>
+																																<option>
+																																	12:30 AM
+																																</option>
+																																<option>
+																																	12:45 AM
+																																</option>
+																																<option>
+																																	1:00 AM
+																																</option>
+																																<option>
+																																	1:15 AM
+																																</option>
+																																<option>
+																																	1:30 AM
+																																</option>
+																																<option>
+																																	1:45 AM
+																																</option>
+																																<option>
+																																	2:00 AM
+																																</option>
+																																<option>
+																																	2:15 AM
+																																</option>
+																																<option>
+																																	2:30 AM
+																																</option>
+																																<option>
+																																	2:45 AM
+																																</option>
+																																<option>
+																																	3:00 AM
+																																</option>
+																																<option>
+																																	3:15 AM
+																																</option>
+																																<option>
+																																	3:30 AM
+																																</option>
+																																<option>
+																																	3:45 AM
+																																</option>
+																																<option>
+																																	4:00 AM
+																																</option>
+																																<option>
+																																	4:15 AM
+																																</option>
+																																<option>
+																																	4:30 AM
+																																</option>
+																																<option>
+																																	4:45 AM
+																																</option>
+																																<option>
+																																	5:00 AM
+																																</option>
+																																<option>
+																																	5:15 AM
+																																</option>
+																																<option>
+																																	5:30 AM
+																																</option>
+																																<option>
+																																	5:45 AM
+																																</option>
+																																<option>
+																																	6:00 AM
+																																</option>
+																																<option>
+																																	6:15 AM
+																																</option>
+																																<option>
+																																	6:30 AM
+																																</option>
+																																<option>
+																																	6:45 AM
+																																</option>
+																																<option>
+																																	7:00 AM
+																																</option>
+																																<option>
+																																	7:15 AM
+																																</option>
+																																<option>
+																																	7:30 AM
+																																</option>
+																																<option>
+																																	7:45 AM
+																																</option>
+																																<option>
+																																	8:00 AM
+																																</option>
+																																<option>
+																																	8:15 AM
+																																</option>
+																																<option>
+																																	8:30 AM
+																																</option>
+																																<option>
+																																	8:45 AM
+																																</option>
+																																<option>
+																																	9:00 AM
+																																</option>
+																																<option>
+																																	9:15 AM
+																																</option>
+																																<option>
+																																	9:30 AM
+																																</option>
+																																<option>
+																																	9:45 AM
+																																</option>
+																																<option>
+																																	10:00 AM
+																																</option>
+																																<option>
+																																	10:15 AM
+																																</option>
+																																<option>
+																																	10:30 AM
+																																</option>
+																																<option>
+																																	10:45 AM
+																																</option>
+																																<option>
+																																	11:00 AM
+																																</option>
+																																<option>
+																																	11:15 AM
+																																</option>
+																																<option>
+																																	11:30 AM
+																																</option>
+																																<option>
+																																	11:45 AM
+																																</option>
+																																<option>
+																																	12:00 PM
+																																</option>
+																																<option>
+																																	12:15 PM
+																																</option>
+																																<option>
+																																	12:30 PM
+																																</option>
+																																<option>
+																																	12:45 PM
+																																</option>
+																																<option>
+																																	1:00 PM
+																																</option>
+																																<option>
+																																	1:15 PM
+																																</option>
+																																<option>
+																																	1:30 PM
+																																</option>
+																																<option>
+																																	1:45 PM
+																																</option>
+																																<option>
+																																	2:00 PM
+																																</option>
+																																<option>
+																																	2:15 PM
+																																</option>
+																																<option>
+																																	2:30 PM
+																																</option>
+																																<option>
+																																	2:45 PM
+																																</option>
+																																<option>
+																																	3:00 PM
+																																</option>
+																																<option>
+																																	3:15 PM
+																																</option>
+																																<option>
+																																	3:30 PM
+																																</option>
+																																<option>
+																																	3:45 PM
+																																</option>
+																																<option>
+																																	4:00 PM
+																																</option>
+																																<option>
+																																	4:15 PM
+																																</option>
+																																<option>
+																																	4:30 PM
+																																</option>
+																																<option>
+																																	4:45 PM
+																																</option>
+																																<option>
+																																	5:00 PM
+																																</option>
+																																<option>
+																																	5:15 PM
+																																</option>
+																																<option>
+																																	5:30 PM
+																																</option>
+																																<option>
+																																	5:45 PM
+																																</option>
+																																<option>
+																																	6:00 PM
+																																</option>
+																																<option>
+																																	6:15 PM
+																																</option>
+																																<option>
+																																	6:30 PM
+																																</option>
+																																<option>
+																																	6:45 PM
+																																</option>
+																																<option>
+																																	7:00 PM
+																																</option>
+																																<option>
+																																	7:15 PM
+																																</option>
+																																<option>
+																																	7:30 PM
+																																</option>
+																																<option>
+																																	7:45 PM
+																																</option>
+																																<option>
+																																	8:00 PM
+																																</option>
+																																<option>
+																																	8:15 PM
+																																</option>
+																																<option>
+																																	8:30 PM
+																																</option>
+																																<option>
+																																	8:45 PM
+																																</option>
+																																<option>
+																																	9:00 PM
+																																</option>
+																																<option>
+																																	9:15 PM
+																																</option>
+																																<option>
+																																	9:30 PM
+																																</option>
+																																<option>
+																																	9:45 PM
+																																</option>
+																																<option>
+																																	10:00 PM
+																																</option>
+																																<option>
+																																	10:15 PM
+																																</option>
+																																<option>
+																																	10:30 PM
+																																</option>
+																																<option>
+																																	10:45 PM
+																																</option>
+																																<option>
+																																	11:00 PM
+																																</option>
+																																<option>
+																																	11:15 PM
+																																</option>
+																																<option>
+																																	11:30 PM
+																																</option>
+																																<option>
+																																	11:45 PM
+																																</option>
+																															</select>
 																															<input
 																																type="date"
 																																class="form-control"
@@ -1668,11 +1975,306 @@ const Leads = () => {
 																																	handleOnChange
 																																}
 																															/>
-																															<input
-																																type="text"
+																															<select
 																																class="form-control"
-																																place="time"
-																															/>
+																																id="time"
+																																name="taskEndTime"
+																																value={
+																																	taskEndTime
+																																}
+																																onChange={
+																																	handleOnChange
+																																}
+																															>
+																																<option>
+																																	12:00 AM
+																																</option>
+																																<option>
+																																	12:15 AM
+																																</option>
+																																<option>
+																																	12:30 AM
+																																</option>
+																																<option>
+																																	12:45 AM
+																																</option>
+																																<option>
+																																	1:00 AM
+																																</option>
+																																<option>
+																																	1:15 AM
+																																</option>
+																																<option>
+																																	1:30 AM
+																																</option>
+																																<option>
+																																	1:45 AM
+																																</option>
+																																<option>
+																																	2:00 AM
+																																</option>
+																																<option>
+																																	2:15 AM
+																																</option>
+																																<option>
+																																	2:30 AM
+																																</option>
+																																<option>
+																																	2:45 AM
+																																</option>
+																																<option>
+																																	3:00 AM
+																																</option>
+																																<option>
+																																	3:15 AM
+																																</option>
+																																<option>
+																																	3:30 AM
+																																</option>
+																																<option>
+																																	3:45 AM
+																																</option>
+																																<option>
+																																	4:00 AM
+																																</option>
+																																<option>
+																																	4:15 AM
+																																</option>
+																																<option>
+																																	4:30 AM
+																																</option>
+																																<option>
+																																	4:45 AM
+																																</option>
+																																<option>
+																																	5:00 AM
+																																</option>
+																																<option>
+																																	5:15 AM
+																																</option>
+																																<option>
+																																	5:30 AM
+																																</option>
+																																<option>
+																																	5:45 AM
+																																</option>
+																																<option>
+																																	6:00 AM
+																																</option>
+																																<option>
+																																	6:15 AM
+																																</option>
+																																<option>
+																																	6:30 AM
+																																</option>
+																																<option>
+																																	6:45 AM
+																																</option>
+																																<option>
+																																	7:00 AM
+																																</option>
+																																<option>
+																																	7:15 AM
+																																</option>
+																																<option>
+																																	7:30 AM
+																																</option>
+																																<option>
+																																	7:45 AM
+																																</option>
+																																<option>
+																																	8:00 AM
+																																</option>
+																																<option>
+																																	8:15 AM
+																																</option>
+																																<option>
+																																	8:30 AM
+																																</option>
+																																<option>
+																																	8:45 AM
+																																</option>
+																																<option>
+																																	9:00 AM
+																																</option>
+																																<option>
+																																	9:15 AM
+																																</option>
+																																<option>
+																																	9:30 AM
+																																</option>
+																																<option>
+																																	9:45 AM
+																																</option>
+																																<option>
+																																	10:00 AM
+																																</option>
+																																<option>
+																																	10:15 AM
+																																</option>
+																																<option>
+																																	10:30 AM
+																																</option>
+																																<option>
+																																	10:45 AM
+																																</option>
+																																<option>
+																																	11:00 AM
+																																</option>
+																																<option>
+																																	11:15 AM
+																																</option>
+																																<option>
+																																	11:30 AM
+																																</option>
+																																<option>
+																																	11:45 AM
+																																</option>
+																																<option>
+																																	12:00 PM
+																																</option>
+																																<option>
+																																	12:15 PM
+																																</option>
+																																<option>
+																																	12:30 PM
+																																</option>
+																																<option>
+																																	12:45 PM
+																																</option>
+																																<option>
+																																	1:00 PM
+																																</option>
+																																<option>
+																																	1:15 PM
+																																</option>
+																																<option>
+																																	1:30 PM
+																																</option>
+																																<option>
+																																	1:45 PM
+																																</option>
+																																<option>
+																																	2:00 PM
+																																</option>
+																																<option>
+																																	2:15 PM
+																																</option>
+																																<option>
+																																	2:30 PM
+																																</option>
+																																<option>
+																																	2:45 PM
+																																</option>
+																																<option>
+																																	3:00 PM
+																																</option>
+																																<option>
+																																	3:15 PM
+																																</option>
+																																<option>
+																																	3:30 PM
+																																</option>
+																																<option>
+																																	3:45 PM
+																																</option>
+																																<option>
+																																	4:00 PM
+																																</option>
+																																<option>
+																																	4:15 PM
+																																</option>
+																																<option>
+																																	4:30 PM
+																																</option>
+																																<option>
+																																	4:45 PM
+																																</option>
+																																<option>
+																																	5:00 PM
+																																</option>
+																																<option>
+																																	5:15 PM
+																																</option>
+																																<option>
+																																	5:30 PM
+																																</option>
+																																<option>
+																																	5:45 PM
+																																</option>
+																																<option>
+																																	6:00 PM
+																																</option>
+																																<option>
+																																	6:15 PM
+																																</option>
+																																<option>
+																																	6:30 PM
+																																</option>
+																																<option>
+																																	6:45 PM
+																																</option>
+																																<option>
+																																	7:00 PM
+																																</option>
+																																<option>
+																																	7:15 PM
+																																</option>
+																																<option>
+																																	7:30 PM
+																																</option>
+																																<option>
+																																	7:45 PM
+																																</option>
+																																<option>
+																																	8:00 PM
+																																</option>
+																																<option>
+																																	8:15 PM
+																																</option>
+																																<option>
+																																	8:30 PM
+																																</option>
+																																<option>
+																																	8:45 PM
+																																</option>
+																																<option>
+																																	9:00 PM
+																																</option>
+																																<option>
+																																	9:15 PM
+																																</option>
+																																<option>
+																																	9:30 PM
+																																</option>
+																																<option>
+																																	9:45 PM
+																																</option>
+																																<option>
+																																	10:00 PM
+																																</option>
+																																<option>
+																																	10:15 PM
+																																</option>
+																																<option>
+																																	10:30 PM
+																																</option>
+																																<option>
+																																	10:45 PM
+																																</option>
+																																<option>
+																																	11:00 PM
+																																</option>
+																																<option>
+																																	11:15 PM
+																																</option>
+																																<option>
+																																	11:30 PM
+																																</option>
+																																<option>
+																																	11:45 PM
+																																</option>
+																															</select>
 																														</div>
 																													</div>
 																												</div>
