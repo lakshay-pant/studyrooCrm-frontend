@@ -18,6 +18,8 @@ import Moment from 'moment';
 import axios from 'axios';
 import { Accordion } from 'react-bootstrap';
 import { editStudent } from './studentOverviewAction';
+import { deleteResetSuccessMSg } from './studentOverviewDeleteSlice';
+import { editResetSuccessMSg } from './studentOverviewSlice';
 
 import { Spinner, Alert } from 'react-bootstrap';
 
@@ -48,6 +50,18 @@ export const UncategorizedStudents = () => {
 	const { isLoadingDelete, statusDelete, messageDelete } = useSelector(
 		(state) => state.deleteStudent
 	);
+
+	useEffect(() => {
+		return () => {
+			messageDelete && dispatch(deleteResetSuccessMSg());
+			messageEdit && dispatch(editResetSuccessMSg());
+		};
+	}, [dispatch]);
+
+	useEffect(() => {
+		messageDelete && dispatch(deleteResetSuccessMSg());
+		messageEdit && dispatch(editResetSuccessMSg());
+	}, [dispatch]);
 
 	console.log('users', users);
 
@@ -525,6 +539,8 @@ export const UncategorizedStudents = () => {
 	};
 
 	const hideModal2 = () => {
+		dispatch(editResetSuccessMSg());
+		dispatch(deleteResetSuccessMSg());
 		setIsOpen2(false);
 	};
 
