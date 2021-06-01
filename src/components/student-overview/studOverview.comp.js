@@ -977,6 +977,7 @@ export const UncategorizedStudents = () => {
 												<th>ASSIGNED TO</th>
 												<th>STATUS</th>
 												<th>PHONE</th>
+												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>

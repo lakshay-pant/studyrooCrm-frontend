@@ -753,5 +753,6 @@ button.editleads-icon {
 #leadsFilter.leadsedit .call-sec .icon-bg{
   padding: 10px;
 }
-
-
+#studentFilter.deal-convert .modal-content {
+  background: #fbfbfb;
+}

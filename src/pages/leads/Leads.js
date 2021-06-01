@@ -27,6 +27,7 @@ const Leads = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpen2, setIsOpen2] = useState(false);
 	const [isOpen3, setIsOpen3] = useState(false);
+	const [isOpen4, setIsOpen4] = useState(false);
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [middleName, setMiddleName] = useState('');
@@ -178,6 +179,14 @@ const Leads = () => {
 
 	const hideModal3 = () => {
 		setIsOpen3(false);
+	};
+
+	const showModal4 = () => {
+		setIsOpen4(true);
+	};
+
+	const hideModal4 = () => {
+		setIsOpen4(false);
 	};
 
 	useEffect(() => {
@@ -721,7 +730,8 @@ const Leads = () => {
 																												<button
 																													type="button"
 																													class="btn btn-convert"
-																												>
+																													onClick={showModal4}>
+											
 																													Convert to deal
 																												</button>
 																											</div>
@@ -1795,6 +1805,727 @@ const Leads = () => {
 
 								{/*modal-body--*/}
 							</div>
+                            
+							{/* convert to deal modal */}
+							<div
+										class="modal fade filters-modal show"
+										id="convert"
+										aria-modal="true"
+									>
+										<Modal show={isOpen4} onHide={hideModal4}>
+											<Modal.Body>
+												<div class="modal-dialog modal-lg" role="document">
+
+														<div class="modal-body">
+														<div id="studentFilter" class="deal-convert">
+																		<div
+																			class="modal-dialog modal-lg"
+																			role="document"
+																		>
+																			<div class="modal-content">
+																				<div class="modal-top">
+																					<h5>Convert To Deal</h5>
+																					<button
+																						type="button"
+																						onClick={hideModal4}
+																						class="close"
+																						data-dismiss="modal"
+																						aria-label="Close"
+																					>
+																						<span aria-hidden="true">
+																							&times;
+																						</span>
+																					</button>
+																				</div>
+																				<Modal.Body>
+																					<form>
+																						<div class="student-filter-area">
+																							<div class="row">
+																								<div class="col-lg-7 col-12">
+                                                                                                                <div class="update-student">
+																												<div class="headingdiv">
+																													  Personal
+																												</div>
+																								                    <div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		First Name
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="firstName"
+																																		value={
+																																			firstName
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Last Name
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="lastName"
+																																		value={
+																																			lastName
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Birthday
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="birthday"
+																																		value={
+																																			birthday
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Gender
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="genders"
+																																		value=""
+																																		
+																																	>
+																																		<option>
+																																			Male
+																																		</option>
+																																		<option>
+																																			Female
+																																		</option>
+																																		<option>
+																																			Other
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Nationality
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="nation"
+																																		value=""
+																																	>
+																																		<option>
+																																			Poland
+																																		</option>
+																																		<option>
+																																			Peru
+																																		</option>
+																																		<option>
+																																			Norway
+																																		</option>
+																																		<option>
+																																			Ghana
+																																		</option>
+																																	</select>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+
+																								<div class="update-student">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne4"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne4"
+																														aria-expanded="true"
+																														aria-controls="collapseOne4"
+																													>
+																														<div class="headingdiv">
+																														     CRM{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne4"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne4"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-6 col-12">
+																																	<label>
+																																		Sales Pipeline
+																																		<p>*</p>
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="salesPipeline"
+																																		id="cars"
+																																		value=""
+																																	>
+																																		<option>
+																																			OnShore
+																																		</option>
+																																		<option>
+																																			OffShore
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-6 col-12">
+																																	<label>
+																																		Sale Status<p>*</p>
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="salesStatus"
+																																		id="cars"
+																																		value=""
+																																	>
+																																		<option>
+																																			Inquiry Recieved
+																																		</option>
+																																		<option>
+																																			Counselling
+																																		</option>
+																																		<option>
+																																			Quotation Sent
+																																		</option>
+																																		<option>
+																																			Application
+																																		</option>
+																																		<option>
+																																			Waiting for Loo
+																																		</option>
+																																		<option>
+																																			Payment Pending
+																																		</option>
+																																		<option>
+																																			Waiting for CoE
+																																		</option>
+																																		<option>
+																																			Apply for Visa
+																																		</option>
+																																		<option>
+																																			Waiting for Visa
+																																			Requirement
+																																		</option>
+																																		<option>
+																																			Waiting for Visa
+																																		</option>
+																																		<option>
+																																			Visa Granted
+																																		</option>
+																																		<option>
+																																			Course in Progress
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-6 col-12">
+																																	<label>
+																																		Heat Level
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="heatLevel"
+																																		id="cars"
+																																		value=""
+																																	>
+																																		<option>
+																																			Very Hot
+																																		</option>
+																																		<option>Hot</option>
+																																		<option>
+																																			Warm
+																																		</option>
+																																		<option>
+																																			Cold
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-12 col-12">
+																																	<label>
+																																		Other comments
+																																		(remarks)
+																																	</label>
+																																	<textarea
+																																		rows="5"
+																																		class="form-control"
+																																		placeholder="insert text here"
+																																		value=""
+																																		name="otherComments"
+																																	></textarea>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									
+
+																									<div class="others">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne1"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne1"
+																														aria-expanded="true"
+																														aria-controls="collapseOne1"
+																													>
+																														<div class="headingdiv">
+																															Others{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne1"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne1"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Status{' '}
+																																		<p>*</p>
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="locationStatus"
+																																		value={
+																																			locationStatus
+																																		}
+																																		id="cars"
+																																		
+																																	>
+																																		<option>
+																																			Onshore
+																																		</option>
+																																		<option>
+																																			Offshore
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Referral
+																																		source{' '}
+																																		<p>*</p>
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="referalSource"
+																																		value=""
+																																		id="cars"
+																																	>
+																																		<option>
+																																			unknown
+																																		</option>
+																																		<option>
+																																			Youtube
+																																		</option>
+																																		<option>
+																																			Instagram
+																																		</option>
+																																		<option>
+																																			Facebook
+																																		</option>
+																																		<option>
+																																			Google
+																																		</option>
+																																	</select>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="counsellor">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne2"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne2"
+																														aria-expanded="true"
+																														aria-controls="collapseOne2"
+																													>
+																														<div class="headingdiv">
+																															Counsellors{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne2"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne2"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-12 col-12">
+																																	<label>
+																																		Counsellor 1
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="userNmae"
+																																		value=""
+																																		
+																																	/>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="notes">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne3"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne3"
+																														aria-expanded="true"
+																														aria-controls="collapseOne3"
+																													>
+																														<div class="headingdiv">
+																															Add a note{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne3"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne3"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-12 col-12">
+																																	<textarea
+																																		name="note"
+																																		value=""
+																																		rows="4"
+																																		class="form-control"
+																																		placeholder="Add a Note"
+																																		
+																																	></textarea>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									
+
+																									<div class="contact">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne1"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne5"
+																														aria-expanded="true"
+																														aria-controls="collapseOne5"
+																													>
+																														<div class="headingdiv">
+																															Contact{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne5"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne5"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-12 col-12">
+																																	<label>
+																																		Email
+																																	</label>
+																																	<input
+																																		type="email"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="email"
+																																		value=""
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-12 col-12">
+																																	<label>
+																																		Onshore
+																																		phone
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="onShorePhone"
+																																		value=""
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-12 col-12">
+																																	<label>
+																																		Offshore
+																																		phone
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="offShorePhone"
+																																		value=""
+																																	/>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="visa">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne6"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne6"
+																														aria-expanded="true"
+																														aria-controls="collapseOne6"
+																													>
+																														<div class="headingdiv">
+																															Visa{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne6"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne6"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Type
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		name="visaType"
+																																		id="cars"
+																																		
+																																		value=""
+																																	>
+																																		<option>
+																																			Any
+																																		</option>
+																																		<option>
+																																			Student
+																																			visa
+																																		</option>
+																																		<option>
+																																			Working
+																																			holiday
+																																		</option>
+																																		<option>
+																																			Work &
+																																			holiday
+																																		</option>
+																																		<option>
+																																			Citizenship
+																																		</option>
+																																		<option>
+																																			other
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Visa expire
+																																		date
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="visaExpiryDate"
+																																		value=""
+																																	/>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																						<div class="fotercontent">
+																							<div class="form-buttons-w">
+																								<div className="row">
+																									<div className="col-md-9">
+																										<button
+																											type="button"
+																											onClick=""
+																											class="btn btn-danger btn-secondary"
+																										/>
+																									</div>
+																									<div className="col-md-3">
+																										<input
+																											type="submit"
+																											name="Save"
+																											class="btn float-right btn-primary getin-btn"
+																											value="Save"
+																										/>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																					</form>
+																				</Modal.Body>
+																			</div>
+																		</div>
+																	</div>
+														</div>
+												</div>
+											</Modal.Body>
+										</Modal>
+									</div>
+							{/* convert to deat modal end*/}
+
 						</div>
 					</div>
 					{/*-- commantable end here --*/}
