@@ -9,7 +9,6 @@ import 'react-tabs/style/react-tabs.css';
 import { addLead } from './addLeadAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spinner, Alert } from 'react-bootstrap';
-
 import { fetchAllLeads } from './showLeadAction';
 import { fetchSingleLead } from './getSingleLeadAction';
 import { leadTask } from './leadTaskAction';
@@ -813,7 +812,12 @@ const Leads = () => {
 																									</div>
 																									<div class="call-area">
 																										<div class="row">
-																											<div class="col-md-11">
+																										<div class="col-md-1">
+																											<div class="call-icon">
+																											    <i class="fas fa-inbox"></i>
+																											</div>
+																											</div>
+																											<div class="col-md-10">
 																												<div class="main-timeline call">
 																													<div class="timeline active">
 																														<a
@@ -1286,7 +1290,10 @@ const Leads = () => {
 
 																									<div class="call-area">
 																										<div class="row">
-																											<div class="col-md-10">
+                                                                                                            
+																											
+
+																											<div class="col-md-11">
 																												<div class="main-timeline call sub">
 																													<div class="timeline">
 																														<div class="row">
@@ -1345,6 +1352,11 @@ const Leads = () => {
 																									</div>
 																									<div class="call-area">
 																										<div class="row">
+																										<div class="col-md-1">
+																											<div class="call-icon">
+																											    <i class="fas fa-inbox"></i>
+																											</div>
+																											</div>
 																											<div class="col-md-11">
 																												<div class="main-timeline call meeting">
 																													<div class="timeline active">
@@ -1663,6 +1675,7 @@ const Leads = () => {
 																																	handleOnChange
 																																}
 																															/>
+																															
 																															<select
 																																class="form-control"
 																																id="time"
@@ -2538,7 +2551,7 @@ const Leads = () => {
 																			<div class="col-lg-7 col-12">
 																				<div class="update-student">
 																					<div class="headingdiv">Personal</div>
-																					<div class="crm-form">
+																					<div class="crm-form card-body">
 																						<div class="form-row">
 																							<div class="form-group col-md-4 col-12">
 																								<label>
@@ -3132,7 +3145,9 @@ const Leads = () => {
 																						type="button"
 																						onClick=""
 																						class="btn btn-danger btn-secondary"
-																					/>
+																					>
+																						Reset
+																					</button>
 																				</div>
 																				<div className="col-md-3">
 																					<input
