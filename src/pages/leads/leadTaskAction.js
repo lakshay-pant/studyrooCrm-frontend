@@ -14,8 +14,6 @@ export const leadTask = (frmDt, id) => async (dispatch) => {
 		result.status === 'success'
 			? dispatch(leadTaskSuccess(result.message))
 			: dispatch(leadTaskError(result.message));
-
-		console.log('RESULT TIME', result);
 	} catch (error) {
 		dispatch(leadTaskError(error.message));
 	}

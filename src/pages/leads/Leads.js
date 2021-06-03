@@ -2463,9 +2463,10 @@ const Leads = () => {
 																														<div class="done">
 																															<input
 																																type="checkbox"
-																																onClick={() =>
+																																onChange={(e) =>
 																																	setTaskCompleted(
-																																		true
+																																		e.target
+																																			.checked
 																																	)
 																																}
 																															/>

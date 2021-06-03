@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	singleLead: null,
+	lead: null,
 	isLoadingShowSingleLead: false,
 	errorSingleLead: '',
 };
@@ -14,7 +14,7 @@ const singleLeadSlice = createSlice({
 			state.isLoadingShowSingleLead = true;
 		},
 		fetchSingleLeadSuccess: (state, action) => {
-			state.singleLead = action.payload;
+			state.lead = action.payload;
 			state.isLoadingShowSingleLead = false;
 		},
 		fetchSingleLeadFail: (state, { payload }) => {
