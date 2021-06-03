@@ -432,7 +432,7 @@
 }
 #leadsFilter .date-sec .time-area .form-control{
   width: 30%;
-  margin-right: 10px;
+  margin-right: 5px;
 }
 #leadsFilter .left-icon{
   font-size: 22px;
@@ -721,8 +721,7 @@ height: 30px;
 
 @media (min-width: 576px){
   .modal-dialog.add-leads{
-    max-width: 700px!important;
-    margin: 1.75rem auto !important;
+    margin: 1.75rem!important;
 }
 }
 /*add-leads popup end */
@@ -806,4 +805,10 @@ button.editleads-icon {
 }
 #studentFilter.deal-convert  button.close span{
   top: -15px;
+}
+.form-control:focus{
+  box-shadow: none;
+}
+.btn:focus{
+  box-shadow: none;
 }

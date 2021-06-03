@@ -9,7 +9,6 @@ import 'react-tabs/style/react-tabs.css';
 import { addLead } from './addLeadAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { Spinner, Alert } from 'react-bootstrap';
-
 import { fetchAllLeads } from './showLeadAction';
 import { fetchSingleLead } from './getSingleLeadAction';
 import { leadTask } from './leadTaskAction';
@@ -1663,6 +1662,7 @@ const Leads = () => {
 																																	handleOnChange
 																																}
 																															/>
+																															
 																															<select
 																																class="form-control"
 																																id="time"
@@ -2507,7 +2507,6 @@ const Leads = () => {
 
 							{/* convert to deal modal */}
 							<div
-<<<<<<< Updated upstream
 								class="modal fade filters-modal show"
 								id="convert"
 								aria-modal="true"
@@ -2538,7 +2537,7 @@ const Leads = () => {
 																			<div class="col-lg-7 col-12">
 																				<div class="update-student">
 																					<div class="headingdiv">Personal</div>
-																					<div class="crm-form">
+																					<div class="crm-form card-body">
 																						<div class="form-row">
 																							<div class="form-group col-md-4 col-12">
 																								<label>
@@ -2554,67 +2553,6 @@ const Leads = () => {
 																									onChange={handleOnChange}
 																								/>
 																							</div>
-=======
-										class="modal fade filters-modal show"
-										id="convert"
-										aria-modal="true"
-									>
-										<Modal show={isOpen4} onHide={hideModal4}>
-											<Modal.Body>
-												<div class="modal-dialog modal-lg" role="document">
-
-														<div class="modal-body">
-														<div id="studentFilter" class="deal-convert">
-																		<div
-																			class="modal-dialog modal-lg"
-																			role="document"
-																		>
-																			<div class="modal-content">
-																				<div class="modal-top">
-																					<h5>Convert To Deal</h5>
-																					<button
-																						type="button"
-																						onClick={hideModal4}
-																						class="close"
-																						data-dismiss="modal"
-																						aria-label="Close"
-																					>
-																						<span aria-hidden="true">
-																							&times;
-																						</span>
-																					</button>
-																				</div>
-																				<Modal.Body>
-																					<form>
-																						<div class="student-filter-area">
-																							<div class="row">
-																								<div class="col-lg-7 col-12">
-                                                                                                                <div class="update-student">
-																													<div class="headingdiv">
-																														Personal
-																													</div>
-																												    <div class="card-body">
-																								                        <div class="crm-form">
-																															<div class="form-row">
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		First Name
-																																		<p>*</p>
-																																	</label>
-																																	<input
-																																		type="text"
-																																		class="form-control"
-																																		placeholder=""
-																																		name="firstName"
-																																		value={
-																																			firstName
-																																		}
-																																		onChange={
-																																			handleOnChange
-																																		}
-																																	/>
-																																</div>
->>>>>>> Stashed changes
 
 																							<div class="form-group col-md-4 col-12">
 																								<label>
@@ -2659,7 +2597,6 @@ const Leads = () => {
 																								</select>
 																							</div>
 
-<<<<<<< Updated upstream
 																							<div class="form-group col-md-4 col-12">
 																								<label>Nationality</label>
 																								<select
@@ -2676,35 +2613,6 @@ const Leads = () => {
 																						</div>
 																					</div>
 																				</div>
-=======
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Nationality
-																																	</label>
-																																	<select
-																																		class="form-control"
-																																		name="nation"
-																																		value=""
-																																	>
-																																		<option>
-																																			Poland
-																																		</option>
-																																		<option>
-																																			Peru
-																																		</option>
-																																		<option>
-																																			Norway
-																																		</option>
-																																		<option>
-																																			Ghana
-																																		</option>
-																																	</select>
-																																</div>
-																															</div>
-																														</div>
-																													</div>
-																												</div>
->>>>>>> Stashed changes
 
 																				<div class="update-student">
 																					<div
@@ -3129,7 +3037,6 @@ const Leads = () => {
 																								</div>
 																							</div>
 																						</div>
-<<<<<<< Updated upstream
 																					</div>
 																				</div>
 
@@ -3156,19 +3063,6 @@ const Leads = () => {
 																									<div class="headingdiv">
 																										Visa{' '}
 																										<i class="fas fa-angle-down rotate-icon"></i>
-=======
-																						<div class="fotercontent">
-																							<div class="form-buttons-w">
-																								<div className="row">
-																									<div className="col-md-9">
-																										<input
-																											type="submit"
-																											onClick=""
-																											class="btn btn-danger btn-secondary"
-																											value="Reset"
-																											name="Reset"
-																										/>
->>>>>>> Stashed changes
 																									</div>
 																								</a>
 																							</div>
@@ -3237,7 +3131,9 @@ const Leads = () => {
 																						type="button"
 																						onClick=""
 																						class="btn btn-danger btn-secondary"
-																					/>
+																					>
+																						Reset
+																					</button>
 																				</div>
 																				<div className="col-md-3">
 																					<input

@@ -497,7 +497,7 @@ export const AddStudentForm = () => {
 													<div class="form-bgclr">
 														<div class="form-row">
 															<div class="form-group col-md-4">
-																<label>First Name*</label>
+																<label>First Name <p>*</p></label>
 
 																<input
 																	type="text"
@@ -520,7 +520,7 @@ export const AddStudentForm = () => {
 																/>
 															</div>
 															<div class="form-group col-md-4">
-																<label>Last name*</label>
+																<label>Last name <p>*</p></label>
 																<input
 																	type="text"
 																	class="form-control"
