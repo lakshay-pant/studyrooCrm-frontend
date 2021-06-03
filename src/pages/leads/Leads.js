@@ -812,7 +812,12 @@ const Leads = () => {
 																									</div>
 																									<div class="call-area">
 																										<div class="row">
-																											<div class="col-md-11">
+																										<div class="col-md-1">
+																											<div class="call-icon">
+																											    <i class="fas fa-inbox"></i>
+																											</div>
+																											</div>
+																											<div class="col-md-10">
 																												<div class="main-timeline call">
 																													<div class="timeline active">
 																														<a
@@ -1285,7 +1290,10 @@ const Leads = () => {
 
 																									<div class="call-area">
 																										<div class="row">
-																											<div class="col-md-10">
+                                                                                                            
+																											
+
+																											<div class="col-md-11">
 																												<div class="main-timeline call sub">
 																													<div class="timeline">
 																														<div class="row">
@@ -1344,6 +1352,11 @@ const Leads = () => {
 																									</div>
 																									<div class="call-area">
 																										<div class="row">
+																										<div class="col-md-1">
+																											<div class="call-icon">
+																											    <i class="fas fa-inbox"></i>
+																											</div>
+																											</div>
 																											<div class="col-md-11">
 																												<div class="main-timeline call meeting">
 																													<div class="timeline active">
