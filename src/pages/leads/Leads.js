@@ -914,9 +914,11 @@ const Leads = () => {
 
 																																	<button
 																																		class="editleads-icon"
-																																		onClick={showModal3(
-																																			incompleteTask
-																																		)}
+																																		onClick={() =>
+																																			showModal3(
+																																				incompleteTask
+																																			)
+																																		}
 																																	>
 																																		<i
 																																			class="fa fa-ellipsis-h"
