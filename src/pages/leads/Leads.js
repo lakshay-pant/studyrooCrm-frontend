@@ -277,10 +277,8 @@ const Leads = () => {
 		setIsOpen2(false);
 	};
 
-	const showModal3 = () => {
+	const showModal3 = (item) => {
 		setIsOpen3(true);
-		console.log('comp', completedTasks);
-		console.log('incomp', incompletedTasks);
 	};
 
 	const hideModal3 = () => {
@@ -916,9 +914,9 @@ const Leads = () => {
 
 																																	<button
 																																		class="editleads-icon"
-																																		onClick={
-																																			showModal3
-																																		}
+																																		onClick={showModal3(
+																																			incompleteTask
+																																		)}
 																																	>
 																																		<i
 																																			class="fa fa-ellipsis-h"
