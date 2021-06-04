@@ -66,3 +66,16 @@ export const addLeadTask = (frmData, id) => {
 		}
 	});
 };
+
+export const DeleteAllUserLeads = (id) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete('http://localhost:3001/v1/leads/' + id);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};

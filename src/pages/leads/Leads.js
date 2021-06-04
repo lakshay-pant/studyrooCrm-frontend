@@ -12,6 +12,8 @@ import { Spinner, Alert } from 'react-bootstrap';
 import { fetchAllLeads } from './showLeadAction';
 import { fetchSingleLead } from './getSingleLeadAction';
 import { leadTask } from './leadTaskAction';
+import { deleteLead } from './deleteLeadAction';
+import { addLeadResetSuccessMSg } from './addLeadSlice';
 
 import Moment from 'moment';
 
@@ -169,6 +171,11 @@ const Leads = () => {
 		}
 	};
 
+	const deleteLeadRecord = async () => {
+		await dispatch(deleteLead(leadId));
+		await showAddedLeads();
+	};
+
 	const showAddedLeads = () => {
 		dispatch(fetchAllLeads());
 	};
@@ -266,6 +273,7 @@ const Leads = () => {
 		setUserName('');
 	};
 	const hideModal2 = () => {
+		dispatch(addLeadResetSuccessMSg());
 		setIsOpen2(false);
 	};
 
@@ -308,6 +316,10 @@ const Leads = () => {
 	useEffect(() => {
 		dispatch(fetchSingleLead(leadId));
 	}, []);
+
+	useEffect(() => {
+		messageLead && dispatch(addLeadResetSuccessMSg());
+	}, [dispatch]);
 
 	return (
 		<div className="content-wrapper">
@@ -819,6 +831,7 @@ const Leads = () => {
 																						<i
 																							class="fa fa-trash"
 																							aria-hidden="true"
+																							onClick={() => deleteLeadRecord()}
 																						></i>
 																					</div>
 																				</li>
@@ -858,8 +871,9 @@ const Leads = () => {
 																									</div>
 																									{incompletedTasks &&
 																									incompletedTasks.length ? (
-																										incompletedTasks.map(
-																											(incompleteTask) => (
+																										incompletedTasks
+																											.reverse()
+																											.map((incompleteTask) => (
 																												<div class="call-area">
 																													<div class="row">
 																														<div class="col-md-1">
@@ -1349,8 +1363,7 @@ const Leads = () => {
 																														</div>
 																													</div>
 																												</div>
-																											)
-																										)
+																											))
 																									) : (
 																										<p>No task found</p>
 																									)}
@@ -1366,8 +1379,9 @@ const Leads = () => {
 																									</div>
 																									{completedTasks &&
 																									completedTasks.length ? (
-																										completedTasks.map(
-																											(completeTask) => (
+																										completedTasks
+																											.reverse()
+																											.map((completeTask) => (
 																												<div class="call-area">
 																													<div class="row">
 																														<div class="col-md-1">
@@ -1857,8 +1871,7 @@ const Leads = () => {
 																														</div>
 																													</div>
 																												</div>
-																											)
-																										)
+																											))
 																									) : (
 																										<p>No task found</p>
 																									)}
