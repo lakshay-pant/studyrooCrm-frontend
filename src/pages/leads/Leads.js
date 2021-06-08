@@ -821,6 +821,7 @@ const Leads = () => {
 																									</div>
 																									<div class="call-area">
 																										<div class="row">
+<<<<<<< Updated upstream
 																										    <div class="col-md-1">
 																										        <div class="call-icon">
 																													<i class="fas fa-inbox"></i>
@@ -828,6 +829,10 @@ const Leads = () => {
 																											</div>
 																											
 																											<div class="col-md-10">
+=======
+																											
+																											<div class="col-md-11">
+>>>>>>> Stashed changes
 																												<div class="main-timeline call">
 																													<div class="timeline active">
 																														<a
@@ -1359,12 +1364,16 @@ const Leads = () => {
 																									</div>
 																									<div class="call-area">
 																										<div class="row">
+<<<<<<< Updated upstream
 																										    <div class="col-md-1">
 																										        <div class="call-icon">
 																													<i class="fas fa-inbox"></i>
 																												</div>
 																											</div>
 																											<div class="col-md-10">
+=======
+																											<div class="col-md-11">
+>>>>>>> Stashed changes
 																												<div class="main-timeline call meeting">
 																													<div class="timeline active">
 																														<a
