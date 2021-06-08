@@ -14,6 +14,7 @@ import { fetchSingleLead } from './getSingleLeadAction';
 import { leadTask } from './leadTaskAction';
 import { deleteLead } from './deleteLeadAction';
 import { addLeadResetSuccessMSg } from './addLeadSlice';
+import { deleteTask } from './deleteTaskAction';
 
 import Moment from 'moment';
 
@@ -73,6 +74,7 @@ const Leads = () => {
 	const [leadId, setLeadId] = useState('');
 	const [taskEndTime, setTaskEndTime] = useState('');
 	const [taskStartTime, setTaskStartTime] = useState('');
+	const [leadTaskId, setLeadTaskId] = useState('');
 
 	const dispatch = useDispatch();
 
@@ -173,6 +175,11 @@ const Leads = () => {
 
 	const deleteLeadRecord = async () => {
 		await dispatch(deleteLead(leadId));
+		await showAddedLeads();
+	};
+
+	const deleteTaskRecord = async () => {
+		await dispatch(deleteTask(leadTaskId));
 		await showAddedLeads();
 	};
 
@@ -279,6 +286,8 @@ const Leads = () => {
 
 	const showModal3 = (item) => {
 		setIsOpen3(true);
+		setLeadTaskId(item._id);
+		console.log(leadTaskId);
 	};
 
 	const hideModal3 = () => {
@@ -1323,7 +1332,15 @@ const Leads = () => {
 																																									<div class="container">
 																																										<div class="row">
 																																											<div class="col-md-6 col-12 save-area">
-																																												<button class="btn btn-save">
+																																												<p>
+																																													hey
+																																												</p>
+																																												<button
+																																													class="btn btn-save"
+																																													onClick={() =>
+																																														deleteTaskRecord()
+																																													}
+																																												>
 																																													Delete
 																																												</button>
 																																											</div>
