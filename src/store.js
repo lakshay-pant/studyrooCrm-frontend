@@ -15,6 +15,7 @@ import singleLead from './pages/leads/getSingleLeadSlice';
 import deleteLead from './pages/leads/deleteLeadSlice';
 import deleteTask from './pages/leads/deleteTaskSlice';
 import deleteLeadTask from './pages/leads/deleteLeadTaskSlice';
+import updateLeadTask from './pages/leads/updateLeadSlice';
 
 const store = configureStore({
 	reducer: {
@@ -34,6 +35,7 @@ const store = configureStore({
 		deleteLead: deleteLead,
 		deleteTask: deleteTask,
 		deleteLeadTask: deleteLeadTask,
+		updateLeadTask: updateLeadTask,
 	},
 });
 

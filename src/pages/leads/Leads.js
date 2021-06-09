@@ -177,6 +177,7 @@ const Leads = () => {
 	const deleteLeadRecord = async () => {
 		await dispatch(deleteLead(leadId));
 		await showAddedLeads();
+		hideModal();
 	};
 
 	const deleteTaskRecord = async () => {
@@ -233,6 +234,7 @@ const Leads = () => {
 
 		await dispatch(addLead(newLead));
 		await showAddedLeads();
+		hideModal2();
 	};
 
 	const showModal = (item) => {
@@ -993,6 +995,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Call"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -1005,6 +1014,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Meeting"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -1017,6 +1033,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Task"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -1029,6 +1052,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Deadline"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -1041,6 +1071,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Email"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -1053,6 +1090,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Lunch"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -1062,6 +1106,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-phone"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Calling'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -1070,6 +1119,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-user"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Meeting'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -1078,6 +1132,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-clock-o"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Task'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -1086,6 +1145,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-flag"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Deadline'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -1094,6 +1158,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-paper-plane"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Email'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -1102,6 +1171,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-phone"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Lunch'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -1128,11 +1202,25 @@ const Leads = () => {
 																																															type="date"
 																																															class="form-control"
 																																															placeholder="Date"
+																																															name="taskStartDate"
+																																															value={
+																																																taskStartDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
+
 																																														<select
 																																															class="form-control"
 																																															id="time"
 																																															name="taskStartTime"
+																																															value={
+																																																taskStartTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														>
 																																															<option>
 																																																12:00
@@ -1523,11 +1611,24 @@ const Leads = () => {
 																																															type="date"
 																																															class="form-control"
 																																															placeholder="Date"
+																																															name="taskEndDate"
+																																															value={
+																																																taskEndDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
 																																														<select
 																																															class="form-control"
 																																															id="time"
 																																															name="taskEndTime"
+																																															value={
+																																																taskEndTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														>
 																																															<option>
 																																																12:00
@@ -1931,7 +2032,13 @@ const Leads = () => {
 																																												</div>
 																																												<div class="col-md-8 col-12">
 																																													<textarea
-																																														name="message"
+																																														name="taskNote"
+																																														value={
+																																															taskNote
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
 																																														rows="4"
 																																														class="form-control"
 																																														placeholder="add"
@@ -1954,6 +2061,13 @@ const Leads = () => {
 																																													<select
 																																														class="form-control"
 																																														name="user"
+																																														name="assignee"
+																																														value={
+																																															assignee
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
 																																													>
 																																														<option value="new">
 																																															{
@@ -1993,10 +2107,17 @@ const Leads = () => {
 																																														<input
 																																															type="checkbox"
 																																															id="vehicle1"
-																																															name="vehicle1"
-																																															value="Bike"
+																																															onChange={(
+																																																e
+																																															) =>
+																																																setTaskCompleted(
+																																																	e
+																																																		.target
+																																																		.checked
+																																																)
+																																															}
 																																														/>
-																																														<label for="vehicle1">
+																																														<label>
 																																															Mark
 																																															as
 																																															Done
@@ -2154,6 +2275,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Call"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -2166,6 +2294,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Meeting"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -2178,6 +2313,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Task"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -2190,6 +2332,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Deadline"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -2202,6 +2351,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Email"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -2214,6 +2370,13 @@ const Leads = () => {
 																																																		type="text"
 																																																		class="form-control"
 																																																		placeholder="Lunch"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
 																																																	/>
 																																																</div>
 																																															</TabPanel>
@@ -2223,6 +2386,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-phone"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Calling'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -2231,6 +2399,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-user"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Meeting'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -2239,6 +2412,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-clock-o"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Task'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -2247,6 +2425,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-flag"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Deadline'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -2255,6 +2438,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-paper-plane"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Email'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -2263,6 +2451,11 @@ const Leads = () => {
 																																																		<i
 																																																			class="fa fa-phone"
 																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Lunch'
+																																																				)
+																																																			}
 																																																		></i>
 																																																	</div>
 																																																</Tab>
@@ -2289,11 +2482,25 @@ const Leads = () => {
 																																															type="date"
 																																															class="form-control"
 																																															placeholder="Date"
+																																															name="taskStartDate"
+																																															value={
+																																																taskStartDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
+
 																																														<select
 																																															class="form-control"
 																																															id="time"
-																																															name="taskEndTime"
+																																															name="taskStartTime"
+																																															value={
+																																																taskStartTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														>
 																																															<option>
 																																																12:00
@@ -2684,11 +2891,24 @@ const Leads = () => {
 																																															type="date"
 																																															class="form-control"
 																																															placeholder="Date"
+																																															name="taskEndDate"
+																																															value={
+																																																taskEndDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
 																																														<select
 																																															class="form-control"
 																																															id="time"
 																																															name="taskEndTime"
+																																															value={
+																																																taskEndTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														>
 																																															<option>
 																																																12:00
@@ -3105,10 +3325,16 @@ const Leads = () => {
 																																												</div>
 																																												<div class="col-md-8 col-12">
 																																													<textarea
-																																														name="message"
 																																														rows="4"
 																																														class="form-control"
 																																														placeholder="add"
+																																														name="taskNote"
+																																														value={
+																																															taskNote
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
 																																													></textarea>
 																																												</div>
 																																											</div>
@@ -3128,6 +3354,13 @@ const Leads = () => {
 																																													<select
 																																														class="form-control"
 																																														name="user"
+																																														name="assignee"
+																																														value={
+																																															assignee
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
 																																													>
 																																														<option value="new">
 																																															{
@@ -3164,8 +3397,15 @@ const Leads = () => {
 																																														<input
 																																															type="checkbox"
 																																															id="vehicle1"
-																																															name="vehicle1"
-																																															value="Bike"
+																																															onChange={(
+																																																e
+																																															) =>
+																																																setTaskCompleted(
+																																																	e
+																																																		.target
+																																																		.checked
+																																																)
+																																															}
 																																														/>
 																																														<label for="vehicle1">
 																																															Mark
