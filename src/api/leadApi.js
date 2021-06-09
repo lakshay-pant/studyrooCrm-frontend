@@ -79,3 +79,18 @@ export const DeleteAllUserLeads = (id) => {
 		}
 	});
 };
+
+export const DeleteAllUserLeadsTask = (id1, id2) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/leads/' + id1 + '/' + id2
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
