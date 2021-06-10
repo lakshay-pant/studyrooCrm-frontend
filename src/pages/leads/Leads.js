@@ -12,6 +12,10 @@ import { Spinner, Alert } from 'react-bootstrap';
 import { fetchAllLeads } from './showLeadAction';
 import { fetchSingleLead } from './getSingleLeadAction';
 import { leadTask } from './leadTaskAction';
+import { deleteLead } from './deleteLeadAction';
+import { addLeadResetSuccessMSg } from './addLeadSlice';
+import { deleteTask } from './deleteTaskAction';
+import { deleteLeadTask } from './deleteLeadTaskAction';
 
 import Moment from 'moment';
 
@@ -23,6 +27,22 @@ const Leads = () => {
 	const { leads, isLoadingShowlead, error } = useSelector(
 		(state) => state.leadList
 	);
+
+	const { lead, isLoadingShowSingleLead, errorSingleLead } = useSelector(
+		(state) => state.singleLead
+	);
+
+	const completedTasks =
+		lead &&
+		lead.leadTasks.filter(function (lead) {
+			return lead.taskCompleted === true;
+		});
+
+	const incompletedTasks =
+		lead &&
+		lead.leadTasks.filter(function (lead) {
+			return lead.taskCompleted === false;
+		});
 
 	const [isOpen, setIsOpen] = useState(false);
 	const [isOpen2, setIsOpen2] = useState(false);
@@ -55,6 +75,7 @@ const Leads = () => {
 	const [leadId, setLeadId] = useState('');
 	const [taskEndTime, setTaskEndTime] = useState('');
 	const [taskStartTime, setTaskStartTime] = useState('');
+	const [leadTaskId, setLeadTaskId] = useState('');
 
 	const dispatch = useDispatch();
 
@@ -153,6 +174,17 @@ const Leads = () => {
 		}
 	};
 
+	const deleteLeadRecord = async () => {
+		await dispatch(deleteLead(leadId));
+		await showAddedLeads();
+		hideModal();
+	};
+
+	const deleteTaskRecord = async () => {
+		await dispatch(deleteLeadTask(leadId, leadTaskId));
+		await showAddedLeads();
+	};
+
 	const showAddedLeads = () => {
 		dispatch(fetchAllLeads());
 	};
@@ -175,6 +207,9 @@ const Leads = () => {
 		await dispatch(leadTask(newLeadTask, leadId));
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
+		if (taskCompleted === true) {
+			setTaskCompleted(false);
+		}
 	};
 
 	const handleOnLeadSubmit = async (e) => {
@@ -199,6 +234,7 @@ const Leads = () => {
 
 		await dispatch(addLead(newLead));
 		await showAddedLeads();
+		hideModal2();
 	};
 
 	const showModal = (item) => {
@@ -229,13 +265,32 @@ const Leads = () => {
 
 	const hideModal = () => {
 		setIsOpen(false);
+		setFirstName('');
+		setMiddleName('');
+		setLastName('');
+		setEmail('');
+		setGender('');
+		setOnShoreLocation('');
+		setOffShoreLocation('');
+		setNationality('');
+		setOffShorePhone('');
+		setOnShorePhone('');
+		setLeadLevel('');
+		setLocationStatus('');
+		setBirthday('');
+		setRefferalSource('');
+		setAddedAt('');
+		setUserName('');
 	};
 	const hideModal2 = () => {
+		dispatch(addLeadResetSuccessMSg());
 		setIsOpen2(false);
 	};
 
-	const showModal3 = () => {
+	const showModal3 = (item) => {
 		setIsOpen3(true);
+		setLeadTaskId(item._id);
+		console.log(leadTaskId);
 	};
 
 	const hideModal3 = () => {
@@ -250,8 +305,9 @@ const Leads = () => {
 		setIsOpen4(false);
 	};
 
-	const showModal5 = () => {
+	const showModal5 = (item) => {
 		setIsOpen5(true);
+		setLeadTaskId(item._id);
 	};
 
 	const hideModal5 = () => {
@@ -271,6 +327,10 @@ const Leads = () => {
 	useEffect(() => {
 		dispatch(fetchSingleLead(leadId));
 	}, []);
+
+	useEffect(() => {
+		messageLead && dispatch(addLeadResetSuccessMSg());
+	}, [dispatch]);
 
 	return (
 		<div className="content-wrapper">
@@ -782,6 +842,7 @@ const Leads = () => {
 																						<i
 																							class="fa fa-trash"
 																							aria-hidden="true"
+																							onClick={() => deleteLeadRecord()}
 																						></i>
 																					</div>
 																				</li>
@@ -819,539 +880,1276 @@ const Leads = () => {
 																											</div>
 																										</div>
 																									</div>
-																									<div class="call-area">
-																										<div class="row">
-<<<<<<< Updated upstream
-																										    <div class="col-md-1">
-																										        <div class="call-icon">
-																													<i class="fas fa-inbox"></i>
-																												</div>
-																											</div>
-																											
-																											<div class="col-md-10">
-=======
-																											
-																											<div class="col-md-11">
->>>>>>> Stashed changes
-																												<div class="main-timeline call">
-																													<div class="timeline active">
-																														<a
-																															href="#"
-																															class="timeline-content"
-																														>
-																															<input
-																																type="radio"
-																																id="call"
-																																name="call"
-																																value="call"
-																															/>
-																															<label for="call">
-																																Call
-																															</label>
-																															<br />
-																														</a>
-																														<ul>
-																															<li>Wednesday</li>
-																															<li>Marco</li>
-																														</ul>
+																									{incompletedTasks &&
+																									incompletedTasks.length ? (
+																										incompletedTasks
+																											.reverse()
+																											.map((incompleteTask) => (
+																												<div class="call-area">
+																													<div class="row">
+																														<div class="col-md-1">
+																															<div class="call-icon">
+																																<i class="fas fa-inbox"></i>
+																															</div>
+																														</div>
+																														<div class="col-md-10">
+																															<div class="main-timeline call">
+																																<div class="timeline active">
+																																	<a
+																																		href="#"
+																																		class="timeline-content"
+																																	>
+																																		<input
+																																			type="radio"
+																																			id="call"
+																																			name="call"
+																																			value="call"
+																																		/>
+																																		<label for="call">
+																																			{
+																																				incompleteTask.taskStatus
+																																			}
+																																		</label>
+																																		<br />
+																																	</a>
+																																	<ul>
+																																		<li>
+																																			{
+																																				incompleteTask.taskEndDate
+																																			}
+																																		</li>
+																																		<li>
+																																			{
+																																				incompleteTask.assignee
+																																			}
+																																		</li>
+																																	</ul>
 
-																														<button
-																															class="editleads-icon"
-																															onClick={
-																																showModal3
-																															}
-																														>
-																															<i
-																																class="fa fa-ellipsis-h"
-																																aria-hidden="true"
-																															></i>
-																														</button>
+																																	<button
+																																		class="editleads-icon"
+																																		onClick={() =>
+																																			showModal3(
+																																				incompleteTask
+																																			)
+																																		}
+																																	>
+																																		<i
+																																			class="fa fa-ellipsis-h"
+																																			aria-hidden="true"
+																																		></i>
+																																	</button>
 
-																														<div
-																															class="modal fade filters-modal show"
-																															id="leadsupdate"
-																															aria-modal="true"
-																														>
-																															<Modal
-																																show={isOpen3}
-																																onHide={
-																																	hideModal3
-																																}
-																															>
-																																<div
-																																	id="leadsFilter"
-																																	class="leadsedit"
-																																>
-																																	<div class="notes-area">
-																																		<Modal.Body>
-																																			<div class="fl-head">
-																																				<h5>
-																																					{' '}
-																																					Edit
-																																					activity
-																																				</h5>
-																																				<button
-																																					onClick={
-																																						hideModal3
-																																					}
-																																					className="close"
-																																				>
-																																					<span aria-hidden="true">
-																																						&times;
-																																					</span>
-																																				</button>
-																																			</div>
+																																	<div
+																																		class="modal fade filters-modal show"
+																																		id="leadsupdate"
+																																		aria-modal="true"
+																																	>
+																																		<Modal
+																																			show={
+																																				isOpen3
+																																			}
+																																			onHide={
+																																				hideModal3
+																																			}
+																																		>
+																																			<div
+																																				id="leadsFilter"
+																																				class="leadsedit"
+																																			>
+																																				<div class="notes-area">
+																																					<Modal.Body>
+																																						<div class="fl-head">
+																																							<h5>
+																																								{' '}
+																																								Edit
+																																								activity
+																																							</h5>
+																																							<button
+																																								onClick={
+																																									hideModal3
+																																								}
+																																								className="close"
+																																							>
+																																								<span aria-hidden="true">
+																																									&times;
+																																								</span>
+																																							</button>
+																																						</div>
 
-																																			<div class="row">
-																																				<div class="col-md-12 col-12">
-																																					<form>
-																																						<div class="call-sec">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2"></div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="meeting-input">
-																																											<Tabs>
-																																												<TabPanel>
-																																													<div
-																																														id="home"
-																																														class="tab-pane active show"
-																																													>
-																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Call"
-																																														/>
+																																						<div class="row">
+																																							<div class="col-md-12 col-12">
+																																								<form>
+																																									<div class="call-sec">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2"></div>
+																																												<div class="col-md-8 col-12">
+																																													<div class="meeting-input">
+																																														<Tabs>
+																																															<TabPanel>
+																																																<div
+																																																	id="home"
+																																																	class="tab-pane active show"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Call"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu1"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Meeting"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu2"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Task"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu3"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Deadline"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu4"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Email"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu5"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Lunch"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabList>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-phone"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Calling'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-user"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Meeting'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-clock-o"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Task'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-flag"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Deadline'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-paper-plane"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Email'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-phone"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Lunch'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																															</TabList>
+																																														</Tabs>
 																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu1"
-																																														class="tab-pane"
-																																													>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="date-sec">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-clock-o left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																												<div class="col-md-8 col-12">
+																																													<div class="time-area">
 																																														<input
-																																															type="text"
+																																															type="date"
 																																															class="form-control"
-																																															placeholder="Meeting"
+																																															placeholder="Date"
+																																															name="taskStartDate"
+																																															value={
+																																																taskStartDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
-																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu2"
-																																														class="tab-pane"
-																																													>
+
+																																														<select
+																																															class="form-control"
+																																															id="time"
+																																															name="taskStartTime"
+																																															value={
+																																																taskStartTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
+																																														>
+																																															<option>
+																																																12:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																PM
+																																															</option>
+																																														</select>
 																																														<input
-																																															type="text"
+																																															type="date"
 																																															class="form-control"
-																																															placeholder="Task"
+																																															placeholder="Date"
+																																															name="taskEndDate"
+																																															value={
+																																																taskEndDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
+																																														<select
+																																															class="form-control"
+																																															id="time"
+																																															name="taskEndTime"
+																																															value={
+																																																taskEndTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
+																																														>
+																																															<option>
+																																																12:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																PM
+																																															</option>
+																																														</select>
 																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu3"
-																																														class="tab-pane"
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="add-note">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-sticky-note left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																												<div class="col-md-8 col-12">
+																																													<textarea
+																																														name="taskNote"
+																																														value={
+																																															taskNote
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
+																																														rows="4"
+																																														class="form-control"
+																																														placeholder="add"
+																																													></textarea>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="user-dropdown">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-user left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																												<div class="col-md-8 col-12">
+																																													<select
+																																														class="form-control"
+																																														name="user"
+																																														name="assignee"
+																																														value={
+																																															assignee
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
 																																													>
-																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Deadline"
-																																														/>
-																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu4"
-																																														class="tab-pane"
+																																														<option value="new">
+																																															{
+																																																userName
+																																															}
+																																														</option>
+																																														<option value="new">
+																																															yo
+																																														</option>
+																																														<option value="exisitng">
+																																															asdsad
+																																														</option>
+																																													</select>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="form-foot">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-6 col-12 save-area">
+																																													<p>
+																																														hey
+																																													</p>
+																																													<button
+																																														class="btn btn-save"
+																																														onClick={
+																																															deleteTaskRecord
+																																														}
 																																													>
+																																														Delete
+																																													</button>
+																																												</div>
+																																												<div class="col-md-6 col-12 save-area">
+																																													<div class="done">
 																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Email"
+																																															type="checkbox"
+																																															id="vehicle1"
+																																															onChange={(
+																																																e
+																																															) =>
+																																																setTaskCompleted(
+																																																	e
+																																																		.target
+																																																		.checked
+																																																)
+																																															}
 																																														/>
+																																														<label>
+																																															Mark
+																																															as
+																																															Done
+																																														</label>
 																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu5"
-																																														class="tab-pane"
-																																													>
-																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Lunch"
-																																														/>
-																																													</div>
-																																												</TabPanel>
-																																												<TabList>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-phone"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-user"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-clock-o"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-flag"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-paper-plane"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-phone"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																												</TabList>
-																																											</Tabs>
+
+																																													<button class="btn btn-save">
+																																														Save
+																																													</button>
+																																												</div>
+																																											</div>
 																																										</div>
 																																									</div>
-																																								</div>
+																																								</form>
 																																							</div>
 																																						</div>
-
-																																						<div class="date-sec">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-clock-o left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="time-area">
-																																											<input
-																																												type="date"
-																																												class="form-control"
-																																												placeholder="Date"
-																																											/>
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												place="time"
-																																											/>
-																																											<input
-																																												type="date"
-																																												class="form-control"
-																																												placeholder="Date"
-																																											/>
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												place="time"
-																																											/>
-																																										</div>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="multi-section">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-user left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="hide-show">
-																																											<span class="edit-on-click ">
-																																												Guests
-																																											</span>
-																																										</div>
-																																									</div>
-																																								</div>
-
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-map-marker left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="hide-show">
-																																											<span class="edit-on-click ">
-																																												Location
-																																											</span>
-																																										</div>
-																																									</div>
-																																								</div>
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-list left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="hide-show">
-																																											<span class="edit-on-click ">
-																																												Description
-																																											</span>
-																																										</div>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="busy-dropdown">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-sticky-note left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-3 col-12">
-																																										<select
-																																											class="form-control"
-																																											name="busy"
-																																										>
-																																											<option value="new"></option>
-																																											<option value="new">
-																																												Busy
-																																											</option>
-																																											<option value="exisitng">
-																																												Free
-																																											</option>
-																																										</select>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="add-note">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-sticky-note left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<textarea
-																																											name="message"
-																																											rows="4"
-																																											class="form-control"
-																																											placeholder="add"
-																																										></textarea>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="user-dropdown">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-user left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<select
-																																											class="form-control"
-																																											name="user"
-																																										>
-																																											<option value="new">
-																																												{
-																																													userName
-																																												}
-																																											</option>
-																																											<option value="new">
-																																												yo
-																																											</option>
-																																											<option value="exisitng">
-																																												asdsad
-																																											</option>
-																																										</select>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="user-dropdown">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-link left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="inputWithIcon">
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												placeholder="Deal or Lead"
-																																											/>
-																																											<i
-																																												class="fa fa-check-circle-o"
-																																												aria-hidden="true"
-																																											></i>
-																																										</div>
-
-																																										<div class="inputWithIcon">
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												placeholder="Your name"
-																																											/>
-																																											<i
-																																												class="fa fa-user fa-lg fa-fw"
-																																												aria-hidden="true"
-																																											></i>
-																																										</div>
-
-																																										<div class="inputWithIcon">
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												placeholder="Organization"
-																																											/>
-																																											<i
-																																												class="fa fa-building-o"
-																																												aria-hidden="true"
-																																											></i>
-																																										</div>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-																																					</form>
-																																					<div class="form-foot">
-																																						<div class="container">
-																																							<div class="row">
-																																								<div class="col-md-6 col-12 save-area">
-																																									<button class="btn btn-save">
-																																										Delete
-																																									</button>
-																																								</div>
-																																								<div class="col-md-6 col-12 save-area">
-																																									<div class="done">
-																																										<input
-																																											type="checkbox"
-																																											id="vehicle1"
-																																											name="vehicle1"
-																																											value="Bike"
-																																										/>
-																																										<label for="vehicle1">
-																																											Mark
-																																											as
-																																											Done
-																																										</label>
-																																									</div>
-
-																																									<button class="btn btn-save">
-																																										Save
-																																									</button>
-																																								</div>
-																																							</div>
-																																						</div>
-																																					</div>
+																																					</Modal.Body>
 																																				</div>
 																																			</div>
-																																		</Modal.Body>
+
+																																			<Modal.Footer></Modal.Footer>
+																																		</Modal>
 																																	</div>
 																																</div>
-
-																																<Modal.Footer></Modal.Footer>
-																															</Modal>
-																														</div>
-																													</div>
-																												</div>
-																											</div>
-																										</div>
-																									</div>
-
-																									<div class="call-area">
-																										<div class="row">
-																											<div class="col-md-10">
-																												<div class="main-timeline call sub">
-																													<div class="timeline">
-																														<div class="row">
-																															<div class="col-md-2 col-4">
-																																<div class="icon-bg">
-																																	<i
-																																		class="fa fa-phone"
-																																		aria-hidden="true"
-																																	></i>
-																																</div>
-																															</div>
-																															<div class="col-md-10 col-8">
-																																<input
-																																	type="text"
-																																	class="form-control small"
-																																	placeholder="Call"
-																																/>
-																																<ul>
-																																	<li>
-																																		<div class="icon-bg">
-																																			In 1 h
-																																		</div>
-																																	</li>
-																																	<li>
-																																		<div class="icon-bg">
-																																			In 3 h
-																																		</div>
-																																	</li>
-																																	<li>
-																																		<div class="icon-bg">
-																																			Tomorrow
-																																		</div>
-																																	</li>
-																																	<li>
-																																		<div class="icon-bg">
-																																			Next Week
-																																		</div>
-																																	</li>
-																																</ul>
 																															</div>
 																														</div>
 																													</div>
 																												</div>
-																											</div>
-																										</div>
-																									</div>
+																											))
+																									) : (
+																										<p>No task found</p>
+																									)}
 																								</div>
 
 																								<div class="done">
@@ -1362,488 +2160,1286 @@ const Leads = () => {
 																											</div>
 																										</div>
 																									</div>
-																									<div class="call-area">
-																										<div class="row">
-<<<<<<< Updated upstream
-																										    <div class="col-md-1">
-																										        <div class="call-icon">
-																													<i class="fas fa-inbox"></i>
-																												</div>
-																											</div>
-																											<div class="col-md-10">
-=======
-																											<div class="col-md-11">
->>>>>>> Stashed changes
-																												<div class="main-timeline call meeting">
-																													<div class="timeline active">
-																														<a
-																															href="#"
-																															class="timeline-content"
-																														>
-																															<input
-																																type="radio"
-																																id="call"
-																																name="call"
-																																value="call"
-																															/>
-																															<label for="call">
-																																Meeting
-																															</label>
-																															<br />
-																														</a>
-																														<ul>
-																															<li>Wednesday</li>
-																															<li>Marco</li>
-																														</ul>
+																									{completedTasks &&
+																									completedTasks.length ? (
+																										completedTasks
+																											.reverse()
+																											.map((completeTask) => (
+																												<div class="call-area">
+																													<div class="row">
+																														<div class="col-md-1">
+																															<div class="call-icon">
+																																<i class="fas fa-inbox"></i>
+																															</div>
+																														</div>
+																														<div class="col-md-11">
+																															<div class="main-timeline call meeting">
+																																<div class="timeline active">
+																																	<a
+																																		href="#"
+																																		class="timeline-content"
+																																	>
+																																		<input
+																																			type="radio"
+																																			id="call"
+																																			name="call"
+																																			value="call"
+																																		/>
+																																		<label for="call">
+																																			{
+																																				completeTask.taskStatus
+																																			}
+																																		</label>
+																																		<br />
+																																	</a>
+																																	<ul>
+																																		<li>
+																																			{
+																																				completeTask.taskEndDate
+																																			}
+																																		</li>
+																																		<li>
+																																			{
+																																				completeTask.assignee
+																																			}
+																																		</li>
+																																	</ul>
 
-                                                                                                                        <button
-																															class="editleads-icon"
-																															onClick={
-																																showModal5
-																															}
-																														>
-																															<i
-																																class="fa fa-ellipsis-h"
-																																aria-hidden="true"
-																															></i>
-																														</button>
+																																	<button
+																																		class="editleads-icon"
+																																		onClick={() =>
+																																			showModal5(
+																																				completeTask
+																																			)
+																																		}
+																																	>
+																																		<i
+																																			class="fa fa-ellipsis-h"
+																																			aria-hidden="true"
+																																		></i>
+																																	</button>
 
-																														<div
-																															class="modal fade filters-modal show"
-																															id="leadsupdate"
-																															aria-modal="true"
-																														>
-																															<Modal
-																																show={isOpen5}
-																																onHide={
-																																	hideModal5
-																																}
-																															>
-																																<div
-																																	id="leadsFilter"
-																																	class="leadsedit"
-																																>
-																																	<div class="notes-area">
-																																		<Modal.Body>
-																																			<div class="fl-head">
-																																				<h5>
-																																					{' '}
-																																					Edit
-																																					activity 2
-																																				</h5>
-																																				<button
-																																					onClick={
-																																						hideModal5
-																																					}
-																																					className="close"
-																																				>
-																																					<span aria-hidden="true">
-																																						&times;
-																																					</span>
-																																				</button>
-																																			</div>
+																																	<div
+																																		class="modal fade filters-modal show"
+																																		id="leadsupdate"
+																																		aria-modal="true"
+																																	>
+																																		<Modal
+																																			show={
+																																				isOpen5
+																																			}
+																																			onHide={
+																																				hideModal5
+																																			}
+																																		>
+																																			<div
+																																				id="leadsFilter"
+																																				class="leadsedit"
+																																			>
+																																				<div class="notes-area">
+																																					<Modal.Body>
+																																						<div class="fl-head">
+																																							<h5>
+																																								{' '}
+																																								Edit
+																																								activity
+																																							</h5>
+																																							<button
+																																								onClick={
+																																									hideModal5
+																																								}
+																																								className="close"
+																																							>
+																																								<span aria-hidden="true">
+																																									&times;
+																																								</span>
+																																							</button>
+																																						</div>
 
-																																			<div class="row">
-																																				<div class="col-md-12 col-12">
-																																					<form>
-																																						<div class="call-sec">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2"></div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="meeting-input">
-																																											<Tabs>
-																																												<TabPanel>
-																																													<div
-																																														id="home"
-																																														class="tab-pane active show"
-																																													>
-																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Call"
-																																														/>
+																																						<div class="row">
+																																							<div class="col-md-12 col-12">
+																																								<form>
+																																									<div class="call-sec">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2"></div>
+																																												<div class="col-md-8 col-12">
+																																													<div class="meeting-input">
+																																														<Tabs>
+																																															<TabPanel>
+																																																<div
+																																																	id="home"
+																																																	class="tab-pane active show"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Call"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu1"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Meeting"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu2"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Task"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu3"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Deadline"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu4"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Email"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabPanel>
+																																																<div
+																																																	id="menu5"
+																																																	class="tab-pane"
+																																																>
+																																																	<input
+																																																		type="text"
+																																																		class="form-control"
+																																																		placeholder="Lunch"
+																																																		name="statusNote"
+																																																		value={
+																																																			statusNote
+																																																		}
+																																																		onChange={
+																																																			handleOnChange
+																																																		}
+																																																	/>
+																																																</div>
+																																															</TabPanel>
+																																															<TabList>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-phone"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Calling'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-user"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Meeting'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-clock-o"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Task'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-flag"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Deadline'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-paper-plane"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Email'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																																<Tab>
+																																																	<div class="icon-bg">
+																																																		<i
+																																																			class="fa fa-phone"
+																																																			aria-hidden="true"
+																																																			onClick={() =>
+																																																				setTaskStatus(
+																																																					'Lunch'
+																																																				)
+																																																			}
+																																																		></i>
+																																																	</div>
+																																																</Tab>
+																																															</TabList>
+																																														</Tabs>
 																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu1"
-																																														class="tab-pane"
-																																													>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="date-sec">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-clock-o left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																												<div class="col-md-8 col-12">
+																																													<div class="time-area">
 																																														<input
-																																															type="text"
+																																															type="date"
 																																															class="form-control"
-																																															placeholder="Meeting"
+																																															placeholder="Date"
+																																															name="taskStartDate"
+																																															value={
+																																																taskStartDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
-																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu2"
-																																														class="tab-pane"
-																																													>
+
+																																														<select
+																																															class="form-control"
+																																															id="time"
+																																															name="taskStartTime"
+																																															value={
+																																																taskStartTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
+																																														>
+																																															<option>
+																																																12:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																PM
+																																															</option>
+																																														</select>
 																																														<input
-																																															type="text"
+																																															type="date"
 																																															class="form-control"
-																																															placeholder="Task"
+																																															placeholder="Date"
+																																															name="taskEndDate"
+																																															value={
+																																																taskEndDate
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
 																																														/>
+																																														<select
+																																															class="form-control"
+																																															id="time"
+																																															name="taskEndTime"
+																																															value={
+																																																taskEndTime
+																																															}
+																																															onChange={
+																																																handleOnChange
+																																															}
+																																														>
+																																															<option>
+																																																12:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																AM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																AM
+																																															</option>
+																																															<option>
+																																																12:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																12:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																1:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																2:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																3:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																4:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																5:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																6:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																7:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																8:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																9:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																10:45
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:00
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:15
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:30
+																																																PM
+																																															</option>
+																																															<option>
+																																																11:45
+																																																PM
+																																															</option>
+																																														</select>
 																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu3"
-																																														class="tab-pane"
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="busy-dropdown">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-sticky-note left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="add-note">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-sticky-note left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																												<div class="col-md-8 col-12">
+																																													<textarea
+																																														rows="4"
+																																														class="form-control"
+																																														placeholder="add"
+																																														name="taskNote"
+																																														value={
+																																															taskNote
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
+																																													></textarea>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="user-dropdown">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-1 col-2">
+																																													<i
+																																														class="fa fa-user left-icon"
+																																														aria-hidden="true"
+																																													></i>
+																																												</div>
+																																												<div class="col-md-8 col-12">
+																																													<select
+																																														class="form-control"
+																																														name="user"
+																																														name="assignee"
+																																														value={
+																																															assignee
+																																														}
+																																														onChange={
+																																															handleOnChange
+																																														}
 																																													>
-																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Deadline"
-																																														/>
-																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu4"
-																																														class="tab-pane"
+																																														<option value="new">
+																																															{
+																																																userName
+																																															}
+																																														</option>
+																																														<option value="new">
+																																															yo
+																																														</option>
+																																														<option value="exisitng">
+																																															asdsad
+																																														</option>
+																																													</select>
+																																												</div>
+																																											</div>
+																																										</div>
+																																									</div>
+
+																																									<div class="form-foot">
+																																										<div class="container">
+																																											<div class="row">
+																																												<div class="col-md-6 col-12 save-area">
+																																													<button
+																																														class="btn btn-save"
+																																														onClick={
+																																															deleteTaskRecord
+																																														}
 																																													>
+																																														Delete
+																																													</button>
+																																												</div>
+																																												<div class="col-md-6 col-12 save-area">
+																																													<div class="done">
 																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Email"
+																																															type="checkbox"
+																																															id="vehicle1"
+																																															onChange={(
+																																																e
+																																															) =>
+																																																setTaskCompleted(
+																																																	e
+																																																		.target
+																																																		.checked
+																																																)
+																																															}
 																																														/>
+																																														<label for="vehicle1">
+																																															Mark
+																																															as
+																																															Done
+																																														</label>
 																																													</div>
-																																												</TabPanel>
-																																												<TabPanel>
-																																													<div
-																																														id="menu5"
-																																														class="tab-pane"
-																																													>
-																																														<input
-																																															type="text"
-																																															class="form-control"
-																																															placeholder="Lunch"
-																																														/>
-																																													</div>
-																																												</TabPanel>
-																																												<TabList>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-phone"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-user"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-clock-o"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-flag"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-paper-plane"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																													<Tab>
-																																														<div class="icon-bg">
-																																															<i
-																																																class="fa fa-phone"
-																																																aria-hidden="true"
-																																															></i>
-																																														</div>
-																																													</Tab>
-																																												</TabList>
-																																											</Tabs>
+
+																																													<button class="btn btn-save">
+																																														Save
+																																													</button>
+																																												</div>
+																																											</div>
 																																										</div>
 																																									</div>
-																																								</div>
+																																								</form>
 																																							</div>
 																																						</div>
-
-																																						<div class="date-sec">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-clock-o left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="time-area">
-																																											<input
-																																												type="date"
-																																												class="form-control"
-																																												placeholder="Date"
-																																											/>
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												place="time"
-																																											/>
-																																											<input
-																																												type="date"
-																																												class="form-control"
-																																												placeholder="Date"
-																																											/>
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												place="time"
-																																											/>
-																																										</div>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="multi-section">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-user left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="hide-show">
-																																											<span class="edit-on-click ">
-																																												Guests
-																																											</span>
-																																										</div>
-																																									</div>
-																																								</div>
-
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-map-marker left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="hide-show">
-																																											<span class="edit-on-click ">
-																																												Location
-																																											</span>
-																																										</div>
-																																									</div>
-																																								</div>
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-list left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="hide-show">
-																																											<span class="edit-on-click ">
-																																												Description
-																																											</span>
-																																										</div>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="busy-dropdown">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-sticky-note left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-3 col-12">
-																																										<select
-																																											class="form-control"
-																																											name="busy"
-																																										>
-																																											<option value="new"></option>
-																																											<option value="new">
-																																												Busy
-																																											</option>
-																																											<option value="exisitng">
-																																												Free
-																																											</option>
-																																										</select>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="add-note">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-sticky-note left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<textarea
-																																											name="message"
-																																											rows="4"
-																																											class="form-control"
-																																											placeholder="add"
-																																										></textarea>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="user-dropdown">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-user left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<select
-																																											class="form-control"
-																																											name="user"
-																																										>
-																																											<option value="new">
-																																												{
-																																													userName
-																																												}
-																																											</option>
-																																											<option value="new">
-																																												yo
-																																											</option>
-																																											<option value="exisitng">
-																																												asdsad
-																																											</option>
-																																										</select>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-
-																																						<div class="user-dropdown">
-																																							<div class="container">
-																																								<div class="row">
-																																									<div class="col-md-1 col-2">
-																																										<i
-																																											class="fa fa-link left-icon"
-																																											aria-hidden="true"
-																																										></i>
-																																									</div>
-																																									<div class="col-md-8 col-12">
-																																										<div class="inputWithIcon">
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												placeholder="Deal or Lead"
-																																											/>
-																																											<i
-																																												class="fa fa-check-circle-o"
-																																												aria-hidden="true"
-																																											></i>
-																																										</div>
-
-																																										<div class="inputWithIcon">
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												placeholder="Your name"
-																																											/>
-																																											<i
-																																												class="fa fa-user fa-lg fa-fw"
-																																												aria-hidden="true"
-																																											></i>
-																																										</div>
-
-																																										<div class="inputWithIcon">
-																																											<input
-																																												type="text"
-																																												class="form-control"
-																																												placeholder="Organization"
-																																											/>
-																																											<i
-																																												class="fa fa-building-o"
-																																												aria-hidden="true"
-																																											></i>
-																																										</div>
-																																									</div>
-																																								</div>
-																																							</div>
-																																						</div>
-																																					</form>
-																																					<div class="form-foot">
-																																						<div class="container">
-																																							<div class="row">
-																																								<div class="col-md-6 col-12 save-area">
-																																									<button class="btn btn-save">
-																																										Delete
-																																									</button>
-																																								</div>
-																																								<div class="col-md-6 col-12 save-area">
-																																									<div class="done">
-																																										<input
-																																											type="checkbox"
-																																											id="vehicle1"
-																																											name="vehicle1"
-																																											value="Bike"
-																																										/>
-																																										<label for="vehicle1">
-																																											Mark
-																																											as
-																																											Done
-																																										</label>
-																																									</div>
-
-																																									<button class="btn btn-save">
-																																										Save
-																																									</button>
-																																								</div>
-																																							</div>
-																																						</div>
-																																					</div>
+																																					</Modal.Body>
 																																				</div>
 																																			</div>
-																																		</Modal.Body>
+
+																																			<Modal.Footer></Modal.Footer>
+																																		</Modal>
 																																	</div>
 																																</div>
-
-																																<Modal.Footer></Modal.Footer>
-																															</Modal>
+																															</div>
 																														</div>
-
 																													</div>
 																												</div>
-																											</div>
-																										</div>
-																									</div>
+																											))
+																									) : (
+																										<p>No task found</p>
+																									)}
 																								</div>
 
 																								<div class="lead-created">
@@ -1899,7 +3495,6 @@ const Leads = () => {
 																							</TabPanel>
 
 																							<TabPanel>
-																								<p>hey</p>
 																								<div class="row">
 																									<div class="col-md-12 col-12">
 																										<form
@@ -2135,7 +3730,7 @@ const Leads = () => {
 																																	handleOnChange
 																																}
 																															/>
-																															
+
 																															<select
 																																class="form-control"
 																																id="time"
@@ -2753,80 +4348,6 @@ const Leads = () => {
 																												</div>
 																											</div>
 
-																											<div class="multi-section">
-																												<div class="row">
-																													<div class="col-md-1 col-2">
-																														<i
-																															class="fa fa-user left-icon"
-																															aria-hidden="true"
-																														></i>
-																													</div>
-																													<div class="col-md-11 col-12">
-																														<div class="hide-show">
-																															<span class="edit-on-click ">
-																																Guests
-																															</span>
-																														</div>
-																													</div>
-																												</div>
-
-																												<div class="row">
-																													<div class="col-md-1 col-2">
-																														<i
-																															class="fa fa-map-marker left-icon"
-																															aria-hidden="true"
-																														></i>
-																													</div>
-																													<div class="col-md-11 col-12">
-																														<div class="hide-show">
-																															<span class="edit-on-click ">
-																																Location
-																															</span>
-																														</div>
-																													</div>
-																												</div>
-																												<div class="row">
-																													<div class="col-md-1 col-2">
-																														<i
-																															class="fa fa-list left-icon"
-																															aria-hidden="true"
-																														></i>
-																													</div>
-																													<div class="col-md-11 col-12">
-																														<div class="hide-show">
-																															<span class="edit-on-click ">
-																																Description
-																															</span>
-																														</div>
-																													</div>
-																												</div>
-																											</div>
-
-																											<div class="busy-dropdown">
-																												<div class="row">
-																													<div class="col-md-1 col-2">
-																														<i
-																															class="fa fa-sticky-note left-icon"
-																															aria-hidden="true"
-																														></i>
-																													</div>
-																													<div class="col-md-3 col-12">
-																														<select
-																															class="form-control"
-																															name="busy"
-																														>
-																															<option value="new"></option>
-																															<option value="new">
-																																Busy
-																															</option>
-																															<option value="exisitng">
-																																Free
-																															</option>
-																														</select>
-																													</div>
-																												</div>
-																											</div>
-
 																											<div class="add-note">
 																												<div class="row">
 																													<div class="col-md-1 col-2">
@@ -2877,54 +4398,6 @@ const Leads = () => {
 																																asdsad
 																															</option>
 																														</select>
-																													</div>
-																												</div>
-																											</div>
-
-																											<div class="user-dropdown">
-																												<div class="row">
-																													<div class="col-md-1 col-2">
-																														<i
-																															class="fa fa-link left-icon"
-																															aria-hidden="true"
-																														></i>
-																													</div>
-																													<div class="col-md-11 col-12">
-																														<div class="inputWithIcon">
-																															<input
-																																type="text"
-																																class="form-control"
-																																placeholder="Deal or Lead"
-																															/>
-																															<i
-																																class="fa fa-check-circle-o"
-																																aria-hidden="true"
-																															></i>
-																														</div>
-
-																														<div class="inputWithIcon">
-																															<input
-																																type="text"
-																																class="form-control"
-																																placeholder="Your name"
-																															/>
-																															<i
-																																class="fa fa-user fa-lg fa-fw"
-																																aria-hidden="true"
-																															></i>
-																														</div>
-
-																														<div class="inputWithIcon">
-																															<input
-																																type="text"
-																																class="form-control"
-																																placeholder="Organization"
-																															/>
-																															<i
-																																class="fa fa-building-o"
-																																aria-hidden="true"
-																															></i>
-																														</div>
 																													</div>
 																												</div>
 																											</div>
@@ -3233,7 +4706,155 @@ const Leads = () => {
 																						</div>
 																					</div>
 																				</div>
+                                                                                
+																				<div class="passport">
+																					<div
+																						class="accordion md-accordion"
+																						id="accordionEx"
+																						role="tablist"
+																						aria-multiselectable="true"
+																					>
+																						<div class="card">
+																							<div
+																								class="card-header"
+																								role="tab"
+																								id="headingOne1"
+																							>
+																								<a
+																									data-toggle="collapse"
+																									data-parent="#accordionEx"
+																									href="#collapseOne1"
+																									aria-expanded="true"
+																									aria-controls="collapseOne1"
+																								>
+																									<div class="headingdiv">
+																										Passport{' '}
+																										<i class="fas fa-angle-down rotate-icon"></i>
+																									</div>
+																								</a>
+																							</div>
+																							<div
+																								id="collapseOne1"
+																								class="collapse show"
+																								role="tabpanel"
+																								aria-labelledby="headingOne1"
+																								data-parent="#accordionEx"
+																							>
+																								<div class="card-body">
+																										<div class="form-row">
+																											<div class="form-group col-md-4">
+																												<label>Number</label>
+																												<input
+																													type="text"
+																													class="form-control"
+																													placeholder=""
+																													name="passNumber"
+																													value=""
+																													onChange={handleOnChange}
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Nationality</label>
+																												<input
+																													type="text"
+																													class="form-control"
+																													placeholder=""
+																													name="passNationality"
+																													value=""
+																													onChange={handleOnChange}
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Issue Date</label>
+																												<input
+																													type="date"
+																													class="form-control"
+																													placeholder=""
+																													name="passIssueDate"
+																													value=""
+																													onChange={handleOnChange}
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Expiry Date</label>
+																												<input
+																													type="date"
+																													class="form-control"
+																													placeholder=""
+																													name="passExpiryDate"
+																													value=""
+																													onChange={handleOnChange}
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Comments</label>
+																												<input
+																													type="text"
+																													class="form-control"
+																													placeholder=""
+																													name="passComments"
+																													value=""
+																													onChange={handleOnChange}
+																												/>
+																											</div>
+																										</div>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
 
+																				<div class="documents">
+																					<div
+																						class="accordion md-accordion"
+																						id="accordionEx"
+																						role="tablist"
+																						aria-multiselectable="true"
+																					>
+																						<div class="card">
+																							<div
+																								class="card-header"
+																								role="tab"
+																								id="headingOne1"
+																							>
+																								<a
+																									data-toggle="collapse"
+																									data-parent="#accordionEx"
+																									href="#collapseOne2"
+																									aria-expanded="true"
+																									aria-controls="collapseOne1"
+																								>
+																									<div class="headingdiv">
+																										Documents{' '}
+																										<i class="fas fa-angle-down rotate-icon"></i>
+																									</div>
+																								</a>
+																							</div>
+																							<div
+																								id="collapseOne2"
+																								class="collapse show"
+																								role="tabpanel"
+																								aria-labelledby="headingOne2"
+																								data-parent="#accordionEx"
+																							>
+																								<div class="card-body">
+																										<div class="form-row">
+																											<div class="form-group col-md-4">
+																												<label>Passport</label>
+																												<input type="file" />
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Certificate</label>
+																												<input type="file" />
+																											</div>
+																										</div>
+																										
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+																				
 																				<div class="others">
 																					<div
 																						class="accordion md-accordion"
@@ -3594,6 +5215,111 @@ const Leads = () => {
 																						</div>
 																					</div>
 																				</div>
+
+                                                                                <div class="start-date">
+																					<div
+																						class="accordion md-accordion"
+																						id="accordionEx"
+																						role="tablist"
+																						aria-multiselectable="true"
+																					>
+																						<div class="card">
+																							<div
+																								class="card-header"
+																								role="tab"
+																								id="headingOne6"
+																							>
+																								<a
+																									data-toggle="collapse"
+																									data-parent="#accordionEx"
+																									href="#collapseOne8"
+																									aria-expanded="true"
+																									aria-controls="collapseOne7"
+																								>
+																									<div class="headingdiv">
+																										Start Date{' '}
+																										<i class="fas fa-angle-down rotate-icon"></i>
+																									</div>
+																								</a>
+																							</div>
+																							<div
+																								id="collapseOne8"
+																								class="collapse show"
+																								role="tabpanel"
+																								aria-labelledby="headingOne7"
+																								data-parent="#accordionEx"
+																							>
+																								<div class="card-body">
+																									<div class="form-bgclr">
+																										<div class="form-row">
+																											<div class="form-group col-md-4">
+																												<label>Start Date</label>
+																												<input
+																													type="date"
+																													class="form-control"
+																													placeholder=""
+																													name="insuranceStartDate"
+																													value=""
+																													
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Expiry Date</label>
+																												<input
+																													type="date"
+																													class="form-control"
+																													placeholder=""
+																													name="insuranceExpiryDate"
+																													value=""
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Type</label>
+																												<select
+																													class="form-control"
+																													name="insuranceType"
+																													id="cars"
+																													value=""
+																												>
+																													<option>Single(Just for the student)</option>
+																													<option>Couple(Just for the student)</option>
+																													<option>
+																														Single parent(Student and their kid)
+																													</option>
+																													<option>
+																														Family(Student,partner and Kid)
+																													</option>
+																												</select>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Number</label>
+																												<input
+																													type="text"
+																													class="form-control"
+																													placeholder=""
+																													name="insuranceNumber"
+																													value=""
+																												/>
+																											</div>
+																											<div class="form-group col-md-4">
+																												<label>Other comments (remarks)</label>
+																												<input
+																													type="text"
+																													class="form-control"
+																													placeholder=""
+																													name="insuranceComment"
+																													value=""
+																													
+																												/>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																					</div>
+																				</div>
+
 																			</div>
 																		</div>
 																	</div>

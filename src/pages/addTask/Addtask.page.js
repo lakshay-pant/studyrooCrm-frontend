@@ -248,6 +248,52 @@ const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
                 <div>
                   <div class="col-md-12">
 
+                  <div class="headingdiv">Current status</div>
+                    <div class="form-bgclr">
+
+                      <div class="form-row">
+                      <div class="form-group col-md-12 col-12">
+																												<form>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="optradio"
+																															checked
+																														/>
+																														Pending
+																													</label>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="optradio"
+																														/>
+																														In progress
+																													</label>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="optradio"
+																														/>
+																														Completed
+																													</label>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="optradio"
+																														/>
+																														Cancelled
+																													</label>
+																												</form>
+																											</div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                
+
+                <div class="col-md-12">
+
                   <div class="headingdiv">Is your task related to a student?</div>
                     <div class="form-bgclr">
 
@@ -304,7 +350,8 @@ const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
                     </div>
 
                   </div>
-                </div>
+
+                
                
                 <div class="col-md-12">
                   <div class="headingdiv">Who is assigned to this task?</div>

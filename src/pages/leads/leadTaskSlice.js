@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	isLoadingLead: false,
-	statusLead: '',
-	messageLead: '',
+	isLoadingLeadTask: false,
+	statusLeadTask: '',
+	messageLeadTask: '',
 };
 
 const leadTaskSlice = createSlice({
@@ -11,17 +11,17 @@ const leadTaskSlice = createSlice({
 	initialState,
 	reducers: {
 		leadTaskPending: (state) => {
-			state.isLoadingLead = true;
+			state.isLoadingLeadTask = true;
 		},
 		leadTaskSuccess: (state, { payload }) => {
-			state.isLoadingLead = false;
-			state.statusLead = 'success';
-			state.messageLead = payload;
+			state.isLoadingLeadTask = false;
+			state.statusLeadTask = 'success';
+			state.messageLeadTask = payload;
 		},
 		leadTaskError: (state, { payload }) => {
-			state.isLoadingLead = false;
-			state.statusLead = 'error';
-			state.messageLead = payload;
+			state.isLoadingLeadTask = false;
+			state.statusLeadTask = 'error';
+			state.messageLeadTask = payload;
 		},
 	},
 });

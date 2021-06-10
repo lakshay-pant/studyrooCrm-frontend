@@ -526,3 +526,9 @@ section.addtask-from {
 .form-bgclr .auto-area .ssg-content .ssg-item:hover span{
    color: #F88C04;
 }
+.form-bgclr .radio-inline {
+  margin-right: 10px;
+}
+.form-bgclr .radio-inline input[type="radio"] {
+  margin-right: 5px;
+}
