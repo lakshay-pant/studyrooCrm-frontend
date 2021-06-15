@@ -2,11 +2,11 @@ import {
 	editLeadTaskPending,
 	editLeadTaskError,
 	editLeadTaskSuccess,
-} from './updateLeadSlice';
+} from './updateLeadTaskSlice';
 
 import { UpdateLeadTask } from '../../api/leadApi';
 
-export const editStudent = (frmDt, id1, id2) => async (dispatch) => {
+export const editLeadTask = (frmDt, id1, id2) => async (dispatch) => {
 	try {
 		dispatch(editLeadTaskPending());
 

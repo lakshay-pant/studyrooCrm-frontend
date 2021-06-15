@@ -497,7 +497,9 @@ export const AddStudentForm = () => {
 													<div class="form-bgclr">
 														<div class="form-row">
 															<div class="form-group col-md-4">
-																<label>First Name <p>*</p></label>
+																<label>
+																	First Name <p>*</p>
+																</label>
 
 																<input
 																	type="text"
@@ -520,7 +522,9 @@ export const AddStudentForm = () => {
 																/>
 															</div>
 															<div class="form-group col-md-4">
-																<label>Last name <p>*</p></label>
+																<label>
+																	Last name <p>*</p>
+																</label>
 																<input
 																	type="text"
 																	class="form-control"
@@ -546,8 +550,8 @@ export const AddStudentForm = () => {
 																<label>Gender</label>
 																<select
 																	class="form-control"
-																	name="genders"
 																	id="cars"
+																	name="genders"
 																	onChange={handleOnChange}
 																	value={genders}
 																>
@@ -560,8 +564,8 @@ export const AddStudentForm = () => {
 																<label>Nationality</label>
 																<select
 																	class="form-control"
-																	name="nation"
 																	id="cars"
+																	name="nation"
 																	onChange={handleOnChange}
 																	value={nation}
 																>
@@ -756,9 +760,9 @@ export const AddStudentForm = () => {
 																	<label>City</label>
 																	<select
 																		class="form-control"
+																		id="cars"
 																		name="city"
 																		value={city}
-																		id="cars"
 																		onChange={handleOnChange}
 																	>
 																		<option>XYZ</option>
@@ -773,9 +777,9 @@ export const AddStudentForm = () => {
 																	<label>Country</label>
 																	<select
 																		class="form-control"
+																		id="cars"
 																		name="country"
 																		value={country}
-																		id="cars"
 																		onChange={handleOnChange}
 																	>
 																		<option>India</option>
@@ -908,8 +912,8 @@ export const AddStudentForm = () => {
 																<label>City</label>
 																<select
 																	class="form-control"
-																	name="offShoreCity"
 																	id="cars"
+																	name="offShoreCity"
 																	onChange={handleOnChange}
 																	value={offShoreCity}
 																>
@@ -925,8 +929,8 @@ export const AddStudentForm = () => {
 																<label>Country</label>
 																<select
 																	class="form-control"
-																	name="offShoreCountry"
 																	id="cars"
+																	name="offShoreCountry"
 																	onChange={handleOnChange}
 																	value={offShoreCountry}
 																>
@@ -1220,8 +1224,8 @@ export const AddStudentForm = () => {
 																<label>Type</label>
 																<select
 																	class="form-control"
-																	name="visaType"
 																	id="cars"
+																	name="visaType"
 																	onChange={handleOnChange}
 																	value={visaType}
 																>
@@ -1285,7 +1289,7 @@ export const AddStudentForm = () => {
 													<div class="form-bgclr">
 														<div class="form-row">
 															<div class="form-group col-md-4">
-																<label>Start Date</label>
+																<label>Insurance</label>
 																<input
 																	type="date"
 																	class="form-control"
