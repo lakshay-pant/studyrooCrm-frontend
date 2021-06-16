@@ -29,7 +29,7 @@ export const DefaultLayout = ({children}) => {
     { name: 'Test', to: ''},
     { name: 'Uncatorized', to: ''}] },
     {name: 'Leads', to: '/leads', icon: '/images/courses.png', subMenuItems: [] },
-    {name: 'Tasks', to: '/add-task', icon: '/images/task.png', 
+    {name: 'Tasks', to: '/task-list', icon: '/images/task.png', 
       subMenuItems: [
       ] },
     {name: 'Courses', to: '/dashboard', icon: '/images/courses.png', subMenuItems: [] },

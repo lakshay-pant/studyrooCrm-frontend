@@ -30204,12 +30204,3 @@ section.student-from .card-body{
   position: absolute;
   right: 0;
 }
-.uncategorized .import-from input#file-upload {
-  display: none;
-}
-
-@media (max-width: 540px) {
-  .student-bg{
-    padding:0;
-  }
-}
