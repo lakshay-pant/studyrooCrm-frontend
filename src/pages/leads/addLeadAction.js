@@ -11,7 +11,7 @@ export const addLead = (frmDt) => async (dispatch) => {
 			? dispatch(addLeadSuccess(result.message))
 			: dispatch(addLeadError(result.message));
 
-		console.log(result);
+		console.log('hello i m lead', result);
 	} catch (error) {
 		dispatch(addLeadError(error.message));
 	}
