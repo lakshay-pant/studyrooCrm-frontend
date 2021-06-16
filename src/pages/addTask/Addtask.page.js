@@ -9,9 +9,8 @@ import { createNewTask } from "../../api/taskApi"
 import { filterSearchUser, fetchAllUsers } from "../../components/getAllTheUsers/getUsersAction"
 import { fetchAllStudents } from "../allStudents/allStudentAction"
 import {addTask} from "./addTaskAction"
-
-
-
+import ToggleButton from "react-bootstrap/ToggleButton";
+import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 
 export const Addtask = () => {
   const { searchStudentList } = useSelector(
@@ -22,23 +21,18 @@ export const Addtask = () => {
     (state) => state.getUser
   );
 
-
-
   const { user } = useSelector(
     (state) => state.user
   );
-
-
 
   const dispatch = useDispatch();
   const { students } = useSelector(
     (state) => state.allStudent
   );
 
-
   const { isLoading,
     status,
-    message } = useSelector(
+    message } = useSelector(              
       (state) => state.addTask
     );
 
@@ -83,6 +77,9 @@ export const Addtask = () => {
   const [taskName, setTaskName] = useState("");
   const [type, setType] = useState("");
   const [dueDate, setDueDate] = useState("");
+  const [taskStatus, settaskStatus] = useState("");
+
+  
   const [taskDetails, setTaskDetails] = useState("");
   const [studentAssign, setStudentAssign] = useState("");
   const [assignTo, setAssignTo] = useState("");
@@ -129,6 +126,9 @@ export const Addtask = () => {
       case "dueDate":
         setDueDate(value);
         break;
+        case "taskStatus":
+        settaskStatus(value);
+        break;
       case "taskDetails":
         setTaskDetails(value);
         break;
@@ -166,11 +166,11 @@ export const Addtask = () => {
   const handleOnTaskSubmit = async (e) => {
     e.preventDefault()
     console.log(taskName)
-    if (!taskName || !type || !dueDate || !studentAssign || !assignTo || !offices || !userGroup) {
+    if (!taskName || !type || !dueDate ||!studentAssign || !assignTo || !offices || !userGroup) {
       return alert("Fill up all the form!");
 
     }
-const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
+const newTask={taskName,type,dueDate,taskStatus,studentAssign,assignTo,offices,userGroup}
 
     dispatch(addTask(newTask))
 
@@ -224,7 +224,7 @@ const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
                       </div>
                       <div class="form-group col-md-6">
                         <label>Type</label>
-                        <select class="form-control" name="type" id="cars" onChange={handleOnChange} value={type}>
+                        < select class="form-control" name="type" id="cars" onChange={handleOnChange} value={type}>
                           <option>Call</option>
                           <option >Client Meeting</option>
                           <option >Event</option>
@@ -253,37 +253,55 @@ const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
 
                       <div class="form-row">
                       <div class="form-group col-md-12 col-12">
-																												<form>
+
+                      <div class="form-group col-md-6">
+                        <label>Status</label>
+                        <select class="form-control" name="taskStatus" id="taskStatus" onChange={handleOnChange} value={taskStatus}>
+                          <option>Pending</option>
+                          <option >In progress</option>
+                          <option >Completed</option>
+                          <option >Cancelled</option>
+                          
+                        </select>
+                      </div>
+																												{/* <form>
 																													<label class="radio-inline">
 																														<input
 																															type="radio"
-																															name="optradio"
-																															checked
+																															name="taskStatus"
+                                                              value="Pending"
+                                                              onChange={handleOnChange}
 																														/>
-																														Pending
+																														
 																													</label>
 																													<label class="radio-inline">
 																														<input
 																															type="radio"
-																															name="optradio"
+																															name="taskStatus"
+                                                              value="In progress"
+                                                              onChange={handleOnChange}
 																														/>
-																														In progress
+																														
 																													</label>
 																													<label class="radio-inline">
 																														<input
 																															type="radio"
-																															name="optradio"
+																															name="taskStatus"
+                                                              value="Completed"
+                                                              onChange={handleOnChange}
 																														/>
-																														Completed
+																														
 																													</label>
 																													<label class="radio-inline">
 																														<input
 																															type="radio"
-																															name="optradio"
+																															name="taskStatus"
+                                                              value="Cancelled"
+                                                              onChange={handleOnChange}
 																														/>
-																														Cancelled
+																														
 																													</label>
-																												</form>
+																												</form> */}
 																											</div>
                       </div>
                     </div>
@@ -293,10 +311,8 @@ const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
                 
 
                 <div class="col-md-12">
-
                   <div class="headingdiv">Is your task related to a student?</div>
                     <div class="form-bgclr">
-
                       <div class="form-row">
                           <div class="form-group col-md-12">
                             <label>Student</label>
@@ -385,6 +401,7 @@ const newTask={taskName,type,dueDate,studentAssign,assignTo,offices,userGroup}
                                     <div class="ssg-info">3 results</div>
                                   </div>
                                   <div className="ssg-content">
+
                                 {optionsUsers
                                   .filter(({ firstName }) => firstName.indexOf(studentAssign.toLowerCase()) > -1)
                                   .map((value, i) => {

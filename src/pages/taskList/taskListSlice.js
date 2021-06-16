@@ -6,19 +6,19 @@ const initialState = {
   messageEdit: "",
 };
 
-const editUserSlice = createSlice({
-  name: "editUser",
+const editTaskSlice = createSlice({
+  name: "editTask",
   initialState,
   reducers: {
-    editUserPending: (state) => {
+    editTaskPending: (state) => {
       state.isLoadingEdit = true;
     },
-    editUserSuccess: (state, { payload }) => {
+    editTaskSuccess: (state, { payload }) => {
       state.isLoadingEdit = false;
       state.statusEdit = "success";
       state.messageEdit = payload;
     },
-    editUserError: (state, { payload }) => {
+    editTaskError: (state, { payload }) => {
       state.isLoadingEdit = false;
       state.statusEdit = "error";
       state.messageEdit = payload;
@@ -29,12 +29,12 @@ const editUserSlice = createSlice({
   },
 });
 
-const { reducer, actions } = editUserSlice;
+const { reducer, actions } = editTaskSlice;
 
 export const {
-  editUserPending,
-  editUserSuccess,
-  editUserError,
+  editTaskPending,
+  editTaskSuccess,
+  editTaskError,
   editResetSuccessMSg
 } = actions;
 

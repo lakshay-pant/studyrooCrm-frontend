@@ -792,7 +792,7 @@ const Leads = () => {
 		if (!leads.length) {
 			dispatch(fetchAllLeads());
 		}
-	}, [dispatch]);
+	}, [leads,dispatch]);
 
 	useEffect(() => {
 		showAddedLeads();

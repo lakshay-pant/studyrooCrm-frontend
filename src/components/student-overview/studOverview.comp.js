@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './studOverview.style.css';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-
 import { Link } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import ModalBody from 'react-bootstrap/ModalBody';
@@ -18,17 +17,11 @@ import Moment from 'moment';
 import axios from 'axios';
 import { Accordion } from 'react-bootstrap';
 import { editStudent } from './studentOverviewAction';
-import { deleteResetSuccessMSg } from './studentOverviewDeleteSlice';
-import { editResetSuccessMSg } from './studentOverviewSlice';
-
 import { Spinner, Alert } from 'react-bootstrap';
-
 import { deleteStudent } from './studentOverviewDeleteAction';
-
 export const UncategorizedStudents = () => {
 	const dispatch = useDispatch();
 	const { students } = useSelector((state) => state.allStudent);
-
 	const [studentUserName, setStudentUserName] = useState('');
 	const [cliId, setCliId] = useState('');
 	useEffect(() => {
@@ -41,7 +34,7 @@ export const UncategorizedStudents = () => {
 		editUpdate();
 	}, []);
 
-	const { users } = useSelector((state) => state.getUser);
+	const { users } =  useSelector((state) => state.getUser);
 
 	const { isLoadingEdit, statusEdit, messageEdit } = useSelector(
 		(state) => state.editStudent
@@ -50,18 +43,6 @@ export const UncategorizedStudents = () => {
 	const { isLoadingDelete, statusDelete, messageDelete } = useSelector(
 		(state) => state.deleteStudent
 	);
-
-	useEffect(() => {
-		return () => {
-			messageDelete && dispatch(deleteResetSuccessMSg());
-			messageEdit && dispatch(editResetSuccessMSg());
-		};
-	}, [dispatch]);
-
-	useEffect(() => {
-		messageDelete && dispatch(deleteResetSuccessMSg());
-		messageEdit && dispatch(editResetSuccessMSg());
-	}, [dispatch]);
 
 	console.log('users', users);
 
@@ -539,14 +520,16 @@ export const UncategorizedStudents = () => {
 	};
 
 	const hideModal2 = () => {
-		dispatch(editResetSuccessMSg());
-		dispatch(deleteResetSuccessMSg());
 		setIsOpen2(false);
 	};
 
 	const deleteStudentRecord = async () => {
 		await dispatch(deleteStudent(ID));
 		await editUpdate();
+	};
+
+	const dateFilter = () => {
+		var visaExpDate = dispatch(deleteStudent(ID));
 	};
 
 	return (
@@ -993,7 +976,6 @@ export const UncategorizedStudents = () => {
 												<th>ASSIGNED TO</th>
 												<th>STATUS</th>
 												<th>PHONE</th>
-												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>

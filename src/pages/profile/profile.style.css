@@ -108,20 +108,6 @@
     font-size: 14px;
     color: #5C5D5D;
 }
-button.close span{
-    top:0;
-    right: 5px;
-}
-.alert-warning p{
-    margin-bottom: 0;
-}
-#emailupdate .change-bg {
-    padding: 15px;
-}
-label p{
-    display: inline;
-    color: red;
-}
 @media (max-width: 768px){
 .profile-page .profile-detail{
     margin-top: 35px;
@@ -130,4 +116,3 @@ label p{
     display: block;
 }
 }
-
