@@ -30177,7 +30177,9 @@ a.text-muted:hover {
 .add-student input[type="file"]{
   display: block;
 }
-
+.add-student .st-file-upload input[type="file"]{
+  display: none;
+}
 section.student-from .card-header {
   background: none;
   border: 0;

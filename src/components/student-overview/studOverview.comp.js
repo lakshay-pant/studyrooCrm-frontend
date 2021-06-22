@@ -618,7 +618,7 @@ export const UncategorizedStudents = () => {
 																		<div class="fl-head">
 																			<h5>
 																				<span>
-																					<i class="fal fa-filter"></i>
+																					<i class="fas fa-filter"></i>
 																				</span>{' '}
 																				Filters
 																			</h5>
@@ -756,13 +756,14 @@ export const UncategorizedStudents = () => {
 																					</select>
 																				</div>
 																				<div class="fotercontent">
-																					<div class="rest">
-																						<a href="#">
-																							<span>
-																								<i class="far fa-redo"></i>
-																							</span>{' '}
-																							Reset
-																						</a>
+																					
+																					<div class="footersingbtn">
+																						<input
+																							type="submit"
+																							name="Save"
+																							class="btn getin-btn"
+																							value="Reset"
+																						/>
 																					</div>
 																					<div class="footersingbtn">
 																						<input
@@ -922,14 +923,18 @@ export const UncategorizedStudents = () => {
 																						<option value="audi">Audi</option>
 																					</select>
 																				</div>
-																				<div class="fotercontent">
-																					<div class="rest">
-																						<a href="#">
-																							<span>
-																								<i class="far fa-redo"></i>
-																							</span>{' '}
-																							Reset
-																						</a>
+																				
+																			</div>
+
+																			<div class="fotercontent">
+																					
+																					<div class="footersingbtn">
+																						<input
+																							type="submit"
+																							name="Save"
+																							class="btn getin-btn"
+																							value="Reset"
+																						/>
 																					</div>
 																					<div class="footersingbtn">
 																						<input
@@ -940,7 +945,6 @@ export const UncategorizedStudents = () => {
 																						/>
 																					</div>
 																				</div>
-																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -976,6 +980,7 @@ export const UncategorizedStudents = () => {
 												<th>ASSIGNED TO</th>
 												<th>STATUS</th>
 												<th>PHONE</th>
+												<th>REFFERAL SOURCE</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -1003,7 +1008,6 @@ export const UncategorizedStudents = () => {
 															<br />
 															Offshore{item.offShorePhone}
 														</td>
-
 														<td>
 															<div class="action">
 																<a onClick={() => showModal2(item)}>
@@ -1200,6 +1204,557 @@ export const UncategorizedStudents = () => {
 																										</div>
 																									</div>
 
+																										
+
+																									<div class="update-student">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne"
+																														aria-expanded="true"
+																														aria-controls="collapseOne"
+																													>
+																														<div class="headingdiv">
+																															Personal{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		First Name
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="firstName"
+																																		value={firstName}
+																																		onChange={handleOnChange}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>Middle Name</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="middleName"
+																																		value={middleName}
+																																		onChange={handleOnChange}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Last Name
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="lastName"
+																																		value={lastName}
+																																		onChange={handleOnChange}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Email
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="email"
+																																		value={email}
+																																		onChange={handleOnChange}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Birthday
+																																		<p>*</p>
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="birthday"
+																																		value={birthday}
+																																		onChange={handleOnChange}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>Gender</label>
+																																	<select
+																																		class="form-control"
+																																		name="genders"
+																																		onChange={handleOnChange}
+																																		value={genders}
+																																	>
+																																		<option>Male</option>
+																																		<option>Female</option>
+																																		<option>Other</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>Nationality</label>
+																																	<select
+																																		class="form-control"
+																																		name="nation"
+																																		onChange={handleOnChange}
+																																		value={nation}
+																																	>
+																																		<option>Poland</option>
+																																		<option>Australia</option>
+																																		<option>Norway</option>
+																																		<option>Ghana</option>
+																																	</select>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="update-student">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne4"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne4"
+																														aria-expanded="true"
+																														aria-controls="collapseOne4"
+																													>
+																														<div class="headingdiv">
+																															Applicant Current Location{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne4"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne4"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Onshore (In Australia)
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="onShoreCurrentLocation"
+																																		value={
+																																			onShoreCurrentLocation
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Offshore (Overseas)
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="offShoreCurrentLocation"
+																																		value={
+																																			offShoreCurrentLocation
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="passport">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne1"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne1"
+																														aria-expanded="true"
+																														aria-controls="collapseOne1"
+																													>
+																														<div class="headingdiv">
+																															OnShore Information{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne1"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne1"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="form-row">
+																															<div class="form-group col-md-4 col-12">
+																																<label>Phone</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="onShorePhone"
+																																	value={onShorePhone}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Address</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="onShoreAddress"
+																																	value={onShoreAddress}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Location</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="onShoreLocation"
+																																	value={onShoreLocation}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Unit Number</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="unitNumber"
+																																	value={unitNumber}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>
+																																	Street Number
+																																</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="streetNumber"
+																																	value={streetNumber}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Street Name</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="streetName"
+																																	value={streetName}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>City</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="city"
+																																	value={city}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Country</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="country"
+																																	value={country}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Zipcode</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="zipCode"
+																																	value={zipCode}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="documents">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne1"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne2"
+																														aria-expanded="true"
+																														aria-controls="collapseOne1"
+																													>
+																														<div class="headingdiv">
+																															OffShore Information{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne2"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne2"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="form-row">
+																															<div class="form-group col-md-4 col-12">
+																																<label>Phone</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShorePhone"
+																																	value={offShorePhone}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Address</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreAdress"
+																																	value={offShoreAdress}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Location</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreLocation"
+																																	value={offShoreLocation}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Unit Number</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreUnitNumber"
+																																	value={
+																																		offShoreUnitNumber
+																																	}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>
+																																	Street Number
+																																</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreStreetNumber"
+																																	value={
+																																		offShoreStreetNumber
+																																	}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Street Name</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="streetNa"
+																																	value={streetNa}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>City</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreCity"
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																	value={offShoreCity}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Country</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreCountry"
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																	value={offShoreCountry}
+																																/>
+																															</div>
+																															<div class="form-group col-md-4 col-12">
+																																<label>Zipcode</label>
+																																<input
+																																	type="text"
+																																	class="form-control"
+																																	placeholder=""
+																																	name="offShoreZipCode"
+																																	value={offShoreZipCode}
+																																	onChange={
+																																		handleOnChange
+																																	}
+																																/>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
 																									<div class="others">
 																										<div
 																											class="accordion md-accordion"
@@ -1221,7 +1776,7 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne1"
 																													>
 																														<div class="headingdiv">
-																															Others{' '}
+																															Education Details{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1237,63 +1792,112 @@ export const UncategorizedStudents = () => {
 																														<div class="crm-form">
 																															<div class="form-row">
 																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Status{' '}
-																																		<p>*</p>
-																																	</label>
-																																	<select
+																																	<label>USI</label>
+																																	<input
+																																		type="text"
 																																		class="form-control"
-																																		name="locationStatus"
-																																		value={
-																																			locationStatus
-																																		}
-																																		id="cars"
+																																		placeholder=""
+																																		name="usi"
+																																		value={usi}
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																	>
-																																		<option>
-																																			Onshore
-																																		</option>
-																																		<option>
-																																			Offshore
-																																		</option>
-																																	</select>
+																																	/>
 																																</div>
 
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		Referral
-																																		source{' '}
-																																		<p>*</p>
+																																		Education Level
 																																	</label>
-																																	<select
+																																	<input
+																																		type="text"
 																																		class="form-control"
-																																		name="referalSource"
+																																		placeholder=""
+																																		name="educationLevel"
+																																		value={educationLevel}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Institute Name
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="instituteName"
+																																		value={instituteName}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>GPA</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="gpa"
+																																		value={gpa}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Year level
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="yearLevel"
+																																		value={yearLevel}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		School curriculum
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="schoolCurriculum"
 																																		value={
-																																			referalSource
+																																			schoolCurriculum
 																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		id="cars"
-																																	>
-																																		<option>
-																																			unknown
-																																		</option>
-																																		<option>
-																																			Youtube
-																																		</option>
-																																		<option>
-																																			Instagram
-																																		</option>
-																																		<option>
-																																			Facebook
-																																		</option>
-																																		<option>
-																																			Google
-																																		</option>
-																																	</select>
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		School curriculum
+																																		details
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="schoolCurriculumDetails"
+																																		value={
+																																			schoolCurriculumDetails
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
 																																</div>
 																															</div>
 																														</div>
@@ -1324,7 +1928,7 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne2"
 																													>
 																														<div class="headingdiv">
-																															Counsellors{' '}
+																															Passports{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1339,18 +1943,192 @@ export const UncategorizedStudents = () => {
 																													<div class="card-body">
 																														<div class="crm-form">
 																															<div class="form-row">
-																																<div class="form-group col-md-12 col-12">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>Number</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="passNumber"
+																																		value={passNumber}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		Counsellor 1
+																																		Nationality
 																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
-																																		name="userNmae"
+																																		name="passNationality"
 																																		value={
-																																			userName
+																																			passNationality
 																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Issue Date
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="passIssueDate"
+																																		value={passIssueDate}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Expiry Date
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="passExpiryDate"
+																																		value={passExpiryDate}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>Comments</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="passComments"
+																																		value={passComments}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="counsellor">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne2"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne2"
+																														aria-expanded="true"
+																														aria-controls="collapseOne2"
+																													>
+																														<div class="headingdiv">
+																															Visas{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne2"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne2"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="crm-form">
+																															<div class="form-row">
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Grant Date
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="grantDate"
+																																		value={grantDate}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Expiry Date
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="visaExpiryDate"
+																																		value={visaExpiryDate}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>Type</label>
+																																	<select
+																																		class="form-control"
+																																		id="cars"
+																																		name="visaType"
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																		value={visaType}
+																																	>
+																																		<option>Any</option>
+																																		<option>
+																																			Student visa
+																																		</option>
+																																		<option>
+																																			Working holiday
+																																		</option>
+																																		<option>
+																																			Work & holiday
+																																		</option>
+																																		<option>
+																																			Citizenship
+																																		</option>
+																																		<option>other</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Other
+																																		Comments(remarks)
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="visaComments"
+																																		value={visaComments}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1385,7 +2163,7 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne3"
 																													>
 																														<div class="headingdiv">
-																															Add a note{' '}
+																															Insurance{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1400,112 +2178,34 @@ export const UncategorizedStudents = () => {
 																													<div class="card-body">
 																														<div class="crm-form">
 																															<div class="form-row">
-																																<div class="form-group col-md-12 col-12">
-																																	<textarea
-																																		name="note"
-																																		value={note}
-																																		rows="4"
-																																		class="form-control"
-																																		placeholder="Add a Note"
-																																		onChange={
-																																			handleOnChange
-																																		}
-																																	></textarea>
-																																</div>
-																															</div>
-																														</div>
-																													</div>
-																												</div>
-																											</div>
-																										</div>
-																									</div>
-
-																									<div class="update-student">
-																										<div
-																											class="accordion md-accordion"
-																											id="accordionEx"
-																											role="tablist"
-																											aria-multiselectable="true"
-																										>
-																											<div class="card">
-																												<div
-																													class="card-header"
-																													role="tab"
-																													id="headingOne4"
-																												>
-																													<a
-																														data-toggle="collapse"
-																														data-parent="#accordionEx"
-																														href="#collapseOne4"
-																														aria-expanded="true"
-																														aria-controls="collapseOne4"
-																													>
-																														<div class="headingdiv">
-																															Personal{' '}
-																															<i class="fas fa-angle-down rotate-icon"></i>
-																														</div>
-																													</a>
-																												</div>
-																												<div
-																													id="collapseOne4"
-																													class="collapse show"
-																													role="tabpanel"
-																													aria-labelledby="headingOne4"
-																													data-parent="#accordionEx"
-																												>
-																													<div class="card-body">
-																														<div class="crm-form">
-																															<div class="form-row">
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		First Name
-																																		<p>*</p>
-																																	</label>
-																																	<input
-																																		type="text"
-																																		class="form-control"
-																																		placeholder=""
-																																		name="firstName"
-																																		value={
-																																			firstName
-																																		}
-																																		onChange={
-																																			handleOnChange
-																																		}
-																																	/>
-																																</div>
-
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Last Name
-																																		<p>*</p>
-																																	</label>
-																																	<input
-																																		type="text"
-																																		class="form-control"
-																																		placeholder=""
-																																		name="lastName"
-																																		value={
-																																			lastName
-																																		}
-																																		onChange={
-																																			handleOnChange
-																																		}
-																																	/>
-																																</div>
-
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Birthday
-																																		<p>*</p>
+																																		Start Date
 																																	</label>
 																																	<input
 																																		type="date"
 																																		class="form-control"
 																																		placeholder=""
-																																		name="birthday"
+																																		name="insuranceStartDate"
 																																		value={
-																																			birthday
+																																			insuranceStartDate
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4 col-12">
+																																	<label>
+																																		Expiry Date
+																																	</label>
+																																	<input
+																																		type="date"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="insuranceExpiryDate"
+																																		value={
+																																			insuranceExpiryDate
 																																		}
 																																		onChange={
 																																			handleOnChange
@@ -1513,59 +2213,67 @@ export const UncategorizedStudents = () => {
 																																	/>
 																																</div>
 
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Gender
-																																	</label>
+																																<div class="form-group col-md-4">
+																																	<label>Type</label>
 																																	<select
 																																		class="form-control"
-																																		name="genders"
-																																		value={
-																																			genders
-																																		}
+																																		id="cars"
+																																		name="insuranceType"
 																																		onChange={
 																																			handleOnChange
 																																		}
+																																		value={insuranceType}
 																																	>
 																																		<option>
-																																			Male
+																																			Single(Just for the
+																																			student)
 																																		</option>
 																																		<option>
-																																			Female
+																																			Couple(Just for the
+																																			student)
 																																		</option>
 																																		<option>
-																																			Other
+																																			Single
+																																			parent(Student and
+																																			their kid)
+																																		</option>
+																																		<option>
+																																			Family(Student,partner
+																																			and Kid)
 																																		</option>
 																																	</select>
 																																</div>
-
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Nationality
-																																	</label>
-																																	<select
+																																<div class="form-group col-md-4">
+																																	<label>Number</label>
+																																	<input
+																																		type="text"
 																																		class="form-control"
-																																		name="nation"
+																																		placeholder=""
+																																		name="insuranceNumber"
 																																		value={
-																																			nation
+																																			insuranceNumber
 																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																	>
-																																		<option>
-																																			Poland
-																																		</option>
-																																		<option>
-																																			Peru
-																																		</option>
-																																		<option>
-																																			Norway
-																																		</option>
-																																		<option>
-																																			Ghana
-																																		</option>
-																																	</select>
+																																	/>
+																																</div>
+																																<div class="form-group col-md-4">
+																																	<label>
+																																		Other comments
+																																	</label>
+																																	<input
+																																		type="text"
+																																		class="form-control"
+																																		placeholder=""
+																																		name="insuranceComment"
+																																		value={
+																																			insuranceComment
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	/>
 																																</div>
 																															</div>
 																														</div>
@@ -1596,7 +2304,7 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne5"
 																													>
 																														<div class="headingdiv">
-																															Contact{' '}
+																															CRM{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1611,56 +2319,113 @@ export const UncategorizedStudents = () => {
 																													<div class="card-body">
 																														<div class="crm-form">
 																															<div class="form-row">
-																																<div class="form-group col-md-12 col-12">
+																																<div class="form-group col-md-4">
 																																	<label>
-																																		Email
+																																		Sales Pipeline
 																																	</label>
-																																	<input
-																																		type="email"
+																																	<select
 																																		class="form-control"
-																																		placeholder=""
-																																		name="email"
-																																		value={
-																																			email
-																																		}
+																																		id="cars"
+																																		name="salesPipeline"
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																	/>
+																																		value={salesPipeline}
+																																	>
+																																		<option>
+																																			onshore
+																																		</option>
+																																		<option>
+																																			offShore
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4">
+																																	<label>
+																																		Sales Status
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		id="cars"
+																																		name="salesStatus"
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																		value={salesStatus}
+																																	>
+																																		<option>
+																																			Inquiry Recieved
+																																		</option>
+																																		<option>
+																																			Counselling
+																																		</option>
+																																		<option>
+																																			Quotation Sent
+																																		</option>
+																																		<option>
+																																			Application
+																																		</option>
+																																		<option>
+																																			Waiting for Loo
+																																		</option>
+																																		<option>
+																																			Payment Pending
+																																		</option>
+																																		<option>
+																																			Waiting for CoE
+																																		</option>
+																																		<option>
+																																			Apply for Visa
+																																		</option>
+																																		<option>
+																																			Waiting for Visa
+																																			Requirement
+																																		</option>
+																																		<option>
+																																			Waiting for Visa
+																																		</option>
+																																		<option>
+																																			Visa Granted
+																																		</option>
+																																		<option>
+																																			Course in Progress
+																																		</option>
+																																	</select>
+																																</div>
+
+																																<div class="form-group col-md-4">
+																																	<label>
+																																		Lead Level
+																																	</label>
+																																	<select
+																																		class="form-control"
+																																		id="cars"
+																																		name="heatLevel"
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																		value={heatLevel}
+																																	>
+																																		<option>
+																																			Very Hot
+																																		</option>
+																																		<option>Hot</option>
+																																		<option>Warm</option>
+																																		<option>Cold</option>
+																																	</select>
 																																</div>
 
 																																<div class="form-group col-md-12 col-12">
 																																	<label>
-																																		Onshore
-																																		phone
+																																		Other Comments
 																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
-																																		name="onShorePhone"
-																																		value={
-																																			onShorePhone
-																																		}
-																																		onChange={
-																																			handleOnChange
-																																		}
-																																	/>
-																																</div>
-
-																																<div class="form-group col-md-12 col-12">
-																																	<label>
-																																		Offshore
-																																		phone
-																																	</label>
-																																	<input
-																																		type="text"
-																																		class="form-control"
-																																		placeholder=""
-																																		name="offShorePhone"
-																																		value={
-																																			offShorePhone
-																																		}
+																																		name="otherComments"
+																																		value={otherComments}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1695,7 +2460,7 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne6"
 																													>
 																														<div class="headingdiv">
-																															Visa{' '}
+																															Others{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1710,58 +2475,107 @@ export const UncategorizedStudents = () => {
 																													<div class="card-body">
 																														<div class="crm-form">
 																															<div class="form-row">
-																																<div class="form-group col-md-4 col-12">
-																																	<label>
-																																		Type
-																																	</label>
+																																<div class="form-group col-md-4">
+																																	<label>Status</label>
 																																	<select
 																																		class="form-control"
-																																		name="visaType"
 																																		id="cars"
+																																		name="locationStatus"
+																																		value={locationStatus}
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		value={
-																																			visaType
-																																		}
 																																	>
 																																		<option>
-																																			Any
+																																			onshore
 																																		</option>
 																																		<option>
-																																			Student
-																																			visa
-																																		</option>
-																																		<option>
-																																			Working
-																																			holiday
-																																		</option>
-																																		<option>
-																																			Work &
-																																			holiday
-																																		</option>
-																																		<option>
-																																			Citizenship
-																																		</option>
-																																		<option>
-																																			other
+																																			offShore
 																																		</option>
 																																	</select>
 																																</div>
 
-																																<div class="form-group col-md-4 col-12">
+																																<div class="form-group col-md-4">
 																																	<label>
-																																		Visa expire
-																																		date
+																																		Refferal Source
 																																	</label>
+																																	<select
+																																		class="form-control"
+																																		id="cars"
+																																		name="referalSource"
+																																		value={referalSource}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																	>
+																																		<option>
+																																			unknown
+																																		</option>
+																																		<option>
+																																			Youtube
+																																		</option>
+																																		<option>
+																																			Instagram
+																																		</option>
+																																		<option>
+																																			Facebook
+																																		</option>
+																																		<option>
+																																			Google
+																																		</option>
+																																	</select>
+																																</div>
+																															</div>
+																														</div>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+
+																									<div class="start-date">
+																										<div
+																											class="accordion md-accordion"
+																											id="accordionEx"
+																											role="tablist"
+																											aria-multiselectable="true"
+																										>
+																											<div class="card">
+																												<div
+																													class="card-header"
+																													role="tab"
+																													id="headingOne6"
+																												>
+																													<a
+																														data-toggle="collapse"
+																														data-parent="#accordionEx"
+																														href="#collapseOne8"
+																														aria-expanded="true"
+																														aria-controls="collapseOne7"
+																													>
+																														<div class="headingdiv">
+																															Add a Note{' '}
+																															<i class="fas fa-angle-down rotate-icon"></i>
+																														</div>
+																													</a>
+																												</div>
+																												<div
+																													id="collapseOne8"
+																													class="collapse show"
+																													role="tabpanel"
+																													aria-labelledby="headingOne7"
+																													data-parent="#accordionEx"
+																												>
+																													<div class="card-body">
+																														<div class="form-bgclr">
+																															<div class="form-row">
+																																<div class="form-group col-md-4">
 																																	<input
-																																		type="date"
+																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
-																																		name="visaExpiryDate"
-																																		value={
-																																			visaExpiryDate
-																																		}
+																																		name="note"
+																																		value={note}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1774,33 +2588,34 @@ export const UncategorizedStudents = () => {
 																											</div>
 																										</div>
 																									</div>
-																								</div>
-																							</div>
-																						</div>
-																						<div class="fotercontent">
-																							<div class="form-buttons-w">
-																								<div className="row">
-																									<div className="col-md-9">
-																										<button
-																											type="button"
-																											onClick={() =>
-																												deleteStudentRecord()
-																											}
-																											class="btn btn-danger btn-secondary"
-																										/>
+																													</div>
+																												</div>
 																									</div>
-																									<div className="col-md-3">
-																										<input
-																											type="submit"
-																											name="Save"
-																											class="btn float-right btn-primary getin-btn"
-																											value="Save"
-																										/>
+																									<div class="fotercontent">
+																										<div class="form-buttons-w">
+																											<div className="row">
+																												<div className="col-md-9">
+																													<button
+																														type="submit"
+																														onClick={() =>
+																															deleteStudentRecord()
+																														}
+																														class="btn btn-danger btn-secondary"
+																														
+																													>Delete</button>
+																												</div>
+																												<div className="col-md-3">
+																													<input
+																														type="submit"
+																														name="Save"
+																														class="btn float-right btn-primary getin-btn"
+																														value="Save"
+																													/>
+																												</div>
+																											</div>
+																										</div>
 																									</div>
-																								</div>
-																							</div>
-																						</div>
-																					</form>
+																								</form>
 																				</Modal.Body>
 																			</div>
 																		</div>

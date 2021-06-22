@@ -230,8 +230,8 @@ button.close {
 button.close span {
    display: flex;
    position: absolute;
-   right: 25px;
-   top: 17px;
+   right: 10px;
+   top: 0px;
    z-index: 999;
    background: #5C5D5D;
    color: #fff;
@@ -397,7 +397,7 @@ body:not(.sidebar-mini-md) .content-wrapper {
    display: block;
    justify-content: space-between;
    align-items: center;
-   margin: 20px 30px;
+   padding: 20px;
    margin-top: 0;
 }
 #studentFilter .fotercontent button{
