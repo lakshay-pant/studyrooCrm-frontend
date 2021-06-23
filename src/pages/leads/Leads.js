@@ -789,7 +789,7 @@ const Leads = () => {
 	const hideModal5 = () => {
 		setIsOpen5(false);
 	};
-    
+
 	const showModal6 = () => {
 		setIsOpen6(true);
 	};
@@ -802,7 +802,7 @@ const Leads = () => {
 		if (!leads.length) {
 			dispatch(fetchAllLeads());
 		}
-	}, [leads,dispatch]);
+	}, [leads, dispatch]);
 
 	useEffect(() => {
 		showAddedLeads();
@@ -1221,11 +1221,11 @@ const Leads = () => {
 														<td>{Moment(item.addedAt).format('HH:mm:ss')}</td>
 														<td>{item.leadUserName}</td>
 														<td>
-														<div class="action">
+															<div class="action">
 																<a onClick={() => showModal6(item)}>
 																	<i class="fas fa-pen"></i>
 																</a>
-														</div>
+															</div>
 														</td>
 													</tr>
 												))}
@@ -4937,272 +4937,297 @@ const Leads = () => {
 								{/*modal-body--*/}
 							</div>
 
-
 							{/* refferal source modal */}
 							<div
-										class="modal fade filters-modal show "
-										id="leadsFilter"
-										aria-modal="true"
-									>
-										<Modal show={isOpen6} onHide={hideModal6}>
-											<Modal.Body class="editleadsfilter">
-											<div class="modal-dialog modal-lg" role="document">
-												<div class="modal-body">
-													<div id="studentFilter" class="deal-convert">
-														<div class="modal-dialog modal-lg" role="document">
-															<div class="modal-content">
-																<div class="modal-top">
-																	<h5>Edit Leads</h5>
-																	<button
-																		type="button"
-																		onClick={hideModal6}
-																		class="close"
-																		data-dismiss="modal"
-																		aria-label="Close"
-																	>
-																		<span aria-hidden="true">&times;</span>
-																	</button>
-																</div>
-																	<div
-																		class="accordion md-accordion"
-																		id="accordionEx"
-																		role="tablist"
-																		aria-multiselectable="true"
-																	>
-																		<div class="modal-body">
-																				<form onSubmit={handleOnLeadSubmit}>
-																					{' '}
-																					<div class="student-filter-area">
+								class="modal fade filters-modal show "
+								id="leadsFilter"
+								aria-modal="true"
+							>
+								<Modal show={isOpen6} onHide={hideModal6}>
+									<Modal.Body class="editleadsfilter">
+										<div class="modal-dialog modal-lg" role="document">
+											<div class="modal-body">
+												<div id="studentFilter" class="deal-convert">
+													<div class="modal-dialog modal-lg" role="document">
+														<div class="modal-content">
+															<div class="modal-top">
+																<h5>Edit Leads</h5>
+																<button
+																	type="button"
+																	onClick={hideModal6}
+																	class="close"
+																	data-dismiss="modal"
+																	aria-label="Close"
+																>
+																	<span aria-hidden="true">&times;</span>
+																</button>
+															</div>
+															<div
+																class="accordion md-accordion"
+																id="accordionEx"
+																role="tablist"
+																aria-multiselectable="true"
+															>
+																<div class="modal-body">
+																	<form onSubmit={handleOnLeadSubmit}>
+																		{' '}
+																		<div class="student-filter-area">
+																			<div class="row">
+																				<div class="col-lg-12 col-12">
+																					<div class="update-crm add-leads">
 																						<div class="row">
-																							<div class="col-lg-12 col-12">
-																								<div class="update-crm add-leads">
+																							<div class="col-md-6 col-12">
+																								<div class="form-row">
+																									<div class="form-group col-md-12 col-12">
+																										<label>First Name</label>
+
+																										<input
+																											type="text"
+																											class="form-control input-field"
+																											placeholder=""
+																											name="leadFirstName"
+																											value={leadFirstName}
+																											onChange={handleOnChange}
+																										/>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>Middle Name</label>
+
+																										<input
+																											type="text"
+																											class="form-control input-field"
+																											placeholder=""
+																											name="leadMiddleName"
+																											value={leadMiddleName}
+																											onChange={handleOnChange}
+																										/>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>Last Name</label>
+
+																										<input
+																											type="text"
+																											class="form-control input-field"
+																											placeholder=""
+																											name="leadLastName"
+																											value={leadLastName}
+																											onChange={handleOnChange}
+																										/>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>
+																											Location Status
+																										</label>
+																										<select
+																											class="form-control"
+																											name="leadLocationStatus"
+																											value={leadLocationStatus}
+																											id="cars"
+																											onChange={handleOnChange}
+																										>
+																											<option>OnShore</option>
+																											<option>OffShore</option>
+																										</select>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>
+																											OnShore(Location)
+																										</label>
+
+																										<input
+																											type="text"
+																											class="form-control input-field"
+																											placeholder=""
+																											name="leadOnShoreLocation"
+																											value={
+																												leadOnShoreLocation
+																											}
+																											onChange={handleOnChange}
+																										/>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>
+																											OffShore(Location)
+																										</label>
+
+																										<input
+																											type="text"
+																											class="form-control input-field"
+																											placeholder=""
+																											name="leadOffShoreLocation"
+																											value={
+																												leadOffShoreLocation
+																											}
+																											onChange={handleOnChange}
+																										/>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>Lead Level</label>
+																										<select
+																											class="form-control"
+																											id="cars"
+																											name="leadLevel"
+																											value={leadLevel}
+																											onChange={handleOnChange}
+																										>
+																											<option>Very Hot</option>
+																											<option>Hot</option>
+																											<option>Cold</option>
+																											<option>Warm</option>
+																										</select>
+																									</div>
+
+																									<div class="form-group col-md-12 col-12">
+																										<label>
+																											Referral source{' '}
+																										</label>
+																										<select
+																											class="form-control"
+																											name="leadRefferalSource"
+																											value={leadRefferalSource}
+																											onChange={handleOnChange}
+																										>
+																											<option>unknown</option>
+																											<option>Youtube</option>
+																											<option>Instagram</option>
+																											<option>Facebook</option>
+																											<option>Google</option>
+																										</select>
+																									</div>
+																								</div>
+																							</div>
+
+																							<div class="col-md-6 col-12 person-area">
+																								<div class="person">
+																									<div class="heading">
+																										<i class="fa fa-user"></i>
+																										<span>Person</span>
+																									</div>
 																									<div class="row">
-																										<div class="col-md-6 col-12">
-																											<div class="form-row">
-																												<div class="form-group col-md-12 col-12">
-																													<label>First Name</label>
-
-																													<input
-																														type="text"
-																														class="form-control input-field"
-																														placeholder=""
-																														name="leadFirstName"
-																														value={leadFirstName}
-																														onChange={handleOnChange}
-																													/>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>Middle Name</label>
-
-																													<input
-																														type="text"
-																														class="form-control input-field"
-																														placeholder=""
-																														name="leadMiddleName"
-																														value={leadMiddleName}
-																														onChange={handleOnChange}
-																													/>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>Last Name</label>
-
-																													<input
-																														type="text"
-																														class="form-control input-field"
-																														placeholder=""
-																														name="leadLastName"
-																														value={leadLastName}
-																														onChange={handleOnChange}
-																													/>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>Location Status</label>
-																													<select
-																														class="form-control"
-																														name="leadLocationStatus"
-																														value={leadLocationStatus}
-																														id="cars"
-																														onChange={handleOnChange}
-																													>
-																														<option>OnShore</option>
-																														<option>OffShore</option>
-																													</select>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>OnShore(Location)</label>
-
-																													<input
-																														type="text"
-																														class="form-control input-field"
-																														placeholder=""
-																														name="leadOnShoreLocation"
-																														value={leadOnShoreLocation}
-																														onChange={handleOnChange}
-																													/>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>
-																														OffShore(Location)
-																													</label>
-
-																													<input
-																														type="text"
-																														class="form-control input-field"
-																														placeholder=""
-																														name="leadOffShoreLocation"
-																														value={leadOffShoreLocation}
-																														onChange={handleOnChange}
-																													/>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>Lead Level</label>
-																													<select
-																														class="form-control"
-																														id="cars"
-																														name="leadLevel"
-																														value={leadLevel}
-																														onChange={handleOnChange}
-																													>
-																														<option>Very Hot</option>
-																														<option>Hot</option>
-																														<option>Cold</option>
-																														<option>Warm</option>
-																													</select>
-																												</div>
-
-																												<div class="form-group col-md-12 col-12">
-																													<label>Referral source </label>
-																													<select
-																														class="form-control"
-																														name="leadRefferalSource"
-																														value={leadRefferalSource}
-																														onChange={handleOnChange}
-																													>
-																														<option>unknown</option>
-																														<option>Youtube</option>
-																														<option>Instagram</option>
-																														<option>Facebook</option>
-																														<option>Google</option>
-																													</select>
-																												</div>
-																											</div>
+																										<div class="form-group col-md-6 col-6 left">
+																											<label>
+																												OffShorePhone
+																											</label>
+																											<input
+																												type="text"
+																												class="form-control"
+																												placeholder=""
+																												name="leadOffShorePhone"
+																												value={
+																													leadOffShorePhone
+																												}
+																												onChange={
+																													handleOnChange
+																												}
+																											/>
+																										</div>
+																										<div class="form-group col-md-6 col-6 left">
+																											<label>
+																												OnShorePhone
+																											</label>
+																											<input
+																												type="text"
+																												class="form-control"
+																												placeholder=""
+																												name="leadOnShorePhone"
+																												value={leadOnShorePhone}
+																												onChange={
+																													handleOnChange
+																												}
+																											/>
+																										</div>
+																										<div class="col-md-6 col-6 form-group left">
+																											<label>Gender</label>
+																											<select
+																												class="form-control"
+																												id="cars"
+																												name="leadGender"
+																												value={leadGender}
+																												onChange={
+																													handleOnChange
+																												}
+																											>
+																												<option>Male</option>
+																												<option>Female</option>
+																												<option>Others</option>
+																											</select>
+																										</div>
+																										<div class="form-group col-md-6 col-6 left">
+																											<label>Email</label>
+																											<input
+																												type="text"
+																												class="form-control"
+																												placeholder=""
+																												name="leadEmail"
+																												value={leadEmail}
+																												onChange={
+																													handleOnChange
+																												}
+																											/>
+																										</div>
+																										<div class="form-group col-md-6 col-6 left">
+																											<label>Nationality</label>
+																											<input
+																												type="text"
+																												class="form-control"
+																												placeholder=""
+																												name="leadNationality"
+																												value={leadNationality}
+																												onChange={
+																													handleOnChange
+																												}
+																											/>
 																										</div>
 
-																										<div class="col-md-6 col-12 person-area">
-																											<div class="person">
-																												<div class="heading">
-																													<i class="fa fa-user"></i>
-																													<span>Person</span>
-																												</div>
-																												<div class="row">
-																													<div class="form-group col-md-6 col-6 left">
-																														<label>OffShorePhone</label>
-																														<input
-																															type="text"
-																															class="form-control"
-																															placeholder=""
-																															name="leadOffShorePhone"
-																															value={leadOffShorePhone}
-																															onChange={handleOnChange}
-																														/>
-																													</div>
-																													<div class="form-group col-md-6 col-6 left">
-																														<label>OnShorePhone</label>
-																														<input
-																															type="text"
-																															class="form-control"
-																															placeholder=""
-																															name="leadOnShorePhone"
-																															value={leadOnShorePhone}
-																															onChange={handleOnChange}
-																														/>
-																													</div>
-																													<div class="col-md-6 col-6 form-group left">
-																														<label>Gender</label>
-																														<select
-																															class="form-control"
-																															id="cars"
-																															name="leadGender"
-																															value={leadGender}
-																															onChange={handleOnChange}
-																														>
-																															<option>Male</option>
-																															<option>Female</option>
-																															<option>Others</option>
-																														</select>
-																													</div>
-																													<div class="form-group col-md-6 col-6 left">
-																														<label>Email</label>
-																														<input
-																															type="text"
-																															class="form-control"
-																															placeholder=""
-																															name="leadEmail"
-																															value={leadEmail}
-																															onChange={handleOnChange}
-																														/>
-																													</div>
-																													<div class="form-group col-md-6 col-6 left">
-																														<label>Nationality</label>
-																														<input
-																															type="text"
-																															class="form-control"
-																															placeholder=""
-																															name="leadNationality"
-																															value={leadNationality}
-																															onChange={handleOnChange}
-																														/>
-																													</div>
-
-																													<div class="form-group col-md-6 col-6 left">
-																														<label>Birthdate</label>
-																														<input
-																															type="date"
-																															class="form-control"
-																															placeholder=""
-																															name="leadBirthday"
-																															value={leadBirthday}
-																															onChange={handleOnChange}
-																														/>
-																													</div>
-																												</div>
-																											</div>
+																										<div class="form-group col-md-6 col-6 left">
+																											<label>Birthdate</label>
+																											<input
+																												type="date"
+																												class="form-control"
+																												placeholder=""
+																												name="leadBirthday"
+																												value={leadBirthday}
+																												onChange={
+																													handleOnChange
+																												}
+																											/>
 																										</div>
 																									</div>
 																								</div>
 																							</div>
 																						</div>
-																						<div class="fotercontent">
-																							<div class="footersingbtn">
-																								<input
-																									type="submit"
-																									name="Save"
-																									class="btn getin-btn"
-																									value="Update"
-																								/>
-																							</div>
-																						</div>
-																						{/*<!-- Modal -->*/}
 																					</div>
-																				</form>
+																				</div>
 																			</div>
-																    </div>
+																			<div class="fotercontent">
+																				<div class="footersingbtn">
+																					<input
+																						type="submit"
+																						name="Save"
+																						class="btn getin-btn"
+																						value="Update"
+																					/>
+																				</div>
+																			</div>
+																			{/*<!-- Modal -->*/}
+																		</div>
+																	</form>
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-											</div>		
-
-
-											</Modal.Body>
-										</Modal>
-									</div>
+											</div>
+										</div>
+									</Modal.Body>
+								</Modal>
+							</div>
 							{/* Referral Source Modal */}
 
 							{/* convert to deal modal */}
