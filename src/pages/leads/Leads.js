@@ -51,6 +51,7 @@ const Leads = () => {
 	const [isOpen3, setIsOpen3] = useState(false);
 	const [isOpen4, setIsOpen4] = useState(false);
 	const [isOpen5, setIsOpen5] = useState(false);
+	const [isOpen6, setIsOpen6] = useState(false);
 	const [leadFirstName, setLeadFirstName] = useState('');
 	const [leadLastName, setLeadLastName] = useState('');
 	const [leadMiddleName, setLeadMiddleName] = useState('');
@@ -690,6 +691,7 @@ const Leads = () => {
 
 		await dispatch(addLead(newLead));
 		await showAddedLeads();
+
 		hideModal2();
 	};
 
@@ -786,6 +788,14 @@ const Leads = () => {
 
 	const hideModal5 = () => {
 		setIsOpen5(false);
+	};
+    
+	const showModal6 = () => {
+		setIsOpen6(true);
+	};
+
+	const hideModal6 = () => {
+		setIsOpen6(false);
 	};
 
 	useEffect(() => {
@@ -1049,7 +1059,7 @@ const Leads = () => {
 																										onChange={handleOnChange}
 																									/>
 																								</div>
-																								<div class="col-md-6 col-6 form-group right">
+																								<div class="col-md-6 col-6 form-group left">
 																									<label>Gender</label>
 																									<select
 																										class="form-control"
@@ -1210,7 +1220,13 @@ const Leads = () => {
 														<td>{Moment(item.addedAt).format('DD/MM/YYYY')}</td>
 														<td>{Moment(item.addedAt).format('HH:mm:ss')}</td>
 														<td>{item.leadUserName}</td>
-														<td>{item.leadRefferalSource}</td>
+														<td>
+														<div class="action">
+																<a onClick={() => showModal6(item)}>
+																	<i class="fas fa-pen"></i>
+																</a>
+														</div>
+														</td>
 													</tr>
 												))}
 										</tbody>
@@ -4921,6 +4937,274 @@ const Leads = () => {
 								{/*modal-body--*/}
 							</div>
 
+
+							{/* refferal source modal */}
+							<div
+										class="modal fade filters-modal show "
+										id="leadsFilter"
+										aria-modal="true"
+									>
+										<Modal show={isOpen6} onHide={hideModal6}>
+											<Modal.Body class="editleadsfilter">
+											<div class="modal-dialog modal-lg" role="document">
+												<div class="modal-body">
+													<div id="studentFilter" class="deal-convert">
+														<div class="modal-dialog modal-lg" role="document">
+															<div class="modal-content">
+																<div class="modal-top">
+																	<h5>Edit Leads</h5>
+																	<button
+																		type="button"
+																		onClick={hideModal6}
+																		class="close"
+																		data-dismiss="modal"
+																		aria-label="Close"
+																	>
+																		<span aria-hidden="true">&times;</span>
+																	</button>
+																</div>
+																	<div
+																		class="accordion md-accordion"
+																		id="accordionEx"
+																		role="tablist"
+																		aria-multiselectable="true"
+																	>
+																		<div class="modal-body">
+																				<form onSubmit={handleOnLeadSubmit}>
+																					{' '}
+																					<div class="student-filter-area">
+																						<div class="row">
+																							<div class="col-lg-12 col-12">
+																								<div class="update-crm add-leads">
+																									<div class="row">
+																										<div class="col-md-6 col-12">
+																											<div class="form-row">
+																												<div class="form-group col-md-12 col-12">
+																													<label>First Name</label>
+
+																													<input
+																														type="text"
+																														class="form-control input-field"
+																														placeholder=""
+																														name="leadFirstName"
+																														value={leadFirstName}
+																														onChange={handleOnChange}
+																													/>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>Middle Name</label>
+
+																													<input
+																														type="text"
+																														class="form-control input-field"
+																														placeholder=""
+																														name="leadMiddleName"
+																														value={leadMiddleName}
+																														onChange={handleOnChange}
+																													/>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>Last Name</label>
+
+																													<input
+																														type="text"
+																														class="form-control input-field"
+																														placeholder=""
+																														name="leadLastName"
+																														value={leadLastName}
+																														onChange={handleOnChange}
+																													/>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>Location Status</label>
+																													<select
+																														class="form-control"
+																														name="leadLocationStatus"
+																														value={leadLocationStatus}
+																														id="cars"
+																														onChange={handleOnChange}
+																													>
+																														<option>OnShore</option>
+																														<option>OffShore</option>
+																													</select>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>OnShore(Location)</label>
+
+																													<input
+																														type="text"
+																														class="form-control input-field"
+																														placeholder=""
+																														name="leadOnShoreLocation"
+																														value={leadOnShoreLocation}
+																														onChange={handleOnChange}
+																													/>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>
+																														OffShore(Location)
+																													</label>
+
+																													<input
+																														type="text"
+																														class="form-control input-field"
+																														placeholder=""
+																														name="leadOffShoreLocation"
+																														value={leadOffShoreLocation}
+																														onChange={handleOnChange}
+																													/>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>Lead Level</label>
+																													<select
+																														class="form-control"
+																														id="cars"
+																														name="leadLevel"
+																														value={leadLevel}
+																														onChange={handleOnChange}
+																													>
+																														<option>Very Hot</option>
+																														<option>Hot</option>
+																														<option>Cold</option>
+																														<option>Warm</option>
+																													</select>
+																												</div>
+
+																												<div class="form-group col-md-12 col-12">
+																													<label>Referral source </label>
+																													<select
+																														class="form-control"
+																														name="leadRefferalSource"
+																														value={leadRefferalSource}
+																														onChange={handleOnChange}
+																													>
+																														<option>unknown</option>
+																														<option>Youtube</option>
+																														<option>Instagram</option>
+																														<option>Facebook</option>
+																														<option>Google</option>
+																													</select>
+																												</div>
+																											</div>
+																										</div>
+
+																										<div class="col-md-6 col-12 person-area">
+																											<div class="person">
+																												<div class="heading">
+																													<i class="fa fa-user"></i>
+																													<span>Person</span>
+																												</div>
+																												<div class="row">
+																													<div class="form-group col-md-6 col-6 left">
+																														<label>OffShorePhone</label>
+																														<input
+																															type="text"
+																															class="form-control"
+																															placeholder=""
+																															name="leadOffShorePhone"
+																															value={leadOffShorePhone}
+																															onChange={handleOnChange}
+																														/>
+																													</div>
+																													<div class="form-group col-md-6 col-6 left">
+																														<label>OnShorePhone</label>
+																														<input
+																															type="text"
+																															class="form-control"
+																															placeholder=""
+																															name="leadOnShorePhone"
+																															value={leadOnShorePhone}
+																															onChange={handleOnChange}
+																														/>
+																													</div>
+																													<div class="col-md-6 col-6 form-group left">
+																														<label>Gender</label>
+																														<select
+																															class="form-control"
+																															id="cars"
+																															name="leadGender"
+																															value={leadGender}
+																															onChange={handleOnChange}
+																														>
+																															<option>Male</option>
+																															<option>Female</option>
+																															<option>Others</option>
+																														</select>
+																													</div>
+																													<div class="form-group col-md-6 col-6 left">
+																														<label>Email</label>
+																														<input
+																															type="text"
+																															class="form-control"
+																															placeholder=""
+																															name="leadEmail"
+																															value={leadEmail}
+																															onChange={handleOnChange}
+																														/>
+																													</div>
+																													<div class="form-group col-md-6 col-6 left">
+																														<label>Nationality</label>
+																														<input
+																															type="text"
+																															class="form-control"
+																															placeholder=""
+																															name="leadNationality"
+																															value={leadNationality}
+																															onChange={handleOnChange}
+																														/>
+																													</div>
+
+																													<div class="form-group col-md-6 col-6 left">
+																														<label>Birthdate</label>
+																														<input
+																															type="date"
+																															class="form-control"
+																															placeholder=""
+																															name="leadBirthday"
+																															value={leadBirthday}
+																															onChange={handleOnChange}
+																														/>
+																													</div>
+																												</div>
+																											</div>
+																										</div>
+																									</div>
+																								</div>
+																							</div>
+																						</div>
+																						<div class="fotercontent">
+																							<div class="footersingbtn">
+																								<input
+																									type="submit"
+																									name="Save"
+																									class="btn getin-btn"
+																									value="Update"
+																								/>
+																							</div>
+																						</div>
+																						{/*<!-- Modal -->*/}
+																					</div>
+																				</form>
+																			</div>
+																    </div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>		
+
+
+											</Modal.Body>
+										</Modal>
+									</div>
+							{/* Referral Source Modal */}
+
 							{/* convert to deal modal */}
 							<div
 								class="modal fade filters-modal show"
@@ -5070,14 +5354,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne4"
+																								id="headingOne1"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne4"
+																									href="#collapseOne1"
 																									aria-expanded="true"
-																									aria-controls="collapseOne4"
+																									aria-controls="collapseOne1"
 																								>
 																									<div class="headingdiv">
 																										Applicant Current Location{' '}
@@ -5086,10 +5370,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne4"
+																								id="collapseOne1"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne4"
+																								aria-labelledby="headingOne1"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -5149,14 +5433,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne1"
+																								id="headingOne2"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne1"
+																									href="#collapseOne2"
 																									aria-expanded="true"
-																									aria-controls="collapseOne1"
+																									aria-controls="collapseOne2"
 																								>
 																									<div class="headingdiv">
 																										OnShore Information{' '}
@@ -5165,10 +5449,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne1"
+																								id="collapseOne2"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne1"
+																								aria-labelledby="headingOne2"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -5310,14 +5594,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne1"
+																								id="headingOne3"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne2"
+																									href="#collapseOne3"
 																									aria-expanded="true"
-																									aria-controls="collapseOne1"
+																									aria-controls="collapseOne3"
 																								>
 																									<div class="headingdiv">
 																										OffShore Information{' '}
@@ -5326,10 +5610,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne2"
+																								id="collapseOne3"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne2"
+																								aria-labelledby="headingOne3"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -5475,14 +5759,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne1"
+																								id="headingOne4"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne1"
+																									href="#collapseOne4"
 																									aria-expanded="true"
-																									aria-controls="collapseOne1"
+																									aria-controls="collapseOne4"
 																								>
 																									<div class="headingdiv">
 																										Education Details{' '}
@@ -5491,10 +5775,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne1"
+																								id="collapseOne4"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne1"
+																								aria-labelledby="headingOne4"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -5627,14 +5911,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne2"
+																								id="headingOne5"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne2"
+																									href="#collapseOne5"
 																									aria-expanded="true"
-																									aria-controls="collapseOne2"
+																									aria-controls="collapseOne5"
 																								>
 																									<div class="headingdiv">
 																										Passports{' '}
@@ -5643,10 +5927,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne2"
+																								id="collapseOne5"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne2"
+																								aria-labelledby="headingOne5"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -5744,14 +6028,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne2"
+																								id="headingOne6"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne2"
+																									href="#collapseOne6"
 																									aria-expanded="true"
-																									aria-controls="collapseOne2"
+																									aria-controls="collapseOne6"
 																								>
 																									<div class="headingdiv">
 																										Visas{' '}
@@ -5760,10 +6044,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne2"
+																								id="collapseOne6"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne2"
+																								aria-labelledby="headingOne6"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -5862,14 +6146,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne3"
+																								id="headingOne7"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne3"
+																									href="#collapseOne7"
 																									aria-expanded="true"
-																									aria-controls="collapseOne3"
+																									aria-controls="collapseOne7"
 																								>
 																									<div class="headingdiv">
 																										Insurance{' '}
@@ -5878,10 +6162,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne3"
+																								id="collapseOne7"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne3"
+																								aria-labelledby="headingOne7"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -6003,14 +6287,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne1"
+																								id="headingOne8"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne5"
+																									href="#collapseOne8"
 																									aria-expanded="true"
-																									aria-controls="collapseOne5"
+																									aria-controls="collapseOne8"
 																								>
 																									<div class="headingdiv">
 																										CRM{' '}
@@ -6019,10 +6303,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne5"
+																								id="collapseOne8"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne5"
+																								aria-labelledby="headingOne8"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -6159,14 +6443,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne6"
+																								id="headingOne9"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne6"
+																									href="#collapseOne9"
 																									aria-expanded="true"
-																									aria-controls="collapseOne6"
+																									aria-controls="collapseOne9"
 																								>
 																									<div class="headingdiv">
 																										Others{' '}
@@ -6175,10 +6459,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne6"
+																								id="collapseOne9"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne6"
+																								aria-labelledby="headingOne9"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">
@@ -6253,14 +6537,14 @@ const Leads = () => {
 																							<div
 																								class="card-header"
 																								role="tab"
-																								id="headingOne6"
+																								id="headingOne10"
 																							>
 																								<a
 																									data-toggle="collapse"
 																									data-parent="#accordionEx"
-																									href="#collapseOne8"
+																									href="#collapseOne10"
 																									aria-expanded="true"
-																									aria-controls="collapseOne7"
+																									aria-controls="collapseOne10"
 																								>
 																									<div class="headingdiv">
 																										Add a Note{' '}
@@ -6269,10 +6553,10 @@ const Leads = () => {
 																								</a>
 																							</div>
 																							<div
-																								id="collapseOne8"
+																								id="collapseOne10"
 																								class="collapse show"
 																								role="tabpanel"
-																								aria-labelledby="headingOne7"
+																								aria-labelledby="headingOne10"
 																								data-parent="#accordionEx"
 																							>
 																								<div class="card-body">

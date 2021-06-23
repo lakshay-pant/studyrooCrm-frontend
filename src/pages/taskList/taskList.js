@@ -342,14 +342,13 @@ export const TaskList = () => {
                                                         <div class="modal fade filters-modal show" aria-modal="true">
                                                             <Modal show={isOpen} onHide={hideModal}>
                                                                 <div id="taskupdate">
-                                                                    <div class="modal-dialog modal-lg" role="document">
-                                                                        <div class="modal-content">
+                                                                
                                                                             <Modal.Body>
                                                                                 <div class="modal-dialog modal-lg" role="document">
                                                                                     <div class="modal-content">
                                                                                         <div class="modal-top">
                                                                                             <h5>Update Task</h5>
-                                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                            <button onClick={hideModal} type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                                 <span aria-hidden="true">&times;</span>
                                                                                             </button>
                                                                                         </div>
@@ -463,8 +462,9 @@ export const TaskList = () => {
 
                                                                                                 </div>
                                                                                                 <div class="fotercontent">
-                                                                                                    <div class="rest">
-                                                                                                        <a href="#"><span><i class="far fa-redo"></i></span> Reset</a>
+                                                                                                    
+                                                                                                    <div class="footersingbtn">
+                                                                                                        <input type="submit" name="Save" class="btn getin-btn" value="Reset" />
                                                                                                     </div>
                                                                                                     <div class="footersingbtn">
                                                                                                         <input type="submit" name="Save" class="btn getin-btn" value="Save" />
@@ -478,8 +478,7 @@ export const TaskList = () => {
 
                                                                                 </div>
                                                                             </Modal.Body>
-                                                                        </div>
-                                                                    </div>
+                                                                        
                                                                 </div>
                                                             </Modal>
                                                         </div>

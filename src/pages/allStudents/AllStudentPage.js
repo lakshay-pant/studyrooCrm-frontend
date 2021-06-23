@@ -109,7 +109,7 @@ import ModalTitle from "react-bootstrap/ModalTitle";
                                 <Modal show={isOpen} onHide={hideModal}>
                                   <Modal.Body>
                                     <div class="fl-head">
-                                      <h5><span><i class="fal fa-filter"></i></span> Filters</h5>
+                                      <h5><span><i class="fas fa-filter"></i></span> Filters</h5>
                                       <button onClick={hideModal} className="close">
                                         <span aria-hidden="true">&times;</span>
                                       </button>

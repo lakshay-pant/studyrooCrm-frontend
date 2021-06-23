@@ -229,10 +229,9 @@ const Sidebar = props => {
           </div>
         </div><s.TogglerContainer onClick={() => setSidebarState(!isSidebarOpen)}>
           <s.Toggler />
+          
         </s.TogglerContainer></s.SidebarHeader>}
-                           
-                           
-        
+
         <s.MenuItemContainer>{menuItemsJSX}</s.MenuItemContainer>
         
       </s.SidebarContainer>
