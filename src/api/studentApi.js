@@ -118,12 +118,12 @@ export const DeleteAllUserStudentTask = (id1, id2) => {
 	});
 };
 
-export const UpdateStudentTask = (frmData, id2) => {
+export const UpdateStudentTask = (frmData, id1, id2) => {
 	console.log('from api', frmData);
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.put(
-				'http://localhost:3001/v1/students/updateTask' + id2,
+				'http://localhost:3001/v1/students/' + id1 + '/' + id2,
 				frmData
 			);
 

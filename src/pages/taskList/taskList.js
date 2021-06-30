@@ -14,6 +14,7 @@ import { fetchAlltask } from './taskListgetAction';
 import { fetchAllStudents } from '../allStudents/allStudentAction';
 import { deleteStudentTask } from './deleteStudentTaskAction';
 import { editResetSuccessMSg } from './taskListSlice';
+import { editStudentTask } from './editStudentTaskAction';
 
 import { addTask } from '../addTask/addTaskAction';
 
@@ -57,6 +58,8 @@ export const TaskList = () => {
 	const [taskDetails, setTaskDetails] = useState('');
 	const [studentAssign, setStudentAssign] = useState('');
 	const [assignTo, setAssignTo] = useState('');
+	const [taskId, setTaskId] = useState('');
+	const [studentId, setStudentId] = useState('');
 
 	const [userGroup, setUserGroup] = useState('');
 	const [offices, setOffices] = useState('');
@@ -65,6 +68,7 @@ export const TaskList = () => {
 	const [displayUsers, setDisplayUsers] = useState(false);
 	const [optionsUsers, setUserOptions] = useState([]);
 	const [checked, setChecked] = useState(false);
+	const [taskStatus, setTaskStatus] = useState('');
 
 	const handleOnChange = (e) => {
 		const { name, value } = e.target;
@@ -102,6 +106,10 @@ export const TaskList = () => {
 				setOffices(value);
 				break;
 
+			case 'taskStatus':
+				setTaskStatus(value);
+				break;
+
 			default:
 				break;
 		}
@@ -113,7 +121,6 @@ export const TaskList = () => {
 
 	const handleOnTaskSubmit = async (e) => {
 		e.preventDefault();
-		console.log('IDIDIDIDIDIDIDIDIDIDhuuuuuuuuuuuuuuuuuu');
 
 		const newTask = {
 			taskName,
@@ -123,16 +130,22 @@ export const TaskList = () => {
 			assignTo,
 			offices,
 			userGroup,
+			taskStatus,
 		};
-		console.log('IDIDIDIDIDIDIDIDIDID');
+
 		await dispatch(editTask(newTask, ID));
+		await dispatch(editStudentTask(newTask, studentId, taskId));
+		console.log('helen', taskId);
 		await dispatch(fetchAlltask());
+		await dispatch(fetchAllStudents());
 	};
 
 	const showModal = (item) => {
 		console.log('itttttttttttttttttttttttttttttttttemmmmmm');
 
 		setID(item._id);
+		setTaskId(item.taskId);
+		setStudentId(item.studentId);
 		setTaskName(item.taskName);
 		setType(item.type);
 		setDueDate(item.dueDate);
@@ -142,6 +155,7 @@ export const TaskList = () => {
 		setUserGroup(item.userGroup);
 		setIsOpen(true);
 		setTaskDetails(item.taskDetails);
+		setTaskStatus(item.taskStatus);
 	};
 
 	const hideModal = () => {
@@ -150,7 +164,7 @@ export const TaskList = () => {
 	};
 	const deleteTaskRecord = async (item) => {
 		await dispatch(deletetask(item._id));
-		await dispatch(deleteStudentTask(item.studentId, item.taskId));
+		await dispatch(deleteStudentTask(studentId, taskId));
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAlltask());
 	};
@@ -456,107 +470,41 @@ export const TaskList = () => {
 
 																									<div class="crm-form">
 																										<div class="headingdiv">
-																											Is your task related to a
-																											student?
-																										</div>
-																										<div class="form-row">
-																											<div class="form-group col-md-12 col-12">
-																												<a class="badge badge-light">
-																													STU23
-																												</a>
-																												Aleksandra Raczek
-																												<a class="float-right color">
-																													Open Student
-																												</a>
-																											</div>
-																										</div>
-																									</div>
-
-																									<div class="crm-form">
-																										<div class="headingdiv">
-																											Who is assigned to this
-																											task?
-																										</div>
-																										<div class="form-row">
-																											<div class="form-group col-md-12 col-12">
-																												<label>
-																													This task will be
-																													assigned to...
-																												</label>
-																												<input
-																													type="text"
-																													class="form-control"
-																													placeholder=""
-																													name=""
-																													value="Artur Szulakowski"
-																												/>
-																											</div>
-																										</div>
-																									</div>
-
-																									<div class="crm-form">
-																										<div class="headingdiv">
 																											Current status
 																										</div>
 																										<div class="form-row">
 																											<div class="form-group col-md-12 col-12">
-																												<form>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="optradio"
-																															checked
-																														/>
-																														Pending
-																													</label>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="optradio"
-																														/>
-																														In progress
-																													</label>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="optradio"
-																														/>
-																														Completed
-																													</label>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="optradio"
-																														/>
-																														Cancelled
-																													</label>
-																												</form>
+																												<div class="form-group col-md-6">
+																													<select
+																														class="form-control"
+																														name="taskStatus"
+																														id="taskStatus"
+																														value={taskStatus}
+																														onChange={
+																															handleOnChange
+																														}
+																													>
+																														<option>
+																															Pending
+																														</option>
+																														<option>
+																															In progress
+																														</option>
+																														<option>
+																															Completed
+																														</option>
+																														<option>
+																															Cancelled
+																														</option>
+																													</select>
+																												</div>
 																											</div>
 																										</div>
 																									</div>
 																								</div>
 																							</div>
-
-																							<div class="col-lg-4 col-12">
-																								<div class="form-group col-md-12 col-12 record-message">
-																									<textarea
-																										name="note"
-																										rows="5"
-																										class="form-control"
-																										placeholder="Add note, record a call or message about this task..."
-																									></textarea>
-																								</div>
-																							</div>
 																						</div>
 																						<div class="fotercontent">
-																							<div class="footersingbtn">
-																								<input
-																									type="submit"
-																									name="Save"
-																									class="btn getin-btn"
-																									value="Reset"
-																								/>
-																							</div>
 																							<div class="footersingbtn">
 																								<input
 																									type="submit"
