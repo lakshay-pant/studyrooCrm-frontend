@@ -15,7 +15,7 @@ import { fetchAllStudents } from '../allStudents/allStudentAction';
 import { deleteStudentTask } from './deleteStudentTaskAction';
 import { editResetSuccessMSg } from './taskListSlice';
 import { editStudentTask } from './editStudentTaskAction';
-
+import Moment from 'moment';
 import { addTask } from '../addTask/addTaskAction';
 
 export const TaskList = () => {
@@ -44,6 +44,14 @@ export const TaskList = () => {
 	const { isLoadingDelete, statusDelete, messageDelete } = useSelector(
 		(state) => state.deletetask
 	);
+
+	const { students } = useSelector((state) => state.allStudent);
+
+	useEffect(() => {
+		if (!students.length) {
+			dispatch(fetchAllStudents());
+		}
+	}, [students, dispatch]);
 
 	useEffect(() => {
 		// messageDelete && dispatch(deleteResetSuccessMSg());
@@ -198,98 +206,27 @@ export const TaskList = () => {
 							<div class="col-lg-4 col-12">
 								<div class="task-student">
 									<div class="headingdiv">Tasks by student</div>
-
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
-									<div class="task-list">
-										<div class="student-task">
-											<div class="img-wrap">
-												<img src="images/admin.svg" />
-											</div>
-											<div class="data">
-												<p>Artur Szulakowski.</p>
-											</div>
-											<div class="number">
-												<p>02</p>
-											</div>
-										</div>
-									</div>
+									{students
+										.slice(0)
+										.reverse()
+										.map(
+											(item) =>
+												item.studentTasks.length > 0 && (
+													<div class="task-list">
+														<div class="student-task">
+															<div class="data">
+																<p>
+																	{item.firstName} {item.middleName}{' '}
+																	{item.lastName}
+																</p>
+															</div>
+															<div class="number">
+																<p>{item.studentTasks.length}</p>
+															</div>
+														</div>
+													</div>
+												)
+										)}
 								</div>
 							</div>
 
@@ -313,7 +250,12 @@ export const TaskList = () => {
 														</p>
 													</div>
 													<div class="number">
-														<p>14 Mar 2021</p>
+														<p>
+															{' '}
+															{Moment(item.dueDate).format('DD')}{' '}
+															{Moment(item.dueDate).format('MMMM')}{' '}
+															{Moment(item.dueDate).format('YYYY')}
+														</p>
 														<div class="todo-buttons">
 															<a href="#" class="task-btn-done">
 																<span> Go To Student </span>
