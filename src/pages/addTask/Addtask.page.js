@@ -13,6 +13,7 @@ import { addTask } from './addTaskAction';
 import { studentTask } from './addTaskStudentAction';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import { v4 as uuidv4 } from 'uuid';
 
 export const Addtask = () => {
 	const { searchStudentList } = useSelector((state) => state.allStudent);
@@ -163,7 +164,12 @@ export const Addtask = () => {
 			assignTo,
 			offices,
 			userGroup,
+			taskId: uuidv4(),
+			studentId,
+			taskDetails,
 		};
+
+		console.log('ye hai humara new task', newTask);
 
 		await dispatch(addTask(newTask));
 		await dispatch(studentTask(newTask, studentId));

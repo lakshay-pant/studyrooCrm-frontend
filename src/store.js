@@ -21,6 +21,7 @@ import deletetask from './pages/taskList/taskListdeleteSlice';
 import editTask from './pages/taskList/taskListSlice';
 import editUser from './pages/profile/profileeditSlice';
 import addstudentTask from './pages/addTask/addTaskSlice';
+import deleteStudentTask from './pages/taskList/deleteStudentTaskSlice';
 
 const store = configureStore({
 	reducer: {
@@ -45,6 +46,7 @@ const store = configureStore({
 		deleteLeadTask: deleteLeadTask,
 		updateLeadTask: updateLeadTask,
 		addstudentTask: addstudentTask,
+		deleteStudentTask: deleteStudentTask,
 	},
 });
 

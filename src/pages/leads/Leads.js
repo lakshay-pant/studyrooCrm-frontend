@@ -516,10 +516,6 @@ const Leads = () => {
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
-
-		if (taskCompleted === true) {
-			setTaskCompleted(false);
-		}
 	};
 
 	const editIncompleteLeadTask = async (e) => {
@@ -540,10 +536,6 @@ const Leads = () => {
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
-
-		if (taskCompleted === true) {
-			setTaskCompleted(false);
-		}
 	};
 
 	const handleOnStudentSubmit = async (e) => {
@@ -802,7 +794,7 @@ const Leads = () => {
 		if (!leads.length) {
 			dispatch(fetchAllLeads());
 		}
-	}, [leads, dispatch]);
+	}, [dispatch]);
 
 	useEffect(() => {
 		showAddedLeads();
@@ -2612,6 +2604,9 @@ const Leads = () => {
 																																														type="submit"
 																																														name="Save"
 																																														class="btn btn-save"
+																																														onClick={
+																																															hideModal3
+																																														}
 																																													/>
 																																												</div>
 																																											</div>
@@ -3901,6 +3896,9 @@ const Leads = () => {
 																																														type="submit"
 																																														name="Save"
 																																														class="btn btn-save"
+																																														onClick={
+																																															hideModal5
+																																														}
 																																													/>
 																																												</div>
 																																											</div>

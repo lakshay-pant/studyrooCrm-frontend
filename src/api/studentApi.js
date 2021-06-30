@@ -102,3 +102,35 @@ export const addStudentTask = (frmData, id) => {
 		}
 	});
 };
+
+export const DeleteAllUserStudentTask = (id1, id2) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/students/' + id1 + '/' + id2
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const UpdateStudentTask = (frmData, id2) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/students/updateTask' + id2,
+				frmData
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
