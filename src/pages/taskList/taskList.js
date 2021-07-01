@@ -143,7 +143,7 @@ export const TaskList = () => {
 
 		await dispatch(editTask(newTask, ID));
 		await dispatch(editStudentTask(newTask, studentId, taskId));
-		console.log('helen', taskId);
+
 		await dispatch(fetchAlltask());
 		await dispatch(fetchAllStudents());
 	};
@@ -172,7 +172,7 @@ export const TaskList = () => {
 	};
 	const deleteTaskRecord = async (item) => {
 		await dispatch(deletetask(item._id));
-		await dispatch(deleteStudentTask(studentId, taskId));
+		await dispatch(deleteStudentTask(item.studentId, item.taskId));
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAlltask());
 	};
