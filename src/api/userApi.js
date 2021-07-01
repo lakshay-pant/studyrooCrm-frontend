@@ -172,3 +172,20 @@ export const DeleteUserStudentTask = (id1, id2) => {
 		}
 	});
 };
+
+export const UpdateUserStudentTask = (frmData, id1, id2) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
+				frmData
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};

@@ -17,6 +17,7 @@ import { deleteStudentTask } from './deleteStudentTaskAction';
 import { deleteUserStudentTask } from './deleteUserTaskAction';
 import { editResetSuccessMSg } from './taskListSlice';
 import { editStudentTask } from './editStudentTaskAction';
+import { editUserStudentTask } from './editUserTaskAction';
 import Moment from 'moment';
 import { addTask } from '../addTask/addTaskAction';
 
@@ -83,6 +84,7 @@ export const TaskList = () => {
 	const [optionsUsers, setUserOptions] = useState([]);
 	const [checked, setChecked] = useState(false);
 	const [taskStatus, setTaskStatus] = useState('');
+	const [userId, setUserId] = useState('');
 
 	const handleOnChange = (e) => {
 		const { name, value } = e.target;
@@ -149,9 +151,10 @@ export const TaskList = () => {
 
 		await dispatch(editTask(newTask, ID));
 		await dispatch(editStudentTask(newTask, studentId, taskId));
-
+		await dispatch(editUserStudentTask(newTask, userId, taskId));
 		await dispatch(fetchAlltask());
 		await dispatch(fetchAllStudents());
+		await dispatch(fetchAllUsers());
 	};
 
 	const showModal = (item) => {
@@ -170,6 +173,7 @@ export const TaskList = () => {
 		setIsOpen(true);
 		setTaskDetails(item.taskDetails);
 		setTaskStatus(item.taskStatus);
+		setUserId(item.userId);
 	};
 
 	const hideModal = () => {

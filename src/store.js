@@ -24,6 +24,7 @@ import addstudentTask from './pages/addTask/addTaskSlice';
 import deleteStudentTask from './pages/taskList/deleteStudentTaskSlice';
 import editStudentTask from './pages/taskList/editStudentTaskSlice';
 import addUserStudentTask from './pages/addTask/addTaskStudentSlice';
+import editUserStudentTask from './pages/taskList/editUserTaskSlice';
 
 const store = configureStore({
 	reducer: {
@@ -51,6 +52,7 @@ const store = configureStore({
 		deleteStudentTask: deleteStudentTask,
 		editStudentTask: editStudentTask,
 		addUserStudentTask: addUserStudentTask,
+		editUserStudentTask: editUserStudentTask,
 	},
 });
 
