@@ -135,3 +135,40 @@ export const getAllUser = () => {
 		}
 	});
 };
+
+export const addUserStudentTask = (frmData, id) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/user/' + id,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const DeleteUserStudentTask = (id1, id2) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/user/' + id1 + '/' + id2
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};

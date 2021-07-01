@@ -11,6 +11,7 @@ import {
 import { fetchAllStudents } from '../allStudents/allStudentAction';
 import { addTask } from './addTaskAction';
 import { studentTask } from './addTaskStudentAction';
+import { userStudentTask } from './addTaskUserAction';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import { v4 as uuidv4 } from 'uuid';
@@ -59,9 +60,11 @@ export const Addtask = () => {
 		setAssignTo(stud.firstName);
 	};
 
-	const updateUser = (poke) => {
-		setStudentAssign(poke);
+	const updateUser = (user) => {
 		setDisplayUsers(false);
+		setStudentAssign(user.firstName);
+
+		setUserId(user._id);
 	};
 
 	const [taskName, setTaskName] = useState('');
@@ -83,6 +86,7 @@ export const Addtask = () => {
 	const wrapperRef1 = useRef(null);
 	const [checked, setChecked] = useState(false);
 	const [studentId, setStudentId] = useState('');
+	const [userId, setUserId] = useState('');
 
 	useEffect(() => {
 		if (!students.length) {
@@ -93,6 +97,10 @@ export const Addtask = () => {
 
 	useEffect(() => {
 		dispatch(fetchAllStudents());
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(fetchAllUsers());
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -167,12 +175,15 @@ export const Addtask = () => {
 			taskId: uuidv4(),
 			studentId,
 			taskDetails,
+			userId,
 		};
 
 		console.log('ye hai humara new task', newTask);
 
 		await dispatch(addTask(newTask));
 		await dispatch(studentTask(newTask, studentId));
+		await dispatch(userStudentTask(newTask, userId));
+		await dispatch(fetchAllUsers());
 		await dispatch(fetchAllStudents());
 	};
 
@@ -287,44 +298,6 @@ export const Addtask = () => {
 															<option>Cancelled</option>
 														</select>
 													</div>
-													{/* <form>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="taskStatus"
-                                                              value="Pending"
-                                                              onChange={handleOnChange}
-																														/>
-																														
-																													</label>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="taskStatus"
-                                                              value="In progress"
-                                                              onChange={handleOnChange}
-																														/>
-																														
-																													</label>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="taskStatus"
-                                                              value="Completed"
-                                                              onChange={handleOnChange}
-																														/>
-																														
-																													</label>
-																													<label class="radio-inline">
-																														<input
-																															type="radio"
-																															name="taskStatus"
-                                                              value="Cancelled"
-                                                              onChange={handleOnChange}
-																														/>
-																														
-																													</label>
-																												</form> */}
 												</div>
 											</div>
 										</div>
@@ -442,9 +415,7 @@ export const Addtask = () => {
 																			.map((value, i) => {
 																				return (
 																					<div
-																						onClick={() =>
-																							updateUser(value.firstName)
-																						}
+																						onClick={() => updateUser(value)}
 																						className="option ssg-item"
 																						key={i}
 																						tabIndex="0"

@@ -12,7 +12,9 @@ import { editTask } from './taskListAction';
 import { deletetask } from './taskListdeleteAction';
 import { fetchAlltask } from './taskListgetAction';
 import { fetchAllStudents } from '../allStudents/allStudentAction';
+import { fetchAllUsers } from '../../components/getAllTheUsers/getUsersAction';
 import { deleteStudentTask } from './deleteStudentTaskAction';
+import { deleteUserStudentTask } from './deleteUserTaskAction';
 import { editResetSuccessMSg } from './taskListSlice';
 import { editStudentTask } from './editStudentTaskAction';
 import Moment from 'moment';
@@ -34,7 +36,11 @@ export const TaskList = () => {
 	}, []);
 
 	useEffect(() => {
-		fetchAllStudents();
+		dispatch(fetchAllStudents());
+	}, []);
+
+	useEffect(() => {
+		dispatch(fetchAllUsers());
 	}, []);
 
 	const { isLoadingEdit, statusEdit, messageEdit } = useSelector(
@@ -173,8 +179,10 @@ export const TaskList = () => {
 	const deleteTaskRecord = async (item) => {
 		await dispatch(deletetask(item._id));
 		await dispatch(deleteStudentTask(item.studentId, item.taskId));
+		await dispatch(deleteUserStudentTask(item.userId, item.taskId));
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAlltask());
+		await dispatch(fetchAllUsers());
 	};
 	return (
 		<div className="content-wrapper">
