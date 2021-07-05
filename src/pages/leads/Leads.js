@@ -1,5 +1,5 @@
 import './LeadsStyle.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalHeader from 'react-bootstrap/ModalHeader';
@@ -18,6 +18,10 @@ import { deleteTask } from './deleteTaskAction';
 import { deleteLeadTask } from './deleteLeadTaskAction';
 import { editLeadTask } from './updateLeadTaskAction';
 import { addStudent } from '../../components/add-student-form/addStudentAction';
+import {
+	filterSearchUser,
+	fetchAllUsers,
+} from '../../components/getAllTheUsers/getUsersAction';
 
 import Moment from 'moment';
 
@@ -29,6 +33,8 @@ const Leads = () => {
 	const { leads, isLoadingShowlead, error } = useSelector(
 		(state) => state.leadList
 	);
+
+	const { users } = useSelector((state) => state.getUser);
 
 	const { lead, isLoadingShowSingleLead, errorSingleLead } = useSelector(
 		(state) => state.singleLead
@@ -137,6 +143,10 @@ const Leads = () => {
 	const [city, setCity] = useState('XYZ');
 	const [country, setCountry] = useState('India');
 	const [zipCode, setZipCode] = useState('gggg');
+
+	const [optionsUsers, setUserOptions] = useState([]);
+	const [displayUsers, setDisplayUsers] = useState(false);
+	const wrapperRef = useRef(null);
 
 	const dispatch = useDispatch();
 
@@ -791,6 +801,13 @@ const Leads = () => {
 	};
 
 	useEffect(() => {
+		if (!users.length) {
+			dispatch(fetchAllUsers());
+		}
+		setUserOptions(users);
+	}, [users, dispatch]);
+
+	useEffect(() => {
 		if (!leads.length) {
 			dispatch(fetchAllLeads());
 		}
@@ -807,6 +824,24 @@ const Leads = () => {
 	useEffect(() => {
 		messageLead && dispatch(addLeadResetSuccessMSg());
 	}, [dispatch]);
+
+	useEffect(() => {
+		window.addEventListener('mousedown', handleClickOutside);
+		return () => {
+			window.removeEventListener('mousedown', handleClickOutside);
+		};
+	});
+
+	const handleClickOutside = (event) => {
+		const { current: wrap } = wrapperRef;
+		if (wrap && !wrap.contains(event.target)) {
+			setDisplayUsers(false);
+		}
+	};
+	const updateUser = (user) => {
+		setDisplayUsers(false);
+		setAssignee(user.firstName);
+	};
 
 	return (
 		<div className="content-wrapper">
@@ -4863,24 +4898,86 @@ const Leads = () => {
 																														></i>
 																													</div>
 																													<div class="col-md-11 col-12">
-																														<select
-																															class="form-control"
-																															name="assignee"
-																															value={assignee}
-																															onChange={
-																																handleOnChange
-																															}
+																														<div
+																															ref={wrapperRef}
+																															className="flex-container flex-column pos-rel"
 																														>
-																															<option>
-																																{leadUserName}
-																															</option>
-																															<option>
-																																asasa
-																															</option>
-																															<option>
-																																asdsad
-																															</option>
-																														</select>
+																															<input
+																																class="form-control"
+																																name="assignee"
+																																value={assignee}
+																																onChange={
+																																	handleOnChange
+																																}
+																																onClick={() =>
+																																	setDisplayUsers(
+																																		!displayUsers
+																																	)
+																																}
+																																placeholder="Type to search"
+																																autoComplete="off"
+																															/>
+																															{displayUsers && (
+																																<div className="autoContainer">
+																																	<div className="auto-area">
+																																		<div class="ssg-header">
+																																			<div class="ssg-icon">
+																																				<i
+																																					class="fas fa-user"
+																																					aria-hidden="true"
+																																				></i>
+																																			</div>
+																																			<div class="ssg-name">
+																																				My Users
+																																			</div>
+																																			<div class="ssg-info">
+																																				3
+																																				results
+																																			</div>
+																																		</div>
+																																		<div className="ssg-content">
+																																			{optionsUsers
+																																				.filter(
+																																					({
+																																						firstName,
+																																					}) =>
+																																						firstName.indexOf(
+																																							assignee.toLowerCase()
+																																						) >
+																																						-1
+																																				)
+																																				.map(
+																																					(
+																																						value,
+																																						i
+																																					) => {
+																																						return (
+																																							<div
+																																								onClick={() =>
+																																									updateUser(
+																																										value
+																																									)
+																																								}
+																																								className="option ssg-item"
+																																								key={
+																																									i
+																																								}
+																																								tabIndex="0"
+																																							>
+																																								<span>
+																																									{
+																																										value.firstName
+																																									}
+																																								</span>
+																																							</div>
+																																						);
+																																					}
+																																				)}
+																																		</div>
+																																	</div>
+																																</div>
+																															)}
+																														</div>
 																													</div>
 																												</div>
 																											</div>
