@@ -135,6 +135,83 @@ export const TaskList = () => {
 		setChecked(!checked);
 	};
 
+	const taskCompleted = async (item) => {
+		setTaskName(item.taskName);
+		setType(item.type);
+		setDueDate(item.dueDate);
+		setStudentAssign(item.studentAssign);
+		setAssignTo(item.assignTo);
+		setOffices(item.offices);
+		setUserGroup(item.userGroup);
+		setTaskDetails(item.taskDetails);
+
+		const newTask = {
+			taskName,
+			type,
+			dueDate,
+			studentAssign,
+			assignTo,
+			offices,
+			userGroup,
+			taskStatus: 'Completed',
+			taskDetails,
+		};
+		await dispatch(editTask(newTask, item._id));
+		await dispatch(editStudentTask(newTask, item.studentId, item.taskId));
+		await dispatch(editUserStudentTask(newTask, item.userId, item.taskId));
+		await dispatch(fetchAlltask());
+		await dispatch(fetchAllStudents());
+		await dispatch(fetchAllUsers());
+
+		setTaskName('');
+		setType('');
+		setDueDate('');
+		setStudentAssign('');
+		setAssignTo('');
+		setOffices('');
+		setUserGroup('');
+		setTaskDetails('');
+	};
+
+	const taskInProgress = async (item) => {
+		setTaskName(item.taskName);
+		setType(item.type);
+		setDueDate(item.dueDate);
+		setStudentAssign(item.studentAssign);
+		setAssignTo(item.assignTo);
+		setOffices(item.offices);
+		setUserGroup(item.userGroup);
+		setTaskDetails(item.taskDetails);
+
+		const newTask = {
+			taskName,
+			type,
+			dueDate,
+			studentAssign,
+			assignTo,
+			offices,
+			userGroup,
+			taskStatus: 'In progress',
+			taskDetails,
+		};
+
+		await dispatch(editTask(newTask, item._id));
+		await dispatch(editStudentTask(newTask, item.studentId, item.taskId));
+		await dispatch(editUserStudentTask(newTask, item.userId, item.taskId));
+		await dispatch(fetchAlltask());
+		await dispatch(fetchAllStudents());
+		await dispatch(fetchAllUsers());
+
+		setTaskName('');
+		setType('');
+		setDueDate('');
+		setStudentAssign('');
+		setAssignTo('');
+		setOffices('');
+		setUserGroup('');
+		setTaskDetails('');
+	};
+
 	const handleOnTaskSubmit = async (e) => {
 		e.preventDefault();
 
@@ -147,6 +224,7 @@ export const TaskList = () => {
 			offices,
 			userGroup,
 			taskStatus,
+			taskDetails,
 		};
 
 		await dispatch(editTask(newTask, ID));
@@ -179,6 +257,19 @@ export const TaskList = () => {
 	const hideModal = () => {
 		dispatch(editResetSuccessMSg());
 		setIsOpen(false);
+		setID('');
+		setTaskId('');
+		setStudentId('');
+		setTaskName('');
+		setType('');
+		setDueDate('');
+		setStudentAssign('');
+		setAssignTo('');
+		setOffices('');
+		setUserGroup('');
+		setTaskDetails('');
+		setTaskStatus('');
+		setUserId('');
 	};
 	const deleteTaskRecord = async (item) => {
 		await dispatch(deletetask(item._id));
@@ -251,11 +342,16 @@ export const TaskList = () => {
 										.map((item) => (
 											<div class="task-list today" key={item._id}>
 												<div class="student-task">
-													<div class="img-wrap">
-														<span></span>
-													</div>
+													{item.taskStatus === 'In progress' && (
+														<div class="img-wrap">
+															<span></span>
+														</div>
+													)}
+
 													<div class="data">
-														<p>{item.taskName}</p>
+														<p>
+															{item.taskName} {item.taskStatus}
+														</p>
 														<p>
 															Assigned to: {item.studentAssign} Created by:
 															{item.assignTo}{' '}
@@ -269,15 +365,21 @@ export const TaskList = () => {
 															{Moment(item.dueDate).format('YYYY')}
 														</p>
 														<div class="todo-buttons">
-															<a href="#" class="task-btn-done">
+															<a class="task-btn-done">
 																<span> Go To Student </span>
 																<i class="fa fa-eye" aria-hidden="true"></i>
 															</a>
-															<a href="#" class="task-btn-done">
+															<a
+																class="task-btn-done"
+																onClick={() => taskCompleted(item)}
+															>
 																<span> Mark as Complete</span>
 																<i class="fa fa-check" aria-hidden="true"></i>
 															</a>
-															<a href="#" class="task-btn-done">
+															<a
+																class="task-btn-done"
+																onClick={() => taskInProgress(item)}
+															>
 																<span>Mark as in Progress</span>
 																<i
 																	class="fa fa-chevron-right"
@@ -293,7 +395,6 @@ export const TaskList = () => {
 																<i class="fas fa-pen" aria-hidden="true"></i>
 															</a>
 															<a
-																href="#"
 																class="task-btn-done"
 																onClick={() => deleteTaskRecord(item)}
 															>

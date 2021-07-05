@@ -4,7 +4,7 @@ const addTaskUrl = 'http://localhost:3001/v1/tasks';
 export const getAlltask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get('http://localhost:3001/v1/tasks/ge', {
+			const result = await axios.get('http://localhost:3001/v1/tasks/', {
 				headers: {
 					Authorization: sessionStorage.getItem('accessJWT'),
 				},
