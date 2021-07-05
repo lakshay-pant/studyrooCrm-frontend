@@ -89,13 +89,16 @@ export const Signup = () => {
       dispatch(newUserRegistration(newRegistration));
     }
 
-    const checkValidation=(e)=>{
+    const checkValidation = (e) => {
       setConfirmPassword(e.target.value)
-      if(password!==confirmPassword){
-setIsError("Confirm Password should match with Password")}else{
-  setIsError()
-}}
-
+      if (password === e.target.value) {
+        setIsError("Confirm Password Matched")
+      }
+      else {
+        setIsError("Confirm Password should match with Password")
+      }
+    }
+    
     return (
       <div className="body">
         <div className="mainlogin">
