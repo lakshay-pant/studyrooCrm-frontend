@@ -111,3 +111,25 @@ export const UpdateLeadTask = (frmData, id1, id2) => {
 		}
 	});
 };
+
+export const UpdateAllUserLeads = (frmData, id) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.patch(
+				'http://localhost:3001/v1/leads/' + id,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};

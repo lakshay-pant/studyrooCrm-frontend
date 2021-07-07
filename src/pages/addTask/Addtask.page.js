@@ -334,7 +334,7 @@ export const Addtask = () => {
 																		<i class="fas fa-user-graduate"></i>
 																	</div>
 																	<div class="ssg-name">My students</div>
-																	<div class="ssg-info">3 results</div>
+																	<div class="ssg-info">{options.length}</div>
 																</div>
 																<div className="ssg-content">
 																	{options
@@ -402,7 +402,9 @@ export const Addtask = () => {
 																			></i>
 																		</div>
 																		<div class="ssg-name">My Users</div>
-																		<div class="ssg-info">3 results</div>
+																		<div class="ssg-info">
+																			{optionsUsers.length}
+																		</div>
 																	</div>
 																	<div className="ssg-content">
 																		{optionsUsers

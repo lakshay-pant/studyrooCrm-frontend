@@ -189,3 +189,48 @@ export const UpdateUserStudentTask = (frmData, id1, id2) => {
 		}
 	});
 };
+
+export const addUserLeadTask = (frmData, id) => {
+	console.log('from api', frmData);
+	console.log('naaaaaa krt', id);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/leadTaskUser/' + id,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const UpdateUserLeadTask = (frmData, id1, id2) => {
+	console.log('from api', frmData);
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.put(
+				'http://localhost:3001/v1/leadTaskUser/' + id1 + '/' + id2,
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};

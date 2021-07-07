@@ -17,13 +17,18 @@ import { addLeadResetSuccessMSg } from './addLeadSlice';
 import { deleteTask } from './deleteTaskAction';
 import { deleteLeadTask } from './deleteLeadTaskAction';
 import { editLeadTask } from './updateLeadTaskAction';
+import { editLead } from './editLeadAction';
 import { addStudent } from '../../components/add-student-form/addStudentAction';
+import { userLeadTask } from './putTaskInUserAction';
 import {
 	filterSearchUser,
 	fetchAllUsers,
 } from '../../components/getAllTheUsers/getUsersAction';
 
+import { editUserLeadTask } from './editUserTaskAction';
+
 import Moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
 
 const Leads = () => {
 	const { isLoadingLead, statusLead, messageLead } = useSelector(
@@ -143,6 +148,8 @@ const Leads = () => {
 	const [city, setCity] = useState('XYZ');
 	const [country, setCountry] = useState('India');
 	const [zipCode, setZipCode] = useState('gggg');
+	const [userId, setUserId] = useState('');
+	const [leadTaskUserId, setLeadTaskUserId] = useState('');
 
 	const [optionsUsers, setUserOptions] = useState([]);
 	const [displayUsers, setDisplayUsers] = useState(false);
@@ -497,9 +504,16 @@ const Leads = () => {
 			taskCompleted,
 			taskStartTime,
 			taskEndTime,
+			leadTaskUserId: uuidv4(),
+			userId,
 		};
 
 		await dispatch(leadTask(newLeadTask, leadId));
+
+		await dispatch(userLeadTask(newLeadTask, userId));
+
+		await dispatch(fetchAllUsers());
+
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
 
@@ -517,13 +531,15 @@ const Leads = () => {
 			taskStartDate,
 			taskEndDate,
 			taskNote,
-			assignee,
+
 			taskCompleted,
 			taskStartTime,
 			taskEndTime,
 		};
 
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
+		await dispatch(editUserLeadTask(newLeadTask, userId, leadTaskUserId));
+		await dispatch(fetchAllUsers());
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
 	};
@@ -537,13 +553,15 @@ const Leads = () => {
 			taskStartDate,
 			taskEndDate,
 			taskNote,
-			assignee,
+
 			taskCompleted,
 			taskStartTime,
 			taskEndTime,
 		};
 
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
+		await dispatch(editUserLeadTask(newLeadTask, userId, leadTaskUserId));
+		await dispatch(fetchAllUsers());
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
 	};
@@ -697,6 +715,30 @@ const Leads = () => {
 		hideModal2();
 	};
 
+	const editFullLead = async (e) => {
+		e.preventDefault();
+
+		const newLead = {
+			leadFirstName,
+			leadMiddleName,
+			leadLastName,
+			leadBirthday,
+			leadGender,
+			leadNationality,
+			leadEmail,
+			leadOnShorePhone,
+			leadOffShorePhone,
+			leadLevel,
+			leadOnShoreLocation,
+			leadOffShoreLocation,
+			leadRefferalSource,
+			leadLocationStatus,
+		};
+
+		await dispatch(editLead(newLead, leadId));
+		await showAddedLeads();
+	};
+
 	const showModal = (item) => {
 		setIsOpen(true);
 		dispatch(fetchSingleLead(item._id));
@@ -760,6 +802,8 @@ const Leads = () => {
 		setTaskNote(item.taskNote);
 		setTaskCompleted(item.taskCompleted);
 		setAssignee(item.assignee);
+		setUserId(item.userId);
+		setLeadTaskUserId(item.leadTaskUserId);
 	};
 
 	const hideModal3 = () => {
@@ -786,18 +830,54 @@ const Leads = () => {
 		setTaskNote(item.taskNote);
 		setTaskCompleted(item.taskCompleted);
 		setAssignee(item.assignee);
+		setUserId(item.userId);
+		setLeadTaskUserId(item.leadTaskUserId);
 	};
 
 	const hideModal5 = () => {
 		setIsOpen5(false);
 	};
 
-	const showModal6 = () => {
+	const showModal6 = (item) => {
 		setIsOpen6(true);
+		setLeadFirstName(item.leadFirstName);
+		setLeadMiddleName(item.leadMiddleName);
+		setLeadLastName(item.leadLastName);
+		setLeadEmail(item.leadEmail);
+		setLeadGender(item.leadGender);
+		setLeadOnShoreLocation(item.leadOnShoreLocation);
+		setLeadOffShoreLocation(item.leadOffShoreLocation);
+		setLeadNationality(item.leadNationality);
+		setLeadOffShorePhone(item.leadOffShorePhone);
+		setLeadOnShorePhone(item.leadOnShorePhone);
+		setLeadLevel(item.leadLevel);
+		setLeadLocationStatus(item.leadLocationStatus);
+		setLeadBirthday(item.leadBirthday);
+		setLeadRefferalSource(item.leadRefferalSource);
+		setAddedAt(item.addedAt);
+		setLeadUserName(item.leadUserName);
+		setLeadId(item._id);
 	};
 
 	const hideModal6 = () => {
 		setIsOpen6(false);
+		setLeadFirstName('');
+		setLeadMiddleName('');
+		setLeadLastName('');
+		setLeadEmail('');
+		setLeadGender('');
+		setLeadOnShoreLocation('');
+		setLeadOffShoreLocation('');
+		setLeadNationality('');
+		setLeadOffShorePhone('');
+		setLeadOnShorePhone('');
+		setLeadLevel('');
+		setLeadLocationStatus('');
+		setLeadBirthday('');
+		setLeadRefferalSource('');
+		setAddedAt('');
+		setLeadUserName('');
+		setLeadId('');
 	};
 
 	useEffect(() => {
@@ -841,6 +921,7 @@ const Leads = () => {
 	const updateUser = (user) => {
 		setDisplayUsers(false);
 		setAssignee(user.firstName);
+		setUserId(user._id);
 	};
 
 	return (
@@ -4931,8 +5012,9 @@ const Leads = () => {
 																																				My Users
 																																			</div>
 																																			<div class="ssg-info">
-																																				3
-																																				results
+																																				{
+																																					optionsUsers.length
+																																				}
 																																			</div>
 																																		</div>
 																																		<div className="ssg-content">
@@ -5064,7 +5146,7 @@ const Leads = () => {
 																aria-multiselectable="true"
 															>
 																<div class="modal-body">
-																	<form onSubmit={handleOnLeadSubmit}>
+																	<form onSubmit={editFullLead}>
 																		{' '}
 																		<div class="student-filter-area">
 																			<div class="row">
