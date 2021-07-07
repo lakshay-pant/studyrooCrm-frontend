@@ -542,6 +542,11 @@ const Leads = () => {
 		await dispatch(fetchAllUsers());
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
+
+		if (taskCompleted === true) {
+			setTaskCompleted(false);
+		}
+		hideModal5();
 	};
 
 	const editIncompleteLeadTask = async (e) => {
@@ -564,6 +569,11 @@ const Leads = () => {
 		await dispatch(fetchAllUsers());
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
+
+		if (taskCompleted === true) {
+			setTaskCompleted(false);
+		}
+		hideModal3();
 	};
 
 	const handleOnStudentSubmit = async (e) => {
@@ -766,7 +776,6 @@ const Leads = () => {
 	};
 
 	const hideModal = () => {
-		setIsOpen(false);
 		setLeadFirstName('');
 		setLeadMiddleName('');
 		setLeadLastName('');
@@ -783,9 +792,26 @@ const Leads = () => {
 		setLeadRefferalSource('');
 		setAddedAt('');
 		setLeadUserName('');
+		setIsOpen(false);
 	};
 	const hideModal2 = () => {
 		dispatch(addLeadResetSuccessMSg());
+		setLeadFirstName('');
+		setLeadMiddleName('');
+		setLeadLastName('');
+		setLeadEmail('');
+		setLeadGender('');
+		setLeadOnShoreLocation('');
+		setLeadOffShoreLocation('');
+		setLeadNationality('');
+		setLeadOffShorePhone('');
+		setLeadOnShorePhone('');
+		setLeadLevel('');
+		setLeadLocationStatus('');
+		setLeadBirthday('');
+		setLeadRefferalSource('');
+		setAddedAt('');
+		setLeadUserName('');
 		setIsOpen2(false);
 	};
 

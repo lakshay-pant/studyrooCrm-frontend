@@ -298,6 +298,44 @@ export const Addtask = () => {
 															<option>Cancelled</option>
 														</select>
 													</div>
+													{/* <form>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="taskStatus"
+                                                              value="Pending"
+                                                              onChange={handleOnChange}
+																														/>
+																														
+																													</label>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="taskStatus"
+                                                              value="In progress"
+                                                              onChange={handleOnChange}
+																														/>
+																														
+																													</label>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="taskStatus"
+                                                              value="Completed"
+                                                              onChange={handleOnChange}
+																														/>
+																														
+																													</label>
+																													<label class="radio-inline">
+																														<input
+																															type="radio"
+																															name="taskStatus"
+                                                              value="Cancelled"
+                                                              onChange={handleOnChange}
+																														/>
+																														
+																													</label>
+																												</form> */}
 												</div>
 											</div>
 										</div>
