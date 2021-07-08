@@ -13,6 +13,7 @@ import { fetchAllLeads } from './showLeadAction';
 import { fetchSingleLead } from './getSingleLeadAction';
 import { leadTask } from './leadTaskAction';
 import { deleteLead } from './deleteLeadAction';
+import { deleteUserLeadTask } from './deleteUserLeadTaskAction';
 import { addLeadResetSuccessMSg } from './addLeadSlice';
 import { deleteTask } from './deleteTaskAction';
 import { deleteLeadTask } from './deleteLeadTaskAction';
@@ -483,8 +484,12 @@ const Leads = () => {
 	};
 
 	const deleteTaskRecord = async () => {
+		console.log('USER NE', userId);
+		console.log('USER NE');
 		await dispatch(deleteLeadTask(leadId, leadTaskId));
+		await dispatch(deleteUserLeadTask(userId, leadTaskUserId));
 		await showAddedLeads();
+		await dispatch(fetchAllUsers());
 	};
 
 	const showAddedLeads = () => {
@@ -522,7 +527,7 @@ const Leads = () => {
 		}
 	};
 
-	const editCompletedTask = async (e) => {
+	const editCompletedLeadTask = async (e) => {
 		e.preventDefault();
 
 		const newLeadTask = {
@@ -536,7 +541,8 @@ const Leads = () => {
 			taskStartTime,
 			taskEndTime,
 		};
-
+		console.log('user ki id ka saki naka', userId);
+		console.log('user ki id ka ssssaki naka', leadTaskUserId);
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
 		await dispatch(editUserLeadTask(newLeadTask, userId, leadTaskUserId));
 		await dispatch(fetchAllUsers());
@@ -549,7 +555,7 @@ const Leads = () => {
 		hideModal5();
 	};
 
-	const editIncompleteLeadTask = async (e) => {
+	const editIncompletedLeadTask = async (e) => {
 		e.preventDefault();
 
 		const newLeadTask = {
@@ -564,6 +570,8 @@ const Leads = () => {
 			taskEndTime,
 		};
 
+		console.log('nana pyaar', userId);
+		console.log('nana pyaar 2', leadTaskUserId);
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
 		await dispatch(editUserLeadTask(newLeadTask, userId, leadTaskUserId));
 		await dispatch(fetchAllUsers());
@@ -827,7 +835,7 @@ const Leads = () => {
 		setTaskEndTime(item.taskEndTime);
 		setTaskNote(item.taskNote);
 		setTaskCompleted(item.taskCompleted);
-		setAssignee(item.assignee);
+
 		setUserId(item.userId);
 		setLeadTaskUserId(item.leadTaskUserId);
 	};
@@ -855,7 +863,7 @@ const Leads = () => {
 		setTaskEndTime(item.taskEndTime);
 		setTaskNote(item.taskNote);
 		setTaskCompleted(item.taskCompleted);
-		setAssignee(item.assignee);
+
 		setUserId(item.userId);
 		setLeadTaskUserId(item.leadTaskUserId);
 	};
@@ -1598,7 +1606,7 @@ const Leads = () => {
 																																							<div class="col-md-12 col-12">
 																																								<form
 																																									onSubmit={
-																																										editCompletedTask
+																																										editIncompletedLeadTask
 																																									}
 																																								>
 																																									<div class="call-sec">
@@ -2665,43 +2673,6 @@ const Leads = () => {
 																																														class="form-control"
 																																														placeholder="add"
 																																													></textarea>
-																																												</div>
-																																											</div>
-																																										</div>
-																																									</div>
-
-																																									<div class="user-dropdown">
-																																										<div class="container">
-																																											<div class="row">
-																																												<div class="col-md-1 col-2">
-																																													<i
-																																														class="fa fa-user left-icon"
-																																														aria-hidden="true"
-																																													></i>
-																																												</div>
-																																												<div class="col-md-8 col-12">
-																																													<select
-																																														class="form-control"
-																																														name="assignee"
-																																														value={
-																																															assignee
-																																														}
-																																														onChange={
-																																															handleOnChange
-																																														}
-																																													>
-																																														<option>
-																																															{
-																																																leadUserName
-																																															}
-																																														</option>
-																																														<option>
-																																															yo
-																																														</option>
-																																														<option>
-																																															asdsad
-																																														</option>
-																																													</select>
 																																												</div>
 																																											</div>
 																																										</div>
@@ -2877,7 +2848,7 @@ const Leads = () => {
 																																							<div class="col-md-12 col-12">
 																																								<form
 																																									onSubmit={
-																																										editIncompleteLeadTask
+																																										editCompletedLeadTask
 																																									}
 																																								>
 																																									<div class="call-sec">
@@ -3922,19 +3893,6 @@ const Leads = () => {
 																																										</div>
 																																									</div>
 
-																																									<div class="busy-dropdown">
-																																										<div class="container">
-																																											<div class="row">
-																																												<div class="col-md-1 col-2">
-																																													<i
-																																														class="fa fa-sticky-note left-icon"
-																																														aria-hidden="true"
-																																													></i>
-																																												</div>
-																																											</div>
-																																										</div>
-																																									</div>
-
 																																									<div class="add-note">
 																																										<div class="container">
 																																											<div class="row">
@@ -3957,43 +3915,6 @@ const Leads = () => {
 																																															handleOnChange
 																																														}
 																																													></textarea>
-																																												</div>
-																																											</div>
-																																										</div>
-																																									</div>
-
-																																									<div class="user-dropdown">
-																																										<div class="container">
-																																											<div class="row">
-																																												<div class="col-md-1 col-2">
-																																													<i
-																																														class="fa fa-user left-icon"
-																																														aria-hidden="true"
-																																													></i>
-																																												</div>
-																																												<div class="col-md-8 col-12">
-																																													<select
-																																														class="form-control"
-																																														name="assignee"
-																																														value={
-																																															assignee
-																																														}
-																																														onChange={
-																																															handleOnChange
-																																														}
-																																													>
-																																														<option>
-																																															{
-																																																leadUserName
-																																															}
-																																														</option>
-																																														<option>
-																																															yo
-																																														</option>
-																																														<option>
-																																															asdsad
-																																														</option>
-																																													</select>
 																																												</div>
 																																											</div>
 																																										</div>

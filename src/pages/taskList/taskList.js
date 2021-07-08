@@ -22,7 +22,6 @@ import Moment from 'moment';
 import { addTask } from '../addTask/addTaskAction';
 
 export const TaskList = () => {
-	console.log('HIIIIIIIIII=============================================');
 	const dispatch = useDispatch();
 	const { task } = useSelector((state) => state.getTask);
 

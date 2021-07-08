@@ -39,7 +39,12 @@ export const getAllUserStudents = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'http://localhost:3001/v1/students/all-students'
+				'http://localhost:3001/v1/students/all-students',
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result);
@@ -55,7 +60,12 @@ export const UpdateAllUserStudents = (frmData, id) => {
 		try {
 			const result = await axios.patch(
 				'http://localhost:3001/v1/students/' + id,
-				frmData
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);
@@ -70,7 +80,12 @@ export const DeleteAllUserStudents = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/students/' + id
+				'http://localhost:3001/v1/students/' + id,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);
@@ -107,7 +122,12 @@ export const DeleteAllUserStudentTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/students/' + id1 + '/' + id2
+				'http://localhost:3001/v1/students/' + id1 + '/' + id2,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);
@@ -124,7 +144,12 @@ export const UpdateStudentTask = (frmData, id1, id2) => {
 		try {
 			const result = await axios.put(
 				'http://localhost:3001/v1/students/' + id1 + '/' + id2,
-				frmData
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);

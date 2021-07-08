@@ -127,7 +127,11 @@ export const userLogout = async () => {
 export const getAllUser = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get(getAllUsers);
+			const result = await axios.get(getAllUsers, {
+				headers: {
+					Authorization: sessionStorage.getItem('accessJWT'),
+				},
+			});
 
 			resolve(result);
 		} catch (error) {
@@ -162,7 +166,12 @@ export const DeleteUserStudentTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/user/' + id1 + '/' + id2
+				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);
@@ -179,7 +188,12 @@ export const UpdateUserStudentTask = (frmData, id1, id2) => {
 		try {
 			const result = await axios.put(
 				'http://localhost:3001/v1/user/' + id1 + '/' + id2,
-				frmData
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);
@@ -225,6 +239,21 @@ export const UpdateUserLeadTask = (frmData, id1, id2) => {
 						Authorization: sessionStorage.getItem('accessJWT'),
 					},
 				}
+			);
+
+			resolve(result.data);
+		} catch (error) {
+			console.log(error.message);
+			reject(error);
+		}
+	});
+};
+
+export const DeleteUserLeadsTask = (id1, id2) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/leadTaskUser/' + id1 + '/' + id2
 			);
 
 			resolve(result.data);

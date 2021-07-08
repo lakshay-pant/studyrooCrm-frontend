@@ -23,7 +23,12 @@ export const getAllUserLeads = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.get(
-				'http://localhost:3001/v1/leads/all-leads'
+				'http://localhost:3001/v1/leads/all-leads',
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result);
@@ -70,7 +75,14 @@ export const addLeadTask = (frmData, id) => {
 export const DeleteAllUserLeads = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.delete('http://localhost:3001/v1/leads/' + id);
+			const result = await axios.delete(
+				'http://localhost:3001/v1/leads/' + id,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
 
 			resolve(result.data);
 		} catch (error) {
@@ -84,7 +96,12 @@ export const DeleteAllUserLeadsTask = (id1, id2) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/leads/' + id1 + '/' + id2
+				'http://localhost:3001/v1/leads/' + id1 + '/' + id2,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);
@@ -101,7 +118,12 @@ export const UpdateLeadTask = (frmData, id1, id2) => {
 		try {
 			const result = await axios.put(
 				'http://localhost:3001/v1/leads/' + id1 + '/' + id2,
-				frmData
+				frmData,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
 			);
 
 			resolve(result.data);

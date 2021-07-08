@@ -28,6 +28,7 @@ import editUserStudentTask from './pages/taskList/editUserTaskSlice';
 import editLead from './pages/leads/editLeadSlice';
 import putLeadTaskInUser from './pages/leads/putTaskInUserSlice';
 import editUserLeadTask from './pages/leads/editUserTaskSlice';
+import deleteUserLeadTask from './pages/leads/deleteUserLeadTaskSlice';
 
 const store = configureStore({
 	reducer: {
@@ -59,6 +60,7 @@ const store = configureStore({
 		editLead: editLead,
 		putLeadTaskInUser: putLeadTaskInUser,
 		editUserLeadTask: editUserLeadTask,
+		deleteUserLeadTask: deleteUserLeadTask,
 	},
 });
 
