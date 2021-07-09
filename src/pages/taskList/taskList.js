@@ -74,7 +74,7 @@ export const TaskList = () => {
 	const [assignTo, setAssignTo] = useState('');
 	const [taskId, setTaskId] = useState('');
 	const [studentId, setStudentId] = useState('');
-
+	const [taskStatus, setTaskStatus] = useState('');
 	const [userGroup, setUserGroup] = useState('');
 	const [offices, setOffices] = useState('');
 	const [display, setDisplay] = useState(false);
@@ -82,7 +82,7 @@ export const TaskList = () => {
 	const [displayUsers, setDisplayUsers] = useState(false);
 	const [optionsUsers, setUserOptions] = useState([]);
 	const [checked, setChecked] = useState(false);
-	const [taskStatus, setTaskStatus] = useState('');
+
 	const [userId, setUserId] = useState('');
 
 	const handleOnChange = (e) => {
@@ -162,14 +162,15 @@ export const TaskList = () => {
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAllUsers());
 
-		setTaskName('');
-		setType('');
-		setDueDate('');
-		setStudentAssign('');
-		setAssignTo('');
-		setOffices('');
-		setUserGroup('');
-		setTaskDetails('');
+		await setTaskName('');
+		await setType('');
+		await setDueDate('');
+		await setStudentAssign('');
+		await setAssignTo('');
+		await setOffices('');
+		await setUserGroup('');
+		await setTaskDetails('');
+		await setTaskStatus('');
 	};
 
 	const taskInProgress = async (item) => {
@@ -201,14 +202,15 @@ export const TaskList = () => {
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAllUsers());
 
-		setTaskName('');
-		setType('');
-		setDueDate('');
-		setStudentAssign('');
-		setAssignTo('');
-		setOffices('');
-		setUserGroup('');
-		setTaskDetails('');
+		await setTaskName('');
+		await setType('');
+		await setDueDate('');
+		await setStudentAssign('');
+		await setAssignTo('');
+		await setOffices('');
+		await setUserGroup('');
+		await setTaskDetails('');
+		await setTaskStatus('');
 	};
 
 	const handleOnTaskSubmit = async (e) => {
@@ -232,6 +234,16 @@ export const TaskList = () => {
 		await dispatch(fetchAlltask());
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAllUsers());
+
+		await setTaskName('');
+		await setType('');
+		await setDueDate('');
+		await setStudentAssign('');
+		await setAssignTo('');
+		await setOffices('');
+		await setUserGroup('');
+		await setTaskDetails('');
+		await setTaskStatus('');
 	};
 
 	const showModal = (item) => {
@@ -353,7 +365,7 @@ export const TaskList = () => {
 														</p>
 														<p>
 															Assigned to: {item.studentAssign} Created by:
-															{item.assignTo}{' '}
+															{item.userName}{' '}
 														</p>
 													</div>
 													<div class="number">

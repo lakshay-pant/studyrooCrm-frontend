@@ -34,7 +34,7 @@ export const UncategorizedStudents = () => {
 		editUpdate();
 	}, []);
 
-	const { users } =  useSelector((state) => state.getUser);
+	const { users } = useSelector((state) => state.getUser);
 
 	const { isLoadingEdit, statusEdit, messageEdit } = useSelector(
 		(state) => state.editStudent
@@ -115,6 +115,16 @@ export const UncategorizedStudents = () => {
 	const [country, setCountry] = useState('India');
 	const [zipCode, setZipCode] = useState('');
 	const [visaExFilter, setVisaExFilter] = useState('');
+	const [listFilter, setListFilter] = useState('');
+	const [courseEnding, setCourseEnding] = useState('');
+	const [statusFilter, setStatusFilter] = useState('');
+	const [referalsourceFilter, setReferalsourceFilter] = useState('');
+	const [heatLevelFilter, setHeatLevelFilter] = useState('');
+	const [visaExpiringFilter, setVisaExpiringFilter] = useState('');
+	const [offersFilter, setOffersFilter] = useState('');
+	const [salesStatusFilter, setSalesStatusFilter] = useState('');
+	const [nextFollowFilter, setNextFollowFilter] = useState('');
+	const [sortByFilter, setSortByFilter] = useState('');
 
 	const handleOnChange = (e) => {
 		const { name, value } = e.target;
@@ -122,10 +132,6 @@ export const UncategorizedStudents = () => {
 		switch (name) {
 			case 'firstName':
 				setFirstName(value);
-				break;
-
-			case 'visaExFilter':
-				setVisaExFilter(value);
 				break;
 
 			case 'userName':
@@ -352,6 +358,50 @@ export const UncategorizedStudents = () => {
 				setLocationStatus(value);
 				break;
 
+			case 'listFilter':
+				setListFilter(value);
+				break;
+
+			case 'courseEnding':
+				setCourseEnding(value);
+				break;
+
+			case 'statusFilter':
+				setStatusFilter(value);
+				break;
+
+			case 'referalsourceFilter':
+				setReferalsourceFilter(value);
+				break;
+
+			case 'heatLevelFilter':
+				setHeatLevelFilter(value);
+				break;
+
+			case 'visaExFilter':
+				setVisaExFilter(value);
+				break;
+
+			case 'offersFilter':
+				setOffersFilter(value);
+				break;
+
+			case 'salesStatusFilter':
+				setSalesStatusFilter(value);
+				break;
+
+			case 'nextFollowFilter':
+				setNextFollowFilter(value);
+				break;
+
+			case 'sortByFilter':
+				setSortByFilter(value);
+				break;
+
+			case 'visaExpiringFilter':
+				setVisaExpiringFilter(value);
+				break;
+
 			default:
 				break;
 		}
@@ -532,6 +582,23 @@ export const UncategorizedStudents = () => {
 		var visaExpDate = dispatch(deleteStudent(ID));
 	};
 
+	const handleOnFilterSubmit = (e) => {
+		e.preventDefault();
+		console.log(
+			'heyaaaa',
+			listFilter,
+			courseEnding,
+			statusFilter,
+			referalsourceFilter,
+			heatLevelFilter,
+			visaExpiringFilter,
+			offersFilter,
+			salesStatusFilter,
+			nextFollowFilter,
+			sortByFilter
+		);
+	};
+
 	return (
 		<div className="content-wrapper">
 			<div className="maincontent-rightside student-view add-student uncategorized">
@@ -629,25 +696,31 @@ export const UncategorizedStudents = () => {
 																				<span aria-hidden="true">&times;</span>
 																			</button>
 																		</div>
-																		<div class="fl-form">
+																		<form
+																			class="fl-form"
+																			onSubmit={handleOnFilterSubmit}
+																		>
 																			<div class="form-row">
 																				<div class="form-group col-md-6">
 																					<label>List</label>
-																					<select name="" class="form-control">
-																						<option value="volvo">1</option>
-																						<option value="saab">Saab</option>
-																						<option value="mercedes">
-																							Mercedes
-																						</option>
-																						<option value="audi">Audi</option>
+																					<select
+																						name="listFilter"
+																						value={listFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
+																						<option>1</option>
+																						<option>Saab</option>
+																						<option>Mercedes</option>
+																						<option>Audi</option>
 																					</select>
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Visa expiring</label>
 																					<select
-																						name="visaExFilter"
+																						name="visaExpiringFilter"
 																						class="form-control"
-																						value={visaExFilter}
+																						value={visaExpiringFilter}
 																						onChange={handleOnChange}
 																					>
 																						<option>Anytime</option>
@@ -668,36 +741,52 @@ export const UncategorizedStudents = () => {
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Courses ending</label>
-																					<select name="" class="form-control">
-																						<option value="volvo">1</option>
-																						<option value="saab">Saab</option>
-																						<option value="mercedes">
-																							Mercedes
-																						</option>
-																						<option value="audi">Audi</option>
+																					<select
+																						name="courseEnding"
+																						value={courseEnding}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
+																						<option>1</option>
+																						<option>Saab</option>
+																						<option>Mercedes</option>
+																						<option>Audi</option>
 																					</select>
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Offers</label>
-																					<select name="" class="form-control">
-																						<option value="volvo">1</option>
-																						<option value="saab">Saab</option>
-																						<option value="mercedes">
-																							Mercedes
-																						</option>
-																						<option value="audi">Audi</option>
+																					<select
+																						name="offersFilter"
+																						value={offersFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
+																						<option>1</option>
+																						<option>Saab</option>
+																						<option>Mercedes</option>
+																						<option>Audi</option>
 																					</select>
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Status</label>
-																					<select name="" class="form-control">
+																					<select
+																						name="statusFilter"
+																						value={statusFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
 																						<option>Onshore</option>
 																						<option>Offshore</option>
 																					</select>
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Sales Status</label>
-																					<select name="" class="form-control">
+																					<select
+																						name="salesStatusFilter"
+																						value={salesStatusFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
 																						<option>Inquiry Recieved</option>
 																						<option>Counselling</option>
 																						<option>Quotation Sent</option>
@@ -716,7 +805,12 @@ export const UncategorizedStudents = () => {
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Referal source</label>
-																					<select name="" class="form-control">
+																					<select
+																						name="referalsourceFilter"
+																						value={referalsourceFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
 																						<option>unknown</option>
 																						<option>Youtube</option>
 																						<option>Instagram</option>
@@ -726,18 +820,26 @@ export const UncategorizedStudents = () => {
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Next follow up date</label>
-																					<select name="" class="form-control">
-																						<option value="volvo">1</option>
-																						<option value="saab">Saab</option>
-																						<option value="mercedes">
-																							Mercedes
-																						</option>
-																						<option value="audi">Audi</option>
+																					<select
+																						name="nextFollowFilter"
+																						value={nextFollowFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
+																						<option>1</option>
+																						<option>Saab</option>
+																						<option>Mercedes</option>
+																						<option>Audi</option>
 																					</select>
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Heat level</label>
-																					<select name="" class="form-control">
+																					<select
+																						name="heatLevelFilter"
+																						value={heatLevelFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
 																						<option>Very Hot</option>
 																						<option>Hot</option>
 																						<option>Warm</option>
@@ -746,17 +848,19 @@ export const UncategorizedStudents = () => {
 																				</div>
 																				<div class="form-group col-md-6">
 																					<label>Sort by</label>
-																					<select name="" class="form-control">
-																						<option value="volvo">1</option>
-																						<option value="saab">Saab</option>
-																						<option value="mercedes">
-																							Mercedes
-																						</option>
-																						<option value="audi">Audi</option>
+																					<select
+																						name="sortByFilter"
+																						value={sortByFilter}
+																						onChange={handleOnChange}
+																						class="form-control"
+																					>
+																						<option>1</option>
+																						<option>Saab</option>
+																						<option>Mercedes</option>
+																						<option>Audi</option>
 																					</select>
 																				</div>
 																				<div class="fotercontent">
-																					
 																					<div class="footersingbtn">
 																						<input
 																							type="submit"
@@ -775,7 +879,7 @@ export const UncategorizedStudents = () => {
 																					</div>
 																				</div>
 																			</div>
-																		</div>
+																		</form>
 																	</Modal.Body>
 
 																	<Modal.Footer></Modal.Footer>
@@ -923,28 +1027,26 @@ export const UncategorizedStudents = () => {
 																						<option value="audi">Audi</option>
 																					</select>
 																				</div>
-																				
 																			</div>
 
 																			<div class="fotercontent">
-																					
-																					<div class="footersingbtn">
-																						<input
-																							type="submit"
-																							name="Save"
-																							class="btn getin-btn"
-																							value="Reset"
-																						/>
-																					</div>
-																					<div class="footersingbtn">
-																						<input
-																							type="submit"
-																							name="Save"
-																							class="btn getin-btn"
-																							value="Save"
-																						/>
-																					</div>
+																				<div class="footersingbtn">
+																					<input
+																						type="submit"
+																						name="Save"
+																						class="btn getin-btn"
+																						value="Reset"
+																					/>
 																				</div>
+																				<div class="footersingbtn">
+																					<input
+																						type="submit"
+																						name="Save"
+																						class="btn getin-btn"
+																						value="Save"
+																					/>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
 																</div>
@@ -1204,8 +1306,6 @@ export const UncategorizedStudents = () => {
 																										</div>
 																									</div>
 
-																										
-
 																									<div class="update-student">
 																										<div
 																											class="accordion md-accordion"
@@ -1252,20 +1352,30 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="firstName"
-																																		value={firstName}
-																																		onChange={handleOnChange}
+																																		value={
+																																			firstName
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
 																																	/>
 																																</div>
 
 																																<div class="form-group col-md-4 col-12">
-																																	<label>Middle Name</label>
+																																	<label>
+																																		Middle Name
+																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
 																																		name="middleName"
-																																		value={middleName}
-																																		onChange={handleOnChange}
+																																		value={
+																																			middleName
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
 																																	/>
 																																</div>
 
@@ -1279,8 +1389,12 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="lastName"
-																																		value={lastName}
-																																		onChange={handleOnChange}
+																																		value={
+																																			lastName
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
 																																	/>
 																																</div>
 
@@ -1294,8 +1408,12 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="email"
-																																		value={email}
-																																		onChange={handleOnChange}
+																																		value={
+																																			email
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
 																																	/>
 																																</div>
 
@@ -1309,37 +1427,67 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="birthday"
-																																		value={birthday}
-																																		onChange={handleOnChange}
+																																		value={
+																																			birthday
+																																		}
+																																		onChange={
+																																			handleOnChange
+																																		}
 																																	/>
 																																</div>
 
 																																<div class="form-group col-md-4 col-12">
-																																	<label>Gender</label>
+																																	<label>
+																																		Gender
+																																	</label>
 																																	<select
 																																		class="form-control"
 																																		name="genders"
-																																		onChange={handleOnChange}
-																																		value={genders}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																		value={
+																																			genders
+																																		}
 																																	>
-																																		<option>Male</option>
-																																		<option>Female</option>
-																																		<option>Other</option>
+																																		<option>
+																																			Male
+																																		</option>
+																																		<option>
+																																			Female
+																																		</option>
+																																		<option>
+																																			Other
+																																		</option>
 																																	</select>
 																																</div>
 
 																																<div class="form-group col-md-4 col-12">
-																																	<label>Nationality</label>
+																																	<label>
+																																		Nationality
+																																	</label>
 																																	<select
 																																		class="form-control"
 																																		name="nation"
-																																		onChange={handleOnChange}
-																																		value={nation}
+																																		onChange={
+																																			handleOnChange
+																																		}
+																																		value={
+																																			nation
+																																		}
 																																	>
-																																		<option>Poland</option>
-																																		<option>Australia</option>
-																																		<option>Norway</option>
-																																		<option>Ghana</option>
+																																		<option>
+																																			Poland
+																																		</option>
+																																		<option>
+																																			Australia
+																																		</option>
+																																		<option>
+																																			Norway
+																																		</option>
+																																		<option>
+																																			Ghana
+																																		</option>
 																																	</select>
 																																</div>
 																															</div>
@@ -1371,7 +1519,8 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne4"
 																													>
 																														<div class="headingdiv">
-																															Applicant Current Location{' '}
+																															Applicant Current
+																															Location{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1388,7 +1537,8 @@ export const UncategorizedStudents = () => {
 																															<div class="form-row">
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		Onshore (In Australia)
+																																		Onshore (In
+																																		Australia)
 																																	</label>
 																																	<input
 																																		type="text"
@@ -1406,7 +1556,8 @@ export const UncategorizedStudents = () => {
 
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		Offshore (Overseas)
+																																		Offshore
+																																		(Overseas)
 																																	</label>
 																																	<input
 																																		type="text"
@@ -1450,7 +1601,8 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne1"
 																													>
 																														<div class="headingdiv">
-																															OnShore Information{' '}
+																															OnShore
+																															Information{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1465,52 +1617,68 @@ export const UncategorizedStudents = () => {
 																													<div class="card-body">
 																														<div class="form-row">
 																															<div class="form-group col-md-4 col-12">
-																																<label>Phone</label>
+																																<label>
+																																	Phone
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="onShorePhone"
-																																	value={onShorePhone}
+																																	value={
+																																		onShorePhone
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Address</label>
+																																<label>
+																																	Address
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="onShoreAddress"
-																																	value={onShoreAddress}
+																																	value={
+																																		onShoreAddress
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Location</label>
+																																<label>
+																																	Location
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="onShoreLocation"
-																																	value={onShoreLocation}
+																																	value={
+																																		onShoreLocation
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Unit Number</label>
+																																<label>
+																																	Unit Number
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="unitNumber"
-																																	value={unitNumber}
+																																	value={
+																																		unitNumber
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
@@ -1525,27 +1693,35 @@ export const UncategorizedStudents = () => {
 																																	class="form-control"
 																																	placeholder=""
 																																	name="streetNumber"
-																																	value={streetNumber}
+																																	value={
+																																		streetNumber
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Street Name</label>
+																																<label>
+																																	Street Name
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="streetName"
-																																	value={streetName}
+																																	value={
+																																		streetName
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>City</label>
+																																<label>
+																																	City
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
@@ -1558,26 +1734,34 @@ export const UncategorizedStudents = () => {
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Country</label>
+																																<label>
+																																	Country
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="country"
-																																	value={country}
+																																	value={
+																																		country
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Zipcode</label>
+																																<label>
+																																	Zipcode
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="zipCode"
-																																	value={zipCode}
+																																	value={
+																																		zipCode
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
@@ -1611,7 +1795,8 @@ export const UncategorizedStudents = () => {
 																														aria-controls="collapseOne1"
 																													>
 																														<div class="headingdiv">
-																															OffShore Information{' '}
+																															OffShore
+																															Information{' '}
 																															<i class="fas fa-angle-down rotate-icon"></i>
 																														</div>
 																													</a>
@@ -1626,46 +1811,60 @@ export const UncategorizedStudents = () => {
 																													<div class="card-body">
 																														<div class="form-row">
 																															<div class="form-group col-md-4 col-12">
-																																<label>Phone</label>
+																																<label>
+																																	Phone
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="offShorePhone"
-																																	value={offShorePhone}
+																																	value={
+																																		offShorePhone
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Address</label>
+																																<label>
+																																	Address
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="offShoreAdress"
-																																	value={offShoreAdress}
+																																	value={
+																																		offShoreAdress
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Location</label>
+																																<label>
+																																	Location
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="offShoreLocation"
-																																	value={offShoreLocation}
+																																	value={
+																																		offShoreLocation
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Unit Number</label>
+																																<label>
+																																	Unit Number
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
@@ -1697,20 +1896,26 @@ export const UncategorizedStudents = () => {
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Street Name</label>
+																																<label>
+																																	Street Name
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="streetNa"
-																																	value={streetNa}
+																																	value={
+																																		streetNa
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>City</label>
+																																<label>
+																																	City
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
@@ -1719,11 +1924,15 @@ export const UncategorizedStudents = () => {
 																																	onChange={
 																																		handleOnChange
 																																	}
-																																	value={offShoreCity}
+																																	value={
+																																		offShoreCity
+																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Country</label>
+																																<label>
+																																	Country
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
@@ -1732,17 +1941,23 @@ export const UncategorizedStudents = () => {
 																																	onChange={
 																																		handleOnChange
 																																	}
-																																	value={offShoreCountry}
+																																	value={
+																																		offShoreCountry
+																																	}
 																																/>
 																															</div>
 																															<div class="form-group col-md-4 col-12">
-																																<label>Zipcode</label>
+																																<label>
+																																	Zipcode
+																																</label>
 																																<input
 																																	type="text"
 																																	class="form-control"
 																																	placeholder=""
 																																	name="offShoreZipCode"
-																																	value={offShoreZipCode}
+																																	value={
+																																		offShoreZipCode
+																																	}
 																																	onChange={
 																																		handleOnChange
 																																	}
@@ -1792,7 +2007,9 @@ export const UncategorizedStudents = () => {
 																														<div class="crm-form">
 																															<div class="form-row">
 																																<div class="form-group col-md-4 col-12">
-																																	<label>USI</label>
+																																	<label>
+																																		USI
+																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
@@ -1807,14 +2024,17 @@ export const UncategorizedStudents = () => {
 
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		Education Level
+																																		Education
+																																		Level
 																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
 																																		name="educationLevel"
-																																		value={educationLevel}
+																																		value={
+																																			educationLevel
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1823,21 +2043,26 @@ export const UncategorizedStudents = () => {
 
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		Institute Name
+																																		Institute
+																																		Name
 																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
 																																		name="instituteName"
-																																		value={instituteName}
+																																		value={
+																																			instituteName
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
 																																	/>
 																																</div>
 																																<div class="form-group col-md-4 col-12">
-																																	<label>GPA</label>
+																																	<label>
+																																		GPA
+																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
@@ -1858,7 +2083,9 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="yearLevel"
-																																		value={yearLevel}
+																																		value={
+																																			yearLevel
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1866,7 +2093,8 @@ export const UncategorizedStudents = () => {
 																																</div>
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		School curriculum
+																																		School
+																																		curriculum
 																																	</label>
 																																	<input
 																																		type="text"
@@ -1883,7 +2111,8 @@ export const UncategorizedStudents = () => {
 																																</div>
 																																<div class="form-group col-md-4 col-12">
 																																	<label>
-																																		School curriculum
+																																		School
+																																		curriculum
 																																		details
 																																	</label>
 																																	<input
@@ -1944,13 +2173,17 @@ export const UncategorizedStudents = () => {
 																														<div class="crm-form">
 																															<div class="form-row">
 																																<div class="form-group col-md-4 col-12">
-																																	<label>Number</label>
+																																	<label>
+																																		Number
+																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
 																																		name="passNumber"
-																																		value={passNumber}
+																																		value={
+																																			passNumber
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1982,7 +2215,9 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="passIssueDate"
-																																		value={passIssueDate}
+																																		value={
+																																			passIssueDate
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -1997,20 +2232,26 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="passExpiryDate"
-																																		value={passExpiryDate}
+																																		value={
+																																			passExpiryDate
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
 																																	/>
 																																</div>
 																																<div class="form-group col-md-4 col-12">
-																																	<label>Comments</label>
+																																	<label>
+																																		Comments
+																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
 																																		name="passComments"
-																																		value={passComments}
+																																		value={
+																																			passComments
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -2069,7 +2310,9 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="grantDate"
-																																		value={grantDate}
+																																		value={
+																																			grantDate
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -2084,14 +2327,18 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="visaExpiryDate"
-																																		value={visaExpiryDate}
+																																		value={
+																																			visaExpiryDate
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
 																																	/>
 																																</div>
 																																<div class="form-group col-md-4 col-12">
-																																	<label>Type</label>
+																																	<label>
+																																		Type
+																																	</label>
 																																	<select
 																																		class="form-control"
 																																		id="cars"
@@ -2099,22 +2346,31 @@ export const UncategorizedStudents = () => {
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		value={visaType}
+																																		value={
+																																			visaType
+																																		}
 																																	>
-																																		<option>Any</option>
 																																		<option>
-																																			Student visa
+																																			Any
 																																		</option>
 																																		<option>
-																																			Working holiday
+																																			Student
+																																			visa
 																																		</option>
 																																		<option>
-																																			Work & holiday
+																																			Working
+																																			holiday
+																																		</option>
+																																		<option>
+																																			Work &
+																																			holiday
 																																		</option>
 																																		<option>
 																																			Citizenship
 																																		</option>
-																																		<option>other</option>
+																																		<option>
+																																			other
+																																		</option>
 																																	</select>
 																																</div>
 
@@ -2128,7 +2384,9 @@ export const UncategorizedStudents = () => {
 																																		class="form-control"
 																																		placeholder=""
 																																		name="visaComments"
-																																		value={visaComments}
+																																		value={
+																																			visaComments
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -2214,7 +2472,9 @@ export const UncategorizedStudents = () => {
 																																</div>
 
 																																<div class="form-group col-md-4">
-																																	<label>Type</label>
+																																	<label>
+																																		Type
+																																	</label>
 																																	<select
 																																		class="form-control"
 																																		id="cars"
@@ -2222,20 +2482,25 @@ export const UncategorizedStudents = () => {
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		value={insuranceType}
+																																		value={
+																																			insuranceType
+																																		}
 																																	>
 																																		<option>
-																																			Single(Just for the
+																																			Single(Just
+																																			for the
 																																			student)
 																																		</option>
 																																		<option>
-																																			Couple(Just for the
+																																			Couple(Just
+																																			for the
 																																			student)
 																																		</option>
 																																		<option>
 																																			Single
-																																			parent(Student and
-																																			their kid)
+																																			parent(Student
+																																			and their
+																																			kid)
 																																		</option>
 																																		<option>
 																																			Family(Student,partner
@@ -2244,7 +2509,9 @@ export const UncategorizedStudents = () => {
 																																	</select>
 																																</div>
 																																<div class="form-group col-md-4">
-																																	<label>Number</label>
+																																	<label>
+																																		Number
+																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
@@ -2260,7 +2527,8 @@ export const UncategorizedStudents = () => {
 																																</div>
 																																<div class="form-group col-md-4">
 																																	<label>
-																																		Other comments
+																																		Other
+																																		comments
 																																	</label>
 																																	<input
 																																		type="text"
@@ -2321,7 +2589,8 @@ export const UncategorizedStudents = () => {
 																															<div class="form-row">
 																																<div class="form-group col-md-4">
 																																	<label>
-																																		Sales Pipeline
+																																		Sales
+																																		Pipeline
 																																	</label>
 																																	<select
 																																		class="form-control"
@@ -2330,7 +2599,9 @@ export const UncategorizedStudents = () => {
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		value={salesPipeline}
+																																		value={
+																																			salesPipeline
+																																		}
 																																	>
 																																		<option>
 																																			onshore
@@ -2352,44 +2623,56 @@ export const UncategorizedStudents = () => {
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		value={salesStatus}
+																																		value={
+																																			salesStatus
+																																		}
 																																	>
 																																		<option>
-																																			Inquiry Recieved
+																																			Inquiry
+																																			Recieved
 																																		</option>
 																																		<option>
 																																			Counselling
 																																		</option>
 																																		<option>
-																																			Quotation Sent
+																																			Quotation
+																																			Sent
 																																		</option>
 																																		<option>
 																																			Application
 																																		</option>
 																																		<option>
-																																			Waiting for Loo
+																																			Waiting
+																																			for Loo
 																																		</option>
 																																		<option>
-																																			Payment Pending
+																																			Payment
+																																			Pending
 																																		</option>
 																																		<option>
-																																			Waiting for CoE
+																																			Waiting
+																																			for CoE
 																																		</option>
 																																		<option>
-																																			Apply for Visa
+																																			Apply for
+																																			Visa
 																																		</option>
 																																		<option>
-																																			Waiting for Visa
+																																			Waiting
+																																			for Visa
 																																			Requirement
 																																		</option>
 																																		<option>
-																																			Waiting for Visa
+																																			Waiting
+																																			for Visa
 																																		</option>
 																																		<option>
-																																			Visa Granted
+																																			Visa
+																																			Granted
 																																		</option>
 																																		<option>
-																																			Course in Progress
+																																			Course in
+																																			Progress
 																																		</option>
 																																	</select>
 																																</div>
@@ -2405,27 +2688,38 @@ export const UncategorizedStudents = () => {
 																																		onChange={
 																																			handleOnChange
 																																		}
-																																		value={heatLevel}
+																																		value={
+																																			heatLevel
+																																		}
 																																	>
 																																		<option>
 																																			Very Hot
 																																		</option>
-																																		<option>Hot</option>
-																																		<option>Warm</option>
-																																		<option>Cold</option>
+																																		<option>
+																																			Hot
+																																		</option>
+																																		<option>
+																																			Warm
+																																		</option>
+																																		<option>
+																																			Cold
+																																		</option>
 																																	</select>
 																																</div>
 
 																																<div class="form-group col-md-12 col-12">
 																																	<label>
-																																		Other Comments
+																																		Other
+																																		Comments
 																																	</label>
 																																	<input
 																																		type="text"
 																																		class="form-control"
 																																		placeholder=""
 																																		name="otherComments"
-																																		value={otherComments}
+																																		value={
+																																			otherComments
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -2476,12 +2770,16 @@ export const UncategorizedStudents = () => {
 																														<div class="crm-form">
 																															<div class="form-row">
 																																<div class="form-group col-md-4">
-																																	<label>Status</label>
+																																	<label>
+																																		Status
+																																	</label>
 																																	<select
 																																		class="form-control"
 																																		id="cars"
 																																		name="locationStatus"
-																																		value={locationStatus}
+																																		value={
+																																			locationStatus
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -2497,13 +2795,16 @@ export const UncategorizedStudents = () => {
 
 																																<div class="form-group col-md-4">
 																																	<label>
-																																		Refferal Source
+																																		Refferal
+																																		Source
 																																	</label>
 																																	<select
 																																		class="form-control"
 																																		id="cars"
 																																		name="referalSource"
-																																		value={referalSource}
+																																		value={
+																																			referalSource
+																																		}
 																																		onChange={
 																																			handleOnChange
 																																		}
@@ -2588,34 +2889,35 @@ export const UncategorizedStudents = () => {
 																											</div>
 																										</div>
 																									</div>
-																													</div>
-																												</div>
+																								</div>
+																							</div>
+																						</div>
+																						<div class="fotercontent">
+																							<div class="form-buttons-w">
+																								<div className="row">
+																									<div className="col-md-9">
+																										<button
+																											type="submit"
+																											onClick={() =>
+																												deleteStudentRecord()
+																											}
+																											class="btn btn-danger btn-secondary"
+																										>
+																											Delete
+																										</button>
 																									</div>
-																									<div class="fotercontent">
-																										<div class="form-buttons-w">
-																											<div className="row">
-																												<div className="col-md-9">
-																													<button
-																														type="submit"
-																														onClick={() =>
-																															deleteStudentRecord()
-																														}
-																														class="btn btn-danger btn-secondary"
-																														
-																													>Delete</button>
-																												</div>
-																												<div className="col-md-3">
-																													<input
-																														type="submit"
-																														name="Save"
-																														class="btn float-right btn-primary getin-btn"
-																														value="Save"
-																													/>
-																												</div>
-																											</div>
-																										</div>
+																									<div className="col-md-3">
+																										<input
+																											type="submit"
+																											name="Save"
+																											class="btn float-right btn-primary getin-btn"
+																											value="Save"
+																										/>
 																									</div>
-																								</form>
+																								</div>
+																							</div>
+																						</div>
+																					</form>
 																				</Modal.Body>
 																			</div>
 																		</div>
