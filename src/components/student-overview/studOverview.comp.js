@@ -26,7 +26,7 @@ export const UncategorizedStudents = () => {
 	const [cliId, setCliId] = useState('');
 
 	useEffect(() => {
-		editUpdate();
+		dispatch(fetchAllStudents());
 	}, []);
 
 	const { users } = useSelector((state) => state.getUser);
@@ -416,10 +416,6 @@ export const UncategorizedStudents = () => {
 		}
 	};
 
-	const editUpdate = () => {
-		dispatch(fetchAllStudents());
-	};
-
 	const handleOnStudentSubmit = async (e) => {
 		e.preventDefault();
 		console.log(nation);
@@ -483,65 +479,148 @@ export const UncategorizedStudents = () => {
 		};
 		console.log(ID);
 		await dispatch(editStudent(newStudent, ID));
-		await editUpdate();
+		await dispatch(fetchAllStudents());
+		if (statusFilter == 'Onshore') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesPipeline === 'OnShore';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (statusFilter == 'Offshore') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesPipeline === 'OffShore';
+			});
+			setStudent_Filter(student_Filter);
+		}
 
-		console.log(
-			firstName,
-			lastName,
-			email,
-			birthday,
-			middleName,
-			genders,
-			nation,
-			onShorePhone,
-			offShorePhone,
-			note,
-			salesPipeline,
-			salesStatus,
-			heatLevel,
-			onShoreCurrentLocation,
-			offShoreCurrentLocation,
-			onShoreAddress,
-			onShoreLocation,
-			unitNumber,
-			streetNumber,
-			streetName,
-			city,
-			country,
-			zipCode,
-			offShoreAdress,
-			offShoreLocation,
-			offShoreUnitNumber,
-			offShoreStreetNumber,
-			streetNa,
-			offShoreCity,
-			offShoreCountry,
-			offShoreZipCode,
-			usi,
-			educationLevel,
-			instituteName,
-			gpa,
-			yearLevel,
-			schoolCurriculum,
-			schoolCurriculumDetails,
-			passNumber,
-			passNationality,
-			passIssueDate,
-			passExpiryDate,
-			passComments,
-			grantDate,
-			visaExpiryDate,
-			visaType,
-			visaComments,
-			insuranceStartDate,
-			insuranceExpiryDate,
-			insuranceType,
-			insuranceNumber,
-			insuranceComment,
-			otherComments,
-			locationStatus,
-			referalSource
-		);
+		if (referalsourceFilter == 'unknown') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'unknown';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Youtube') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Youtube';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Instagram') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Instagram';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Facebook') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Facebook';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Google') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Google';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Very Hot') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Very Hot';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Hot') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Hot';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Warm') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Warm';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Cold') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Cold';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Inquiry Recieved') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Inquiry Recieved';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Counselling') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Counselling';
+			});
+			setStudent_Filter(student_Filter);
+		}
+
+		if (salesStatusFilter == 'Application') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Application';
+			});
+			setStudent_Filter(student_Filter);
+		}
+
+		if (salesStatusFilter == 'Waiting for Loo') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for Loo';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Payment Pending') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Payment Pending';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Waiting for CoE') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for CoE';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Apply for Visa') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Apply for Visa';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Quotation Sent') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Quotation Sent';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Waiting for Visa Requirement') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for Visa Requirement';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Waiting for Visa') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for Visa';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Visa Granted') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Visa Granted';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Course in Progress') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Course in Progress';
+			});
+			setStudent_Filter(student_Filter);
+		}
 	};
 
 	const showModal = () => {
@@ -584,7 +663,149 @@ export const UncategorizedStudents = () => {
 
 	const deleteStudentRecord = async () => {
 		await dispatch(deleteStudent(ID));
-		await editUpdate();
+		await dispatch(fetchAllStudents());
+
+		if (statusFilter == 'Onshore') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesPipeline === 'OnShore';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (statusFilter == 'Offshore') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesPipeline === 'OffShore';
+			});
+			setStudent_Filter(student_Filter);
+		}
+
+		if (referalsourceFilter == 'unknown') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'unknown';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Youtube') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Youtube';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Instagram') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Instagram';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Facebook') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Facebook';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (referalsourceFilter == 'Google') {
+			var student_Filter = students.filter(function (student) {
+				return student.referalSource === 'Google';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Very Hot') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Very Hot';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Hot') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Hot';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Warm') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Warm';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (heatLevelFilter == 'Cold') {
+			var student_Filter = students.filter(function (student) {
+				return student.heatLevel === 'Cold';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Inquiry Recieved') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Inquiry Recieved';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Counselling') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Counselling';
+			});
+			setStudent_Filter(student_Filter);
+		}
+
+		if (salesStatusFilter == 'Application') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Application';
+			});
+			setStudent_Filter(student_Filter);
+		}
+
+		if (salesStatusFilter == 'Waiting for Loo') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for Loo';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Payment Pending') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Payment Pending';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Waiting for CoE') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for CoE';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Apply for Visa') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Apply for Visa';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Quotation Sent') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Quotation Sent';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Waiting for Visa Requirement') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for Visa Requirement';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Waiting for Visa') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Waiting for Visa';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Visa Granted') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Visa Granted';
+			});
+			setStudent_Filter(student_Filter);
+		}
+		if (salesStatusFilter == 'Course in Progress') {
+			var student_Filter = students.filter(function (student) {
+				return student.salesStatus === 'Course in Progress';
+			});
+			setStudent_Filter(student_Filter);
+		}
 	};
 
 	const dateFilter = () => {
