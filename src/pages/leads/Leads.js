@@ -21,6 +21,9 @@ import { editLeadTask } from './updateLeadTaskAction';
 import { editLead } from './editLeadAction';
 import { addStudent } from '../../components/add-student-form/addStudentAction';
 import { userLeadTask } from './putTaskInUserAction';
+import { addLeadTaskD } from './daddLeadTaskAction';
+import { fetchAllLeadTaskD } from './dGetLeadTaskAction';
+import { editLeadTaskD } from './dEditLeadTaskAction';
 import {
 	filterSearchUser,
 	fetchAllUsers,
@@ -517,6 +520,9 @@ const Leads = () => {
 
 		await dispatch(userLeadTask(newLeadTask, userId));
 
+		await dispatch(addLeadTaskD(newLeadTask));
+		await dispatch(fetchAllLeadTaskD());
+
 		await dispatch(fetchAllUsers());
 
 		await dispatch(fetchSingleLead(leadId));
@@ -545,6 +551,8 @@ const Leads = () => {
 		console.log('user ki id ka ssssaki naka', leadTaskUserId);
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
 		await dispatch(editUserLeadTask(newLeadTask, userId, leadTaskUserId));
+		await dispatch(editLeadTaskD(newLeadTask, leadTaskUserId));
+		await dispatch(fetchAllLeadTaskD());
 		await dispatch(fetchAllUsers());
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
@@ -574,6 +582,8 @@ const Leads = () => {
 		console.log('nana pyaar 2', leadTaskUserId);
 		await dispatch(editLeadTask(newLeadTask, leadId, leadTaskId));
 		await dispatch(editUserLeadTask(newLeadTask, userId, leadTaskUserId));
+		await dispatch(editLeadTaskD(newLeadTask, leadTaskUserId));
+		await dispatch(fetchAllLeadTaskD());
 		await dispatch(fetchAllUsers());
 		await dispatch(fetchSingleLead(leadId));
 		await showAddedLeads();
@@ -929,6 +939,10 @@ const Leads = () => {
 
 	useEffect(() => {
 		showAddedLeads();
+	}, []);
+
+	useEffect(() => {
+		fetchAllLeadTaskD();
 	}, []);
 
 	useEffect(() => {

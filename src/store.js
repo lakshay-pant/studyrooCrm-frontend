@@ -29,6 +29,10 @@ import editLead from './pages/leads/editLeadSlice';
 import putLeadTaskInUser from './pages/leads/putTaskInUserSlice';
 import editUserLeadTask from './pages/leads/editUserTaskSlice';
 import deleteUserLeadTask from './pages/leads/deleteUserLeadTaskSlice';
+import addLeadTaskData from './pages/leads/daddLeadTaskSlice';
+import editLeadTaskData from './pages/leads/dEditLeadTaskSlice';
+import DeleteLeadTaskData from './pages/leads/dDeleteLeadTaskSlice';
+import getLeadTaskData from './pages/leads/dGetLeadTaskSlice';
 
 const store = configureStore({
 	reducer: {
@@ -61,6 +65,10 @@ const store = configureStore({
 		putLeadTaskInUser: putLeadTaskInUser,
 		editUserLeadTask: editUserLeadTask,
 		deleteUserLeadTask: deleteUserLeadTask,
+		addLeadTaskData: addLeadTaskData,
+		editLeadTaskData: editLeadTaskData,
+		DeleteLeadTaskData: DeleteLeadTaskData,
+		getLeadTaskData: getLeadTaskData,
 	},
 });
 

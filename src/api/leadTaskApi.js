@@ -1,10 +1,10 @@
 import axios from 'axios';
-const addTaskUrl = 'http://localhost:3001/v1/tasks';
+const addLeadTaskUrl = 'http://localhost:3001/v1/leadTask';
 
-export const getAlltask = () => {
+export const getAllLeadtask = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.get('http://localhost:3001/v1/tasks', {
+			const result = await axios.get('http://localhost:3001/v1/leadTask', {
 				headers: {
 					Authorization: sessionStorage.getItem('accessJWT'),
 				},
@@ -16,11 +16,10 @@ export const getAlltask = () => {
 		}
 	});
 };
-export const createNewTask = (frmData) => {
-	console.log('from api', frmData);
+export const createNewLeadTask = (frmData) => {
 	return new Promise(async (resolve, reject) => {
 		try {
-			const result = await axios.post(addTaskUrl, frmData, {
+			const result = await axios.post(addLeadTaskUrl, frmData, {
 				headers: {
 					Authorization: sessionStorage.getItem('accessJWT'),
 				},
@@ -34,11 +33,11 @@ export const createNewTask = (frmData) => {
 	});
 };
 
-export const UpdateAllTask = (frmData, id) => {
+export const UpdateAllLeadTask = (frmData, id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.patch(
-				'http://localhost:3001/v1/tasks/' + id,
+				'http://localhost:3001/v1/leadTask' + id,
 				frmData,
 				{
 					headers: {
@@ -54,11 +53,11 @@ export const UpdateAllTask = (frmData, id) => {
 	});
 };
 
-export const DeleteAlltasks = (id) => {
+export const DeleteAllLeadtasks = (id) => {
 	return new Promise(async (resolve, reject) => {
 		try {
 			const result = await axios.delete(
-				'http://localhost:3001/v1/tasks/' + id,
+				'http://localhost:3001/v1/leadTask' + id,
 				{
 					headers: {
 						Authorization: sessionStorage.getItem('accessJWT'),
