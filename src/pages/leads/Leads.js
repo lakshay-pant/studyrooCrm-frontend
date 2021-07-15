@@ -24,6 +24,7 @@ import { userLeadTask } from './putTaskInUserAction';
 import { addLeadTaskD } from './daddLeadTaskAction';
 import { fetchAllLeadTaskD } from './dGetLeadTaskAction';
 import { editLeadTaskD } from './dEditLeadTaskAction';
+import { deleteLeadTaskD } from './dDeleteLeadTaskAction';
 import {
 	filterSearchUser,
 	fetchAllUsers,
@@ -491,6 +492,8 @@ const Leads = () => {
 		console.log('USER NE');
 		await dispatch(deleteLeadTask(leadId, leadTaskId));
 		await dispatch(deleteUserLeadTask(userId, leadTaskUserId));
+		await dispatch(deleteLeadTaskD(leadTaskUserId));
+		await dispatch(fetchAllLeadTaskD());
 		await showAddedLeads();
 		await dispatch(fetchAllUsers());
 	};

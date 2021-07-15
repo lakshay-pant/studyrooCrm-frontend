@@ -1,7 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './addTask.style.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { addTaskPending, addTaskSuccess, addTaskError } from './addTaskSlice';
+import {
+	addTaskPending,
+	addTaskSuccess,
+	addTaskError,
+	addStudentTaskResetMessage,
+} from './addTaskSlice';
 import { Spinner, Alert } from 'react-bootstrap';
 import { createNewTask } from '../../api/taskApi';
 import {
@@ -54,6 +59,13 @@ export const Addtask = () => {
 			window.removeEventListener('mousedown', handleClickOutside1);
 		};
 	});
+
+	useEffect(() => {
+		return () => {
+			message && dispatch(addStudentTaskResetMessage());
+		};
+	}, [message, dispatch]);
+
 	const updatePokeDex = async (stud) => {
 		setDisplay(false);
 		setStudentId(stud._id);

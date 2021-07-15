@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchAllStudents } from '../allStudents/allStudentAction';
 import { fetchAlltask } from '../taskList/taskListgetAction';
+import { fetchAllLeadTaskD } from '../leads/dGetLeadTaskAction';
+import Moment from 'moment';
+import moment from 'moment';
 
 const Dashboard = () => {
 	const dispatch = useDispatch();
@@ -14,22 +17,93 @@ const Dashboard = () => {
 
 	const { task } = useSelector((state) => state.getTask);
 
+	const { leadTasks } = useSelector((state) => state.getLeadTaskData);
+
 	useEffect(() => {
 		if (!students.length) {
 			dispatch(fetchAllStudents());
 		}
-	}, [students, dispatch]);
+	}, []);
+
+	useEffect(() => {
+		dispatch(fetchAllStudents());
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(fetchAlltask());
+	}, [dispatch]);
+
+	useEffect(() => {
+		dispatch(fetchAllLeadTaskD());
+	}, [dispatch]);
+
+	useEffect(() => {
+		if (!leadTasks.length) {
+			dispatch(fetchAllLeadTaskD());
+		}
+	}, []);
 
 	useEffect(() => {
 		if (!task.length) {
 			dispatch(fetchAlltask());
 		}
-	}, [task, dispatch]);
+	}, []);
 
 	var studentNumber = students.length;
 
 	const studentTask = task.filter(function (task) {
 		return task.taskStatus === 'Pending';
+	});
+
+	const addStudentFilter = students.filter(function (stud) {
+		//var date1 = new Date(student.addedAt);
+		//date1.setDate(date1.getDate() - 30);
+		//var date2 = new Date(student.addedAt);
+		//date2.setDate(date1.getDate() - 1);
+
+		var prevMonth = moment().subtract(1, 'months');
+		var nextDay = moment().add(1, 'days');
+
+		var filteredStudents = moment(stud.addedAt).isBetween(prevMonth, nextDay);
+		fetchAllStudents();
+		return filteredStudents;
+	});
+
+	const addStudentTaskFilter = task.filter(function (ta) {
+		//var date1 = new Date(student.addedAt);
+		//date1.setDate(date1.getDate() - 30);
+		//var date2 = new Date(student.addedAt);
+		//date2.setDate(date1.getDate() - 1);
+
+		var prevMonth = moment().subtract(1, 'months');
+		var nextDay = moment().add(1, 'days');
+
+		var filteredStudentTask = moment(ta.addedAt).isBetween(prevMonth, nextDay);
+		fetchAlltask();
+		console.log(filteredStudentTask);
+		return filteredStudentTask;
+	});
+
+	const addLeadTaskFilter = leadTasks.filter(function (leadTask) {
+		//var date1 = new Date(student.addedAt);
+		//date1.setDate(date1.getDate() - 30);
+		//var date2 = new Date(student.addedAt);
+		//date2.setDate(date1.getDate() - 1);
+
+		var prevMonth = moment().subtract(1, 'months');
+		var nextDay = moment().add(1, 'days');
+
+		var filteredLeadTask = moment(leadTask.addedAt).isBetween(
+			prevMonth,
+			nextDay
+		);
+		fetchAllLeadTaskD();
+		console.log(filteredLeadTask);
+		return filteredLeadTask;
+	});
+
+	const leadTask = leadTasks.filter(function (leadTask) {
+		return leadTask.taskCompleted === false;
 	});
 
 	return (
@@ -119,7 +193,7 @@ const Dashboard = () => {
 									<div className="row">
 										<div className="col-md-5">
 											<div className="headingdiv">
-												You have {studentTask.length} tasks pending
+												You have {studentTask.length} student tasks pending
 											</div>
 											{studentTask.length
 												? studentTask.reverse().map((item) => (
@@ -136,7 +210,17 @@ const Dashboard = () => {
 																			{'   '}
 																			<span>Created By : {item.userName}</span>
 																		</td>
-																		<td>{item.dueDate}</td>
+																		<td>
+																			{item.dueDate
+																				? Moment(item.dueDate).format('DD')
+																				: 'No Date'}{' '}
+																			{item.dueDate
+																				? Moment(item.dueDate).format('MMMM')
+																				: ''}{' '}
+																			{item.dueDate
+																				? Moment(item.dueDate).format('YYYY')
+																				: ''}
+																		</td>
 																	</tr>
 																</tbody>
 															</table>
@@ -146,37 +230,44 @@ const Dashboard = () => {
 										</div>
 
 										<div className="col-md-4">
-											<div className="headingdiv">Application Reminders</div>
-											<div className="client-mett table-responsive clintmat2">
-												<table className="table table-hover">
-													<tbody>
-														<tr>
-															<td>
-																Client Meeting
-																<br />
-																<span>Created by: Artur Szulakowski.</span>
-															</td>
-															<td>02 Dec 2020</td>
-														</tr>
-														<tr>
-															<td>
-																Client Meeting
-																<br />
-																<span>Created by: Artur Szulakowski.</span>
-															</td>
-															<td>02 Dec 2020</td>
-														</tr>
-														<tr>
-															<td>
-																Client Meeting
-																<br />
-																<span>Created by: Artur Szulakowski.</span>
-															</td>
-															<td>02 Dec 2020</td>
-														</tr>
-													</tbody>
-												</table>
+											<div className="headingdiv">
+												You have {leadTask.length} lead tasks pending
 											</div>
+											{leadTask.length
+												? leadTask.reverse().map((item) => (
+														<div className="client-mett table-responsive">
+															<table className="table table-hover">
+																<tbody>
+																	<tr>
+																		<td>
+																			{item.taskStatus}
+																			<br />
+
+																			<span>Assigned To : {item.assignee}</span>
+																			{'   '}
+																			<span>Created By : {item.userName}</span>
+																		</td>
+																		<td>
+																			{item.taskEndDate
+																				? Moment(item.taskEndDate).format('DD')
+																				: 'No Date'}{' '}
+																			{item.taskEndDate
+																				? Moment(item.taskEndDate).format(
+																						'MMMM'
+																				  )
+																				: ''}{' '}
+																			{item.taskEndDate
+																				? Moment(item.taskEndDate).format(
+																						'YYYY'
+																				  )
+																				: ''}
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+												  ))
+												: 'No Student Task Found'}
 										</div>
 									</div>
 								</div>
@@ -237,7 +328,7 @@ const Dashboard = () => {
 													</p>
 												</div>
 												<div className="activi-value">
-													<span>{studentNumber}</span>
+													<span>{addStudentFilter.length}</span>
 												</div>
 											</div>
 										</div>
@@ -265,11 +356,11 @@ const Dashboard = () => {
 														<i className="fa fa-user-graduate"></i>
 													</span>
 													<p>
-														Tasks Added<small>last 30 days</small>
+														Student Tasks Added<small>last 30 days</small>
 													</p>
 												</div>
 												<div className="activi-value">
-													<span>00</span>
+													<span>{addStudentTaskFilter.length}</span>
 												</div>
 											</div>
 										</div>
@@ -281,11 +372,11 @@ const Dashboard = () => {
 														<i className="fa fa-user-graduate"></i>
 													</span>
 													<p>
-														Task Completed<small>last 30 days</small>
+														Lead Task Added<small>last 30 days</small>
 													</p>
 												</div>
 												<div className="activi-value">
-													<span>00</span>
+													<span>{addLeadTaskFilter.length}</span>
 												</div>
 											</div>
 										</div>
