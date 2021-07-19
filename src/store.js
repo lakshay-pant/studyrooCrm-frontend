@@ -33,6 +33,7 @@ import addLeadTaskData from './pages/leads/daddLeadTaskSlice';
 import editLeadTaskData from './pages/leads/dEditLeadTaskSlice';
 import DeleteLeadTaskData from './pages/leads/dDeleteLeadTaskSlice';
 import getLeadTaskData from './pages/leads/dGetLeadTaskSlice';
+import deleteLeadTaskDust from './pages/leads/deleteLeadDustTaskSlice';
 
 const store = configureStore({
 	reducer: {
@@ -69,6 +70,7 @@ const store = configureStore({
 		editLeadTaskData: editLeadTaskData,
 		DeleteLeadTaskData: DeleteLeadTaskData,
 		getLeadTaskData: getLeadTaskData,
+		deleteLeadTaskDust: deleteLeadTaskDust,
 	},
 });
 

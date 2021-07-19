@@ -25,6 +25,7 @@ import { addLeadTaskD } from './daddLeadTaskAction';
 import { fetchAllLeadTaskD } from './dGetLeadTaskAction';
 import { editLeadTaskD } from './dEditLeadTaskAction';
 import { deleteLeadTaskD } from './dDeleteLeadTaskAction';
+import { deleteLeadTaskDust } from './deleteLeadDustTaskAction';
 import {
 	filterSearchUser,
 	fetchAllUsers,
@@ -155,7 +156,7 @@ const Leads = () => {
 	const [zipCode, setZipCode] = useState('gggg');
 	const [userId, setUserId] = useState('');
 	const [leadTaskUserId, setLeadTaskUserId] = useState('');
-
+	const [leadUserId, setLeadUserId] = useState('');
 	const [optionsUsers, setUserOptions] = useState([]);
 	const [displayUsers, setDisplayUsers] = useState(false);
 	const wrapperRef = useRef(null);
@@ -483,7 +484,12 @@ const Leads = () => {
 
 	const deleteLeadRecord = async () => {
 		await dispatch(deleteLead(leadId));
+
+		await dispatch(deleteLeadTaskDust(leadUserId));
 		await showAddedLeads();
+		await dispatch(fetchAllLeadTaskD());
+
+		await dispatch(fetchAllUsers());
 		hideModal();
 	};
 
@@ -517,6 +523,7 @@ const Leads = () => {
 			taskEndTime,
 			leadTaskUserId: uuidv4(),
 			userId,
+			leadUserId,
 		};
 
 		await dispatch(leadTask(newLeadTask, leadId));
@@ -773,6 +780,10 @@ const Leads = () => {
 	const showModal = (item) => {
 		setIsOpen(true);
 		dispatch(fetchSingleLead(item._id));
+		setLeadUserId(item._id);
+
+		setUserId(item.leadTasks.userId);
+		setLeadTaskUserId(item.leadTasks.leadTaskUserId);
 		setLeadFirstName(item.leadFirstName);
 		setLeadMiddleName(item.leadMiddleName);
 		setLeadLastName(item.leadLastName);

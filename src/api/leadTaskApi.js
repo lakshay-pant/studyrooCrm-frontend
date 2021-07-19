@@ -72,3 +72,23 @@ export const DeleteAllLeadtasks = (id) => {
 		}
 	});
 };
+
+export const DeleteManyLeadTasks = (id) => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const result = await axios.delete(
+				'http://localhost:3001/v1/leadTask/task/' + id,
+				{
+					headers: {
+						Authorization: sessionStorage.getItem('accessJWT'),
+					},
+				}
+			);
+			console.log('RESULT', result);
+			resolve(result.data);
+		} catch (error) {
+			console.log('i am in error ', error.message);
+			reject(error);
+		}
+	});
+};
