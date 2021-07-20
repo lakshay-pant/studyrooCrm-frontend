@@ -23,11 +23,19 @@ const editLeadSlice = createSlice({
 			state.statusLeadEdit = 'error';
 			state.messageLeadEdit = payload;
 		},
+		editLeadResetMessage: (state) => {
+			state.messageLeadEdit = '';
+		},
 	},
 });
 
 const { reducer, actions } = editLeadSlice;
 
-export const { editLeadPending, editLeadSuccess, editLeadError } = actions;
+export const {
+	editLeadPending,
+	editLeadSuccess,
+	editLeadError,
+	editLeadResetMessage,
+} = actions;
 
 export default reducer;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePasswordToggle from '../../hooks/usePasswordToggle';
 import useConfirmPasswordToggle from '../../hooks/useConfirmPasswordToggle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,6 +6,7 @@ import { Spinner, Alert } from 'react-bootstrap';
 import { newUserRegistration } from './UserSignUpAction';
 import './registration.style.css';
 import { Link } from 'react-router-dom';
+import { resetSignupMsg } from './signupSlice';
 
 export const Signup = () => {
 	const [PasswordInputType, ToggleIcon] = usePasswordToggle();
@@ -24,6 +25,7 @@ export const Signup = () => {
 	const [gender, setGender] = useState('');
 
 	const [isError, setIsError] = useState('');
+	const [isValidate, setIsValidate] = useState(false);
 	const [isChecked, setIsChecked] = useState(false);
 
 	const handleOnChange = (e) => {
@@ -71,6 +73,9 @@ export const Signup = () => {
 		if (!isChecked) {
 			return alert('Accept the Terms of use & Privacy Policy');
 		}
+		if (!isValidate) {
+			return alert('Password did not match');
+		}
 
 		const newRegistration = {
 			firstName,
@@ -88,10 +93,18 @@ export const Signup = () => {
 		setConfirmPassword(e.target.value);
 		if (password === e.target.value) {
 			setIsError('Confirm Password Matched');
+			setIsValidate(true);
 		} else {
 			setIsError('Confirm Password should match with Password');
+			setIsValidate(false);
 		}
 	};
+
+	useEffect(() => {
+		return () => {
+			message && dispatch(resetSignupMsg());
+		};
+	}, [message, dispatch]);
 
 	return (
 		<div className="body">
@@ -111,6 +124,14 @@ export const Signup = () => {
 										onSubmit={handleOnSignUpSubmit}
 										autoComplete="off"
 									>
+										<div className="logoimg text-center">
+											<img
+												alt="studyroo logo"
+												src={process.env.PUBLIC_URL + '/images/logo.png'}
+												className="img-fluid"
+											></img>
+										</div>
+
 										{message && (
 											<Alert
 												variant={status === 'success' ? 'success' : 'danger'}
@@ -119,13 +140,6 @@ export const Signup = () => {
 											</Alert>
 										)}
 
-										<div className="logoimg text-center">
-											<img
-												alt="studyroo logo"
-												src={process.env.PUBLIC_URL + '/images/logo.png'}
-												className="img-fluid"
-											></img>
-										</div>
 										<div className="form-group row">
 											<div className="col-md-6">
 												<label for="firstname" className="text-lb">
@@ -175,6 +189,35 @@ export const Signup = () => {
 												value={email}
 												required
 											></input>
+										</div>
+
+										<div className="form-group">
+											<label for="mail" className="text-lb">
+												Office
+											</label>
+											<br />
+											<input
+												type="text"
+												name="email"
+												placeholder="Your Office"
+												id="username"
+												className="form-control"
+												required
+											></input>
+										</div>
+
+										<div class="form-group col-md-6">
+											<label>User Group</label>
+											<select class="form-control" required>
+												<option>Sales</option>
+												<option>Accounting</option>
+												<option>Customer Service</option>
+												<option>Marketing</option>
+												<option>Admissions</option>
+												<option>Back-Office</option>
+												<option>Social media</option>
+												<option>Management</option>
+											</select>
 										</div>
 
 										<div className="form-group">
@@ -230,7 +273,7 @@ export const Signup = () => {
 											<div class="form-group col-md-6">
 												<label>Birthday</label>
 												<input
-													type=""
+													type="date"
 													class="form-control"
 													placeholder=""
 													name="birthdate"
@@ -240,7 +283,7 @@ export const Signup = () => {
 												/>
 											</div>
 											<div class="form-group col-md-6">
-												<label>Phone Number</label>
+												<label>Office Number</label>
 												<input
 													type=""
 													class="form-control"
@@ -261,9 +304,9 @@ export const Signup = () => {
 												value={gender}
 												required
 											>
-												<option value="allstudent">Male</option>
-												<option value="europeans">Female</option>
-												<option value="allstudent">Other</option>
+												<option>Male</option>
+												<option>Female</option>
+												<option>Other</option>
 											</select>
 										</div>
 										<div className="form-group resiterlink">

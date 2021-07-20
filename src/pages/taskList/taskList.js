@@ -234,16 +234,6 @@ export const TaskList = () => {
 		await dispatch(fetchAlltask());
 		await dispatch(fetchAllStudents());
 		await dispatch(fetchAllUsers());
-
-		await setTaskName('');
-		await setType('');
-		await setDueDate('');
-		await setStudentAssign('');
-		await setAssignTo('');
-		await setOffices('');
-		await setUserGroup('');
-		await setTaskDetails('');
-		await setTaskStatus('');
 	};
 
 	const showModal = (item) => {

@@ -26,6 +26,7 @@ import { fetchAllLeadTaskD } from './dGetLeadTaskAction';
 import { editLeadTaskD } from './dEditLeadTaskAction';
 import { deleteLeadTaskD } from './dDeleteLeadTaskAction';
 import { deleteLeadTaskDust } from './deleteLeadDustTaskAction';
+import { editLeadResetMessage } from './editLeadSlice';
 import {
 	filterSearchUser,
 	fetchAllUsers,
@@ -49,6 +50,10 @@ const Leads = () => {
 
 	const { lead, isLoadingShowSingleLead, errorSingleLead } = useSelector(
 		(state) => state.singleLead
+	);
+
+	const { isLoadingLeadEdit, statusLeadEdit, messageLeadEdit } = useSelector(
+		(state) => state.editLead
 	);
 
 	const completedTasks =
@@ -898,6 +903,7 @@ const Leads = () => {
 
 	const showModal6 = (item) => {
 		setIsOpen6(true);
+
 		setLeadFirstName(item.leadFirstName);
 		setLeadMiddleName(item.leadMiddleName);
 		setLeadLastName(item.leadLastName);
@@ -918,7 +924,9 @@ const Leads = () => {
 	};
 
 	const hideModal6 = () => {
+		dispatch(editLeadResetMessage());
 		setIsOpen6(false);
+
 		setLeadFirstName('');
 		setLeadMiddleName('');
 		setLeadLastName('');
@@ -5125,6 +5133,17 @@ const Leads = () => {
 																		{' '}
 																		<div class="student-filter-area">
 																			<div class="row">
+																				{messageLeadEdit && (
+																					<Alert
+																						variant={
+																							statusLeadEdit === 'success'
+																								? 'success'
+																								: 'danger'
+																						}
+																					>
+																						{messageLeadEdit}
+																					</Alert>
+																				)}
 																				<div class="col-lg-12 col-12">
 																					<div class="update-crm add-leads">
 																						<div class="row">

@@ -19,6 +19,7 @@ import { Accordion } from 'react-bootstrap';
 import { editStudent } from './studentOverviewAction';
 import { Spinner, Alert } from 'react-bootstrap';
 import { deleteStudent } from './studentOverviewDeleteAction';
+import { editStudentResetMessage } from './studentOverviewSlice';
 export const UncategorizedStudents = () => {
 	const dispatch = useDispatch();
 	const { students } = useSelector((state) => state.allStudent);
@@ -658,6 +659,7 @@ export const UncategorizedStudents = () => {
 	};
 
 	const hideModal2 = () => {
+		dispatch(editStudentResetMessage());
 		setIsOpen2(false);
 	};
 

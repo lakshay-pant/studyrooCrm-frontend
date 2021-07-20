@@ -423,64 +423,6 @@ export const Addtask = () => {
 											<div class="col-md-12">
 												<div class="form-group ">
 													<label>This task will be assigned to...</label>
-													{isLoading && (
-														<Spinner variant="primary" animation="border" />
-													)}
-
-													<div
-														ref={wrapperRef}
-														className="flex-container flex-column pos-rel"
-													>
-														<input
-															id="auto"
-															onClick={() => setDisplayUsers(!displayUsers)}
-															placeholder="Type to search"
-															onChange={handleOnChange}
-															autoComplete="off"
-															value={studentAssign}
-															name="studentAssign"
-															className="form-control"
-														/>
-														{displayUsers && (
-															<div className="autoContainer">
-																<div className="auto-area">
-																	<div class="ssg-header">
-																		<div class="ssg-icon">
-																			<i
-																				class="fas fa-user"
-																				aria-hidden="true"
-																			></i>
-																		</div>
-																		<div class="ssg-name">My Users</div>
-																		<div class="ssg-info">
-																			{optionsUsers.length}
-																		</div>
-																	</div>
-																	<div className="ssg-content">
-																		{optionsUsers
-																			.filter(
-																				({ firstName }) =>
-																					firstName.indexOf(
-																						studentAssign.toLowerCase()
-																					) > -1
-																			)
-																			.map((value, i) => {
-																				return (
-																					<div
-																						onClick={() => updateUser(value)}
-																						className="option ssg-item"
-																						key={i}
-																						tabIndex="0"
-																					>
-																						<span>{value.firstName}</span>
-																					</div>
-																				);
-																			})}
-																	</div>
-																</div>
-															</div>
-														)}
-													</div>
 												</div>
 											</div>
 										</div>
@@ -499,31 +441,90 @@ export const Addtask = () => {
 												Assign this task for users in groups or offices
 											</label>
 										</div>
-										<div class="form-row" id={checked ? '' : 'users'}>
-											<div class="form-group col-md-6">
-												<label>User Groups</label>
-												<input
-													type="text"
-													class="form-control"
-													placeholder="selected"
-													name="userGroup"
-													value={userGroup}
-													onChange={handleOnChange}
-												/>
-											</div>
+										{checked == true ? (
+											<div class="form-row">
+												<div class="form-group col-md-6">
+													<label>User Groups</label>
+													<div class="form-group col-md-6">
+														<select class="form-control" required>
+															<option>Sales</option>
+															<option>Accounting</option>
+															<option>Customer Service</option>
+															<option>Marketing</option>
+															<option>Admissions</option>
+															<option>Back-Office</option>
+															<option>Social media</option>
+															<option>Management</option>
+														</select>
+													</div>
+												</div>
 
-											<div class="form-group col-md-6">
-												<label>Offices</label>
-												<input
-													type="text"
-													class="form-control"
-													placeholder="All"
-													name="offices"
-													value={offices}
-													onChange={handleOnChange}
-												/>
+												<div class="form-group col-md-6">
+													<label>Offices</label>
+													<input
+														type="text"
+														class="form-control"
+														placeholder="All"
+														name="offices"
+														value={offices}
+														onChange={handleOnChange}
+													/>
+												</div>
 											</div>
-										</div>
+										) : (
+											<div
+												ref={wrapperRef}
+												className="flex-container flex-column pos-rel"
+											>
+												<input
+													id="auto"
+													onClick={() => setDisplayUsers(!displayUsers)}
+													placeholder="Type to search"
+													onChange={handleOnChange}
+													autoComplete="off"
+													value={studentAssign}
+													name="studentAssign"
+													className="form-control"
+												/>
+												{displayUsers && (
+													<div className="autoContainer">
+														<div className="auto-area">
+															<div class="ssg-header">
+																<div class="ssg-icon">
+																	<i class="fas fa-user" aria-hidden="true"></i>
+																</div>
+																<div class="ssg-name">My Users</div>
+																<div class="ssg-info">
+																	{optionsUsers.length}
+																</div>
+															</div>
+															<div className="ssg-content">
+																{optionsUsers
+																	.filter(
+																		({ firstName }) =>
+																			firstName.indexOf(
+																				studentAssign.toLowerCase()
+																			) > -1
+																	)
+																	.map((value, i) => {
+																		return (
+																			<div
+																				onClick={() => updateUser(value)}
+																				className="option ssg-item"
+																				key={i}
+																				tabIndex="0"
+																			>
+																				<span>{value.firstName}</span>
+																			</div>
+																		);
+																	})}
+															</div>
+														</div>
+													</div>
+												)}
+											</div>
+										)}
+
 										<div class="form-check custom-control custom-checkbox">
 											<input
 												type="checkbox"
